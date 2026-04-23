@@ -1,0 +1,35 @@
+[
+  {
+    "id": "opening-keynote",
+    "date": "2026-11-05",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "track": "Keynote",
+    "title": "Opening Keynote (Placeholder)",
+    "abstract": "Placeholder abstract. Real session content will be added as the 2026 agenda is finalized.",
+    "speakers": ["placeholder-keynote"],
+    "room": "Main Hall"
+  },
+  {
+    "id": "ai-session",
+    "date": "2026-11-05",
+    "startTime": "10:30",
+    "endTime": "11:30",
+    "track": "Data Science & AI",
+    "title": "AI in Clinical Decision-Making (Placeholder)",
+    "abstract": "Placeholder abstract for a data science session.",
+    "speakers": ["placeholder-panelist"],
+    "room": "Room A"
+  },
+  {
+    "id": "panel-day2",
+    "date": "2026-11-06",
+    "startTime": "09:00",
+    "endTime": "10:00",
+    "track": "Panel",
+    "title": "Day 2 Panel (Placeholder)",
+    "abstract": "Placeholder abstract.",
+    "speakers": ["placeholder-keynote", "placeholder-panelist"],
+    "room": "Main Hall"
+  }
+]

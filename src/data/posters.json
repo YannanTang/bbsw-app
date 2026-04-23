@@ -1,0 +1,16 @@
+[
+  {
+    "id": "poster-001",
+    "title": "Placeholder Poster Title A",
+    "presenters": ["Presenter Name (TBD)"],
+    "affiliation": "Example Institution",
+    "abstract": "Placeholder abstract for a poster. Real poster entries will be populated after the poster selection committee finalizes accepted submissions."
+  },
+  {
+    "id": "poster-002",
+    "title": "Placeholder Poster Title B",
+    "presenters": ["Presenter Name (TBD)"],
+    "affiliation": "Example Institution",
+    "abstract": "Placeholder abstract."
+  }
+]

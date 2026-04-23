@@ -1,0 +1,57 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "BBSW 2026", description = "Bay Area Biotech-Pharma Statistics Workshop 2026" } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+const nav = [
+  { href: link(""), label: "Home" },
+  { href: link("schedule"), label: "Schedule" },
+  { href: link("speakers"), label: "Speakers" },
+  { href: link("posters"), label: "Posters" },
+  { href: link("sponsors"), label: "Sponsors" },
+  { href: link("venue"), label: "Venue" },
+];
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f3e7a" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={link("favicon.svg")} type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href={link("")} class="brand">BBSW 2026</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-controls="primary-nav" aria-expanded="false">Menu</button>
+    </header>
+    <nav class="site-nav" id="primary-nav">
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>BBSW 2026 · November 5–6, 2026 · Foster City, CA</p>
+    </footer>
+    <script>
+      const btn = document.querySelector(".nav-toggle");
+      const nav = document.querySelector(".site-nav");
+      btn?.addEventListener("click", () => {
+        const open = nav?.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+    </script>
+  </body>
+</html>

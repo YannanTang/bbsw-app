@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import sessions from "../data/sessions.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Session = {
+  id: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  track: string;
+  title: string;
+  abstract: string;
+  speakers: string[];
+  room: string;
+};
+
+const byDate: Record<string, Session[]> = {};
+for (const s of sessions as Session[]) {
+  (byDate[s.date] ||= []).push(s);
+}
+for (const d of Object.keys(byDate)) {
+  byDate[d].sort((a, b) => a.startTime.localeCompare(b.startTime));
+}
+const days = Object.keys(byDate).sort();
+
+const dayLabel = (iso: string) => {
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+};
+---
+<BaseLayout title="Schedule — BBSW 2026">
+  <h1>Schedule</h1>
+  <p>Placeholder agenda. Content will be finalized as the 2026 program is confirmed.</p>
+
+  {days.map((d) => (
+    <section>
+      <h2 class="day-heading">{dayLabel(d)}</h2>
+      {byDate[d].map((s) => (
+        <a class="session-row" href={link(`sessions/${s.id}`)}>
+          <div class="time">{s.startTime}–{s.endTime} · {s.room}</div>
+          <div class="title">{s.title}</div>
+          <span class="tag">{s.track}</span>
+        </a>
+      ))}
+    </section>
+  ))}
+</BaseLayout>

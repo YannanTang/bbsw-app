@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import speakers from "../../data/speakers.json";
+import sessions from "../../data/sessions.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
+type Session = { id: string; date: string; startTime: string; endTime: string; track: string; title: string; abstract: string; speakers: string[]; room: string; };
+
+export async function getStaticPaths() {
+  const data = (await import("../../data/speakers.json")).default as Speaker[];
+  return data.map((sp) => ({ params: { id: sp.id }, props: { speaker: sp } }));
+}
+
+const { speaker } = Astro.props as { speaker: Speaker };
+const theirSessions = (sessions as Session[]).filter((s) => s.speakers.includes(speaker.id));
+---
+<BaseLayout title={`${speaker.name} — BBSW 2026`}>
+  <a class="back-link" href={link("speakers")}>← Back to speakers</a>
+  <div class="speaker-card" style="background:#fff;">
+    <img src={speaker.photo || link("speaker-placeholder.svg")} alt={speaker.name} style="width:96px;height:96px;" />
+    <div>
+      <h1 style="margin:0 0 0.25rem;">{speaker.name}</h1>
+      <div class="meta">{speaker.title}{speaker.affiliation ? ` · ${speaker.affiliation}` : ""}</div>
+      {speaker.linkedin && <div style="margin-top:0.35rem;"><a href={speaker.linkedin}>LinkedIn</a></div>}
+    </div>
+  </div>
+
+  <h2>About</h2>
+  <p>{speaker.bio}</p>
+
+  {theirSessions.length > 0 && (
+    <>
+      <h2>Sessions</h2>
+      {theirSessions.map((s) => (
+        <a class="session-row" href={link(`sessions/${s.id}`)}>
+          <div class="time">{s.date} · {s.startTime}–{s.endTime} · {s.room}</div>
+          <div class="title">{s.title}</div>
+          <span class="tag">{s.track}</span>
+        </a>
+      ))}
+    </>
+  )}
+</BaseLayout>

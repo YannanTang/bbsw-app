@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import sessions from "../../data/sessions.json";
+import speakers from "../../data/speakers.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Session = {
+  id: string; date: string; startTime: string; endTime: string;
+  track: string; title: string; abstract: string; speakers: string[]; room: string;
+};
+type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
+
+export async function getStaticPaths() {
+  const data = (await import("../../data/sessions.json")).default as Session[];
+  return data.map((s) => ({ params: { id: s.id }, props: { session: s } }));
+}
+
+const { session } = Astro.props as { session: Session };
+const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
+const sessionSpeakers = session.speakers.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
+
+const dayLabel = (iso: string) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+---
+<BaseLayout title={`${session.title} — BBSW 2026`}>
+  <a class="back-link" href={link("schedule")}>← Back to schedule</a>
+  <h1>{session.title}</h1>
+  <p class="tag accent">{session.track}</p>
+  <p><strong>{dayLabel(session.date)}</strong> · {session.startTime}–{session.endTime} · {session.room}</p>
+
+  <h2>Abstract</h2>
+  <p>{session.abstract}</p>
+
+  {sessionSpeakers.length > 0 && (
+    <>
+      <h2>Speakers</h2>
+      <div class="grid">
+        {sessionSpeakers.map((sp) => (
+          <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
+            <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
+            <div>
+              <strong>{sp.name}</strong>
+              <div class="meta">{sp.title}{sp.affiliation ? ` · ${sp.affiliation}` : ""}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </>
+  )}
+</BaseLayout>

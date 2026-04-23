@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import posters from "../data/posters.json";
+
+type Poster = { id: string; title: string; presenters: string[]; affiliation: string; abstract: string; };
+const list = posters as Poster[];
+---
+<BaseLayout title="Poster Sessions — BBSW 2026">
+  <h1>Poster Sessions</h1>
+  <p>Placeholder list of accepted posters. Final list will be published after the selection committee completes review.</p>
+  {list.map((p) => (
+    <article class="card">
+      <h2 style="margin-top:0;">{p.title}</h2>
+      <div class="meta" style="color:var(--color-muted);font-size:0.9rem;">
+        {p.presenters.join(", ")}{p.affiliation ? ` · ${p.affiliation}` : ""}
+      </div>
+      <p>{p.abstract}</p>
+    </article>
+  ))}
+</BaseLayout>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import speakers from "../../data/speakers.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
+const list = (speakers as Speaker[]).slice().sort((a, b) => a.name.localeCompare(b.name));
+---
+<BaseLayout title="Speakers — BBSW 2026">
+  <h1>Speakers</h1>
+  <p>Placeholder list. Real speakers will be added as they are confirmed.</p>
+  <div class="grid">
+    {list.map((sp) => (
+      <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
+        <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
+        <div>
+          <strong>{sp.name}</strong>
+          <div class="meta">{sp.title}{sp.affiliation ? ` · ${sp.affiliation}` : ""}</div>
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

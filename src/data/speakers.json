@@ -1,0 +1,20 @@
+[
+  {
+    "id": "placeholder-keynote",
+    "name": "Keynote Speaker (TBD)",
+    "title": "Chief Data Scientist",
+    "affiliation": "Example Pharma",
+    "bio": "Placeholder bio. Full speaker details will appear here once confirmed.",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "placeholder-panelist",
+    "name": "Panelist (TBD)",
+    "title": "Principal Statistician",
+    "affiliation": "Example Biotech",
+    "bio": "Placeholder bio. Replace with real content during content workflow.",
+    "photo": "",
+    "linkedin": ""
+  }
+]

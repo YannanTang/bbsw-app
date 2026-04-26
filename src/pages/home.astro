@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+---
+<BaseLayout title="BBSW 2026 — Home">
+  <section class="hero">
+    <h1>BBSW 2026</h1>
+    <p><strong>November 5–6, 2026 · Foster City, CA</strong></p>
+    <p>Bay Area Biotech-Pharma Statistics Workshop — the annual gathering of the SF Bay Area statistics and quantitative science community.</p>
+  </section>
+
+  <h2>Quick Links</h2>
+  <div class="grid">
+    <a class="card" href={link("schedule")}>
+      <strong>Schedule</strong>
+      <p>Two-day agenda with keynotes, sessions, panels, and posters.</p>
+    </a>
+    <a class="card" href={link("speakers")}>
+      <strong>Speakers</strong>
+      <p>Browse bios and affiliations for 2026 presenters.</p>
+    </a>
+    <a class="card" href={link("posters")}>
+      <strong>Poster Sessions</strong>
+      <p>Accepted posters and presenters.</p>
+    </a>
+    <a class="card" href={link("sponsors")}>
+      <strong>Sponsors</strong>
+      <p>Thank you to our 2026 sponsors.</p>
+    </a>
+    <a class="card" href={link("venue")}>
+      <strong>Venue &amp; Logistics</strong>
+      <p>Location, hotel, parking, and Wi-Fi.</p>
+    </a>
+  </div>
+
+  <h2>About BBSW</h2>
+  <p>BBSW is dedicated to promoting connection, leadership, growth, and impact of the SF Bay Area statistics and quantitative science community. Established in 2018.</p>
+  <p>Main website: <a href="https://bbsw.org">bbsw.org</a></p>
+</BaseLayout>

@@ -1,40 +1,188 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
-const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+// Pre-launch splash. The real app lives at /home and is gated by a localStorage
+// flag set when the visitor enters the correct passcode (or visits with ?k=PASSCODE).
+// To change the passcode, edit GATE_PASSCODE below.
+const GATE_PASSCODE = "bbsw-committee-2026";
 ---
-<BaseLayout title="BBSW 2026 — Home">
-  <section class="hero">
-    <h1>BBSW 2026</h1>
-    <p><strong>November 5–6, 2026 · Foster City, CA</strong></p>
-    <p>Bay Area Biotech-Pharma Statistics Workshop — the annual gathering of the SF Bay Area statistics and quantitative science community.</p>
-  </section>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#9b1b30" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>BBSW 2026 — Coming Soon</title>
+    <meta name="description" content="The BBSW 2026 conference app is launching late October 2026." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <style>
+      :root {
+        --red: #9b1b30;
+        --text: #202020;
+        --muted: #666;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: var(--text);
+        background: #fff;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.25rem;
+      }
+      main {
+        max-width: 28rem;
+        width: 100%;
+        text-align: center;
+      }
+      img.logo {
+        width: 220px;
+        max-width: 80%;
+        height: auto;
+        margin-bottom: 1.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 0.5rem;
+        color: var(--red);
+        letter-spacing: 0.02em;
+      }
+      p.lead {
+        font-size: 1.05rem;
+        margin: 0 0 0.5rem;
+        font-weight: 600;
+      }
+      p.sub {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .gate {
+        margin-top: 2.5rem;
+        display: none;
+      }
+      .gate.show { display: block; }
+      .gate label {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+      }
+      .gate-row {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+      .gate input {
+        flex: 0 1 16rem;
+        padding: 0.6rem 0.8rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .gate button {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+        background: var(--red);
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .gate button:hover { background: #7a1525; }
+      .gate-error {
+        margin-top: 0.5rem;
+        color: var(--red);
+        font-size: 0.85rem;
+        min-height: 1.2em;
+      }
+      .reveal-toggle {
+        margin-top: 2rem;
+        background: none;
+        border: none;
+        color: var(--muted);
+        font-size: 0.8rem;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      footer {
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      footer a { color: var(--red); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img class="logo" src="/bbsw-logo.webp" alt="BBSW — Bay Area Biotech-Pharma Statistics Workshop" />
+      <h1>BBSW 2026</h1>
+      <p class="lead">November 5–6, 2026 · Foster City, CA</p>
+      <p class="sub">The conference app is under construction.<br />Public launch late October 2026.</p>
 
-  <h2>Quick Links</h2>
-  <div class="grid">
-    <a class="card" href={link("schedule")}>
-      <strong>Schedule</strong>
-      <p>Two-day agenda with keynotes, sessions, panels, and posters.</p>
-    </a>
-    <a class="card" href={link("speakers")}>
-      <strong>Speakers</strong>
-      <p>Browse bios and affiliations for 2026 presenters.</p>
-    </a>
-    <a class="card" href={link("posters")}>
-      <strong>Poster Sessions</strong>
-      <p>Accepted posters and presenters.</p>
-    </a>
-    <a class="card" href={link("sponsors")}>
-      <strong>Sponsors</strong>
-      <p>Thank you to our 2026 sponsors.</p>
-    </a>
-    <a class="card" href={link("venue")}>
-      <strong>Venue &amp; Logistics</strong>
-      <p>Location, hotel, parking, and Wi-Fi.</p>
-    </a>
-  </div>
+      <button class="reveal-toggle" id="reveal-toggle" type="button">Committee access</button>
 
-  <h2>About BBSW</h2>
-  <p>BBSW is dedicated to promoting connection, leadership, growth, and impact of the SF Bay Area statistics and quantitative science community. Established in 2018.</p>
-  <p>Main website: <a href="https://bbsw.org">bbsw.org</a></p>
-</BaseLayout>
+      <form class="gate" id="gate" autocomplete="off">
+        <label for="gate-input">Enter committee passcode</label>
+        <div class="gate-row">
+          <input id="gate-input" type="password" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" />
+          <button type="submit">Enter</button>
+        </div>
+        <div class="gate-error" id="gate-error" aria-live="polite"></div>
+      </form>
+
+      <footer>
+        <p>Main site: <a href="https://bbsw.org">bbsw.org</a></p>
+      </footer>
+    </main>
+
+    <script is:inline define:vars={{ PASSCODE: GATE_PASSCODE }}>
+      (function () {
+        function unlock() {
+          try { localStorage.setItem("bbsw_gate", "open"); } catch (_) {}
+          location.replace("/home");
+        }
+
+        // Auto-unlock from URL: ?k=PASSCODE
+        var params = new URLSearchParams(location.search);
+        if (params.get("k") === PASSCODE) {
+          unlock();
+          return;
+        }
+
+        // Already unlocked → bounce straight to app.
+        try {
+          if (localStorage.getItem("bbsw_gate") === "open") {
+            location.replace("/home");
+            return;
+          }
+        } catch (_) {}
+
+        // Reveal passcode form on click.
+        var toggle = document.getElementById("reveal-toggle");
+        var gate = document.getElementById("gate");
+        var input = document.getElementById("gate-input");
+        var err = document.getElementById("gate-error");
+        toggle.addEventListener("click", function () {
+          gate.classList.add("show");
+          toggle.style.display = "none";
+          input.focus();
+        });
+        gate.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (input.value.trim() === PASSCODE) {
+            err.textContent = "";
+            unlock();
+          } else {
+            err.textContent = "Incorrect passcode.";
+            input.select();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

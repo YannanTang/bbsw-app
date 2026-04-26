@@ -1,11 +1,11 @@
 // BBSW 2026 service worker — minimal offline support.
-// On DNS swap to app.bbsw.org, change BASE to "/".
-const BASE = "/bbsw-app/";
-const VERSION = "v1";
+const BASE = "/";
+const VERSION = "v2";
 const CACHE = `bbsw-${VERSION}`;
 
 const PRECACHE = [
   BASE,
+  BASE + "home",
   BASE + "schedule",
   BASE + "speakers",
   BASE + "posters",
@@ -40,7 +40,6 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  // HTML: network-first so updates appear quickly; cache fallback offline.
   if (req.mode === "navigate" || (req.headers.get("accept") || "").includes("text/html")) {
     event.respondWith(
       fetch(req)
@@ -54,7 +53,6 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Static assets: cache-first.
   event.respondWith(
     caches.match(req).then((cached) =>
       cached ||

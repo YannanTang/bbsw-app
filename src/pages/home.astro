@@ -11,13 +11,10 @@ const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
   </section>
 
   <h2>Using this app</h2>
-  <p>
-    <a href={link("schedule")}>Schedule</a> is your main guide to the two-day program — tap any session to see the abstract and speaker details.
-    <a href={link("posters")}>Posters</a> lists all accepted poster presentations.
-    <a href={link("sponsors")}>Sponsors</a> recognizes the organizations that make BBSW possible.
-    <a href={link("venue")}>Venue</a> has everything you need on-site: location, parking, hotel, and Wi-Fi.
-  </p>
-  <p>Tap the logo at any time to return here. For the full BBSW website, visit <a href="https://bbsw.org">bbsw.org</a>.</p>
+  <p><a href={link("schedule")}>Schedule</a> is your main guide to the two-day program — tap any session to see the abstract and speaker details.</p>
+  <p><a href={link("posters")}>Posters</a> lists all accepted poster presentations.</p>
+  <p><a href={link("sponsors")}>Sponsors</a> recognizes the organizations that make BBSW possible.</p>
+  <p><a href={link("venue")}>Venue</a> has everything you need on-site: location, parking, hotel, and Wi-Fi.</p>
 </BaseLayout>
 
 <style>

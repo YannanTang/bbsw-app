@@ -144,7 +144,7 @@ const GATE_PASSCODE = "bbsw-committee-2026";
       (function () {
         function unlock() {
           try { localStorage.setItem("bbsw_gate", "open"); } catch (_) {}
-          location.replace("/home");
+          location.replace("/schedule");
         }
 
         // Auto-unlock from URL: ?k=PASSCODE
@@ -157,7 +157,7 @@ const GATE_PASSCODE = "bbsw-committee-2026";
         // Already unlocked → bounce straight to app.
         try {
           if (localStorage.getItem("bbsw_gate") === "open") {
-            location.replace("/home");
+            location.replace("/schedule");
             return;
           }
         } catch (_) {}

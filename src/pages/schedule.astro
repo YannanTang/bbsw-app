@@ -1,50 +1,67 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
+import speakers from "../data/speakers.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
-type Session = {
-  id: string;
-  date: string;
-  startTime: string;
-  endTime: string;
-  track: string;
-  title: string;
-  abstract: string;
-  speakers: string[];
-  room: string;
+type Talk = {
+  id: string; title: string; startTime: string; endTime: string;
+  abstract: string; speakers: string[];
 };
+type Session = {
+  id: string; title: string; track: string; date: string;
+  startTime: string; endTime: string; room: string; description: string;
+  chairs: string[]; talks: Talk[];
+};
+type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
+
+const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
+const names = (ids: string[]) => ids.map((id) => speakerMap.get(id)?.name).filter(Boolean).join(", ");
+
+const all = sessions as Session[];
+const scheduled = all.filter((s) => s.date);
+const unscheduled = all.filter((s) => !s.date);
 
 const byDate: Record<string, Session[]> = {};
-for (const s of sessions as Session[]) {
-  (byDate[s.date] ||= []).push(s);
-}
-for (const d of Object.keys(byDate)) {
-  byDate[d].sort((a, b) => a.startTime.localeCompare(b.startTime));
-}
+for (const s of scheduled) (byDate[s.date] ||= []).push(s);
+for (const d of Object.keys(byDate)) byDate[d].sort((a, b) => a.startTime.localeCompare(b.startTime));
 const days = Object.keys(byDate).sort();
 
-const dayLabel = (iso: string) => {
-  const d = new Date(iso + "T00:00:00");
-  return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-};
+const dayLabel = (iso: string) =>
+  new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+
+const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}–${s.endTime}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
 ---
 <BaseLayout title="Schedule — BBSW 2026">
   <h1>Schedule</h1>
-  <p>Placeholder agenda. Content will be finalized as the 2026 program is confirmed.</p>
+  <p>The 2026 program is being finalized. Session times and talks will appear here as they are confirmed.</p>
 
   {days.map((d) => (
     <section>
       <h2 class="day-heading">{dayLabel(d)}</h2>
       {byDate[d].map((s) => (
         <a class="session-row" href={link(`sessions/${s.id}`)}>
-          <div class="time">{s.startTime}–{s.endTime} · {s.room}</div>
+          <div class="time">{timeLabel(s)}</div>
           <div class="title">{s.title}</div>
-          <span class="tag">{s.track}</span>
+          {s.track && <span class="tag">{s.track}</span>}
+          {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
         </a>
       ))}
     </section>
   ))}
+
+  {unscheduled.length > 0 && (
+    <section>
+      <h2 class="day-heading">Sessions</h2>
+      {unscheduled.map((s) => (
+        <a class="session-row" href={link(`sessions/${s.id}`)}>
+          <div class="title">{s.title}</div>
+          {s.track && <span class="tag">{s.track}</span>}
+          {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
+        </a>
+      ))}
+    </section>
+  )}
 </BaseLayout>

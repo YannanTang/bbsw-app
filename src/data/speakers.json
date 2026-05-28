@@ -1,19 +1,181 @@
 [
   {
-    "id": "placeholder-keynote",
-    "name": "Keynote Speaker (TBD)",
-    "title": "Chief Data Scientist",
-    "affiliation": "Example Pharma",
-    "bio": "Placeholder bio. Full speaker details will appear here once confirmed.",
+    "id": "ruixiao-lu",
+    "name": "Ruixiao Lu",
+    "title": "",
+    "affiliation": "Alumis",
+    "bio": "",
     "photo": "",
     "linkedin": ""
   },
   {
-    "id": "placeholder-panelist",
-    "name": "Panelist (TBD)",
-    "title": "Principal Statistician",
-    "affiliation": "Example Biotech",
-    "bio": "Placeholder bio. Replace with real content during content workflow.",
+    "id": "christina-rabe",
+    "name": "Christina Rabe",
+    "title": "",
+    "affiliation": "Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "tony-jiang",
+    "name": "Tony Jiang",
+    "title": "",
+    "affiliation": "Astellas",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "dong-xi",
+    "name": "Dong Xi",
+    "title": "",
+    "affiliation": "Gilead",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "mengjia-yu",
+    "name": "Mengjia Yu",
+    "title": "",
+    "affiliation": "AbbVie",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "haoda-fu",
+    "name": "Haoda Fu",
+    "title": "",
+    "affiliation": "Amgen",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "huang-huang",
+    "name": "Huang Huang",
+    "title": "",
+    "affiliation": "Exelixis",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "merrill-birkner",
+    "name": "Merrill Birkner",
+    "title": "",
+    "affiliation": "Gilead",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "li-zheng",
+    "name": "Li Zheng",
+    "title": "",
+    "affiliation": "Alumis",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "harry-yang",
+    "name": "Harry Yang",
+    "title": "",
+    "affiliation": "Recursion",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "cristina-tudor",
+    "name": "Cristina Tudor",
+    "title": "",
+    "affiliation": "Corcept Therapeutics",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "sunny-xie",
+    "name": "Sunny Xie",
+    "title": "",
+    "affiliation": "AstraZeneca",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "daniel-sjoberg",
+    "name": "Daniel Sjoberg",
+    "title": "",
+    "affiliation": "Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "radia-johnson",
+    "name": "Radia Johnson",
+    "title": "",
+    "affiliation": "Tempus AI",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "jacqueline-law",
+    "name": "Jacqueline Law",
+    "title": "",
+    "affiliation": "Flatiron Health",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "george-wu",
+    "name": "George Wu",
+    "title": "",
+    "affiliation": "Gilead",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "judy-li",
+    "name": "Judy Li",
+    "title": "",
+    "affiliation": "AstraZeneca",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "james-reimann",
+    "name": "James Reimann",
+    "title": "",
+    "affiliation": "CoCreative Insights",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "haijun-ma",
+    "name": "Haijun Ma",
+    "title": "",
+    "affiliation": "Revolution Medicines",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "peiwen-wu",
+    "name": "Peiwen Wu",
+    "title": "",
+    "affiliation": "Kardigan",
+    "bio": "",
     "photo": "",
     "linkedin": ""
   }

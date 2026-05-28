@@ -6,9 +6,14 @@ import speakers from "../../data/speakers.json";
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
+type Talk = {
+  id: string; title: string; startTime: string; endTime: string;
+  abstract: string; speakers: string[];
+};
 type Session = {
-  id: string; date: string; startTime: string; endTime: string;
-  track: string; title: string; abstract: string; speakers: string[]; room: string;
+  id: string; title: string; track: string; date: string;
+  startTime: string; endTime: string; room: string; description: string;
+  chairs: string[]; talks: Talk[];
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
 
@@ -19,33 +24,64 @@ export async function getStaticPaths() {
 
 const { session } = Astro.props as { session: Session };
 const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
-const sessionSpeakers = session.speakers.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
+const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
 
-const dayLabel = (iso: string) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+const chairs = lookup(session.chairs);
+const dayLabel = (iso: string) =>
+  new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 ---
 <BaseLayout title={`${session.title} — BBSW 2026`}>
   <a class="back-link" href={link("schedule")}>← Back to schedule</a>
   <h1>{session.title}</h1>
-  <p class="tag accent">{session.track}</p>
-  <p><strong>{dayLabel(session.date)}</strong> · {session.startTime}–{session.endTime} · {session.room}</p>
+  {session.track && <p class="tag accent">{session.track}</p>}
+  {session.date
+    ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}–${session.endTime}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
+    : <p class="meta">Time and room to be announced.</p>}
+  {session.description && <p>{session.description}</p>}
 
-  <h2>Abstract</h2>
-  <p>{session.abstract}</p>
-
-  {sessionSpeakers.length > 0 && (
+  {chairs.length > 0 && (
     <>
-      <h2>Speakers</h2>
+      <h2>Session Chair{chairs.length > 1 ? "s" : ""}</h2>
       <div class="grid">
-        {sessionSpeakers.map((sp) => (
+        {chairs.map((sp) => (
           <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
             <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
             <div>
               <strong>{sp.name}</strong>
-              <div class="meta">{sp.title}{sp.affiliation ? ` · ${sp.affiliation}` : ""}</div>
+              <div class="meta">{sp.title}{sp.title && sp.affiliation ? " · " : ""}{sp.affiliation}</div>
             </div>
           </a>
         ))}
       </div>
     </>
+  )}
+
+  <h2>Talks</h2>
+  {session.talks.length === 0 ? (
+    <p class="meta">Talks for this session will be announced as the program is confirmed.</p>
+  ) : (
+    session.talks.map((talk) => {
+      const talkSpeakers = lookup(talk.speakers);
+      return (
+        <div class="talk">
+          {talk.startTime && <div class="time">{talk.startTime}{talk.endTime ? `–${talk.endTime}` : ""}</div>}
+          <h3>{talk.title}</h3>
+          {talkSpeakers.length > 0 && (
+            <div class="grid">
+              {talkSpeakers.map((sp) => (
+                <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
+                  <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
+                  <div>
+                    <strong>{sp.name}</strong>
+                    <div class="meta">{sp.title}{sp.title && sp.affiliation ? " · " : ""}{sp.affiliation}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          )}
+          {talk.abstract && <p>{talk.abstract}</p>}
+        </div>
+      );
+    })
   )}
 </BaseLayout>

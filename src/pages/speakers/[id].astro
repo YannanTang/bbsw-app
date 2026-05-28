@@ -7,7 +7,8 @@ const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
-type Session = { id: string; date: string; startTime: string; endTime: string; track: string; title: string; abstract: string; speakers: string[]; room: string; };
+type Talk = { id: string; title: string; startTime: string; endTime: string; abstract: string; speakers: string[]; };
+type Session = { id: string; title: string; track: string; date: string; startTime: string; endTime: string; room: string; description: string; chairs: string[]; talks: Talk[]; };
 
 export async function getStaticPaths() {
   const data = (await import("../../data/speakers.json")).default as Speaker[];
@@ -15,7 +16,17 @@ export async function getStaticPaths() {
 }
 
 const { speaker } = Astro.props as { speaker: Speaker };
-const theirSessions = (sessions as Session[]).filter((s) => s.speakers.includes(speaker.id));
+const theirSessions = (sessions as Session[])
+  .map((s) => {
+    const roles: string[] = [];
+    if (s.chairs.includes(speaker.id)) roles.push("Chair");
+    const talkTitles = s.talks.filter((t) => t.speakers.includes(speaker.id)).map((t) => t.title);
+    if (talkTitles.length) roles.push("Speaker");
+    return { session: s, roles, talkTitles };
+  })
+  .filter((x) => x.roles.length > 0);
+
+const timeLabel = (s: Session) => [s.date, s.startTime && `${s.startTime}–${s.endTime}`, s.room].filter(Boolean).join(" · ");
 ---
 <BaseLayout title={`${speaker.name} — BBSW 2026`}>
   <a class="back-link" href={link("speakers")}>← Back to speakers</a>
@@ -28,17 +39,23 @@ const theirSessions = (sessions as Session[]).filter((s) => s.speakers.includes(
     </div>
   </div>
 
-  <h2>About</h2>
-  <p>{speaker.bio}</p>
+  {speaker.bio && (
+    <>
+      <h2>About</h2>
+      <p>{speaker.bio}</p>
+    </>
+  )}
 
   {theirSessions.length > 0 && (
     <>
       <h2>Sessions</h2>
-      {theirSessions.map((s) => (
+      {theirSessions.map(({ session: s, roles, talkTitles }) => (
         <a class="session-row" href={link(`sessions/${s.id}`)}>
-          <div class="time">{s.date} · {s.startTime}–{s.endTime} · {s.room}</div>
+          {timeLabel(s) && <div class="time">{timeLabel(s)}</div>}
           <div class="title">{s.title}</div>
-          <span class="tag">{s.track}</span>
+          {s.track && <span class="tag">{s.track}</span>}
+          <span class="tag accent">{roles.join(" · ")}</span>
+          {talkTitles.length > 0 && <div class="meta">{talkTitles.join("; ")}</div>}
         </a>
       ))}
     </>

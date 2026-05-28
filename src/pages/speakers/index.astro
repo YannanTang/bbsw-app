@@ -10,7 +10,7 @@ const list = (speakers as Speaker[]).slice().sort((a, b) => a.name.localeCompare
 ---
 <BaseLayout title="Speakers — BBSW 2026">
   <h1>Speakers</h1>
-  <p>Placeholder list. Real speakers will be added as they are confirmed.</p>
+  <p>Session chairs and speakers for BBSW 2026. More will be added as the program is confirmed.</p>
   <div class="grid">
     {list.map((sp) => (
       <a class="speaker-card" href={link(`speakers/${sp.id}`)}>

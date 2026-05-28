@@ -183,6 +183,20 @@ main {
 }
 
 .session-row .title { font-weight: 600; margin: 0.15rem 0; }
+.session-row .meta { font-size: 0.85rem; color: var(--color-muted); margin-top: 0.15rem; }
+
+.talk {
+  border-left: 3px solid var(--color-border);
+  padding: 0.25rem 0 0.75rem 0.9rem;
+  margin: 1rem 0;
+}
+.talk h3 { margin: 0.1rem 0 0.5rem; }
+.talk .time {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
 
 .day-heading {
   margin: 1.75rem 0 0.5rem;

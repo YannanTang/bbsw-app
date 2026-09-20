@@ -11,7 +11,8 @@ Pre-launch the site is gated: visitors see a "Coming Soon" splash; the real app 
 ## Maintainers
 
 - **Yannan Tang** ([@YannanTang](https://github.com/YannanTang)) — architecture, system setup, design direction.
-- **Xuefeng Hou** ([@hxfjoshua](https://github.com/hxfjoshua)) — content ingestion: speakers, sessions, sponsors, posters.
+
+Content ingestion (speakers, sessions, sponsors, posters) is currently unassigned. If you've been added as a collaborator to help with content, read "Where things live" and "Workflow" below before your first push.
 
 ## Get running locally
 
@@ -66,7 +67,7 @@ Push to `main` → GitHub Actions builds and deploys to `app.bbsw.org` in ~1 min
 
 ## Working with Claude Code
 
-Both maintainers use Claude Code for editing. Drop into the repo directory and run `claude` — the project's `CLAUDE.md` (if present) gives Claude an instant orientation. Ask Claude to update content, add pages, fix styling — it has full context of the structure above.
+Maintainers use Claude Code for editing. Drop into the repo directory and run `claude` — the project's `CLAUDE.md` (if present) gives Claude an instant orientation. Ask Claude to update content, add pages, fix styling — it has full context of the structure above.
 
 ## Questions
 

@@ -24,15 +24,38 @@ const all = sessions as Session[];
 const scheduled = all.filter((s) => s.date);
 const unscheduled = all.filter((s) => !s.date);
 
+const parseTime = (t: string) => {
+  const m = t.match(/(\d+):(\d+)\s*(AM|PM)/i);
+  if (!m) return Number.POSITIVE_INFINITY; // TBA sorts last within the day
+  let h = parseInt(m[1], 10) % 12;
+  if (m[3].toUpperCase() === "PM") h += 12;
+  return h * 60 + parseInt(m[2], 10);
+};
+
 const byDate: Record<string, Session[]> = {};
 for (const s of scheduled) (byDate[s.date] ||= []).push(s);
-for (const d of Object.keys(byDate)) byDate[d].sort((a, b) => a.startTime.localeCompare(b.startTime));
+for (const d of Object.keys(byDate)) byDate[d].sort((a, b) => parseTime(a.startTime) - parseTime(b.startTime));
 const days = Object.keys(byDate).sort();
 
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 
 const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}–${s.endTime}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
+
+// Sessions sharing the same date + start time run in parallel (attendee picks one track).
+type Slot = { time: string; sessions: Session[] };
+const groupSlots = (list: Session[]): Slot[] => {
+  const slots: Slot[] = [];
+  for (const s of list) {
+    const last = slots[slots.length - 1];
+    if (s.startTime && last && last.sessions[0].startTime === s.startTime) {
+      last.sessions.push(s);
+    } else {
+      slots.push({ time: s.startTime, sessions: [s] });
+    }
+  }
+  return slots;
+};
 ---
 <BaseLayout title="Schedule — BBSW 2026">
   <h1>Schedule</h1>
@@ -41,14 +64,37 @@ const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}–${s.endTime}$
   {days.map((d) => (
     <section>
       <h2 class="day-heading">{dayLabel(d)}</h2>
-      {byDate[d].map((s) => (
-        <a class="session-row" href={link(`sessions/${s.id}`)}>
-          <div class="time">{timeLabel(s)}</div>
-          <div class="title">{s.title}</div>
-          {s.track && <span class="tag">{s.track}</span>}
-          {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
-        </a>
-      ))}
+      {groupSlots(byDate[d]).map((slot) =>
+        slot.sessions.length > 1 ? (
+          <div class="parallel-slot">
+            <div class="slot-time">
+              {slot.time}–{slot.sessions[0].endTime}
+              <span class="tag accent">Parallel — choose one</span>
+            </div>
+            <div class="parallel-grid">
+              {slot.sessions.map((s) => (
+                <a class="session-row parallel-card" href={link(`sessions/${s.id}`)}>
+                  <div class="title">{s.title}</div>
+                  {s.track && <span class="tag">{s.track}</span>}
+                  {s.room && <div class="meta">{s.room}</div>}
+                  {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
+            <div class="time">{timeLabel(slot.sessions[0])}</div>
+            <div class="title">{slot.sessions[0].title}</div>
+            {slot.sessions[0].track && <span class="tag">{slot.sessions[0].track}</span>}
+            {slot.sessions[0].chairs.length > 0 && (
+              <div class="meta">
+                Chair{slot.sessions[0].chairs.length > 1 ? "s" : ""}: {names(slot.sessions[0].chairs)}
+              </div>
+            )}
+          </a>
+        )
+      )}
     </section>
   ))}
 

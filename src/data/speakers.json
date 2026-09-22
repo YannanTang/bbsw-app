@@ -155,9 +155,9 @@
   {
     "id": "james-reimann",
     "name": "James Reimann",
-    "title": "",
-    "affiliation": "CoCreative Insights",
-    "bio": "",
+    "title": "Executive Coach for Biopharma Leaders",
+    "affiliation": "CoCreative Insights LLC",
+    "bio": "James completed his BSc (Hons) in Statistics and Applied Mathematics at the University of Adelaide and his PhD in Statistics at the University of California at Berkeley. James joined Genentech in 1994, spending his first 5 years supporting Early-Development before spending 20 years in Oncology drug development, starting as an individual contributor and ultimately serving as VP and global head of the Genentech/Roche oncology biostatistics group for 7 years. In 2020, James moved horizontally to become global head of Data Strategy & Delivery, the clinical data management group that included secondary use of clinical data for research purposes. In 2025 James ended his 30-year career at Genentech and started his own company CoCreative Insights LLC, which helps technical experts in biopharma grow into influential leaders.",
     "photo": "",
     "linkedin": ""
   },
@@ -176,6 +176,357 @@
     "title": "",
     "affiliation": "Kardigan",
     "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "ning-leng",
+    "name": "Ning Leng",
+    "title": "",
+    "affiliation": "AbbVie",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "patrick-loerch",
+    "name": "Patrick Loerch",
+    "title": "SVP, Clinical Data Science",
+    "affiliation": "Gilead",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "shaobo-liu",
+    "name": "Shaobo Liu",
+    "title": "",
+    "affiliation": "BeOne Medicines",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "hao-zhu",
+    "name": "Hao Zhu",
+    "title": "Division Director, Division of Pharmacometrics, Office of Clinical Pharmacology",
+    "affiliation": "FDA",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "scooter-plowman",
+    "name": "Scooter Plowman",
+    "title": "Head of Clinical Development AI Partnership",
+    "affiliation": "AbbVie",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "andy-shen",
+    "name": "Andy Shen",
+    "title": "",
+    "affiliation": "Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "kun-yuan",
+    "name": "Kun Yuan",
+    "title": "",
+    "affiliation": "AbbVie",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "mark-rothmann",
+    "name": "Mark Rothmann",
+    "title": "",
+    "affiliation": "FDA",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "james-travis",
+    "name": "James Travis",
+    "title": "",
+    "affiliation": "FDA",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "scott-berry",
+    "name": "Scott Berry",
+    "title": "",
+    "affiliation": "Berry Consultants",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "anqi-zhu",
+    "name": "Anqi Zhu",
+    "title": "",
+    "affiliation": "Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "tara-maddala",
+    "name": "Tara Maddala",
+    "title": "",
+    "affiliation": "TigerTeam Bio",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "gregory-alexander",
+    "name": "Gregory Alexander",
+    "title": "",
+    "affiliation": "FDA/CDRH",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "brian-vogler",
+    "name": "Brian Vogler",
+    "title": "",
+    "affiliation": "Boehringer Ingelheim",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "yun-bai",
+    "name": "Yun Bai",
+    "title": "",
+    "affiliation": "BridgeBio",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "jeff-helterbrand",
+    "name": "Jeff Helterbrand",
+    "title": "",
+    "affiliation": "Helterbrand Advisory",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "sudhir-kedare",
+    "name": "Sudhir Kedare",
+    "title": "",
+    "affiliation": "Jazz Pharmaceuticals",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "wenjuan-gu",
+    "name": "Wenjuan Gu",
+    "title": "",
+    "affiliation": "AstraZeneca",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "thanh-ton",
+    "name": "Thanh Ton",
+    "title": "",
+    "affiliation": "Roche/Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "martha-cao",
+    "name": "Martha Cao",
+    "title": "",
+    "affiliation": "BridgeBio",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "ruben-van-eijk",
+    "name": "Ruben P.A. van Eijk",
+    "title": "",
+    "affiliation": "Stanford/UMC Utrecht",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "matt-secrest",
+    "name": "Matt Secrest",
+    "title": "",
+    "affiliation": "Genentech/Roche",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "daniela-ferrara",
+    "name": "Daniela Ferrara",
+    "title": "Chief Medical Officer",
+    "affiliation": "Topcon Healthcare",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "marla-curran",
+    "name": "Marla Curran",
+    "title": "",
+    "affiliation": "Kardigan",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "ali-valcarcel",
+    "name": "Ali Valcarcel",
+    "title": "",
+    "affiliation": "Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "nayan-chaudhary",
+    "name": "Nayan Chaudhary",
+    "title": "",
+    "affiliation": "Roche/Genentech",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "petr-jordan",
+    "name": "Petr Jordan",
+    "title": "",
+    "affiliation": "Onc.AI",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "lilia-bouzit",
+    "name": "Lilia Bouzit",
+    "title": "",
+    "affiliation": "Flatiron Health",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "jingjing-gao",
+    "name": "Jingjing Gao",
+    "title": "",
+    "affiliation": "",
+    "bio": "",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "richard-c-zink",
+    "name": "Richard C. Zink",
+    "title": "Principal Research Fellow @ JMP Statistical Discovery LLC",
+    "affiliation": "JMP Statistical Discovery LLC; University of North Carolina at Chapel Hill",
+    "bio": "Richard C. Zink is Principal Research Fellow at JMP Statistical Discovery LLC and has spent 20+ years in and around clinical trials and medical product development. He is Past Chair for the Leadership in Practice Committee of the Biopharmaceutical Section of the American Statistical Association. He is author, editor, or contributor to 10 books on statistical topics in clinical trials and clinical research, and he is currently working on a data visualization book featuring life sciences applications. Richard holds a Ph.D. in Biostatistics from the Gillings School of Global Public Health at the University of North Carolina at Chapel Hill, where he serves as Adjunct Professor of Biostatistics. Richard was awarded the distinction of Fellow of the American Statistical Association in 2020.",
+    "photo": "",
+    "linkedin": "Richard.Zink@jmp.com"
+  },
+  {
+    "id": "cornelia-irl",
+    "name": "Cornelia Irl",
+    "title": "VP Data Science & Analytics (retired)",
+    "affiliation": "Independent",
+    "bio": "Conny holds a Ph.D. in Statistics from Ludwig-Maximilians-Universit\u00e4t in Munich, Germany. She joined Roche's Biostatistics department in Nutley, NJ in 1999, working across Early- and Late-Development in Cardiovascular, Neuroscience and Metabolism. In 2004, she transferred to Basel to work in Late-Development Oncology, took on her first managerial role the following year, and moved to Genentech in 2011. Her most recent position was VP, Data Science and Analytics, and Global Head of Data and Statistical Sciences for Hematology and Oncology. Conny retired from Roche and Genentech at the end of 2025 and now occasionally consults in the biopharma space.",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "avinash-reddy-pati",
+    "name": "Avinash Reddy Pati",
+    "title": "Head of Evidence Delivery (Statistical Programming)",
+    "affiliation": "Biogen",
+    "bio": "Avinash is Head of Evidence Delivery (Statistical Programming) with more than 20 years of experience advancing clinical development through data, analytics, and digital innovation. He has led global statistical programming and analytics groups, helping teams modernize evidence generation, strengthen regulatory readiness, and accelerate decision-making across R&D.",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/avinashreddypati/"
+  },
+  {
+    "id": "jingyuan-chen",
+    "name": "Jingyuan Chen",
+    "title": "Principal Analytical Data Science Programmer",
+    "affiliation": "Genentech",
+    "bio": "Jingyuan Chen is a Principal Analytical Data Science Programmer at Genentech, bringing 13 years of experience within Roche/Genentech. Currently, she serves as a Project Lead in statistical programming and as the Data Science Filing Lead for oncology therapeutic areas.",
+    "photo": "",
+    "linkedin": "https://linkedin.com/in/jingyuan-chen78a10025"
+  },
+  {
+    "id": "xiaoyong-fu",
+    "name": "Xiaoyong Fu",
+    "title": "Principal Scientist, Bioinformatics",
+    "affiliation": "Gilead Sciences",
+    "bio": "Dr. Fu obtained MD followed by PhD in Biochemistry and Molecular Biology and received postdoctoral training in Cancer Biology and Bioinformatics. As a Principal Investigator at Baylor College of Medicine, Dr. Fu led multidisciplinary teams across Biology, Pathology, Biostatistics, and Oncology. As a Principal Scientist in Gilead Sciences, Inc., Dr. Fu has led efforts in supporting tumor intrinsic target programs and new target discovery using novel statistical algorithms including machine learning and real-world data.",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/xiaoyongfu/"
+  },
+  {
+    "id": "hongjian-zhu",
+    "name": "Hongjian Zhu",
+    "title": "SVP, Global Head of Statistics and Data Science",
+    "affiliation": "SystImmune Inc.",
+    "bio": "Dr. Hongjian Zhu received his Ph.D. in Statistics from the University of Virginia in 2010 and subsequently completed postdoctoral training at Yale University. He is currently Senior Vice President and Global Head of Statistics and Data Science at SystImmune Inc., where he provides enterprise-level leadership for statistical strategy, governance, and data science infrastructure supporting global oncology development.",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/hongjian-zhu-75ab3522/"
+  },
+  {
+    "id": "joseph-n-paulson",
+    "name": "Joseph N. Paulson",
+    "title": "Executive Director, Biostatistics",
+    "affiliation": "Exelixis",
+    "bio": "Joseph Paulson, PhD, is an Executive Director of Biostatistics and Head of Early Development Biostatistics and the Center of Data Excellence at Exelixis, where he leads statistical strategy and quantitative decision-making across development. Prior to Exelixis, Joseph was Head of Data Sciences at N-Power Medicine and was a Senior Principal Statistical Scientist at Genentech.",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/jnpaulson/"
+  },
+  {
+    "id": "bingkai-wang",
+    "name": "Bingkai Wang",
+    "title": "Assistant Professor",
+    "affiliation": "Department of Biostatistics, School of Public Health, University of Michigan",
+    "bio": "I am a statistical researcher dedicated to developing robust and efficient statistical methods that enhance clinical research and improve patient health. My work focuses on leveraging modern analytical tools, including causal inference and AI, to address key challenges in the design and analysis of clinical trials and observational studies.",
+    "photo": "",
+    "linkedin": "https://bingkaiwang.com/"
+  },
+  {
+    "id": "jung-yeon-won",
+    "name": "Jung Yeon Won",
+    "title": "Staff Fellow",
+    "affiliation": "FDA/CDER/OB",
+    "bio": "Jung Yeon Won is a statistical reviewer for rare disease products in the Office of Biostatistics at the U.S. Food and Drug Administration's Center for Drug Evaluation and Research (CDER). Her regulatory review experience focuses on rare disease products, with expertise in inborn errors of metabolism.",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "swati-kaushik",
+    "name": "Swati Kaushik",
+    "title": "Sr. Scientist II",
+    "affiliation": "Tempus AI",
+    "bio": "Dr. Swati Kaushik is a Senior Scientist II at Tempus AI and a rising leader at the intersection of artificial intelligence, multi-omics, and drug discovery. With over a decade of experience spanning industry and academia including key roles at Gilead Sciences and UCSF, she specializes in using multimodal AI architectures, real-world data, and spatial transcriptomics to uncover novel therapeutic targets.",
     "photo": "",
     "linkedin": ""
   }

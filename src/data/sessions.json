@@ -1,134 +1,633 @@
 [
   {
+    "id": "day0-vibe-coding",
+    "title": "Hands-on Vibe Coding",
+    "track": "Workshop",
+    "date": "2026-11-04",
+    "startTime": "",
+    "endTime": "",
+    "room": "Genentech",
+    "description": "Hands-on pre-conference workshop.",
+    "chairs": [
+      "anqi-zhu"
+    ],
+    "talks": []
+  },
+  {
+    "id": "opening",
+    "title": "Opening",
+    "track": "Plenary",
+    "date": "2026-11-05",
+    "startTime": "8:45 AM",
+    "endTime": "9:00 AM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "ning-leng"
+    ],
+    "talks": []
+  },
+  {
+    "id": "keynote-1",
+    "title": "Keynote 1: Patrick Loerch",
+    "track": "Plenary",
+    "date": "2026-11-05",
+    "startTime": "9:00 AM",
+    "endTime": "10:00 AM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "ning-leng"
+    ],
+    "talks": [
+      {
+        "id": "keynote-1-talk",
+        "title": "Keynote 1",
+        "startTime": "9:00 AM",
+        "endTime": "10:00 AM",
+        "abstract": "",
+        "speakers": [
+          "patrick-loerch"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "morning-break-1",
+    "title": "Morning Coffee & Networking Break",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "10:00 AM",
+    "endTime": "10:30 AM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
     "id": "ai-panel",
-    "title": "AI Panel",
+    "title": "Featured AI Panel / Fireside Chat",
     "track": "Panel",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
+    "date": "2026-11-05",
+    "startTime": "10:30 AM",
+    "endTime": "11:50 AM",
     "room": "",
     "description": "",
-    "chairs": ["ruixiao-lu"],
+    "chairs": [
+      "ruixiao-lu"
+    ],
+    "talks": [
+      {
+        "id": "ai-panel-talk",
+        "title": "Featured AI Panel / Fireside Chat",
+        "startTime": "10:30 AM",
+        "endTime": "11:50 AM",
+        "abstract": "",
+        "speakers": [
+          "judy-li",
+          "shaobo-liu",
+          "hao-zhu",
+          "scooter-plowman"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "poster-sessions",
+    "title": "Poster Lightning Presentations",
+    "track": "Posters",
+    "date": "2026-11-05",
+    "startTime": "11:50 AM",
+    "endTime": "12:10 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "haijun-ma",
+      "peiwen-wu"
+    ],
     "talks": []
   },
   {
-    "id": "fda-guidances-bayesian",
-    "title": "FDA Guidances & Bayesian Methods",
-    "track": "Statistical Methods",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
+    "id": "lunch-day1",
+    "title": "Lunch and Networking / Poster Viewing",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "12:10 PM",
+    "endTime": "2:00 PM",
     "room": "",
     "description": "",
-    "chairs": ["christina-rabe", "tony-jiang"],
-    "talks": []
-  },
-  {
-    "id": "innovative-trial-design",
-    "title": "Innovative Trial Design",
-    "track": "Statistical Methods",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["dong-xi", "mengjia-yu"],
-    "talks": []
-  },
-  {
-    "id": "strategic-partnership",
-    "title": "Strategic Partnership",
-    "track": "Leadership",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["haoda-fu", "huang-huang"],
-    "talks": []
-  },
-  {
-    "id": "enterprise-data-strategy",
-    "title": "Enterprise Data Strategy",
-    "track": "Data Science",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["merrill-birkner", "li-zheng"],
-    "talks": []
-  },
-  {
-    "id": "digital-twins-causal-ml",
-    "title": "Digital Twins & Causal ML",
-    "track": "Data Science & AI",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["harry-yang", "cristina-tudor"],
-    "talks": []
-  },
-  {
-    "id": "emerging-technology",
-    "title": "Emerging Technology",
-    "track": "Data Science & AI",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["sunny-xie", "daniel-sjoberg"],
-    "talks": []
-  },
-  {
-    "id": "real-world-data",
-    "title": "Real World Data",
-    "track": "Data Science",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["radia-johnson", "jacqueline-law"],
-    "talks": []
-  },
-  {
-    "id": "leadership-career-development",
-    "title": "Leadership & Career Development",
-    "track": "Leadership",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
-    "room": "",
-    "description": "",
-    "chairs": ["george-wu", "judy-li"],
+    "chairs": [],
     "talks": []
   },
   {
     "id": "early-career-networking",
-    "title": "Early in Career Networking",
+    "title": "New-in-Career Meetup",
     "track": "Networking",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
+    "date": "2026-11-05",
+    "startTime": "1:00 PM",
+    "endTime": "2:00 PM",
     "room": "",
     "description": "",
-    "chairs": ["james-reimann"],
+    "chairs": [
+      "james-reimann",
+      "andy-shen",
+      "kun-yuan"
+    ],
     "talks": []
   },
   {
-    "id": "poster-sessions",
-    "title": "Poster Sessions",
-    "track": "Posters",
-    "date": "",
-    "startTime": "",
-    "endTime": "",
+    "id": "fda-guidances-bayesian",
+    "title": "Parallel Session #1a: Navigating the Shifting Regulatory Environment: The Future of Demonstrating Evidence of Effectiveness",
+    "track": "Statistical Methods",
+    "date": "2026-11-05",
+    "startTime": "2:00 PM",
+    "endTime": "3:30 PM",
     "room": "",
     "description": "",
-    "chairs": ["haijun-ma", "peiwen-wu"],
+    "chairs": [
+      "christina-rabe",
+      "tony-jiang"
+    ],
+    "talks": [
+      {
+        "id": "t-1a",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "mark-rothmann",
+          "james-travis",
+          "scott-berry"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "adoption-collective",
+    "title": "Parallel Session #1b: The Adoption Collective: Fostering a Community for Practical AI",
+    "track": "Data Science & AI",
+    "date": "2026-11-05",
+    "startTime": "2:00 PM",
+    "endTime": "3:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "anqi-zhu",
+      "tara-maddala"
+    ],
+    "talks": [
+      {
+        "id": "t-1b",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "gregory-alexander",
+          "brian-vogler",
+          "yun-bai",
+          "ning-leng"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "afternoon-break",
+    "title": "Afternoon Break",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "3:30 PM",
+    "endTime": "4:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "enterprise-data-strategy",
+    "title": "Parallel Session #2a: The Foundation of Innovation: Enterprise Data Strategy and Integration",
+    "track": "Data Science",
+    "date": "2026-11-05",
+    "startTime": "4:00 PM",
+    "endTime": "5:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "merrill-birkner",
+      "li-zheng"
+    ],
+    "talks": [
+      {
+        "id": "t-2a",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "jeff-helterbrand",
+          "sudhir-kedare",
+          "wenjuan-gu",
+          "thanh-ton",
+          "martha-cao"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "digital-twins-causal-ml",
+    "title": "Parallel Session #2b: Digital Twins & Causal ML: Synthetic Controls and Interpretable Machine Learning",
+    "track": "Data Science & AI",
+    "date": "2026-11-05",
+    "startTime": "4:00 PM",
+    "endTime": "5:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "harry-yang",
+      "cristina-tudor"
+    ],
+    "talks": [
+      {
+        "id": "t-2b",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "ruben-van-eijk",
+          "matt-secrest"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "raffle-day1",
+    "title": "Raffle",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "5:30 PM",
+    "endTime": "6:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "break-day1",
+    "title": "Break",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "6:00 PM",
+    "endTime": "6:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "dinner-partner-demos",
+    "title": "Dinner and Partner Demos",
+    "track": "Social",
+    "date": "2026-11-05",
+    "startTime": "6:30 PM",
+    "endTime": "",
+    "room": "",
+    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "keynote-2",
+    "title": "Keynote 2: Daniela Ferrara",
+    "track": "Plenary",
+    "date": "2026-11-06",
+    "startTime": "9:00 AM",
+    "endTime": "10:00 AM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "christina-rabe"
+    ],
+    "talks": [
+      {
+        "id": "keynote-2-talk",
+        "title": "Keynote 2",
+        "startTime": "9:00 AM",
+        "endTime": "10:00 AM",
+        "abstract": "",
+        "speakers": [
+          "daniela-ferrara"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "morning-break-2",
+    "title": "Morning Coffee & Networking Break",
+    "track": "Break",
+    "date": "2026-11-06",
+    "startTime": "10:00 AM",
+    "endTime": "10:30 AM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "innovative-trial-design",
+    "title": "Parallel Session #3a: Accelerated Evidence Generation: Innovative Clinical Trial Design & Execution",
+    "track": "Statistical Methods",
+    "date": "2026-11-06",
+    "startTime": "10:30 AM",
+    "endTime": "12:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "dong-xi",
+      "mengjia-yu"
+    ],
+    "talks": [
+      {
+        "id": "t-3a-1",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
+        "speakers": [
+          "jung-yeon-won"
+        ]
+      },
+      {
+        "id": "t-3a-2",
+        "title": "When Prediction Meets Randomization: Regression, Machine Learning, or LLMs? Lessons from 125 Randomized Trials",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Covariate adjustment is a standard tool for improving precision in randomized trials, but the value of increasingly flexible prediction methods remains unclear. This talk begins with an empirical comparison of regression and machine-learning-based adjustment across 50 completed trials. The results show that flexible machine learning methods are not automatically superior: simple regression adjustment with prognostic baseline covariates is often highly competitive. This finding motivates a new question: can large language models change the picture by extracting useful prognostic information from baseline covariates, trial descriptions, or other text-derived features? We present a unified framework for LLM-assisted covariate adjustment and empirical evidence from 125 randomized trials.",
+        "speakers": [
+          "bingkai-wang"
+        ]
+      },
+      {
+        "id": "t-3a-3",
+        "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. In this study, we conduct a comparison of different analysis procedures through extensive simulation studies, assessing statistical power, Type I error control, and practical implementation considerations, and provide concrete guidance for the design and analysis of adaptive seamless trials.",
+        "speakers": [
+          "hongjian-zhu"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "emerging-technology",
+    "title": "Parallel Session #3b: Removing the Friction: Emerging Technology and Automation in Clinical Research",
+    "track": "Data Science & AI",
+    "date": "2026-11-06",
+    "startTime": "10:30 AM",
+    "endTime": "12:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "sunny-xie",
+      "daniel-sjoberg"
+    ],
+    "talks": [
+      {
+        "id": "t-3b-1",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "marla-curran"
+        ]
+      },
+      {
+        "id": "t-3b-2",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "ali-valcarcel"
+        ]
+      },
+      {
+        "id": "t-3b-3",
+        "title": "The Game of Chutes and Ladders with AI: Navigating Opportunities and Risks in Regulated Evidence Delivery",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Artificial intelligence offers significant opportunities to accelerate evidence generation in regulated environments, but its adoption is neither simple nor straightforward. Like a game of chutes and ladders, progress depends on identifying the ladders that enable acceleration while carefully managing the chutes that can slow or redirect implementation. Ladders include document and specification generation, real time review, code development, analysis support, output creation, idea generation, thought partnership, and pattern identification. Chutes include challenges related to GxP expectations, data standards/quality, data privacy/confidentiality, reproducibility, model oversight, and validation and regulatory compliance. This presentation will explore how teams can use AI intentionally and responsibly rather than simply \u201crolling the dice.\u201d",
+        "speakers": [
+          "avinash-reddy-pati"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "lunch-day2",
+    "title": "Lunch and Networking / Poster Viewing",
+    "track": "Break",
+    "date": "2026-11-06",
+    "startTime": "12:00 PM",
+    "endTime": "2:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "partner-demos-day2",
+    "title": "Partner Demos",
+    "track": "Social",
+    "date": "2026-11-06",
+    "startTime": "1:00 PM",
+    "endTime": "2:00 PM",
+    "room": "",
+    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "chairs": [],
+    "talks": []
+  },
+  {
+    "id": "leadership-career-development",
+    "title": "Featured Leadership Session: Statistics and Applied Improvisation: Strange but Necessary Bedfellows",
+    "track": "Leadership",
+    "date": "2026-11-06",
+    "startTime": "2:00 PM",
+    "endTime": "2:40 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "judy-li",
+      "george-wu"
+    ],
+    "talks": [
+      {
+        "id": "t-leadership",
+        "title": "Statistics and Applied Improvisation: Strange but Necessary Bedfellows",
+        "startTime": "2:00 PM",
+        "endTime": "2:40 PM",
+        "abstract": "Applied improvisation? What does this have to do with statistics? A fair question, since the two topics could not be more different. But these diametrically opposed topics are exactly why statisticians and data scientists need exposure to applied improvisation! For scientists, perhaps even more so for statistical scientists, the thought of doing anything without preparation can be discomforting. In this talk, I describe the personal and professional benefits of applied improvisation for practitioners of statistics.",
+        "speakers": [
+          "richard-c-zink"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "poster-award-ceremony",
+    "title": "Poster Award Ceremony",
+    "track": "Posters",
+    "date": "2026-11-06",
+    "startTime": "2:40 PM",
+    "endTime": "3:00 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "haijun-ma",
+      "peiwen-wu"
+    ],
+    "talks": []
+  },
+  {
+    "id": "real-world-data",
+    "title": "Parallel Session #4a: Evidence Beyond the Clinical Trials: Maximizing the Impact of Real World Data",
+    "track": "Data Science",
+    "date": "2026-11-06",
+    "startTime": "3:10 PM",
+    "endTime": "4:40 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "radia-johnson",
+      "jacqueline-law"
+    ],
+    "talks": [
+      {
+        "id": "t-4a-1",
+        "title": "Real-world clinical multi-omics analyses reveal evolutionary trajectories for drug resistance in non-small cell lung cancer",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Up to 85% of lung cancer patients have non-small cell lung cancer (NSCLC). Standard of care for NSCLC includes immune checkpoint inhibitors (ICI) and/or platinum-based chemotherapy (CT). However, therapy success is limited and up to 70% of patients are not responding to ICI. Using Tempus Labs' de-identified clinical molecular and response data, we aimed to identify molecular features associated with drug resistance in advanced NSCLC treated with ICI, ICI+CT, or CT, analyzing multi-omics profiling data from pre- and on/post-treatment tumor biopsies from 1,135 patients. Our study reveals distinct molecular characteristics including tumor immune components underlying evolutionary trajectories for drug resistance and provided a list of biomarkers of therapy response.",
+        "speakers": [
+          "xiaoyong-fu"
+        ]
+      },
+      {
+        "id": "t-4a-2",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "nayan-chaudhary"
+        ]
+      },
+      {
+        "id": "t-4a-3",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "petr-jordan"
+        ]
+      },
+      {
+        "id": "t-4a-4",
+        "title": "",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "lilia-bouzit"
+        ]
+      },
+      {
+        "id": "t-4a-5",
+        "title": "Multimodal AI identifies a high-risk, immune-cold NF1-mutant SqNSCLC patient subtype enriched by a 31-gene prognostic signature",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [
+          "swati-kaushik"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "strategic-partnership",
+    "title": "Parallel Session #4b: The Strategic Partner: Mastering Data-Driven Decision Influence",
+    "track": "Leadership",
+    "date": "2026-11-06",
+    "startTime": "3:10 PM",
+    "endTime": "4:40 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "haoda-fu",
+      "huang-huang"
+    ],
+    "talks": [
+      {
+        "id": "t-4b-1",
+        "title": "Beyond the AI Proof of Concept: Building a Center of Data Excellence for Drug Development",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Artificial intelligence is rapidly entering clinical development through applications ranging from protocol and EDC development to programming, analysis, medical review, and clinical study report generation. However, the greatest challenge may not be identifying promising AI tools \u2014 it is determining how organizations move from isolated proofs of concept to capabilities that are reliable, scalable, governed, and embedded within the way drug development teams make decisions. This presentation will discuss lessons from building and evaluating AI-enabled workflows within clinical development and explore the concept of an AI-enabled Center of Data Excellence.",
+        "speakers": [
+          "joseph-n-paulson"
+        ]
+      },
+      {
+        "id": "t-4b-2",
+        "title": "Influencing Across Complexity in Projects",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "Project leads often face situations where technical, operational, and regulatory teams have competing priorities. This presentation explores three pivotal moments \u2014 disagreement on approach in a first End-to-End R NDA submission, coordinating sequential readouts within a tight timeline on the same molecule, and adapting to mid-stream regulatory changes during a peak-paced pivotal molecule \u2014 and reveals the influencing techniques that transformed potential roadblocks into strategic wins. Underlying each case are five core moves: understand stakeholder concerns, offer concrete mitigation, create protective mechanisms, maintain transparency, and establish clear accountability.",
+        "speakers": [
+          "jingyuan-chen"
+        ]
+      },
+      {
+        "id": "t-4b-3",
+        "title": "Power Players: Statisticians as Strategic Drug Developers",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "We believe that statisticians should play a broader role in drug development, beyond our traditional roles and deliverables, by bringing our rigorous and unbiased perspective to strategic decision-making under uncertainty. This requires a deep understanding of both the development strategy and the cross-functional implications, and statisticians need to build leadership skills in relationships, active listening, and influencing. We will share our personal experiences and perspectives about how statisticians in biopharma can reach our ultimate potential.",
+        "speakers": [
+          "cornelia-irl",
+          "james-reimann"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sponsor-talk-closing",
+    "title": "Sponsor Talk, Raffle, and Closing",
+    "track": "Plenary",
+    "date": "2026-11-06",
+    "startTime": "4:40 PM",
+    "endTime": "5:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "jingjing-gao"
+    ],
+    "talks": []
+  },
+  {
+    "id": "mixer-happy-hour",
+    "title": "Mixer and Happy Hour",
+    "track": "Social",
+    "date": "2026-11-06",
+    "startTime": "5:30 PM",
+    "endTime": "6:30 PM",
+    "room": "",
+    "description": "",
+    "chairs": [],
     "talks": []
   }
 ]

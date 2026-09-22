@@ -65,7 +65,7 @@ const dayLabel = (iso: string) =>
       return (
         <div class="talk">
           {talk.startTime && <div class="time">{talk.startTime}{talk.endTime ? `–${talk.endTime}` : ""}</div>}
-          <h3>{talk.title}</h3>
+          <h3>{talk.title || "Talk title to be announced"}</h3>
           {talkSpeakers.length > 0 && (
             <div class="grid">
               {talkSpeakers.map((sp) => (

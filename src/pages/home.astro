@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
 import speakers from "../data/speakers.json";
+import flyers from "../data/flyers.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -48,9 +49,58 @@ const keynotes = (sessions as Session[])
     </div>
   </section>
 
+  <section class="home-section" aria-label="Conference posters">
+    <div class="flyer-grid">
+      {flyers.map((flyer) => (
+        <a class="flyer-card" href={link(`posters/${encodeURIComponent(flyer.file)}`)} target="_blank" rel="noopener">
+          <img src={link(`posters/${encodeURIComponent(flyer.file)}`)} alt={`${flyer.title} — BBSW 2026 flyer`} loading="lazy" decoding="async" />
+        </a>
+      ))}
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
+  .home-section {
+    margin: 2rem 0 2.25rem;
+  }
+
+  .flyer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .flyer-card {
+    display: block;
+    overflow: hidden;
+    color: var(--color-text);
+  }
+
+  .flyer-card:hover {
+    border-color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .flyer-card:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  .flyer-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .flyer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
   .eyebrow {
     margin: 0 0 0.45rem;
     color: var(--color-secondary);

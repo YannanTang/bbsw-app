@@ -2,191 +2,323 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
 import speakers from "../data/speakers.json";
-import flyers from "../data/flyers.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
 type Speaker = { id: string; name: string; title: string; affiliation: string; photo: string; };
 type Talk = { speakers: string[]; };
-type Session = { id: string; title: string; talks: Talk[]; };
+type Session = { id: string; title: string; date: string; startTime: string; talks: Talk[]; };
 
-const speakerMap = new Map((speakers as Speaker[]).map((speaker) => [speaker.id, speaker]));
-const keynotes = (sessions as Session[])
-  .filter((session) => session.id.startsWith("keynote-"))
-  .map((session) => ({
-    session,
-    speaker: speakerMap.get(session.talks[0]?.speakers[0] ?? ""),
-  }))
-  .filter((keynote) => keynote.speaker);
+const all = sessions as Session[];
+const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
+
+const dayLabel: Record<string, string> = { "2026-11-05": "Opens Day 1", "2026-11-06": "Opens Day 2" };
+const keynotes = all
+  .filter((s) => s.id.startsWith("keynote-"))
+  .map((s) => ({ session: s, speaker: speakerMap.get(s.talks[0]?.speakers[0] ?? "") }))
+  .filter((k) => k.speaker) as { session: Session; speaker: Speaker }[];
+
+// Photos only when every keynote has one, so the pair always looks consistent.
+const showPhotos = keynotes.every((k) => k.speaker.photo);
+const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
+
+const parallelCount = all.filter((s) => /^Parallel Session #/.test(s.title)).length;
+const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speakers))).size;
+
+// Three signature moments — the hooks from the flyers, one line each.
+const moments = [
+  { href: "sessions/ai-panel", title: "AI, straight talk", line: "FDA and industry leaders in a fireside chat on AI in biostatistics." },
+  { href: "sessions/day0-vibe-coding", title: "Vibe coding", line: "A hands-on pre-conference workshop: build something with AI." },
+  { href: "posters", title: "Vote for the best poster", line: "Lightning talks, your votes, and awards on Day 2." },
+];
 ---
 <BaseLayout title="BBSW 2026 — Home">
-  <section class="hero">
-    <p class="eyebrow">2026 Bay Area Biotech-Pharma Statistics Workshop</p>
-    <h1>BBSW 2026</h1>
-    <p class="theme">"The Adaptive Data Scientist: From Data to Impact"</p>
-    <p><strong>November 5–6, 2026 · Foster City, CA</strong></p>
+  <section class="stage">
+    <svg class="curves" viewBox="0 0 400 200" preserveAspectRatio="none" fill="none" stroke="rgba(240,138,141,0.35)" aria-hidden="true">
+      <path d="M0 200 C 80 200, 110 40, 170 40 S 260 200, 340 200" />
+      <path d="M60 200 C 140 200, 170 90, 230 90 S 320 200, 400 200" />
+      <path d="M-40 200 C 40 200, 60 120, 110 120 S 190 200, 260 200" />
+    </svg>
+    <div class="stage-inner">
+      <p class="eyebrow">BBSW 2026 · Nov 5–6 · Foster City</p>
+      <h1 class="headline">
+        <span>The Adaptive</span>
+        <span>Data Scientist</span>
+      </h1>
+      <p class="tagline">From data to impact.</p>
+      <div class="countdown" data-countdown hidden>
+        <p class="count-caption" data-caption>Doors open in</p>
+        <div class="count-units" data-units>
+          <span class="unit"><span class="unit-num" data-d>--</span><span class="unit-label">days</span></span>
+          <span class="unit"><span class="unit-num" data-h>--</span><span class="unit-label">hours</span></span>
+          <span class="unit"><span class="unit-num" data-m>--</span><span class="unit-label">min</span></span>
+          <span class="unit"><span class="unit-num" data-s>--</span><span class="unit-label">sec</span></span>
+        </div>
+      </div>
+      <a class="cta" href={link("schedule")}>Explore the program</a>
+    </div>
   </section>
 
-  <section class="keynote-section" aria-labelledby="keynote-heading">
-    <div class="section-heading">
-      <p class="eyebrow">Featured plenaries</p>
-      <h2 id="keynote-heading">Keynote speakers</h2>
-      <p>Hear how adaptive data science turns complex evidence into meaningful impact.</p>
-    </div>
-    <div class="keynote-grid">
+  <section class="spotlight" aria-labelledby="keynote-heading">
+    <h2 id="keynote-heading" class="section-kicker">Keynotes</h2>
+    <div class="spotlight-grid">
       {keynotes.map(({ session, speaker }) => (
-        <a class="keynote-card" href={link(`sessions/${session.id}`)}>
-          <img src={speaker.photo || link("speaker-placeholder.svg")} alt={speaker.name} />
-          <div class="keynote-content">
-            <span class="tag accent">{session.title.replace(/:.*/, "")}</span>
-            <h3>{speaker.name}</h3>
-            <p>{speaker.title}{speaker.title && speaker.affiliation ? " · " : ""}{speaker.affiliation}</p>
-            <span class="profile-link">View keynote</span>
-          </div>
+        <a class="portrait" href={link(`sessions/${session.id}`)}>
+          {showPhotos
+            ? <img class="avatar" src={speaker.photo} alt="" loading="lazy" />
+            : <span class="avatar monogram" aria-hidden="true">{initials(speaker.name)}</span>}
+          <span class="portrait-when">{dayLabel[session.date] ?? ""}</span>
+          <span class="portrait-name">{speaker.name}</span>
+          <span class="portrait-role">{[speaker.title, speaker.affiliation].filter(Boolean).join(" · ")}</span>
         </a>
       ))}
     </div>
   </section>
 
-  <section class="home-section" aria-label="Conference posters">
-    <div class="flyer-grid">
-      {flyers.map((flyer) => (
-        <a class="flyer-card" href={link(`posters/${encodeURIComponent(flyer.file)}`)} target="_blank" rel="noopener">
-          <img src={link(`posters/${encodeURIComponent(flyer.file)}`)} alt={`${flyer.title} — BBSW 2026 flyer`} loading="lazy" decoding="async" />
-        </a>
-      ))}
+  <section class="numbers" aria-label="BBSW 2026 in numbers">
+    <p><strong>2</strong> days</p>
+    <p><strong>{parallelCount}</strong> sessions</p>
+    <p><strong>{speakerCount}+</strong> speakers</p>
+  </section>
+
+  <section class="moments" aria-labelledby="moments-heading">
+    <h2 id="moments-heading" class="section-kicker">Don't miss</h2>
+    {moments.map((m, i) => (
+      <a class="moment" href={link(m.href)}>
+        <span class="moment-index">0{i + 1}</span>
+        <span class="moment-text">
+          <span class="moment-title">{m.title}</span>
+          <span class="moment-line">{m.line}</span>
+        </span>
+        <span class="moment-arrow" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </section>
+
+  <section class="closer">
+    <p class="closer-line">Made possible by our sponsors.</p>
+    <div class="closer-links">
+      <a href={link("sponsors")}>Meet the sponsors</a>
+      <a href="https://bbsw.org" target="_blank" rel="noopener">About BBSW ↗</a>
     </div>
   </section>
 </BaseLayout>
 
+<script>
+  const box = document.querySelector<HTMLElement>("[data-countdown]");
+  if (box) {
+    const start = new Date("2026-11-05T08:45:00-08:00").getTime();
+    const end = new Date("2026-11-06T18:30:00-08:00").getTime();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const set = (sel: string, v: string) => (box.querySelector<HTMLElement>(sel)!.textContent = v);
+    const tick = () => {
+      const now = Date.now();
+      if (now >= start) {
+        clearInterval(timer);
+        if (now <= end) {
+          set("[data-caption]", "BBSW 2026 is live");
+          box.querySelector<HTMLElement>("[data-units]")!.hidden = true;
+        } else {
+          box.hidden = true;
+        }
+        return;
+      }
+      const t = Math.floor((start - now) / 1000);
+      set("[data-d]", String(Math.floor(t / 86400)));
+      set("[data-h]", pad(Math.floor((t % 86400) / 3600)));
+      set("[data-m]", pad(Math.floor((t % 3600) / 60)));
+      set("[data-s]", pad(t % 60));
+    };
+    const timer = setInterval(tick, 1000);
+    box.hidden = false;
+    tick();
+  }
+</script>
+
 <style>
-  .home-section {
-    margin: 2rem 0 2.25rem;
-  }
-
-  .flyer-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .flyer-card {
-    display: block;
+  /* Full-bleed hero: break out of main's padding. */
+  .stage {
+    position: relative;
     overflow: hidden;
-    color: var(--color-text);
-  }
-
-  .flyer-card:hover {
-    border-color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .flyer-card:focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 3px;
-  }
-
-  .flyer-card img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    background: #fff;
-  }
-
-  @media (max-width: 600px) {
-    .flyer-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .eyebrow {
-    margin: 0 0 0.45rem;
-    color: var(--color-secondary);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .hero .eyebrow {
-    color: #f7d39b;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-  }
-
-  .theme {
-    max-width: 34rem;
-    font-size: 1.45rem;
-    font-style: italic;
+    margin: -1.25rem -1rem 2.5rem;
+    padding: 3.5rem 1.5rem 3rem;
     color: #fff;
-    line-height: 1.3;
-    margin: 0.25rem 0 0.75rem;
+    background:
+      radial-gradient(120% 80% at 100% 0%, #c42a44 0%, transparent 60%),
+      linear-gradient(160deg, #9b1b30 0%, #5a0f1c 100%);
   }
-
-  .keynote-section {
-    margin: 2rem 0 2.25rem;
+  .curves {
+    position: absolute;
+    inset: auto 0 0 0;
+    width: 100%;
+    height: 60%;
+    fill: none;
+    stroke: rgba(240, 138, 141, 0.35);
+    stroke-width: 1.2;
   }
-
-  .section-heading h2 {
-    margin-top: 0;
-    margin-bottom: 0.35rem;
+  .stage-inner { position: relative; max-width: 40rem; margin: 0 auto; }
+  .eyebrow {
+    margin: 0 0 1.25rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f7d39b;
   }
-
-  .section-heading > p:last-child {
-    color: var(--color-muted);
-    margin: 0 0 1rem;
+  .headline {
+    margin: 0;
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.4rem, 11vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
   }
-
-  .keynote-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+  .headline span { display: block; }
+  .tagline {
+    margin: 0.6rem 0 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    color: #f5c6cb;
   }
-
-  .keynote-card {
+  .countdown { margin-top: 2rem; }
+  .countdown[hidden], .count-units[hidden] { display: none; }
+  .count-caption {
+    margin: 0 0 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f7d39b;
+  }
+  .count-units { display: flex; gap: 0.5rem; }
+  .unit {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.9rem;
-    padding: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: var(--color-surface-warm);
+    min-width: 4.1rem;
+    padding: 0.6rem 0.5rem 0.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(6px);
+  }
+  .unit-num {
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .unit-label {
+    margin-top: 0.3rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  @media (max-width: 360px) {
+    .unit { min-width: 3.4rem; }
+    .unit-num { font-size: 1.5rem; }
+  }
+  .cta {
+    display: inline-block;
+    margin-top: 1.75rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  .cta:hover { text-decoration: none; background: #fdf1f2; }
+
+  .section-kicker {
+    margin: 0 0 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+  }
+
+  .spotlight { margin-bottom: 2.5rem; }
+  .spotlight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .portrait {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     color: var(--color-text);
   }
-
-  .keynote-card:hover {
-    border-color: var(--color-primary);
-    text-decoration: none;
-  }
-
-  .keynote-card img {
-    width: 76px;
-    height: 76px;
-    flex: 0 0 auto;
+  .portrait:hover { text-decoration: none; }
+  .avatar {
+    width: min(9rem, 38vw);
+    aspect-ratio: 1;
     border-radius: 50%;
     object-fit: cover;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 2px var(--color-primary), 0 10px 24px rgba(155, 27, 48, 0.18);
+    transition: transform 0.2s ease;
   }
-
-  .keynote-content h3 {
-    margin: 0.4rem 0 0.15rem;
+  .portrait:hover .avatar { transform: scale(1.03); }
+  .monogram {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(160deg, #c42a44 0%, #5a0f1c 100%);
+    color: #fff;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 9vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
   }
-
-  .keynote-content p {
-    margin: 0;
-    color: var(--color-muted);
-    font-size: 0.9rem;
-  }
-
-  .profile-link {
-    display: inline-block;
-    margin-top: 0.55rem;
+  .portrait-when {
+    margin-top: 0.9rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     color: var(--color-primary);
-    font-size: 0.85rem;
-    font-weight: 600;
+  }
+  .portrait-name { margin-top: 0.2rem; font-family: var(--font-serif); font-size: 1.2rem; font-weight: 700; }
+  .portrait-role { font-size: 0.85rem; color: var(--color-muted); line-height: 1.35; }
+
+  .numbers {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 0 2.5rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .numbers p { margin: 0; text-align: center; color: var(--color-muted); font-size: 0.85rem; }
+  .numbers strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--color-text);
   }
 
+  .moments { margin-bottom: 2.5rem; }
+  .moment {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+  .moment:hover { text-decoration: none; }
+  .moment:hover .moment-arrow { transform: translateX(4px); }
+  .moment-index { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-primary); opacity: 0.5; }
+  .moment-text { flex: 1; display: flex; flex-direction: column; }
+  .moment-title { font-weight: 700; font-size: 1.05rem; }
+  .moment-line { font-size: 0.9rem; color: var(--color-muted); }
+  .moment-arrow { color: var(--color-primary); font-size: 1.2rem; transition: transform 0.2s ease; }
+
+  .closer { text-align: center; margin-bottom: 1rem; }
+  .closer-line { margin: 0 0 0.75rem; font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; }
+  .closer-links { display: flex; justify-content: center; gap: 1.5rem; font-weight: 600; font-size: 0.95rem; }
 </style>

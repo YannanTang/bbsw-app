@@ -62,52 +62,95 @@ const groupSlots = (list: Session[]): Slot[] => {
   <p>The 2026 program is being finalized. Session times and talks will appear here as they are confirmed.</p>
 
   {days.map((d) => (
-    <section>
-      <h2 class="day-heading">{dayLabel(d)}</h2>
-      {groupSlots(byDate[d]).map((slot) =>
-        slot.sessions.length > 1 ? (
-          <div class="parallel-slot">
-            <div class="slot-time">
-              {slot.time}–{slot.sessions[0].endTime}
-              <span class="tag accent">Parallel — choose one</span>
-            </div>
-            <div class="parallel-grid">
-              {slot.sessions.map((s) => (
-                <a class="session-row parallel-card" href={link(`sessions/${s.id}`)}>
-                  <div class="title">{s.title}</div>
-                  {s.track && <span class="tag">{s.track}</span>}
-                  {s.room && <div class="meta">{s.room}</div>}
-                  {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
-                </a>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
-            <div class="time">{timeLabel(slot.sessions[0])}</div>
-            <div class="title">{slot.sessions[0].title}</div>
-            {slot.sessions[0].track && <span class="tag">{slot.sessions[0].track}</span>}
-            {slot.sessions[0].chairs.length > 0 && (
-              <div class="meta">
-                Chair{slot.sessions[0].chairs.length > 1 ? "s" : ""}: {names(slot.sessions[0].chairs)}
+    <details class="day-group" open>
+      <summary class="day-summary">
+        <h2 class="day-heading">{dayLabel(d)}</h2>
+        <span class="chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="day-content">
+        {groupSlots(byDate[d]).map((slot) =>
+          slot.sessions.length > 1 ? (
+            <div class="parallel-slot">
+              <div class="slot-time">
+                {slot.time}–{slot.sessions[0].endTime}
+                <span class="tag accent">Parallel — choose one</span>
               </div>
-            )}
-          </a>
-        )
-      )}
-    </section>
+              <div class="parallel-grid">
+                {slot.sessions.map((s) => (
+                  <a class="session-row parallel-card" href={link(`sessions/${s.id}`)}>
+                    <div class="title">{s.title}</div>
+                    {s.track && <span class="tag">{s.track}</span>}
+                    {s.room && <div class="meta">{s.room}</div>}
+                    {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
+              <div class="time">{timeLabel(slot.sessions[0])}</div>
+              <div class="title">{slot.sessions[0].title}</div>
+              {slot.sessions[0].track && <span class="tag">{slot.sessions[0].track}</span>}
+              {slot.sessions[0].chairs.length > 0 && (
+                <div class="meta">
+                  Chair{slot.sessions[0].chairs.length > 1 ? "s" : ""}: {names(slot.sessions[0].chairs)}
+                </div>
+              )}
+            </a>
+          )
+        )}
+      </div>
+    </details>
   ))}
 
   {unscheduled.length > 0 && (
-    <section>
-      <h2 class="day-heading">Sessions</h2>
-      {unscheduled.map((s) => (
-        <a class="session-row" href={link(`sessions/${s.id}`)}>
-          <div class="title">{s.title}</div>
-          {s.track && <span class="tag">{s.track}</span>}
-          {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
-        </a>
-      ))}
-    </section>
+    <details class="day-group" open>
+      <summary class="day-summary">
+        <h2 class="day-heading">Unscheduled Sessions</h2>
+        <span class="chevron" aria-hidden="true">▾</span>
+      </summary>
+      <div class="day-content">
+        {unscheduled.map((s) => (
+          <a class="session-row" href={link(`sessions/${s.id}`)}>
+            <div class="title">{s.title}</div>
+            {s.track && <span class="tag">{s.track}</span>}
+            {s.chairs.length > 0 && <div class="meta">Chair{s.chairs.length > 1 ? "s" : ""}: {names(s.chairs)}</div>}
+          </a>
+        ))}
+      </div>
+    </details>
   )}
 </BaseLayout>
+
+<style>
+  .day-group {
+    margin-bottom: 1.5rem;
+  }
+  .day-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 0.5rem 0;
+  }
+  .day-summary::-webkit-details-marker {
+    display: none;
+  }
+  .day-heading {
+    margin: 0;
+  }
+  .chevron {
+    font-size: 1.25rem;
+    color: var(--color-muted, #666);
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+  .day-group[open] .chevron {
+    transform: rotate(180deg);
+  }
+  .day-content {
+    margin-top: 0.75rem;
+  }
+</style>

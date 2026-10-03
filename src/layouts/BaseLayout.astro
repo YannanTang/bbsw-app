@@ -114,7 +114,7 @@ const tabs = [
         });
       }
 
-      // Install guidance: phones only, hidden once installed or dismissed (for 14 days).
+      // Install guidance: phones only, never for people who already installed or dismissed it.
       (function () {
         var DISMISS_KEY = "bbsw_install_dismissed";
         var ua = navigator.userAgent;
@@ -122,56 +122,56 @@ const tabs = [
         var isAndroid = /Android/.test(ua);
         var inApp = /FBAN|FBAV|Instagram|LinkedInApp|MicroMessenger|Line\/|GSA\/|; wv\)/.test(ua);
         var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+        var banner = document.getElementById("install-banner");
+        function hide() { if (banner) banner.hidden = true; }
+        function remember() { try { localStorage.setItem(DISMISS_KEY, "1"); } catch (_) {} }
 
         // Capture Chrome's install prompt so any page (banner or /install) can trigger it.
+        // Chrome only fires this when the app is NOT installed.
         window.addEventListener("beforeinstallprompt", function (e) {
           e.preventDefault();
           window.bbswInstallPrompt = e;
           window.dispatchEvent(new Event("bbsw:installable"));
         });
-        window.addEventListener("appinstalled", function () { hide(); });
+        window.addEventListener("appinstalled", function () { remember(); hide(); });
 
-        var banner = document.getElementById("install-banner");
-        if (!banner || standalone || !(isIOS || isAndroid)) return;
-        try {
-          var t = Number(localStorage.getItem(DISMISS_KEY) || 0);
-          if (Date.now() - t < 14 * 864e5) return;
-        } catch (_) {}
+        // Running as the installed app: remember it (Android shares this with Chrome).
+        if (standalone) { remember(); return; }
+        if (!banner || !(isIOS || isAndroid)) return;
+        try { if (localStorage.getItem(DISMISS_KEY)) return; } catch (_) {}
 
         var hint = document.getElementById("install-banner-hint");
         var action = document.getElementById("install-banner-action");
-        function hide() { if (banner) banner.hidden = true; }
+        document.getElementById("install-banner-close").onclick = function () { remember(); hide(); };
+        function goHelp() { location.href = installHref; }
 
         if (inApp) {
           hint.textContent = "First open this page in Safari or Chrome.";
           action.textContent = "How?";
-          action.onclick = function () { location.href = installHref; };
+          action.onclick = goHelp;
+          banner.hidden = false;
         } else if (isIOS) {
-          hint.innerHTML = 'Tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> Share, then “Add to Home Screen”.';
+          // iOS can't report whether the app is installed; closing the banner hides it for good.
+          hint.innerHTML = 'Tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> Share, then \u201cAdd to Home Screen\u201d.';
           action.textContent = "Help";
-          action.onclick = function () { location.href = installHref; };
+          action.onclick = goHelp;
+          banner.hidden = false;
         } else {
-          // Android: one-tap install when Chrome offers it, otherwise show steps.
-          action.textContent = "How?";
-          action.onclick = function () { location.href = installHref; };
-          function wire() {
+          // Android: show only when Chrome says the app is installable (i.e. not yet installed).
+          function show() {
             action.textContent = "Install";
             action.onclick = function () {
               var evt = window.bbswInstallPrompt;
               if (!evt) return;
               evt.prompt();
-              evt.userChoice.finally(function () { window.bbswInstallPrompt = null; hide(); });
+              evt.userChoice.then(function (c) { if (c.outcome === "accepted") remember(); })
+                .finally(function () { window.bbswInstallPrompt = null; hide(); });
             };
+            banner.hidden = false;
           }
-          if (window.bbswInstallPrompt) wire();
-          window.addEventListener("bbsw:installable", wire);
+          if (window.bbswInstallPrompt) show();
+          window.addEventListener("bbsw:installable", show);
         }
-
-        document.getElementById("install-banner-close").onclick = function () {
-          try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch (_) {}
-          hide();
-        };
-        banner.hidden = false;
       })();
     </script>
     {GOATCOUNTER_CODE && (

@@ -411,3 +411,77 @@ main {
   .sponsor-grid { grid-template-columns: repeat(4, 1fr); }
   h1 { font-size: 2.1rem; }
 }
+
+/* ---------- Install guidance ---------- */
+.install-lead { color: var(--color-muted); max-width: 40rem; }
+.install-card h2 { margin-top: 0; font-size: 1.15rem; }
+.install-card ol { margin: 0; padding-left: 1.25rem; line-height: 1.6; }
+.install-card.current { border-color: var(--color-primary); box-shadow: 0 0 0 1px var(--color-primary); }
+.install-card .inline-icon,
+.install-banner-text svg { width: 1.05em; height: 1.05em; vertical-align: -0.15em; color: var(--color-secondary); }
+.install-qr { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
+.install-qr .qr { width: 120px; flex: 0 0 auto; }
+.install-qr .qr svg { display: block; width: 100%; height: auto; }
+.install-btn {
+  display: inline-block;
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.75rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.install-btn:hover { background: var(--color-primary-dark); }
+.install-done { padding: 1rem; border-radius: var(--radius); background: var(--color-primary-soft); }
+.install-note p { margin-top: 0.35rem; }
+
+.install-banner {
+  position: fixed;
+  left: 0.5rem;
+  right: 0.5rem;
+  bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.5rem 0.6rem 0.7rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+.install-banner[hidden] { display: none; }
+.install-banner img { border-radius: 9px; flex: 0 0 auto; }
+.install-banner-text { flex: 1 1 auto; min-width: 0; font-size: 0.85rem; line-height: 1.3; }
+.install-banner-text strong { display: block; font-size: 0.9rem; }
+.install-banner-text span { color: var(--color-muted); }
+.install-banner-action {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.install-banner-close {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+  color: var(--color-muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.install-card strong,
+.install-note strong { display: inline; margin: 0; font-family: var(--font-sans); font-size: inherit; color: var(--color-text); }
+.install-note strong { display: block; }
+.install-card p { color: var(--color-text); }

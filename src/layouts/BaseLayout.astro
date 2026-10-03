@@ -22,8 +22,12 @@ const slugToTab: Record<string, string> = {
   "posters": "posters",
   "sponsors": "sponsors",
   "venue": "venue",
+  "install": "",
 };
 const currentTab = slugToTab[slug] ?? "schedule";
+
+// Privacy-friendly page counts (goatcounter.com). Leave empty to disable.
+const GOATCOUNTER_CODE = "";
 
 const tabs = [
   { slug: "home", href: link("home"), label: "Home" },
@@ -66,8 +70,19 @@ const tabs = [
     </main>
     <footer class="site-footer">
       <p>BBSW 2026 · November 5–6, 2026 · Foster City, CA</p>
-      <p><a href="https://bbsw.org">bbsw.org</a></p>
+      <p><a href={link("install")}>Add the app to your phone</a> · <a href="https://bbsw.org">bbsw.org</a></p>
     </footer>
+    {slug !== "install" && (
+      <div class="install-banner" id="install-banner" hidden>
+        <img src={link("icon-192.png")} alt="" width="40" height="40" />
+        <div class="install-banner-text">
+          <strong>Add BBSW 2026 to your home screen</strong>
+          <span id="install-banner-hint">One tap to the schedule, works offline.</span>
+        </div>
+        <button type="button" class="install-banner-action" id="install-banner-action">Install</button>
+        <button type="button" class="install-banner-close" id="install-banner-close" aria-label="Dismiss">×</button>
+      </div>
+    )}
     <nav class="tab-bar" aria-label="Primary">
       {tabs.map((t) => (
         <a href={t.href} class={t.slug === currentTab ? "active" : ""} aria-current={t.slug === currentTab ? "page" : undefined}>
@@ -92,12 +107,75 @@ const tabs = [
         </a>
       ))}
     </nav>
-    <script is:inline define:vars={{ swPath: link("sw.js"), swScope: base }}>
+    <script is:inline define:vars={{ swPath: link("sw.js"), swScope: base, installHref: link("install") }}>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker.register(swPath, { scope: swScope }).catch(() => {});
         });
       }
+
+      // Install guidance: phones only, hidden once installed or dismissed (for 14 days).
+      (function () {
+        var DISMISS_KEY = "bbsw_install_dismissed";
+        var ua = navigator.userAgent;
+        var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        var isAndroid = /Android/.test(ua);
+        var inApp = /FBAN|FBAV|Instagram|LinkedInApp|MicroMessenger|Line\/|GSA\/|; wv\)/.test(ua);
+        var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+        // Capture Chrome's install prompt so any page (banner or /install) can trigger it.
+        window.addEventListener("beforeinstallprompt", function (e) {
+          e.preventDefault();
+          window.bbswInstallPrompt = e;
+          window.dispatchEvent(new Event("bbsw:installable"));
+        });
+        window.addEventListener("appinstalled", function () { hide(); });
+
+        var banner = document.getElementById("install-banner");
+        if (!banner || standalone || !(isIOS || isAndroid)) return;
+        try {
+          var t = Number(localStorage.getItem(DISMISS_KEY) || 0);
+          if (Date.now() - t < 14 * 864e5) return;
+        } catch (_) {}
+
+        var hint = document.getElementById("install-banner-hint");
+        var action = document.getElementById("install-banner-action");
+        function hide() { if (banner) banner.hidden = true; }
+
+        if (inApp) {
+          hint.textContent = "First open this page in Safari or Chrome.";
+          action.textContent = "How?";
+          action.onclick = function () { location.href = installHref; };
+        } else if (isIOS) {
+          hint.innerHTML = 'Tap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> Share, then “Add to Home Screen”.';
+          action.textContent = "Help";
+          action.onclick = function () { location.href = installHref; };
+        } else {
+          // Android: one-tap install when Chrome offers it, otherwise show steps.
+          action.textContent = "How?";
+          action.onclick = function () { location.href = installHref; };
+          function wire() {
+            action.textContent = "Install";
+            action.onclick = function () {
+              var evt = window.bbswInstallPrompt;
+              if (!evt) return;
+              evt.prompt();
+              evt.userChoice.finally(function () { window.bbswInstallPrompt = null; hide(); });
+            };
+          }
+          if (window.bbswInstallPrompt) wire();
+          window.addEventListener("bbsw:installable", wire);
+        }
+
+        document.getElementById("install-banner-close").onclick = function () {
+          try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch (_) {}
+          hide();
+        };
+        banner.hidden = false;
+      })();
     </script>
+    {GOATCOUNTER_CODE && (
+      <script is:inline async data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`} src="//gc.zgo.at/count.js"></script>
+    )}
   </body>
 </html>

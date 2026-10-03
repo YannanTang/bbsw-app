@@ -13,7 +13,8 @@
     "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
-    "astro": "^6.1.9"
+    "astro": "^6.1.9",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "sharp": "^0.34.5"

@@ -1,6 +1,6 @@
 // BBSW 2026 service worker — minimal offline support.
 const BASE = "/";
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE = `bbsw-${VERSION}`;
 
 const PRECACHE = [
@@ -11,6 +11,7 @@ const PRECACHE = [
   BASE + "posters",
   BASE + "sponsors",
   BASE + "venue",
+  BASE + "install",
   BASE + "manifest.webmanifest",
   BASE + "bbsw-logo.webp",
   BASE + "favicon.svg",
@@ -48,7 +49,7 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE).then((c) => c.put(req, copy));
           return res;
         })
-        .catch(() => caches.match(req).then((r) => r || caches.match(BASE)))
+        .catch(() => caches.match(req).then((r) => r || caches.match(BASE + "home")))
     );
     return;
   }

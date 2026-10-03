@@ -39,21 +39,8 @@ const tabs = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#9b1b30" />
-    <meta name="robots" content="noindex,nofollow" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <script is:inline>
-      // Pre-launch gate: bounce visitors without the unlock flag back to splash.
-      (function () {
-        try {
-          if (localStorage.getItem("bbsw_gate") !== "open") {
-            location.replace("/");
-          }
-        } catch (_) {
-          location.replace("/");
-        }
-      })();
-    </script>
     <link rel="icon" href={link("favicon.svg")} type="image/svg+xml" />
     <link rel="apple-touch-icon" href={link("apple-touch-icon.png")} />
     <link rel="manifest" href={link("manifest.webmanifest")} />

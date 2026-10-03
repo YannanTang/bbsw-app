@@ -6,7 +6,7 @@ Quick orientation for anyone working on the BBSW 2026 conference app.
 
 A static mobile-first PWA for the BBSW 2026 conference (Nov 5–6, 2026, Foster City). Built with Astro, deployed to GitHub Pages at **https://app.bbsw.org**.
 
-Pre-launch the site is gated: visitors see a "Coming Soon" splash; the real app is only reachable with the committee passcode. After public launch (late Oct 2026), the gate comes off.
+The site is public: anyone can open it at app.bbsw.org.
 
 ## Maintainers
 
@@ -33,11 +33,11 @@ If you don't want a local install, **GitHub Codespaces** works out of the box (C
 ```
 src/
   pages/            URL routes (one .astro file per page)
-    index.astro     Pre-launch splash + passcode gate
+    index.astro     Redirects / to /home
     home.astro      Real app home (after unlock)
     schedule.astro, speakers/, sessions/, posters.astro, sponsors.astro, venue.astro
   layouts/
-    BaseLayout.astro   Shared header, tab bar, gate guard, noindex meta
+    BaseLayout.astro   Shared header, tab bar
   data/             JSON content — speakers, sessions, sponsors, posters
   styles/global.css
 public/             Static assets (logo, icons, manifest, service worker, CNAME)
@@ -49,21 +49,15 @@ Photo naming: `speaker_lastname_firstname.jpg` in `public/`.
 
 ## Deploy
 
-Push to `main` → GitHub Actions builds and deploys to `app.bbsw.org` in ~1 minute. Workflow lives in `.github/workflows/deploy.yml`. There is no staging environment; the gate is the safety net pre-launch.
+Push to `main` → GitHub Actions builds and deploys to `app.bbsw.org` in ~1 minute. Workflow lives in `.github/workflows/deploy.yml`. There is no staging environment, so use pull requests (see Workflow).
 
-## The pre-launch gate
+## Public access
 
-- Splash at `/` shows "Coming Soon" with a hidden "Committee access" link.
-- Real app lives at `/home`, `/schedule`, etc., gated by `localStorage.bbsw_gate === "open"`.
-- Committee preview URL: **`https://app.bbsw.org/?k=bbsw-committee-2026`** (auto-unlocks).
-- To change the passcode: edit `GATE_PASSCODE` in `src/pages/index.astro` and push.
-- Site-wide `<meta name="robots" content="noindex,nofollow">` keeps it out of search results.
+The app is public (launched 2026-10-02). `/` redirects to `/home`; there is no passcode and pages are indexable by search engines.
 
 ## Workflow
 
-**Pre-launch (now → late Oct 2026):** push directly to `main`. Mistakes go live but only committee sees them.
-
-**Post-launch (late Oct onward):** switch to pull requests for review. Yannan will flip this when the gate comes off.
+The app is public, so mistakes are visible to everyone: work on a branch and open a pull request for review rather than pushing directly to `main`.
 
 ## Working with Claude Code
 

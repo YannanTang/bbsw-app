@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import QRCode from "qrcode";
+
+const appUrl = "https://app.bbsw.org";
+const qrSvg = await QRCode.toString(appUrl, {
+  type: "svg",
+  margin: 1,
+  errorCorrectionLevel: "M",
+  color: { dark: "#1a1a1a", light: "#ffffff" },
+});
+
+const shareIcon = `<svg class="inline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="Share"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>`;
+const menuIcon = `<svg class="inline-icon" viewBox="0 0 24 24" fill="currentColor" aria-label="Menu"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>`;
+---
+<BaseLayout title="Get the app — BBSW 2026" description="Add the BBSW 2026 conference app to your phone's home screen.">
+  <h1>Get the app</h1>
+  <p class="install-lead">
+    The BBSW 2026 app runs in your browser — no app store, no download, no account.
+    Add it to your home screen for one-tap access during the conference. It also works offline once you've opened it.
+  </p>
+
+  <div class="install-done" id="install-done" hidden>
+    <strong>You're all set.</strong> You're using the installed app.
+  </div>
+
+  <button class="install-btn" id="install-btn" type="button" hidden>Install the app</button>
+
+  <div class="install-steps" id="install-steps">
+    <section class="card install-card" data-platform="ios">
+      <h2>iPhone &amp; iPad</h2>
+      <ol>
+        <li>Open <strong>app.bbsw.org</strong> in Safari (or Chrome).</li>
+        <li>Tap the <span set:html={shareIcon} /> <strong>Share</strong> button — at the bottom of the screen in Safari, at the top right in Chrome.</li>
+        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+        <li>Tap <strong>Add</strong>. The BBSW icon appears on your home screen.</li>
+      </ol>
+    </section>
+
+    <section class="card install-card" data-platform="android">
+      <h2>Android</h2>
+      <ol>
+        <li>Open <strong>app.bbsw.org</strong> in Chrome.</li>
+        <li>Tap the <span set:html={menuIcon} /> <strong>menu</strong> at the top right.</li>
+        <li>Tap <strong>Add to Home screen</strong> (or <strong>Install app</strong>), then <strong>Install</strong>.</li>
+      </ol>
+    </section>
+
+    <section class="card install-card" data-platform="desktop">
+      <h2>Laptop or desktop</h2>
+      <p>Just bookmark <strong>app.bbsw.org</strong> — it works in any browser.
+        In Chrome or Edge you can also click the install icon at the right end of the address bar.</p>
+      <div class="install-qr">
+        <div class="qr" set:html={qrSvg} />
+        <p>Scan with your phone's camera to open the app there.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="card install-note" id="inapp-note" hidden>
+    <strong>Opened from email or social media?</strong>
+    <p>Apps like Gmail, LinkedIn and WeChat open links in their own built-in browser, which can't add apps to your home screen.
+      Use that browser's menu to choose <em>Open in Safari</em> or <em>Open in Chrome</em> first.</p>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    var ua = navigator.userAgent;
+    var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(ua);
+    var inApp = /FBAN|FBAV|Instagram|LinkedInApp|MicroMessenger|Line\/|GSA\/|; wv\)/.test(ua);
+    var standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+    if (standalone) {
+      document.getElementById("install-done").hidden = false;
+      document.getElementById("install-steps").hidden = true;
+      return;
+    }
+
+    // Put the visitor's own platform first and highlight it.
+    var platform = isIOS ? "ios" : isAndroid ? "android" : "desktop";
+    var steps = document.getElementById("install-steps");
+    var mine = steps.querySelector('[data-platform="' + platform + '"]');
+    if (mine) {
+      mine.classList.add("current");
+      steps.insertBefore(mine, steps.firstChild);
+    }
+    if (inApp) document.getElementById("inapp-note").hidden = false;
+
+    // Chrome / Edge / Android: offer the native install prompt when available.
+    var btn = document.getElementById("install-btn");
+    function wire(evt) {
+      btn.hidden = false;
+      btn.onclick = function () {
+        evt.prompt();
+        evt.userChoice.finally(function () { btn.hidden = true; window.bbswInstallPrompt = null; });
+      };
+    }
+    if (window.bbswInstallPrompt) wire(window.bbswInstallPrompt);
+    window.addEventListener("bbsw:installable", function () { wire(window.bbswInstallPrompt); });
+  })();
+</script>

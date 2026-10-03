@@ -2,7 +2,7 @@
   "name": "BBSW 2026",
   "short_name": "BBSW",
   "description": "Bay Area Biotech-Pharma Statistics Workshop 2026 — Foster City, November 5–6",
-  "start_url": "/",
+  "start_url": "/home",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

@@ -1,6 +1,298 @@
 [
-  { "name": "Sponsor Placeholder A", "tier": "Platinum", "logo": "", "website": "https://example.com" },
-  { "name": "Sponsor Placeholder B", "tier": "Gold", "logo": "", "website": "https://example.com" },
-  { "name": "Sponsor Placeholder C", "tier": "Gold", "logo": "", "website": "https://example.com" },
-  { "name": "Sponsor Placeholder D", "tier": "Silver", "logo": "", "website": "https://example.com" }
+  {
+    "id": "biomarin",
+    "name": "BioMarin",
+    "tier": "Diamond",
+    "logo": "/sponsors/biomarin.png",
+    "website": "https://www.biomarin.com",
+    "description": "BioMarin is a leading global rare disease biotechnology company focused on delivering medicines for people living with genetically defined conditions. Founded in 1997, the company has a proven track record of innovation, with nine commercial therapies and a strong clinical and preclinical pipeline. To learn more, please visit www.BioMarin.com."
+  },
+  {
+    "id": "genentech",
+    "name": "Genentech",
+    "tier": "Diamond",
+    "logo": "/sponsors/genentech.png",
+    "website": "",
+    "description": "Headquartered in South San Francisco, Genentech is a biotechnology pioneer dedicated to discovering and developing breakthrough medicines for people facing serious and life-threatening diseases. Advanced biostatistics, data science, and quantitative methodologies are fundamental to our work, driving rigorous, evidence-based decision-making across our entire research and clinical pipeline. As a longtime leader in the Bay Area life sciences ecosystem, Genentech is committed to supporting local talent, scientific rigor, and cross-industry collaboration. As one of the first sponsors since the Bay Area Biotech-Pharma Statistics Workshop's (BBSW) inception in 2018, we are proud to continue our partnership and empower the quantitative scientists shaping the future of healthcare."
+  },
+  {
+    "id": "edetek",
+    "name": "EDETEK",
+    "tier": "Platinum",
+    "logo": "/sponsors/edetek.png",
+    "website": "",
+    "description": "EDETEK: Transforming Clinical Trials with Cutting-Edge Digital Solutions\n\nAt EDETEK, we revolutionize clinical trials with an end-to-end, integrated digital solution that enhances interoperability, reusability, data quality, and ensures timely submissions. Our metadata-driven platform and solutions meet the data science and bioinformatics needs of enterprises in clinical research and drug development.\n\nCombining deep domain expertise with advanced computational engineering, we offer a turn-key solution that aligns with industry standards and best practices. As a trusted partner, we collaborate closely with sponsors to develop precise solutions that deliver unmatched quality, efficiency, and cost savings.\n\nOur cloud-based CONFORM™ platform and its suite of integrated applications capture, aggregate, and validate study data from any source, format, structure, and standard. This robust platform supports data review, scientific visualizations, alerts, statistical analysis, operational management, and regulatory submission through AI/ML-enhanced study configuration. The GxP-validated CONFORM™ digital pipeline runs study workflows in near real time. Four of the top five pharmaceutical companies in the USA and numerous medium and small companies have licensed our technology, using CONFORM™ for every new study.\n\nEDETEK’s services group leverages the CONFORM™ technology platform to deliver clinical data management, biostatistics, programming, data standardization, enterprise standard development, clinical informatics, and regulatory application services. Since our founding in 2009, we have supported over 2,500 studies across all phases."
+  },
+  {
+    "id": "njs",
+    "name": "NJS",
+    "tier": "Platinum",
+    "logo": "/sponsors/njs.png",
+    "website": "",
+    "description": "NJS is a leading biometrics CRO, multifunctional FSP provider, and specialized staffing partner. Through flexible project-based and FSP models, we provide access to more than 100 SAS programmers and PhD-level statisticians, supported by offices in New Jersey, Massachusetts, California, and Florida.\n\nNJS has contributed to more than 16 successful regulatory submissions in both biostatistics and SAS programming. NJS is currently supporting seven submissions across oncology, ophthalmology, rare disease, epilepsy, and mRNA-based immuno-oncology vaccine. Our oncology and hematology biostatistics submission expertise includes renal cell, colorectal, breast, non-small cell lung cancer, prostate cancers, beta thalassemia, MDS, and AML. NJS also provided biostatistics design support in rare disease, CNS, cardiology, CNS, metabolic diseases, ophthalmology, osteoporosis, vaccines, rare diseases, and medical devices with demonstrated success in submission.\n\nNJS provides expert biostatistics support in methodology in trial design in therapeutic areas in oncology, rare disease, CNS, cardiology and etc.\n\nNJS also applies secure, closed-system AI tools to enhance biometrics delivery by:\n\n• Performing deep data quality checks\n• Assisting advanced statistical analyses\n• Conducting strategic and scientific literature research to support regulatory discussion\n• Supporting CDISC dataset development and TLF\n\nCombined with our experienced clinical and biometrics recruiting team, NJS delivers scalable expertise, regulatory insight, and responsive support from study design through submission.\n\nMeet the NJS team at BBSW in Foster City to discuss your next clinical development program."
+  },
+  {
+    "id": "phasev",
+    "name": "PhaseV",
+    "tier": "Platinum",
+    "logo": "/sponsors/phasev.png",
+    "website": "",
+    "description": "PhaseV is a Boston-based technology company transforming clinical development with advanced causal machine learning, GenAI, and real-world data. Its AI-powered platform helps biopharma sponsors and CROs design and optimize adaptive, Bayesian, and fixed-design trials, identify treatment-responsive patient subgroups and biomarkers, strengthen site selection and clinical operations, and make faster, evidence-driven decisions. By translating complex clinical data into actionable insights, PhaseV helps reduce trial risk, timelines, and costs while increasing the probability of success and accelerating new therapies to patients."
+  },
+  {
+    "id": "revolution-medicines",
+    "name": "Revolution Medicines",
+    "tier": "Platinum",
+    "logo": "/sponsors/revolution-medicines.png",
+    "website": "https://www.revmed.com",
+    "description": "Revolution Medicines is a global, commercial-stage oncology company dedicated to discovering, developing and delivering innovative medicines for patients with RAS-addicted cancers. Leveraging its differentiated RAS(ON) tri-complex inhibitor platform, the company is advancing a broad, integrated portfolio of oral RAS(ON) inhibitors designed to directly target the active, cancer-driving state of RAS. Founded on rigorous scientific inquiry and a willingness to challenge long-held assumptions, Revolution Medicines is committed to changing the trajectory of disease for patients with RAS-addicted cancers worldwide. For more information, visit www.revmed.com and follow Revolution Medicines on LinkedIn, X (Twitter) and Instagram."
+  },
+  {
+    "id": "stillwave",
+    "name": "Stillwave",
+    "tier": "Platinum",
+    "logo": "/sponsors/stillwave.png",
+    "website": "",
+    "description": "Stillwave is where accomplished leaders come to gain clarity, strengthen their leadership, and move with purpose. Founded by Chito Hernandez — a seasoned life sciences executive with more than 30 years of experience, including senior leadership at BioMarin, Elan, and Janssen, and a professorship at UCSD — Stillwave partners with biopharma and technical leaders who are ready to challenge assumptions, elevate performance, and accelerate growth. We help individuals and organizations develop the confidence, judgment, and leadership capacity required for what comes next. For leaders ready to invest in real transformation, Stillwave offers a practical path forward."
+  },
+  {
+    "id": "abbvie",
+    "name": "AbbVie",
+    "tier": "Gold",
+    "logo": "/sponsors/abbvie.png",
+    "website": "https://www.abbvie.com",
+    "description": "AbbVie is a global, research-driven biopharmaceutical company committed to developing innovative advanced therapies for some of the world’s most complex and critical conditions. The company’s mission is to use its expertise, dedicated people and unique approach to innovation to markedly improve treatments across six primary therapeutic areas: Immunology, Oncology, Neurosciences, Medical Aesthetics, Eye Care and Specialty. In more than 75 countries, AbbVie employees are working every day to advance health solutions for people around the world. For more information about AbbVie, please visit us at www.abbvie.com. Follow @abbvie on Twitter, Facebook or LinkedIn."
+  },
+  {
+    "id": "astraea",
+    "name": "Astraea",
+    "tier": "Gold",
+    "logo": "/sponsors/astraea.png",
+    "website": "",
+    "description": "Astraea is an AI-native operating system for biometrics that accelerates clinical trial execution. By integrating AI Data Management, an advanced end-to-end Analysis Platform (delivering SDTM, ADaM, and TFL outputs from raw data), and rich Visualization (interactive patient profiles and study analytics), Astraea compresses months of work into a matter of days. Guided by deterministic, human-in-the-loop workflows, Astraea maintains complete auditability, strict QC discipline, and continuous sponsor oversight from study kickoff to FDA/EMA submission."
+  },
+  {
+    "id": "astrazeneca",
+    "name": "AstraZeneca",
+    "tier": "Gold",
+    "logo": "/sponsors/astrazeneca.png",
+    "website": "https://careers.astrazeneca.com",
+    "description": "Innovate and push the boundaries of science\n\nAt AstraZeneca Oncology Biometrics we LEAP to conquer cancer through data, innovation, and evidience-based decisions\n\nHere you are empowered to push the boundaries of science and unleash your entrepreneurial spirit.\n\nLeadership in Decision Making Operational Excellence\n\nAccelerated Innovation and Optimization\n\nPeople and Culture\n\nTo discover more about life at AstraZeneca go to careers.astrazeneca.com"
+  },
+  {
+    "id": "bayesoft",
+    "name": "Bayesoft",
+    "tier": "Gold",
+    "logo": "/sponsors/bayesoft.png",
+    "website": "",
+    "description": "Bayesian powered AI agents for clinical trials & AI agents for portfolio management; we bring your next drug to patients faster. Bayesoft specializes in Bayesian statistics and AI Solutions for clinical and drug development. We provide agentic platforms, Bayesian solutions, and general statistical consulting services for pharmaceutical and biotech industries, aiming to make drug development smarter, faster, and more efficient."
+  },
+  {
+    "id": "beone-medicines",
+    "name": "BeOne Medicines",
+    "tier": "Gold",
+    "logo": "/sponsors/beone-medicines.png",
+    "website": "https://www.beonemedicines.com",
+    "description": "BeOne Medicines, formerly known as BeiGene, is a global oncology company domiciled in Switzerland that is discovering and developing innovative treatments that are more affordable and accessible to cancer patients worldwide. With a portfolio spanning hematology and solid tumors, BeOne is expediting development of its diverse pipeline of novel therapeutics through its internal capabilities and collaborations. With a growing global team of more than 12,000 colleagues spanning six continents, the Company is committed to radically improving access to medicines for far more patients who need them. To learn more about BeOne, please visit www.beonemedicines.com and follow us on LinkedIn, X, Facebook and Instagram."
+  },
+  {
+    "id": "cims-global",
+    "name": "CIMS Global",
+    "tier": "Gold",
+    "logo": "/sponsors/cims-global.png",
+    "website": "",
+    "description": "CIMS Global is an innovative data science and technology company with a mission to accelerate clinical development and improve the efficiency and quality of clinical trials and healthcare.\n\nCIMS combines deep expertise in biostatistics, clinical data sciences, regulatory processes, and advanced technologies. We provide full services in DM, Biostats and statistical programming with FSP and project-based models.\n\nCIMS also provides innovative technologies for clinical trials including CRE (Compliant R Environment), ProvAI (an AI-Governance platform for biometric workflows), DTM (Dynamic Trial Monitoring) and DMC-HUB (a platform managing entire DMC processes with firewalls)."
+  },
+  {
+    "id": "clinchoice",
+    "name": "ClinChoice",
+    "tier": "Gold",
+    "logo": "/sponsors/clinchoice.png",
+    "website": "",
+    "description": "ClinChoice is a global full-service CRO, with over 30 years’ experience, dedicated to offering high-quality full clinical development services to Biopharmaceutical clients. ClinChoice has development centers across the US, Canada, China, Europe, India, Japan, and The Philippines with more than 4,000 dedicated professionals worldwide. Over the years, we have built a reputation as a preferred partner for clients around the world by providing superior solutions that reduce complexities and speed up time to market. Our Biometrics team has over 800 employees worldwide with extensive experience in Data Management, Biostatistics, SAS Programming, and Data Science services. We have successfully supported numerous development programs in different clinical trial phases and across a wide range of therapeutic areas, including NDA/BLA submissions. With ClinChoice, you get more than just data analysis – you get a real, deep understanding of the latest methodology in regulatory innovation and the science of clinical development."
+  },
+  {
+    "id": "clindata-insight",
+    "name": "Clindata Insight",
+    "tier": "Gold",
+    "logo": "/sponsors/clindata-insight.png",
+    "website": "https://clindatainsight.com",
+    "description": "We're Hiring! Clindata Insight helps biopharma organizations accelerate development through biometrics projects and talent solutions. Our experts in biostatistics, statistical programming, clinical data management, and AI adoption act as trusted partners, ensuring trials are designed, executed, and delivered with rigor and efficiency. Known for credible, high-quality results, our agile team pairs technical excellence with a collaborative approach that makes us a valued extension of your team. We're proud to be a San Francisco Business Times Fast 100: Fastest Growing Private Company (2025 & 2017) and a Top 100 Women-Owned Business in the Bay Area since 2018.\n\nCall us at (925) 320-7600 or visit clindatainsight.com to explore project, resource, or career opportunities"
+  },
+  {
+    "id": "corcept-therapeutics",
+    "name": "Corcept Therapeutics",
+    "tier": "Gold",
+    "logo": "/sponsors/corcept-therapeutics.png",
+    "website": "",
+    "description": "We’re leading the way in the research and development of cortisol modulators, molecules that regulate cortisol activity at the glucocorticoid receptor (GR). To date, we have discovered more than 1,000 selective proprietary cortisol modulators.\n\nIn 2012, we received FDA approval of Korlym® (mifepristone), the first approved treatment for hypercortisolism (Cushing syndrome).\n\nToday, our team and collaborators continue to unlock the possibilities of cortisol modulation as a way to treat serious diseases. With more than 30 ongoing studies across a wide range of disease areas, including endocrinology, oncology, metabolism, and neurology, we remain dedicated to advance the possibilities of cortisol modulation.\n\nWhat began as a ripple of scientific truth is now poised to unleash a sea change of discovery representing a fundamental shift in the way we understand and treat disease."
+  },
+  {
+    "id": "cytel",
+    "name": "Cytel",
+    "tier": "Gold",
+    "logo": "/sponsors/cytel.png",
+    "website": "",
+    "description": "Cytel is a global leader in cutting-edge analytical solutions, quantitative methods, and innovative statistical software for the life sciences industry. For nearly four decades, Cytel has pioneered adaptive trial design, using data-driven insights to inform strategy across all phases of drug development and commercialization. Cytel continues to drive innovation in clinical research by accelerating drug development, improving success rates, and delivering better patient outcomes. Headquartered in Cambridge, Massachusetts, Cytel has more than 2,000 employees worldwide."
+  },
+  {
+    "id": "ephicacy",
+    "name": "Ephicacy",
+    "tier": "Gold",
+    "logo": "/sponsors/ephicacy.png",
+    "website": "https://www.ephicacy.com",
+    "description": "Ephicacy is a rapidly growing biometrics CRO headquartered in Iselin, NJ, with employees and operations across North America, India, and Europe. Ephicacy’s tenured experts provide statistical programming, biostatistics, data management, real-world data analytics, and clinical literature review services to pharmaceutical and biotechnology companies. Since its founding in 2005, Ephicacy has established itself as a leading player in the clinical analytics space, leveraging a global talent pool to help pharmaceutical and biotechnology companies reduce their time to market in a cost-effective manner. Explore the organization in more detail at www.ephicacy.com"
+  },
+  {
+    "id": "everest-clinical-research",
+    "name": "Everest Clinical Research",
+    "tier": "Gold",
+    "logo": "/sponsors/everest-clinical-research.png",
+    "website": "",
+    "description": "Everest Clinical Research is a full-service, global CRO with deep-rooted experience in clinical research biometrics. With more than 20 years of proven expertise, Everest provides flexible, reliable, and high-quality solutions— including data management, biostatistics and statistical programming, DMC/DSMB, RTSM, medical writing and data preparation services for regulatory submissions. Everest is currently a preferred biometrics partner for more than 130 active clients, including 6 of the top 15 pharma companies.\n\nSince its inception, Everest has continuously expanded its service offerings, and today provides capabilities beyond biometrics, including top-tier full-service clinical trial execution globally. The company has offices in North America, Europe and Asia with more than 750 employees."
+  },
+  {
+    "id": "hill-research",
+    "name": "Hill Research",
+    "tier": "Gold",
+    "logo": "/sponsors/hill-research.png",
+    "website": "https://www.hillresearch.ai",
+    "description": "Hill Research (Hill Pepper, Inc.) is an AI-native clinical biometrics company founded in 2022 and headquartered in Princeton, NJ. Its flagship platform, TriClick™, uses agentic AI to automate the most manual workflows in clinical development — SAP, SDTM, ADaM, TLF, Define.xml, and reviewer's guides — delivering FDA- and EMA-ready submission packages with immutable audit trails, full source-to-output traceability, and human oversight at every step. TriClick™ has supported 160+ clinical studies across oncology, CNS, and immunology, and is backed by a 30+ paper peer-reviewed research program."
+  },
+  {
+    "id": "hopeai",
+    "name": "HopeAI",
+    "tier": "Gold",
+    "logo": "/sponsors/hopeai.png",
+    "website": "",
+    "description": "HopeAI is a Mayo Clinic-backed, AI-native startup focused on building an end-to-end AI drug development platform. Our core focus is evidence-based clinical trial design, combining comprehensive global clinical evidence, patient-level insights, statistical rigor, and expert-validated AI workflows to help biopharma teams make faster and more defensible decisions throughout clinical development. HopeAI has established collaborations with global pharmaceutical partners to support clinical development programs and improve the probability of trial success."
+  },
+  {
+    "id": "inference",
+    "name": "Inference Inc.",
+    "tier": "Gold",
+    "logo": "/sponsors/inference.png",
+    "website": "",
+    "description": "Inference Inc. was founded on the belief that quality biostatistics consultation and data handling are essential to advance our clients' clinical development programs. With deep expertise in biometrics in all phases, we transform trial objectives into testable hypotheses, design studies for optimal outcomes, and report evidence needed to support regulatory and commercial goals."
+  },
+  {
+    "id": "keiji-ai",
+    "name": "Keiji AI",
+    "tier": "Gold",
+    "logo": "/sponsors/keiji-ai.png",
+    "website": "",
+    "description": "Keiji AI provides regulated-grade AI infrastructure for clinical research. Its core platform, TrialMind, supports the entire clinical trial lifecycle—including planning, execution, and reporting—by deploying specialized AI agents for tasks like biostatistics programming, trial design, protocol optimization, and literature review. Built for regulated environments with part 11-ready audit trails, Keiji AI delivers auditable, secure, and reproducible AI workflows that keep human experts in the loop."
+  },
+  {
+    "id": "mms-holdings",
+    "name": "MMS Holdings",
+    "tier": "Gold",
+    "logo": "/sponsors/mms-holdings.png",
+    "website": "https://www.mmsholdings.com",
+    "description": "MMS Holdings (MMS) is an award-winning, data-focused clinical research organization (CRO) that supports the pharmaceutical and biotech industries with a proven, scientific approach to complex trial data and regulatory submission challenges. Strong industry experience, a 20-year track record, AI technology-enabled services, and a data-driven approach to drug development make MMS a valuable CRO partner. With a global footprint across four continents, MMS maintains an industry-leading customer satisfaction rating. For more information, visit www.mmsholdings.com."
+  },
+  {
+    "id": "navitas-life-sciences",
+    "name": "Navitas Life Sciences",
+    "tier": "Gold",
+    "logo": "/sponsors/navitas-life-sciences.png",
+    "website": "https://www.navitaslifesciences.com",
+    "description": "At Navitas Life Sciences, we deliver outcome-focused, boutique clinical data sciences services to pharmaceutical and biotechnology companies worldwide. As a strategic partner, we combine deep scientific expertise with AI-augmented Statistical Programming, Biostatistics, and Clinical Data Management to transform complex data into high-quality evidence and actionable insights. Our experts support the full clinical development lifecycle across all trial phases, working with clinical, real-world, biomarker, genomic, imaging, and digital health data. Through innovative technology, advanced analytics, and flexible delivery models, we provide tailored solutions that improve efficiency, accelerate decision-making, and help our clients bring new therapies to patients faster. For more information: www.navitaslifesciences.com"
+  },
+  {
+    "id": "penfield-search-partners",
+    "name": "Penfield Search Partners",
+    "tier": "Gold",
+    "logo": "/sponsors/penfield-search-partners.png",
+    "website": "",
+    "description": "Penfield Search Partners is a boutique talent solutions firm with deep domain expertise in the life sciences, pharmaceutical, biotech, and insurance industries. Through a consultative approach, Penfield aligns talent strategies with business objectives to help organizations scale, strengthen leadership, and fill critical skill gaps. Their full life cycle resourcing capabilities include executive search, contract staffing, contract-to-hire, functional service provision, and team build-outs — offering flexible, tailored solutions to meet each client's unique needs. Penfield supports key functions across biostatistics, statistical programming, data management, HEOR, medical affairs, and clinical operations. Guided by integrity and precision, they prioritize quality of fit and long-term impact, delivering talent solutions that drive sustainable growth and success."
+  },
+  {
+    "id": "phastar",
+    "name": "Phastar",
+    "tier": "Gold",
+    "logo": "/sponsors/phastar.png",
+    "website": "",
+    "description": "Phastar is an award-winning biometrics and data science CRO, trusted by pharma, biotech, and medical device companies worldwide. With a global team of data specialists, we bring expertise, precision, and pace to every trial—because behind every data point is a patient waiting for treatment.\n\nOur proven track record in transforming complex data into clear, actionable intelligence enables you to accelerate drug development. With scalable, tailored solutions, we expedite trials—bringing life-changing therapies to patients faster."
+  },
+  {
+    "id": "posit",
+    "name": "Posit",
+    "tier": "Gold",
+    "logo": "/sponsors/posit.png",
+    "website": "",
+    "description": "Posit, formerly RStudio, is dedicated to advancing open-source software for data science, scientific research, and technical communication. Trusted by millions of users, including 25% of the Fortune Global 100, Posit empowers organizations to drive innovation and informed decision-making. We focus on making data science more open, intuitive, accessible, and collaborative, offering tools that enable powerful insights and smarter, data-driven decisions."
+  },
+  {
+    "id": "q2bi",
+    "name": "Q2BI",
+    "tier": "Gold",
+    "logo": "/sponsors/q2bi.png",
+    "website": "",
+    "description": "Q2BI is a global clinical data intelligence company specializing in biometrics, data science, and AI-enabled clinical solutions. Headquartered in Boxborough, Massachusetts, Q2BI operates across the United States and the Asia-Pacific region. Since its founding in 2009, the company has completed over 1,800 studies and contributed to more than 50 NDA/BLA approvals worldwide. Q2BI partners with biopharma and AI companies to accelerate the development of innovative medicines."
+  },
+  {
+    "id": "realtimecro",
+    "name": "RealtimeCRO",
+    "tier": "Gold",
+    "logo": "/sponsors/realtimecro.png",
+    "website": "",
+    "description": "Dedicated to Leading Innovations in Biometrics and Medical Writing Technologies.\n\nRealtimeCRO delivers innovative software solutions that help biostatistics, statistical programming, and medical writing teams work faster, smarter, and fully compliant.\n\n• Biostatistical Programming Studio (BPS): A validated statistical computing environment that accelerates programming, streamlines all intra-team and cross-functional collaborations, and ensures compliance.\n• ShellTOC: Automates shells and TOC processing, saving biostatisticians and programmers up to 90% of their time on shell and TOC.\n• MW (Medical Writing tool): Automates CSR, saving each writer weeks of effort annually.\n• Vivid Patient Insights (VPI): Provides real-time, intuitive patient data visualizations for deeper clinical trial insights.\n• PDFCombiner: Merges outputs (tables, figures and listings) into fully formatted, compliant PDF packages."
+  },
+  {
+    "id": "redbock",
+    "name": "Redbock",
+    "tier": "Gold",
+    "logo": "/sponsors/redbock.png",
+    "website": "",
+    "description": "We deliver resourcing solutions for the pharmaceutical, biotechnology and medical device industries. Our services include contingent resourcing, in‐sourced project teams and functional service provision (FSP). Our areas of expertise are:\n\n• Biometrics (Biostatistics, Data Science, Statistical Programming and Clinical Data Management)\n• Clinical Research and Operations\n• Drug Safety/Pharmacovigilance\n• Regulatory and Compliance\n• Quality\n• Engineering"
+  },
+  {
+    "id": "simulstat",
+    "name": "SimulStat",
+    "tier": "Gold",
+    "logo": "/sponsors/simulstat.png",
+    "website": "",
+    "description": "SimulStat provides statistical programming, biostatistics, and real-world data services to the pharmaceutical and biotechnology industry. Whether you need a consultant SAS programmer/biostatistician/epidemiologist or an entire FSP team, we can provide the resources you need. We also provide off-site biostatistics and statistical programming outsourcing solutions for projects your infrastructure may not be able to support."
+  },
+  {
+    "id": "sycamore-informatics",
+    "name": "Sycamore Informatics",
+    "tier": "Gold",
+    "logo": "/sponsors/sycamore-informatics.png",
+    "website": "",
+    "description": "Sycamore Informatics is the leading technology vendor in clinical trial data sciences, trusted by global biopharma companies: supporting over 10,000 global production users and managing 2+ Petabytes of trial data across thousands of clinical studies and hundreds of submissions.\n\nSycamore Data Science Workbench, Statistical Computing Environment, Data Transformation Manager, Metadata Repository, Structured Protocol Design, and Digital Data Flow Manager simplifies complex, distributed data collation, analysis, and reporting. Sycamore provides next-generation applications that enable rapid and secure delivery of and access to the \"right\" data for analysis and reporting including the use of Open Source Computes and GxP-validated Sycamore Clinical Agentic Framework."
+  },
+  {
+    "id": "wu-consulting-group",
+    "name": "Wu Consulting Group",
+    "tier": "Gold",
+    "logo": "/sponsors/wu-consulting-group.png",
+    "website": "",
+    "description": "Wu Consulting Group is an AI-empowered biometrics functional service provider with 30 years of experience supporting pharmaceutical, biotech, and medical device sponsors in statistical programming, biostatistics, and clinical data management. WUG deploys AI agents to power network-driven recruiting, giving sponsors faster access to scarce biometrics talent, and applies a proprietary AI platform to automate workflows and implement benchmark skills based on client specifications. Engagements are led by senior, hands-on teams that integrate directly with internal biometrics functions."
+  },
+  {
+    "id": "amgen",
+    "name": "Amgen",
+    "tier": "Silver",
+    "logo": "/sponsors/amgen.png",
+    "website": "https://amgen.com",
+    "description": "Amgen harnesses the best of biology and technology to fight the world’s toughest diseases, and make people’s lives easier, fuller and longer. We helped establish the biotechnology industry, and we remain on the cutting-edge of innovation, using technology and human genetic data to push beyond what’s known today. Our investment in research and development has yielded a robust pipeline that builds on our existing portfolio of medicines to treat cancer, heart disease, osteoporosis, inflammatory diseases and rare diseases.\n\nAmgen is one of 30 companies comprising the Dow Jones Industrial Average®, and part of the Nasdaq-100 Index®. In 2025, Amgen was named to Fortune's list of the World’s Most Admired Companies.\n\nFor more information, visit Amgen.com and follow us on X, LinkedIn, Instagram, YouTube and Threads."
+  },
+  {
+    "id": "asa-biopharm",
+    "name": "American Statistical Association – Biopharmaceutical Section",
+    "tier": "Silver",
+    "logo": "/sponsors/asa-biopharm.png",
+    "website": "",
+    "description": "The Biopharmaceutical Section focuses on applying statistics to the development and use of therapeutic drugs, biologics, devices, medicines, and related technologies in both humans and animals. Its primary interests include product discovery, development, quality control, evaluation of safety and efficacy, and health promotion through disease prevention, intervention, and surveillance. The section also engages with broader issues such as research ethics, standards for study design and reporting, policy impacts, and the dissemination of research through publications and continuing education. Overall, ASA-BIOP serves as a bridge between statistics, the life sciences, and public health."
+  },
+  {
+    "id": "boehringer-ingelheim",
+    "name": "Boehringer Ingelheim",
+    "tier": "Silver",
+    "logo": "/sponsors/boehringer-ingelheim.png",
+    "website": "",
+    "description": "Boehringer Ingelheim is a leading, research-driven biopharmaceutical company active in both human and animal health. Founded in 1885 and still family-owned today, the company is dedicated to developing innovative therapies and solutions that improve the lives of people and animals around the world. With approximately 54,300 employees serving more than 130 markets, Boehringer Ingelheim is one of the pharmaceutical industry's top investors in research and development. Guided by its purpose of transforming lives for generations, the company focuses on addressing areas of significant unmet medical need while advancing long-term sustainability across its global operations."
+  }
 ]

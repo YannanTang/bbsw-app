@@ -290,7 +290,7 @@ main {
 .sponsor-tile {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   text-align: center;
   background: #fff;
   min-height: 80px;
@@ -298,12 +298,101 @@ main {
   align-items: center;
   justify-content: center;
   color: var(--color-text);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .sponsor-tile:hover {
   border-color: var(--color-primary);
+  box-shadow: 0 2px 10px rgba(155,27,48,0.08);
   text-decoration: none;
 }
+
+.sponsor-tile-logo {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-tile-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-tile-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-muted);
+}
+
+.sponsor-tile:hover .sponsor-tile-name { color: var(--color-primary); }
+
+.sponsor-detail-header {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.sponsor-detail-logo {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.sponsor-detail-logo img {
+  max-width: min(100%, 360px);
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.sponsor-detail-header h1 { margin-bottom: 0.5rem; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.sponsor-detail-header .tag { margin-right: 0; }
+
+.sponsor-description p { margin: 0 0 0.9rem; }
+.sponsor-description ul { margin: 0 0 0.9rem; padding-left: 1.25rem; }
+.sponsor-description li { margin: 0.2rem 0; }
+
+.sponsor-website {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.18s ease;
+}
+
+.sponsor-website svg { width: 0.9rem; height: 0.9rem; }
+
+.sponsor-website:hover,
+.sponsor-website:focus-visible {
+  background: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.sponsor-website:focus-visible { outline: 3px solid rgba(155, 27, 48, 0.3); outline-offset: 2px; }
 
 .site-footer {
   text-align: center;

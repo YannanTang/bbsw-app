@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import sponsors from "../../data/sponsors.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Sponsor = { id: string; name: string; tier: string; logo?: string; website?: string; description?: string; };
+const tierOrder = ["Diamond", "Platinum", "Gold", "Silver"];
+
+// Known tiers first, in order; any unexpected tier is appended rather than silently dropped.
+const tiers = [...tierOrder, ...new Set((sponsors as Sponsor[]).map((s) => s.tier).filter((t) => !tierOrder.includes(t)))];
+const byName = (a: Sponsor, b: Sponsor) => a.name.localeCompare(b.name, "en", { sensitivity: "base" });
+const groups = tiers
+  .map((tier) => ({ tier, list: (sponsors as Sponsor[]).filter((s) => s.tier === tier).sort(byName) }))
+  .filter((g) => g.list.length > 0);
+---
+<BaseLayout title="Sponsors — BBSW 2026">
+  <h1>Sponsors</h1>
+  <p>Thank you to our 2026 sponsors.</p>
+  {groups.map(({ tier, list }) => (
+    <section class="sponsor-tier">
+      <h2>{tier}</h2>
+      <div class="sponsor-grid">
+        {list.map((sp) => (
+          <a class="sponsor-tile" href={link(`sponsors/${sp.id}`)}>
+            {/* The logo's alt text names the link; the visible name is only a fallback when there is no logo. */}
+            {sp.logo
+              ? <span class="sponsor-tile-logo"><img src={link(sp.logo)} alt={sp.name} loading="lazy" /></span>
+              : <span class="sponsor-tile-name">{sp.name}</span>}
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

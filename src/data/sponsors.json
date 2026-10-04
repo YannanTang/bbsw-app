@@ -16,6 +16,14 @@
     "description": "Headquartered in South San Francisco, Genentech is a biotechnology pioneer dedicated to discovering and developing breakthrough medicines for people facing serious and life-threatening diseases. Advanced biostatistics, data science, and quantitative methodologies are fundamental to our work, driving rigorous, evidence-based decision-making across our entire research and clinical pipeline. As a longtime leader in the Bay Area life sciences ecosystem, Genentech is committed to supporting local talent, scientific rigor, and cross-industry collaboration. As one of the first sponsors since the Bay Area Biotech-Pharma Statistics Workshop's (BBSW) inception in 2018, we are proud to continue our partnership and empower the quantitative scientists shaping the future of healthcare."
   },
   {
+    "id": "gilead-sciences",
+    "name": "Gilead Sciences",
+    "tier": "Diamond",
+    "logo": "/sponsors/gilead-sciences.png",
+    "website": "https://www.gilead.com/careers/careers-at-gilead",
+    "description": "Gilead Sciences, Inc. is a biopharmaceutical company that has pursued and achieved breakthroughs in medicine for more than three decades, with the goal of creating a healthier world for all people. The company is committed to advancing innovative medicines to prevent and treat life-threatening diseases, including HIV, viral hepatitis, COVID-19, cancer and inflammation. Gilead operates in more than 35 countries worldwide, with headquarters in Foster City, California. To learn more about our current career openings, visit https://www.gilead.com/careers/careers-at-gilead."
+  },
+  {
     "id": "edetek",
     "name": "EDETEK",
     "tier": "Platinum",
@@ -118,6 +126,14 @@
     "logo": "/sponsors/clindata-insight.png",
     "website": "https://clindatainsight.com",
     "description": "We're Hiring! Clindata Insight helps biopharma organizations accelerate development through biometrics projects and talent solutions. Our experts in biostatistics, statistical programming, clinical data management, and AI adoption act as trusted partners, ensuring trials are designed, executed, and delivered with rigor and efficiency. Known for credible, high-quality results, our agile team pairs technical excellence with a collaborative approach that makes us a valued extension of your team. We're proud to be a San Francisco Business Times Fast 100: Fastest Growing Private Company (2025 & 2017) and a Top 100 Women-Owned Business in the Bay Area since 2018.\n\nCall us at (925) 320-7600 or visit clindatainsight.com to explore project, resource, or career opportunities"
+  },
+  {
+    "id": "clinvia",
+    "name": "Clinvia",
+    "tier": "Gold",
+    "logo": "/sponsors/clinvia.png",
+    "website": "https://clinvia.com",
+    "description": "Clinvia is a next-generation, technology-driven CRO revolutionizing how clinical trials are designed, managed, and accelerated. We reduce costs and timelines by delivering AI-powered analytics, open-source driven and seamless digital solutions with regulatory compliance.\n\nLearn more about our services and how we can support your company's growth by visiting our website: https://clinvia.com/ or reach out to us via email at info@clinvia.com."
   },
   {
     "id": "corcept-therapeutics",
@@ -264,6 +280,22 @@
     "description": "Sycamore Informatics is the leading technology vendor in clinical trial data sciences, trusted by global biopharma companies: supporting over 10,000 global production users and managing 2+ Petabytes of trial data across thousands of clinical studies and hundreds of submissions.\n\nSycamore Data Science Workbench, Statistical Computing Environment, Data Transformation Manager, Metadata Repository, Structured Protocol Design, and Digital Data Flow Manager simplifies complex, distributed data collation, analysis, and reporting. Sycamore provides next-generation applications that enable rapid and secure delivery of and access to the \"right\" data for analysis and reporting including the use of Open Source Computes and GxP-validated Sycamore Clinical Agentic Framework."
   },
   {
+    "id": "taimei-technology",
+    "name": "Taimei Technology",
+    "tier": "Gold",
+    "logo": "/sponsors/taimei-technology.png",
+    "website": "",
+    "description": "Taimei Technology is a digital intelligence platform dedicated to transforming the life sciences industry. We provide end-to-end technology solutions across the entire product lifecycle—from drug R&D and pharmacovigilance to marketing and sales. By leveraging AI, big data, cloud computing, and mobile Internet technologies, we connect all stakeholders in the ecosystem, enabling seamless digitalization and intelligent operations."
+  },
+  {
+    "id": "the-lotus-group",
+    "name": "The Lotus Group",
+    "tier": "Gold",
+    "logo": "/sponsors/the-lotus-group.png",
+    "website": "https://tlgcareers.com",
+    "description": "The Lotus Group LLC is a certified minority women-owned (MWBE) business delivering biometrics recruiting services nationally. In 2020, we were recognized as one of the 50 fastest growing women-owned businesses by the Women Presidents’ Organization, sponsored by American Express.\n\nOur team members are located throughout the country including California, Florida, Massachusetts, New Jersey, and North Carolina; many with over 20 years of staffing experience in the pharmaceutical industry.\n\nOur consultative approach and knowledge of the market ensure that your career is in good hands. We provide more than just access to great companies and industry-leading opportunities. We see ourselves as your “career advocates” as we provide you with everything you need to successfully navigate your job search and advance your career.\n\nStep on to The Lotus Group bridge – connecting great biometrics candidates and companies – and start your journey to success!\n\n• Biostatistics\n• Clinical & Statistical Programming\n• Clinical Development\n• Clinical Operations\n• Clinical Pharmacology & Pharmacometrics\n• CMC\n• Data Management\n• Data Science\n• Drug Safety\n• Epidemiology\n• Medical Affairs\n• Medical Writing\n• RWE / HEOR"
+  },
+  {
     "id": "wu-consulting-group",
     "name": "Wu Consulting Group",
     "tier": "Gold",
@@ -294,5 +326,77 @@
     "logo": "/sponsors/boehringer-ingelheim.png",
     "website": "",
     "description": "Boehringer Ingelheim is a leading, research-driven biopharmaceutical company active in both human and animal health. Founded in 1885 and still family-owned today, the company is dedicated to developing innovative therapies and solutions that improve the lives of people and animals around the world. With approximately 54,300 employees serving more than 130 markets, Boehringer Ingelheim is one of the pharmaceutical industry's top investors in research and development. Guided by its purpose of transforming lives for generations, the company focuses on addressing areas of significant unmet medical need while advancing long-term sustainability across its global operations."
+  },
+  {
+    "id": "caredx",
+    "name": "CareDx",
+    "tier": "Silver",
+    "logo": "/sponsors/caredx.png",
+    "website": "",
+    "description": ""
+  },
+  {
+    "id": "cytokinetics",
+    "name": "Cytokinetics",
+    "tier": "Silver",
+    "logo": "/sponsors/cytokinetics.png",
+    "website": "",
+    "description": "Cytokinetics is a late-stage, specialty cardiovascular biopharmaceutical company focused on discovering, developing, and commercializing muscle biology-directed drug candidates as potential treatments for debilitating diseases in which cardiac muscle performance is compromised. As a leader in muscle biology and the mechanics of muscle performance, the company is developing small molecule drug candidates specifically engineered to impact myocardial muscle function and contractility."
+  },
+  {
+    "id": "denali-therapeutics",
+    "name": "Denali Therapeutics",
+    "tier": "Silver",
+    "logo": "/sponsors/denali-therapeutics.png",
+    "website": "https://www.denalitherapeutics.com",
+    "description": "REACH FOR THE SUMMIT\n\nDenali Therapeutics is dedicated to defeating neurodegenerative diseases by breaking through historical barriers in scientific research and clinical development with the goal of delivering safe and effective medicines to patients and families. Our scientific approach is based on three core principles: rigorous assessment of genetic targets, engineering brain delivery, and using biomarkers to guide development.\n\nWe invite you to learn more at www.denalitherapeutics.com\n\nOur team thrives in a work environment that is scientifically driven, impact-focused, supportive, and collaborative. Our ability to have a positive impact on people’s lives is directly related to the trust we have in each other and our ability to unify our diverse backgrounds and experiences behind our purpose to defeat degeneration."
+  },
+  {
+    "id": "exelixis",
+    "name": "Exelixis",
+    "tier": "Silver",
+    "logo": "/sponsors/exelixis.png",
+    "website": "",
+    "description": "Founded in 1994, Exelixis is a commercially successful, oncology-focused biotechnology company that strives to accelerate the discovery, development and commercialization of new medicines for difficult-to-treat cancers. Following early work in model system genetics, we established a broad drug discovery and development platform that has served as the foundation for our continued efforts to bring new cancer therapies to patients in need. Our discovery efforts have resulted in four commercially available products, CABOMETYX® (cabozantinib), COMETRIQ® (cabozantinib), COTELLIC® (cobimetinib) and MINNEBRO® (esaxerenone), and we have entered into partnerships with leading pharmaceutical companies to bring these important medicines to patients worldwide. Supported by revenues from our marketed products and collaborations, we are committed to prudently reinvesting in our business to maximize the potential of our pipeline. We are supplementing our existing therapeutic assets with targeted business development activities and internal drug discovery — all to deliver the next generation of Exelixis medicines and help patients recover stronger and live longer."
+  },
+  {
+    "id": "flatiron-health",
+    "name": "Flatiron Health",
+    "tier": "Silver",
+    "logo": "/sponsors/flatiron-health.png",
+    "website": "https://flatiron.com",
+    "description": "Flatiron Health is a healthtech company expanding the possibilities for point of care solutions in oncology and using data for good to power smarter care for every person with cancer. Through machine learning and AI, real-world evidence, and breakthroughs in clinical trials, we continue to transform patients’ real-life experiences into knowledge and create a more modern, connected oncology ecosystem. Flatiron Health is an independent affiliate of the Roche Group. Flatiron.com @FlatironHealth"
+  },
+  {
+    "id": "neurocrine-biosciences",
+    "name": "Neurocrine Biosciences",
+    "tier": "Silver",
+    "logo": "/sponsors/neurocrine-biosciences.png",
+    "website": "https://neurocrine.com",
+    "description": "Neurocrine Biosciences is a leading neuroscience-focused, biopharmaceutical company with a simple purpose: to relieve suffering for people with great needs. We are dedicated to discovering and developing life-changing treatments for patients with under-addressed neurological, neuroendocrine and neuropsychiatric disorders. The company's diverse portfolio includes FDA-approved treatments for tardive dyskinesia, chorea associated with Huntington's disease, classic congenital adrenal hyperplasia, endometriosis* and uterine fibroids*, as well as a robust pipeline including multiple compounds in mid- to late-phase clinical development across our core therapeutic areas. For three decades, we have applied our unique insight into neuroscience and the interconnections between brain and body systems to treat complex conditions. We relentlessly pursue medicines to ease the burden of debilitating diseases and disorders because you deserve brave science. For more information, visit neurocrine.com, and follow the company on LinkedIn, X and Facebook. (*in collaboration with AbbVie)"
+  },
+  {
+    "id": "pharmapace",
+    "name": "Pharmapace, Inc.",
+    "tier": "Silver",
+    "logo": "/sponsors/pharmapace.png",
+    "website": "",
+    "description": "Founded by seasoned leaders in the biotech and pharmaceutical industries, Pharmapace, Inc. (\"Pharmapace\") is a premier consulting and contract Clinical Research Organization (CRO). Since 2013, we have specialized in providing high-quality consulting and outsourcing services across all stages of drug development and post-marketing support. Our co-founders bring extensive experience, having successfully navigated multiple regulatory submissions resulting in product approvals in the US and European Union."
+  },
+  {
+    "id": "servier-pharmaceuticals",
+    "name": "Servier Pharmaceuticals",
+    "tier": "Silver",
+    "logo": "/sponsors/servier-pharmaceuticals.png",
+    "website": "https://www.servier.us",
+    "description": "Servier Pharmaceuticals is a commercial-stage pharmaceuticals company with a passion for innovation and improving the lives of patients, their families and caregivers. In the United States, Servier Pharmaceuticals is committed to building a robust portfolio, starting with oncology, with future growth driven by innovation in other areas of unmet medical need, leveraging Servier’s global portfolio and seeking acquisitions, licensing deals and partnerships.\n\nServier Pharmaceuticals believes co-creation is fundamental to driving innovation and is actively building alliances that bring solutions to patients’ lives and can accelerate access to therapies. We are building relationships with academia, venture capitalists, biotech and pharmaceutical peers and advocates with the aim of entering into mutually beneficial and complementary partnerships where each organization’s skill sets are recognized and leveraged for the benefit of patients.\n\nWith our commercial and scientific expertise, global reach and commitment to clinical excellence, Servier Pharmaceuticals is dedicated to bringing the promise of tomorrow to the patients that we serve"
+  },
+  {
+    "id": "yesod-ai",
+    "name": "Yesod AI",
+    "tier": "Silver",
+    "logo": "/sponsors/yesod-ai.png",
+    "website": "",
+    "description": "Yesod AI builds AI teammates for clinical trial data analysis. We are developing an end-to-end automation platform that supports the complete clinical data lifecycle—from raw data processing through SDTM and ADaM dataset creation to final tables, listings, and figures (TLFs). By combining domain expertise with autonomous AI agents, Yesod AI helps biopharma companies and CROs reduce manual effort, shorten project timelines, improve consistency, and accelerate the delivery of regulatory-ready clinical trial outputs."
   }
 ]

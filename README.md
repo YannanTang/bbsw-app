@@ -19,10 +19,12 @@ All content lives as JSON in `src/data/`:
 
 - `speakers.json` — id, name, title, affiliation, bio, photo, linkedin
 - `sessions.json` — id, date, startTime, endTime, track, title, abstract, speakers (ids), room
-- `sponsors.json` — name, tier, logo, website
+- `sponsors.json` — id, name, tier (Diamond, Platinum, Gold, Silver), logo, website, description
 - `posters.json` — id, title, presenters, affiliation, abstract
 
 Speaker photos live in `public/speakers/`. Sponsor logos live in `public/sponsors/`.
+
+The Sponsors page and each sponsor's detail page (`/sponsors/<id>`) are generated from `sponsors.json`. To add a sponsor, add its record to `sponsors.json` and put its logo in `public/sponsors/` — no page or code changes needed. `logo`, `website`, and `description` are optional (use `""`).
 
 ## Local development
 

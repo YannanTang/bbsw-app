@@ -15,6 +15,9 @@
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: Georgia, "Times New Roman", serif;
   --tab-bar-height: 60px;
+  --sponsor-banner-height: 60px;
+  /* Everything fixed at the bottom on phones: sponsor banner + tab bar + home-indicator area. */
+  --bottom-dock-height: calc(var(--tab-bar-height) + var(--sponsor-banner-height) + env(safe-area-inset-bottom, 0px));
 }
 
 * { box-sizing: border-box; }
@@ -106,7 +109,7 @@ h3 { font-size: 1.05rem; margin: 1.2rem 0 0.4rem; font-weight: 600; }
 main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 1.25rem 1rem calc(var(--tab-bar-height) + 2rem);
+  padding: 1.25rem 1rem calc(var(--bottom-dock-height) + 2rem);
 }
 
 .hero {
@@ -396,7 +399,7 @@ main {
 
 .site-footer {
   text-align: center;
-  padding: 1.5rem 1rem calc(var(--tab-bar-height) + 1.5rem);
+  padding: 1.5rem 1rem calc(var(--bottom-dock-height) + 1.5rem);
   font-size: 0.85rem;
   color: var(--color-muted);
   border-top: 1px solid var(--color-border);
@@ -410,18 +413,23 @@ main {
   color: var(--color-primary);
 }
 
-/* Bottom tab bar (mobile-first) */
-.tab-bar {
+/* Bottom dock (mobile-first): the sponsor banner sits directly on top of the tab bar,
+   and the pair is fixed to the bottom of the screen as one unit. */
+.bottom-dock {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 50;
   background: #ffffff;
-  border-top: 1px solid var(--color-border);
-  display: flex;
   padding-bottom: env(safe-area-inset-bottom, 0);
   box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
+.tab-bar {
+  background: #ffffff;
+  border-top: 1px solid var(--color-border);
+  display: flex;
 }
 
 .tab-bar a {
@@ -463,7 +471,150 @@ main {
   transition: background 0.15s ease;
 }
 
+/* Rotating sponsor banner: one sponsor at a time, same height as the tab bar.
+   Three columns with equal-width sides, so the logo column is centered on the whole banner:
+   "Sponsored by" sits in the left side, the pause button in the right side. */
+.sponsor-banner {
+  --sponsor-banner-side: 72px;
+  height: var(--sponsor-banner-height);
+  display: grid;
+  grid-template-columns: var(--sponsor-banner-side) minmax(0, 1fr) var(--sponsor-banner-side);
+  align-items: center;
+  padding: 0 0.5rem;
+  background: #ffffff;
+  border-top: 1px solid var(--color-border);
+}
+
+/* The link spans the full banner (same columns), so everything but the button is tappable. */
+.sponsor-banner-link {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: inherit;
+  align-items: center;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.sponsor-banner-link:hover { text-decoration: none; }
+.sponsor-banner-link:focus-visible { outline: 3px solid rgba(155, 27, 48, 0.3); outline-offset: -3px; border-radius: var(--radius); }
+
+.sponsor-banner-label {
+  grid-column: 1;
+  justify-self: end;
+  text-align: right;
+  /* Phones: one word per line ("Sponsored" / "by"), right-aligned against the logo column. */
+  max-width: min-content;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+/* Logos are capped in both directions and scaled to fit, never cropped or stretched. */
+.sponsor-banner-logo {
+  grid-column: 2;
+  min-width: 0;
+  /* Equal on both sides, so wide logos keep clear of the label without leaving the center. */
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 125ms ease;
+}
+
+.sponsor-banner-logo.is-fading { opacity: 0; }
+
+.sponsor-banner-logo img {
+  display: block;
+  max-width: min(100%, 240px);
+  max-height: 40px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Per-sponsor optical sizing for logos whose artwork fills its frame edge to edge.
+   AbbVie: 82% of the standard limits (40px tall, 240px or the column wide). */
+.sponsor-banner-logo[data-sponsor="abbvie"] img {
+  max-width: min(82%, calc(240px * 0.82));
+  max-height: calc(40px * 0.82);
+}
+
+.sponsor-banner-logo img[hidden],
+.sponsor-banner-fallback[hidden] { display: none; }
+
+.sponsor-banner-fallback {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sponsor-banner-toggle {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.sponsor-banner-toggle[hidden] { display: none; }
+.sponsor-banner-toggle:hover { background: var(--color-surface); color: var(--color-text); }
+.sponsor-banner-toggle:focus-visible { outline: 3px solid rgba(155, 27, 48, 0.3); outline-offset: -3px; }
+.sponsor-banner-toggle svg { width: 18px; height: 18px; }
+.sponsor-banner-toggle .icon-play,
+.sponsor-banner.is-paused .sponsor-banner-toggle .icon-pause { display: none; }
+.sponsor-banner.is-paused .sponsor-banner-toggle .icon-play { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-banner-logo { transition: none; }
+}
+
+@media print {
+  .sponsor-banner { display: none; }
+}
+
+@media (min-width: 480px) {
+  .sponsor-banner { --sponsor-banner-side: 120px; }
+  .sponsor-banner-label { max-width: none; }
+}
+
 @media (min-width: 720px) {
+  /* The tab bar keeps its normal place in the page; only the sponsor banner stays fixed at the bottom. */
+  .bottom-dock { display: contents; }
+  .sponsor-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    height: calc(var(--sponsor-banner-height) + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    /* Keep the pause button with the content column instead of at the window edge. */
+    padding-inline: max(0.75rem, calc((100% - var(--max-width)) / 2));
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+  }
+  body {
+    padding-bottom: calc(var(--sponsor-banner-height) + env(safe-area-inset-bottom, 0px));
+  }
+  .install-banner {
+    bottom: calc(var(--sponsor-banner-height) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
   .tab-bar {
     position: static;
     border-top: none;
@@ -531,7 +682,7 @@ main {
   position: fixed;
   left: 0.5rem;
   right: 0.5rem;
-  bottom: calc(var(--tab-bar-height) + env(safe-area-inset-bottom, 0px) + 0.5rem);
+  bottom: calc(var(--bottom-dock-height) + 0.5rem);
   z-index: 60;
   display: flex;
   align-items: center;

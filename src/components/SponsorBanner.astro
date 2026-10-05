@@ -1,0 +1,179 @@
+---
+import sponsors from "../data/sponsors.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+
+type Sponsor = { id: string; name: string; tier: string; logo?: string; };
+
+// How long each tier stays on screen. Weighting comes only from time: every sponsor appears once per cycle.
+const tierDurations: Record<string, number> = { Diamond: 8000, Platinum: 6000, Gold: 4000, Silver: 3000 };
+const fallbackDuration = tierDurations.Silver;
+const tierOrder = Object.keys(tierDurations);
+
+// Grouped by tier (unknown tiers last); within a tier, sponsors keep their order in sponsors.json.
+const all = sponsors as Sponsor[];
+const tiers = [...tierOrder, ...new Set(all.map((s) => s.tier).filter((t) => !tierOrder.includes(t)))];
+const rotation = tiers
+  .flatMap((tier) => all.filter((s) => s.tier === tier))
+  .map((sp) => ({
+    id: sp.id,
+    href: link(`sponsors/${sp.id}`),
+    name: sp.name,
+    tier: sp.tier,
+    logo: sp.logo ? link(sp.logo) : "",
+    duration: tierDurations[sp.tier] ?? fallbackDuration,
+  }));
+---
+<aside class="sponsor-banner" id="sponsor-banner" aria-label="Sponsors">
+  {/* Without JavaScript this stays a plain link to the sponsors page. */}
+  <a class="sponsor-banner-link" href={link("sponsors")}>
+    <span class="sponsor-banner-label" aria-hidden="true">Sponsored by</span>
+    <span class="sponsor-banner-logo"><img alt="" hidden /><span class="sponsor-banner-fallback">Our 2026 sponsors</span></span>
+  </a>
+  <button type="button" class="sponsor-banner-toggle" aria-label="Pause sponsor rotation" title="Pause sponsor rotation" hidden>
+    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+  </button>
+</aside>
+
+<script is:inline define:vars={{ rotation }}>
+  // Runs inline, right after the markup, so the first sponsor is in place before the banner paints.
+  (function () {
+    var root = document.getElementById("sponsor-banner");
+    if (!root || !rotation.length) return;
+    var PAUSE_KEY = "bbsw_sponsor_banner_paused"; // holds the href of the sponsor kept on screen
+    var FADE_MS = 125; // fade out, swap, fade in: about 250 ms in total
+    var link = root.querySelector(".sponsor-banner-link");
+    var img = root.querySelector("img");
+    var logoBox = root.querySelector(".sponsor-banner-logo");
+    var fallback = root.querySelector(".sponsor-banner-fallback");
+    var toggle = root.querySelector(".sponsor-banner-toggle");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    // The schedule follows the wall clock, so moving between pages, backgrounding or reopening the
+    // app never restarts the cycle: everyone sees the sponsor that matches the current time.
+    var starts = [];
+    var cycle = 0;
+    rotation.forEach(function (s) { starts.push(cycle); cycle += s.duration; });
+    function slotAt(now) {
+      var t = now % cycle;
+      var i = starts.length - 1;
+      while (starts[i] > t) i--;
+      return { index: i, remaining: starts[i] + rotation[i].duration - t };
+    }
+
+    var current = -1;
+    var timer = null;
+    var swapId = 0;
+    var hovering = false;
+    var focused = false;
+    var pausedHref = null;
+    try { pausedHref = localStorage.getItem(PAUSE_KEY); } catch (_) {}
+
+    img.addEventListener("error", function () { img.hidden = true; fallback.hidden = false; });
+
+    function render(i) {
+      var s = rotation[i];
+      link.href = s.href;
+      // The name and tier are not shown as text; screen readers get both. The name starts with the
+      // visible "Sponsored by" label so voice control users can say what they see.
+      link.setAttribute("aria-label", "Sponsored by " + s.name + ", " + s.tier + " sponsor");
+      img.alt = s.name;
+      logoBox.dataset.sponsor = s.id; // lets global.css fine-tune an individual logo's size
+      // Only a sponsor without a logo (or whose logo fails to load) shows its name as text.
+      fallback.textContent = s.name;
+      fallback.hidden = !!s.logo;
+      img.hidden = !s.logo;
+      if (s.logo) img.src = s.logo;
+      else img.removeAttribute("src");
+      // Warm the cache for the next logo so the following swap does not wait on the network.
+      var next = rotation[(i + 1) % rotation.length];
+      if (next.logo) new Image().src = next.logo;
+    }
+
+    function show(i, animate) {
+      if (i === current) return;
+      var first = current === -1;
+      current = i;
+      var id = ++swapId;
+      if (first || !animate || reduceMotion.matches) {
+        logoBox.classList.remove("is-fading");
+        render(i);
+        return;
+      }
+      var logo = rotation[i].logo;
+      var probe = new Image();
+      if (logo) probe.src = logo;
+      var ready = logo && probe.decode ? probe.decode().catch(function () {}) : Promise.resolve();
+      var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+      logoBox.classList.add("is-fading");
+      Promise.all([Promise.race([ready, wait(1500)]), wait(FADE_MS)]).then(function () {
+        if (id !== swapId) return;
+        render(i);
+        logoBox.classList.remove("is-fading");
+      });
+    }
+
+    function indexOfHref(href) {
+      for (var i = 0; i < rotation.length; i++) if (rotation[i].href === href) return i;
+      return -1;
+    }
+
+    // Shows whatever should be on screen now and schedules the next change.
+    function sync(animate) {
+      clearTimeout(timer);
+      timer = null;
+      if (document.hidden) return;
+      if (pausedHref) {
+        var p = indexOfHref(pausedHref);
+        if (p === -1) { p = current === -1 ? slotAt(Date.now()).index : current; setPaused(rotation[p].href); }
+        show(p, animate);
+        return;
+      }
+      if ((hovering || focused) && current !== -1) return;
+      var slot = slotAt(Date.now());
+      show(slot.index, animate);
+      if (hovering || focused) return;
+      timer = setTimeout(function () { sync(true); }, slot.remaining + 30);
+    }
+
+    function setPaused(href) {
+      pausedHref = href;
+      try {
+        if (href) localStorage.setItem(PAUSE_KEY, href);
+        else localStorage.removeItem(PAUSE_KEY);
+      } catch (_) {}
+      var label = href ? "Play sponsor rotation" : "Pause sponsor rotation";
+      toggle.setAttribute("aria-label", label);
+      toggle.title = label;
+      root.classList.toggle("is-paused", !!href);
+    }
+
+    toggle.addEventListener("click", function () {
+      if (pausedHref) { setPaused(null); sync(true); }
+      else { setPaused(rotation[current].href); sync(false); }
+    });
+
+    // Hold the current sponsor while a mouse is over the link or keyboard focus is in the banner,
+    // so the destination never changes under the user. A mouse click on the toggle does not hold.
+    link.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { hovering = true; sync(false); } });
+    link.addEventListener("pointerleave", function () { if (hovering) { hovering = false; sync(true); } });
+    root.addEventListener("focusin", function (e) {
+      var was = focused;
+      focused = e.target === link || e.target.matches(":focus-visible");
+      if (focused !== was) sync(!focused);
+    });
+    root.addEventListener("focusout", function (e) {
+      if (focused && !root.contains(e.relatedTarget)) { focused = false; sync(true); }
+    });
+
+    // Nothing runs while hidden; on return, jump straight to the sponsor for the current time.
+    document.addEventListener("visibilitychange", function () { sync(false); });
+    window.addEventListener("pageshow", function (e) { if (e.persisted) { hovering = false; focused = false; sync(false); } });
+
+    setPaused(pausedHref);
+    toggle.hidden = false;
+    sync(false);
+  })();
+</script>

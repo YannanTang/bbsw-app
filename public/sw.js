@@ -1,6 +1,6 @@
 // BBSW 2026 service worker — minimal offline support.
 const BASE = "/";
-const VERSION = "v4";
+const VERSION = "v5";
 const CACHE = `bbsw-${VERSION}`;
 
 const PRECACHE = [

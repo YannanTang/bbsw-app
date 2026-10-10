@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import sessions from "../../data/sessions.json";
 import speakers from "../../data/speakers.json";
+import WsBlock from "../../components/WorkshopBlock.astro";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -14,6 +15,15 @@ type Session = {
   id: string; title: string; track: string; date: string;
   startTime: string; endTime: string; room: string; description: string;
   chairs: string[]; talks: Talk[];
+  workshop?: Workshop;
+};
+type Block = { heading: string; paragraphs?: string[]; items?: { title: string; text: string }[]; bullets?: string[]; note?: string };
+type Workshop = {
+  facts: string[]; details: { label: string; value: string }[];
+  registration?: { label: string; url: string };
+  sections: Block[]; agendaIntro?: string;
+  agenda: { time: string; title: string; text: string }[];
+  after: Block[]; closing?: string;
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
 
@@ -27,6 +37,7 @@ const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
 const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
 
 const chairs = lookup(session.chairs);
+const ws = session.workshop;
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 ---
@@ -38,6 +49,28 @@ const dayLabel = (iso: string) =>
     ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}–${session.endTime}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
     : <p class="meta">Time and room to be announced.</p>}
   {session.description && <p>{session.description}</p>}
+  {ws && (
+    <>
+      <p class="ws-facts">{ws.facts.map((f) => <span class="tag">{f}</span>)}</p>
+      <dl class="ws-details">
+        {ws.details.map((d) => (<><dt>{d.label}</dt><dd>{d.value}</dd></>))}
+      </dl>
+      {ws.registration && <a class="install-btn" href={ws.registration.url} target="_blank" rel="noopener">{ws.registration.label}</a>}
+      {ws.sections.map((b) => <WsBlock b={b} />)}
+      <h2>What the session looks like</h2>
+      {ws.agendaIntro && <p>{ws.agendaIntro}</p>}
+      <ol class="ws-agenda">
+        {ws.agenda.map((a) => (
+          <li class={a.text ? "" : "is-break"}>
+            <span class="time">{a.time}</span>
+            <div><strong>{a.title}</strong>{a.text && <p>{a.text}</p>}</div>
+          </li>
+        ))}
+      </ol>
+      {ws.after.map((b) => <WsBlock b={b} />)}
+      {ws.closing && <p class="ws-closing">{ws.closing}</p>}
+    </>
+  )}
 
   {chairs.length > 0 && (
     <>
@@ -56,8 +89,8 @@ const dayLabel = (iso: string) =>
     </>
   )}
 
-  <h2>Talks</h2>
-  {session.talks.length === 0 ? (
+  {!(ws && session.talks.length === 0) && <h2>Talks</h2>}
+  {ws && session.talks.length === 0 ? null : session.talks.length === 0 ? (
     <p class="meta">Talks for this session will be announced as the program is confirmed.</p>
   ) : (
     session.talks.map((talk) => {

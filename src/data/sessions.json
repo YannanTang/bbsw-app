@@ -1,17 +1,150 @@
 [
   {
     "id": "day0-vibe-coding",
-    "title": "Hands-on Vibe Coding",
-    "track": "Workshop",
+    "title": "Agentic AI for Biometrics: From Vibe Coding to Practical Workflows",
+    "track": "Day 0 Workshop",
     "date": "2026-11-04",
     "startTime": "",
     "endTime": "",
-    "room": "Genentech",
-    "description": "Hands-on pre-conference workshop.",
+    "room": "Genentech Campus, South San Francisco",
+    "description": "Move beyond prompt-by-prompt coding. Learn how to build AI-assisted workflows that are structured, testable, traceable, and useful in real biometrics work.",
     "chairs": [
       "anqi-zhu"
     ],
-    "talks": []
+    "talks": [],
+    "workshop": {
+      "facts": [
+        "3 hours",
+        "In person",
+        "Hands-on throughout",
+        "Designed for mixed technical skill levels"
+      ],
+      "details": [
+        {
+          "label": "When",
+          "value": "Wednesday, Nov 4 · 1:30–4:30 PM"
+        },
+        {
+          "label": "Registration",
+          "value": "Separate from the main conference. Register by Oct 20."
+        },
+        {
+          "label": "Fee",
+          "value": "$200 standalone · $100 add-on for conference ticket holders"
+        }
+      ],
+      "registration": {
+        "label": "Register for the workshop",
+        "url": "https://events.ticketleap.com/tickets/bbsw-tickets/bay-area-biotech-pharma-statistics-workshop-2026-day-0-workshop"
+      },
+      "sections": [
+        {
+          "heading": "Why this workshop?",
+          "paragraphs": [
+            "Many teams already have access to AI coding tools, yet day-to-day use often stops at ad hoc prompts: ask for code, inspect the answer, fix it manually, and repeat. That can be useful for small tasks, but it does not scale well to regulated, high-stakes work.",
+            "This workshop focuses on the next step: designing a repeatable workflow around the model so that requirements, checks, guardrails, and human review are part of the process, not afterthoughts."
+          ]
+        },
+        {
+          "heading": "What you will learn",
+          "items": [
+            {
+              "title": "Work with an agentic coding loop",
+              "text": "Turn intent into a working artifact using a describe → generate → review → refine cycle, rather than one-off prompts."
+            },
+            {
+              "title": "Build a lightweight harness",
+              "text": "Use specifications, tests, checks, and guardrails so AI output is verifiable rather than merely plausible."
+            },
+            {
+              "title": "Know what should stay deterministic",
+              "text": "Separate tasks that require fixed, reproducible logic from tasks where probabilistic generation can add value."
+            },
+            {
+              "title": "Keep the human in the loop",
+              "text": "Design review points, traceability, and controlled hand-offs that fit the expectations of regulated biometrics environments."
+            }
+          ]
+        },
+        {
+          "heading": "Not just a programming demo",
+          "paragraphs": [
+            "The anchor exercise uses an ADaM specification-to-code workflow, but the method is intentionally broader. The same patterns can be applied to statistical simulation, trial-design optimization, traceable tables and visualizations, QC workflows, and other research tooling."
+          ],
+          "note": "Best suited for: statisticians, statistical programmers, data scientists, bioinformaticians, biometrics leads, and technical/IT partners."
+        }
+      ],
+      "agendaIntro": "A build-along workshop: see the pattern, use it, then apply it to a problem of your own.",
+      "agenda": [
+        {
+          "time": "1:30–1:45 PM",
+          "title": "Start with a live build",
+          "text": "Watch an idea move from plain-language intent to a working prototype. The focus is on the workflow, not typing speed."
+        },
+        {
+          "time": "1:45–2:15 PM",
+          "title": "Agentic coding fundamentals",
+          "text": "Build the mental model: intent over syntax, structured prompting, review loops, and trust-but-verify."
+        },
+        {
+          "time": "2:15–2:25 PM",
+          "title": "Break",
+          "text": ""
+        },
+        {
+          "time": "2:25–2:55 PM",
+          "title": "Harness engineering",
+          "text": "Translate a task into a specification, acceptance checks, tests, and guardrails that constrain the model."
+        },
+        {
+          "time": "2:55–3:05 PM",
+          "title": "Break",
+          "text": ""
+        },
+        {
+          "time": "3:05–3:35 PM",
+          "title": "Loop engineering",
+          "text": "Connect generation, checking, and refinement into a repeatable workflow. See how MCP and programmatic LLM interfaces can support the loop."
+        },
+        {
+          "time": "3:35–4:15 PM",
+          "title": "Integration sprint",
+          "text": "Apply the full pattern to the anchor biometrics example or adapt it to your own research-tooling idea."
+        },
+        {
+          "time": "4:15–4:30 PM",
+          "title": "Showcase + takeaways",
+          "text": "Compare approaches, surface limitations, and leave with patterns you can reuse after the workshop."
+        }
+      ],
+      "after": [
+        {
+          "heading": "Tooling you will see",
+          "paragraphs": [
+            "The demonstrations will use Posit tooling and open-source components for practical LLM-assisted development, including Positron, Posit Assistant, Model Context Protocol (MCP), and ellmer. The emphasis is on transferable workflow patterns rather than dependence on one specific tool."
+          ]
+        },
+        {
+          "heading": "You will leave with",
+          "bullets": [
+            "A practical agentic workflow you can reproduce",
+            "A template for specs, checks, and guardrails",
+            "A clearer sense of where AI should, and should not, be trusted",
+            "A prototype or workflow idea you can continue developing"
+          ]
+        },
+        {
+          "heading": "Example applications",
+          "bullets": [
+            "ADaM spec-to-code with validation",
+            "Clinical trial design optimization loops",
+            "Traceable tables, dashboards, and visualizations",
+            "Bioinformatics / pipeline QC and failure triage"
+          ]
+        }
+      ],
+      "closing": "The goal is not autonomous production code. The goal is a better-engineered collaboration between people, models, specifications, and checks."
+    }
   },
   {
     "id": "opening",

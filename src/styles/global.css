@@ -725,3 +725,24 @@ main {
 .install-note strong { display: inline; margin: 0; font-family: var(--font-sans); font-size: inherit; color: var(--color-text); }
 .install-note strong { display: block; }
 .install-card p { color: var(--color-text); }
+
+/* Day 0 workshop page */
+.ws-facts .tag { margin-bottom: 0.35rem; }
+.ws-details { display: grid; grid-template-columns: max-content 1fr; gap: 0.3rem 0.9rem; margin: 0.75rem 0 0.5rem; }
+.ws-details dt { font-weight: 600; }
+.ws-details dd { margin: 0; }
+a.install-btn:hover { text-decoration: none; }
+.ws-items { padding-left: 1.4rem; }
+.ws-items li { margin-bottom: 0.6rem; }
+.ws-items li::marker { color: var(--color-secondary); font-weight: 700; }
+.ws-items p { margin: 0.15rem 0 0; color: var(--color-muted); }
+.ws-note, .ws-closing { padding: 0.75rem 1rem; border-radius: var(--radius); background: var(--color-surface); border: 1px solid var(--color-border); font-weight: 600; }
+.ws-closing { color: var(--color-secondary-dark); }
+.ws-agenda { list-style: none; padding: 0; margin: 0.5rem 0 1rem; }
+.ws-agenda li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid var(--color-border); }
+.ws-agenda .time { font-variant-numeric: tabular-nums; font-size: 0.9rem; color: var(--color-secondary); font-weight: 600; }
+.ws-agenda p { margin: 0.15rem 0 0; color: var(--color-muted); font-size: 0.95rem; }
+.ws-agenda li.is-break strong { font-weight: 500; color: var(--color-muted); }
+@media (max-width: 480px) {
+  .ws-agenda li { grid-template-columns: 1fr; gap: 0.1rem; }
+}

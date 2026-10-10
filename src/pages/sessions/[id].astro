@@ -79,7 +79,7 @@ const dayLabel = (iso: string) =>
               ))}
             </div>
           )}
-          {talk.abstract && <p>{talk.abstract}</p>}
+          {talk.abstract && talk.abstract.split("\n\n").map((para) => <p>{para}</p>)}
         </div>
       );
     })

@@ -35,14 +35,14 @@ const timeLabel = (s: Session) => [s.date, s.startTime && `${s.startTime}–${s.
     <div>
       <h1 style="margin:0 0 0.25rem;">{speaker.name}</h1>
       <div class="meta">{speaker.title}{speaker.affiliation ? ` · ${speaker.affiliation}` : ""}</div>
-      {speaker.linkedin && <div style="margin-top:0.35rem;"><a href={speaker.linkedin}>LinkedIn</a></div>}
+      {speaker.linkedin && <div style="margin-top:0.35rem;"><a href={speaker.linkedin}>{speaker.linkedin.includes("linkedin.com") ? "LinkedIn" : "Website"}</a></div>}
     </div>
   </div>
 
   {speaker.bio && (
     <>
       <h2>About</h2>
-      <p>{speaker.bio}</p>
+      {speaker.bio.split("\n\n").map((para) => <p>{para}</p>)}
     </>
   )}
 

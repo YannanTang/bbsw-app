@@ -146,11 +146,11 @@
   {
     "id": "judy-li",
     "name": "Judy Li",
-    "title": "",
+    "title": "Exec. Dir. Head of Late-Stage Hematology Biostatistics",
     "affiliation": "AstraZeneca",
     "bio": "",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/judy-li-phd-mba-fasa-a6a6824/"
   },
   {
     "id": "james-reimann",
@@ -159,7 +159,7 @@
     "affiliation": "CoCreative Insights LLC",
     "bio": "James completed his BSc (Hons) in Statistics and Applied Mathematics at the University of Adelaide and his PhD in Statistics at the University of California at Berkeley. James joined Genentech in 1994, spending his first 5 years supporting Early-Development before spending 20 years in Oncology drug development, starting as an individual contributor and ultimately serving as VP and global head of the Genentech/Roche oncology biostatistics group for 7 years. In 2020, James moved horizontally to become global head of Data Strategy & Delivery, the clinical data management group that included secondary use of clinical data for research purposes. In 2025 James ended his 30-year career at Genentech and started his own company CoCreative Insights LLC, which helps technical experts in biopharma grow into influential leaders.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://cocreativeinsights.com/"
   },
   {
     "id": "haijun-ma",
@@ -182,9 +182,9 @@
   {
     "id": "ning-leng",
     "name": "Ning Leng",
-    "title": "",
+    "title": "Director II, Data and AI Acceleration",
     "affiliation": "AbbVie",
-    "bio": "",
+    "bio": "Ning Leng, PhD, is Director II, Data and AI Acceleration at AbbVie, where she leads a team to leverage diverse data sources, AI, and in-silico simulation to advance clinical development. Previously, she spent about ten years at Roche/Genentech in leadership roles spanning early clinical development oncology, and enterprise data-science transformation.\n\nNing is a co-founder and co-lead of the R Consortium R Submissions Working Group, a cross-industry initiative advancing the use of open-source technologies in regulatory submissions. She is also President-Elect of the Bay Area Biotech-Pharma Statistics Workshop (BBSW) and is passionate about modernizing pharmaceutical data science, responsible adoption of AI, and building communities that connect people across industry, academia, and regulatory agencies.",
     "photo": "",
     "linkedin": ""
   },
@@ -200,11 +200,11 @@
   {
     "id": "shaobo-liu",
     "name": "Shaobo Liu",
-    "title": "",
-    "affiliation": "BeOne Medicines",
+    "title": "Exec. Dir. Head of Digital Solutions and Engineering",
+    "affiliation": "BeOne Medicines Inc.",
     "bio": "",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/shaoliu/"
   },
   {
     "id": "hao-zhu",
@@ -213,7 +213,7 @@
     "affiliation": "FDA",
     "bio": "",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/hao-zhu-09183744/"
   },
   {
     "id": "scooter-plowman",
@@ -222,7 +222,7 @@
     "affiliation": "AbbVie",
     "bio": "",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/scooter/"
   },
   {
     "id": "andy-shen",
@@ -245,11 +245,11 @@
   {
     "id": "mark-rothmann",
     "name": "Mark Rothmann",
-    "title": "",
-    "affiliation": "FDA",
-    "bio": "",
+    "title": "Director, Division of Biometrics II, U.S. FDA",
+    "affiliation": "United States Food and Drug Administration",
+    "bio": "Dr. Mark Rothmann is the Director of the Division of Biometrics II. He holds a Ph.D. in Statistics from the University of Iowa (1990) and spent nine years as a professor before joining the FDA in 1999, where he was a reviewer and team leader involved in the review on Oncology, Hematology, and Metabolism and Endocrinology products. His research spans clinical trial design and analysis, and he co-authored the book Design and Analysis of Non-Inferiority Trials. He has served and led many committees and working groups, including Office of Biostatistics committees on Bayesian Statistics and Drug Trials Snapshots. He is a Fellow of the American Statistical Association, the first recipient of the Gregory Campbell Memorial Award for significant contributions to advancing statistical methodologies in regulatory science, and a recipient of the FDA Scientific Achievement Award Excellence in Review Science.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/mark-rothmann-768982a7/"
   },
   {
     "id": "james-travis",
@@ -263,11 +263,11 @@
   {
     "id": "scott-berry",
     "name": "Scott Berry",
-    "title": "",
+    "title": "Senior Statistical Scientist",
     "affiliation": "Berry Consultants",
-    "bio": "",
+    "bio": "Scott Berry is President and a Senior Statistical Scientist at Berry Consultants, LLC. He earned his PhD in statistics from Carnegie Mellon University and was an Assistant Professor at Texas A&M University before co-founding Berry Consultants in 2000. He is adjunct faculty in the Department of Biostatistics at the University of Kansas Medical Center. Elected as a Fellow of the American Statistical Association.\n\nSince 2000, he has been involved in the design of hundreds of Bayesian adaptive clinical trials of pharmaceuticals and medical devices and has become an opinion leader in the field of Bayesian adaptive clinical trials.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/scott-berry-52b8025b/"
   },
   {
     "id": "anqi-zhu",
@@ -290,90 +290,81 @@
   {
     "id": "gregory-alexander",
     "name": "Gregory Alexander",
-    "title": "",
-    "affiliation": "FDA/CDRH",
-    "bio": "",
+    "title": "Deputy Director, Office of Clinical Evidence and Analysis and Director of the Biostatistics Program",
+    "affiliation": "CDRH/FDA",
+    "bio": "Gregory Alexander, PhD currently serves as Deputy Director, Office of Clinical Evidence and Analysis and Director of the Biostatistics Program within CDRH/FDA. Dr. Alexander's current work in medical device regulation was preceded by over 20 years working in industry, applying statistical methodology for translational research, biomarker discovery, development of in vitro assays, and predictive algorithms. At GRAIL, his work centered on the development and validation of multi-cancer early detection (MCED) blood tests. Prior to that, at Genomic Health (acquired by Exact Sciences), his work included the development and validation of several LDTs leveraging technologies such as multiplex PCR and IHC, as well as NGS for molecular profiling of tumors from blood samples. At CareDx (formerly XDx), his work centered on the development of multi-gene expression assays used in non-invasive monitoring for acute rejection of organ transplants. At Cytokinetics, Inc., Dr. Alexander developed algorithms used for high-content image-based screening and phenotypic characterization of small molecules for the potential treatment of cancer, cardiomyopathies, and other diseases.",
     "photo": "",
     "linkedin": ""
   },
   {
     "id": "brian-vogler",
     "name": "Brian Vogler",
-    "title": "",
+    "title": "Senior Associate Director Capability Management",
     "affiliation": "Boehringer Ingelheim",
-    "bio": "",
+    "bio": "Brian Vogler is currently Sr. Associate Director, Sr. Principal Capability Manager in Clinical Data Sciences and Methodology (CDSM) at Boehringer Ingelheim, where he has spent the last 15 years taking on many roles in the Biostatistics and Data Sciences (gBDS) organization spanning statistical programming, trial and project statistics and now people leadership and capability development. In addition to mentoring and developing talents, Brian co-leads CRAFT (Clinical Reporting & Analysis Framework for Transformation), a workstream building a reusable, R-based reference implementation library that unifies ADaM programming and CSR reporting into a single, standards-aligned framework for clinical trial teams. His work centers on integrating AI and open-source tools into the ADaM development lifecycle — including recent proof-of-concept efforts using large language models to accelerate analysis dataset specification and code generation. He holds an M.S. in Biostatistics from New York Medical College and a B.S. in Mathematics from the State University of New York at Albany and is co-author of a 2025 publication on AI-based medication adherence prediction in schizophrenia (Journal of Schizophrenia Research). He currently lives in upstate NY with his wife and three kids.",
     "photo": "",
     "linkedin": ""
   },
   {
     "id": "yun-bai",
     "name": "Yun Bai",
-    "title": "",
-    "affiliation": "BridgeBio",
-    "bio": "",
+    "title": "Executive Director of Biostatistics",
+    "affiliation": "BridgeBio Pharma",
+    "bio": "Yun works directly with the Chief Medical Officer for BridgeBio Skeletal Dysplasia, providing quantitative scientific leadership and translating data into clinical development, medical affairs, and regulatory strategies. Previously, Yun led Biostatistics and Statistical Programming at QED Therapeutics, a BridgeBio affiliate, where she built and scaled a high-performing team. Before joining BridgeBio, she held statistical and leadership roles across the pharmaceutical, biotechnology, and medical device industries. She earned her PhD in Biostatistics and MS in Computer Science from the University of Minnesota.",
     "photo": "",
     "linkedin": ""
   },
   {
     "id": "jeff-helterbrand",
     "name": "Jeff Helterbrand",
-    "title": "",
-    "affiliation": "Helterbrand Advisory",
-    "bio": "",
+    "title": "Founder",
+    "affiliation": "Helterbrand Advisory LLC",
+    "bio": "Jeff is a senior biopharma executive and advisor with over 30 years of experience in clinical development, regulatory strategy, and portfolio decision-making. He is best known for his role as a trusted contributor to high-stakes governance decisions across late-stage pipelines.\n\nHe previously served as Senior Vice President and Global Head of Data Sciences at Roche, where he led global clinical data strategy across all therapeutic areas and development phases.\n\nHe now advises biotech and pharmaceutical leadership teams, boards, and investors on portfolio prioritization, regulatory readiness, and independent oversight.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/jeff-helterbrand-87a14b12/"
   },
   {
     "id": "sudhir-kedare",
     "name": "Sudhir Kedare",
-    "title": "",
+    "title": "Associate Director, AI Product Owner",
     "affiliation": "Jazz Pharmaceuticals",
-    "bio": "",
+    "bio": "Sudhir Kedare is an Associate Director and AI Product Owner at Jazz Pharmaceuticals, working at the intersection of clinical data science, AI-driven analytics products, and clinical development. With 16+ years of experience in statistical programming and analytics across the pharmaceutical industry, he focuses on building scalable analytics platforms and AI-enabled capabilities that support regulatory submissions and accelerate insights across clinical trials. Sudhir holds MS in Computer Science. As AI Product Owner, he helps shape the product roadmap and drives the delivery of AI and analytics products across the clinical data lifecycle. Working closely with DataOps, AI scientists, software engineers, and business stakeholders, he translates complex clinical and regulatory needs into prioritized requirements - then guides them from concept through validation and adoption, embedding generative AI and machine learning into clinical workflows in ways that are scalable, governed, and fit for regulated environments. A founding member of a subgroup dedicated to open-source and innovative approaches to data review, exploration, and visualization, Sudhir is a committed contributor to the analytics community and has presented at major conferences including PHUSE, PharmaSUG, WUSS, and BBSW. He is passionate about mentoring team members and translating advanced analytics into practical, credible AI products for regulated environments.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/sudhirkedare/"
   },
   {
     "id": "wenjuan-gu",
     "name": "Wenjuan Gu",
-    "title": "",
+    "title": "Director of Statistical Science",
     "affiliation": "AstraZeneca",
-    "bio": "",
+    "bio": "Wenjuan Gu is a Statistical Science Director in Hematology Oncology at AstraZeneca. Prior to joining AstraZeneca, she served as a statistical reviewer and team lead at the U.S. Food and Drug Administration (FDA), within the Division of Hematologic Malignancies, where she supported numerous pre-market reviews and approvals of oncology therapies. Earlier in her career, she was a biostatistician at the National Institute of Allergy and Infectious Diseases (NIAID). During her tenure at the FDA, Wenjuan represented the agency on the Oncology Center of Excellence (OCE) Pediatric Review Committee subcommittee and served as the lead statistician across several guidance working groups. She contributed to authoring FDA guidance and led public workshops on topics of broad scientific and regulatory impact, including the guidance documents \"Minimal Residual Disease and Complete Response in Multiple Myeloma as Endpoints to Support Accelerated Approval\" and \"Approaches to Assessment of Overall Survival in Oncology Clinical Trials.\" Her additional contributions include work on statistical considerations in subgroup analyses and Bayesian methods in pediatric studies.",
     "photo": "",
     "linkedin": ""
   },
   {
     "id": "thanh-ton",
     "name": "Thanh Ton",
-    "title": "",
-    "affiliation": "Roche/Genentech",
-    "bio": "",
+    "title": "Senior Director, Disease Strategy Lead for Immunology, Real-World & Clinical Data Strategy, Product Development Data Sciences",
+    "affiliation": "Roche / Genentech",
+    "bio": "Thanh is an epidemiologist with over 25 years of experience spanning diverse research topics including oncology, neurodegenerative conditions, cardiovascular disease, immunologic conditions, and global health issues. She is passionate about achieving scientific rigor using observational designs and committed to incorporating innovative methodologies into her research. Thanh has been with Roche / Genentech for 9 years and currently serves as a Senior Director and Data Strategy Lead for Immunology & Infectious Diseases in the Real-World & Clinical Data Strategy group within Product Development Data Sciences.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/thanh-g-n-ton-172308b4/"
   },
   {
     "id": "martha-cao",
     "name": "Martha Cao",
-    "title": "",
+    "title": "SVP, Biostats",
     "affiliation": "BridgeBio",
-    "bio": "",
+    "bio": "Martha Cao has almost 20 years of experience in the design and statistical analysis of clinical trials. She currently serves as Vice President of Biostatistics at BridgeBio, where she leads the statistical and statistical programming teams. Prior to joining BridgeBio, she held positions of increasing responsibility at companies including BioMarin and Forest Laboratories (now AbbVie). Martha earned her PhD in Statistics from Colorado State University.",
     "photo": "",
     "linkedin": ""
   },
   {
     "id": "ruben-van-eijk",
     "name": "Ruben P.A. van Eijk",
-    "title": "",
-    "affiliation": "Stanford/UMC Utrecht",
-    "bio": "",
-    "photo": "",
-    "linkedin": ""
-  },
-  {
-    "id": "matt-secrest",
-    "name": "Matt Secrest",
-    "title": "",
-    "affiliation": "Genentech/Roche",
-    "bio": "",
+    "title": "Associate professor",
+    "affiliation": "University Medical Center Utrecht",
+    "bio": "Ruben van Eijk is an MD and biostatistician appointed as Associate Professor at the University Medical Center Utrecht (UMC Utrecht), The Netherlands. He obtained his Ph.D. in neurology/biostatistics, entitled: ‘Optimizing the design and conduct of clinical trials for ALS’. He was a Visiting Scholar at the Center for Innovative Study Design and Department of Biomedical Data Sciences, Stanford University.\n\nHis current research focusses on new statistical models to combine survival and longitudinal data, integration of real-world evidence into drug development, as well as developing new endpoints that addresses the multidimensional nature of ALS and differences in patient preference.",
     "photo": "",
     "linkedin": ""
   },
@@ -389,27 +380,27 @@
   {
     "id": "marla-curran",
     "name": "Marla Curran",
-    "title": "",
+    "title": "Vice President, Head of Biometrics",
     "affiliation": "Kardigan",
-    "bio": "",
+    "bio": "Marla Curran, DrPH, is Vice President of Biometrics at Kardigan, where she leads the organization's biostatistics, data management, data analytics, and biometrics strategy functions. She partners across R&D and executive leadership to advance data-driven decision-making, accelerate drug development, and ensure high-quality evidence generation supports clinical, regulatory, and business decisions. With more than 25 years of experience across biotechnology and global pharmaceutical organizations, Marla has built and led high-performing teams spanning biostatistics, data management, statistical programming, bioinformatics, medical writing, and clinical technology. Her career includes leadership roles at Gates Medical Research Institute, Spark Therapeutics, Paratek Pharmaceuticals, Teva, GSK, and Sanofi, where she helped drive development programs from early research through regulatory approval across multiple therapeutic areas. A recognized leader at the intersection of data, analytics, and innovation, Marla is passionate about responsibly applying artificial intelligence to enhance decision-making, improve operational effectiveness, and transform the future of drug development. She holds a DrPH and MS in Biostatistics from the University of North Carolina at Chapel Hill and a BS in Statistics from North Carolina State University.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/marlacurran/"
   },
   {
     "id": "ali-valcarcel",
     "name": "Ali Valcarcel",
-    "title": "",
-    "affiliation": "Genentech",
-    "bio": "",
+    "title": "Senior Statistician",
+    "affiliation": "Genentech, Inc.",
+    "bio": "Ali Valcarcel, a Senior Statistical Scientist joined Genentech in 2020, holds a PhD in Biostatistics from the University of Pennsylvania, where she focused on statistical methods for neuroimaging. She brings a strong track record of driving complex technical projects at the intersection of statistics, software engineering, and digital health tools. Her key contributions include serving as annotation statistics lead for automated segmentation ophthalmology products, developing Phase 3 prognostic models for an Ulcerative Colitis clinical program including assessing AI/ML imaging features for covariate adjustment, and building and leading the global rollout of cloud-based platform workflows for biostatisticians.",
     "photo": "",
-    "linkedin": ""
+    "linkedin": "https://www.linkedin.com/in/alessandravalcarcel"
   },
   {
     "id": "nayan-chaudhary",
     "name": "Nayan Chaudhary",
-    "title": "",
-    "affiliation": "Roche/Genentech",
-    "bio": "",
+    "title": "Principal Data Scientist, RWD",
+    "affiliation": "Genentech",
+    "bio": "Nayan Chaudhary is a Principal Data Scientist in the Real-World Data (RWD) team at Genentech, with a decade of experience applying RWD/E to inform decisions across the drug development lifecycle. A hands-on expert at the intersection of RWD/E methodology and AI/ML, he specializes in applying such methods with multimodal real world datasets to create scientific and clinical impact.\n\nIn addition to analytical methods, he operates at the frontier to rapidly prototype and evaluate emerging technologies the impact data science for clinical research. Most recently, he has deployed agentic coding workflows in RWD studies, using domain-guided AI agents to automate end-to-end data science codebases from research plans.\n\nNayan holds Master’s degrees in both Computer Science and Materials Science from Texas A&M University, where his research focused on leveraging AI/ML for computational materials design and property prediction.",
     "photo": "",
     "linkedin": ""
   },
@@ -425,9 +416,9 @@
   {
     "id": "lilia-bouzit",
     "name": "Lilia Bouzit",
-    "title": "",
+    "title": "Sr Research Scientist, Applied Research",
     "affiliation": "Flatiron Health",
-    "bio": "",
+    "bio": "Lilia Bouzit is a Senior Research Scientist on the Scientific Engagement and Applied Research team at Flatiron Health, specializing in real-world evidence and predictive modeling within oncology. Her work focuses on using large-scale electronic health record and genomics datasets to build multimodal machine learning models for applications in trial design and contextualization as well as clinical insights aimed at improving patient care. Lilia earned her Master of Science in Genetic Epidemiology and Statistical Genetics from the Harvard T.H. Chan School of Public Health.",
     "photo": "",
     "linkedin": ""
   },
@@ -444,8 +435,8 @@
     "id": "richard-c-zink",
     "name": "Richard C. Zink",
     "title": "Principal Research Fellow @ JMP Statistical Discovery LLC",
-    "affiliation": "JMP Statistical Discovery LLC; University of North Carolina at Chapel Hill",
-    "bio": "Richard C. Zink is Principal Research Fellow at JMP Statistical Discovery LLC and has spent 20+ years in and around clinical trials and medical product development. He is Past Chair for the Leadership in Practice Committee of the Biopharmaceutical Section of the American Statistical Association. He is author, editor, or contributor to 10 books on statistical topics in clinical trials and clinical research, and he is currently working on a data visualization book featuring life sciences applications. Richard holds a Ph.D. in Biostatistics from the Gillings School of Global Public Health at the University of North Carolina at Chapel Hill, where he serves as Adjunct Professor of Biostatistics. Richard was awarded the distinction of Fellow of the American Statistical Association in 2020.",
+    "affiliation": "Adjunct Professor, Department of Biostatistics Adjunct Assistant Professor, Department of Public Health Leadership and Practice University of North Carolina at Chapel Hill",
+    "bio": "Richard C. Zink is Principal Research Fellow at JMP Statistical Discovery LLC and has spent 20+ years in and around clinical trials and medical product development. He is Past Chair for the Leadership in Practice Committee of the Biopharmaceutical Section of the American Statistical Association. He is author, editor, or contributor to 10 books on statistical topics in clinical trials and clinical research, and he is currently working on a data visualization book featuring life sciences applications. Richard holds a Ph.D. in Biostatistics from the Gillings School of Global Public Health at the University of North Carolina at Chapel Hill, where he serves as Adjunct Professor of Biostatistics, providing seminars related to his research, teaching classes on clinical trials and data visualization, and collaborating in student research. As Adjunct Assistant Professor for the Department of Public Health Leadership and Practice, Richard offers courses in applied improvisation to public health students; he teaches similar courses and workshops for statisticians and data scientists in order to turn quantitative scientists into quantitative leaders. Richard was awarded the distinction of Fellow of the American Statistical Association in 2020.",
     "photo": "",
     "linkedin": "Richard.Zink@jmp.com"
   },
@@ -454,7 +445,7 @@
     "name": "Cornelia Irl",
     "title": "VP Data Science & Analytics (retired)",
     "affiliation": "Independent",
-    "bio": "Conny holds a Ph.D. in Statistics from Ludwig-Maximilians-Universit\u00e4t in Munich, Germany. She joined Roche's Biostatistics department in Nutley, NJ in 1999, working across Early- and Late-Development in Cardiovascular, Neuroscience and Metabolism. In 2004, she transferred to Basel to work in Late-Development Oncology, took on her first managerial role the following year, and moved to Genentech in 2011. Her most recent position was VP, Data Science and Analytics, and Global Head of Data and Statistical Sciences for Hematology and Oncology. Conny retired from Roche and Genentech at the end of 2025 and now occasionally consults in the biopharma space.",
+    "bio": "Conny holds a Ph.D. in Statistics from Ludwig-Maximilians-Universität in Munich, Germany. She joined Roche's Biostatistics department in Nutley, NJ in 1999, working across Early- and Late-Development in Cardiovascular, Neuroscience and Metabolism. In 2004, she transferred to Basel to work in Late-Development Oncology, took on her first managerial role the following year, and moved to Genentech in 2011. Over the course of her career, Conny held positions of increasing responsibility, including several cross-functional leadership roles. Her most recent position was VP, Data Science and Analytics, and Global Head of Data and Statistical Sciences for Hematology and Oncology. Conny retired from Roche and Genentech at the end of 2025 and now occasionally consults in the biopharma space.",
     "photo": "",
     "linkedin": ""
   },
@@ -463,16 +454,16 @@
     "name": "Avinash Reddy Pati",
     "title": "Head of Evidence Delivery (Statistical Programming)",
     "affiliation": "Biogen",
-    "bio": "Avinash is Head of Evidence Delivery (Statistical Programming) with more than 20 years of experience advancing clinical development through data, analytics, and digital innovation. He has led global statistical programming and analytics groups, helping teams modernize evidence generation, strengthen regulatory readiness, and accelerate decision-making across R&D.",
+    "bio": "Avinash is Head of Evidence Delivery (Statistical Programming) with more than 20 years of experience advancing clinical development through data, analytics, and digital innovation. He has led global statistical programming and analytics groups, helping teams modernize evidence generation, strengthen regulatory readiness, and accelerate decision-making across R&D. Recognized for scaling automation, generative AI, and data-driven ways of working. He also champions talent development, cross-company collaboration, and thought leadership, that is shaping the future of clinical and statistical programming to improve research and patient outcomes.",
     "photo": "",
     "linkedin": "https://www.linkedin.com/in/avinashreddypati/"
   },
   {
     "id": "jingyuan-chen",
     "name": "Jingyuan Chen",
-    "title": "Principal Analytical Data Science Programmer",
+    "title": "Principle Analytical Data Science Programmer",
     "affiliation": "Genentech",
-    "bio": "Jingyuan Chen is a Principal Analytical Data Science Programmer at Genentech, bringing 13 years of experience within Roche/Genentech. Currently, she serves as a Project Lead in statistical programming and as the Data Science Filing Lead for oncology therapeutic areas.",
+    "bio": "Jingyuan Chen is a Principal Analytical Data Science Programmer at Genentech, bringing 13 years of experience within Roche/Genentech. Currently, she serves as a Project Lead in statistical programming and as the Data Science Filing Lead for oncology therapeutic areas. Her expertise lies in leading data science teams for late- phase studies and regulatory filing activities. Jingyuan is also passionate about advancing innovative workflows, including the integration of open-source technologies to enhance interactive analysis and data visualization in routine projects.",
     "photo": "",
     "linkedin": "https://linkedin.com/in/jingyuan-chen78a10025"
   },
@@ -481,7 +472,7 @@
     "name": "Xiaoyong Fu",
     "title": "Principal Scientist, Bioinformatics",
     "affiliation": "Gilead Sciences",
-    "bio": "Dr. Fu obtained MD followed by PhD in Biochemistry and Molecular Biology and received postdoctoral training in Cancer Biology and Bioinformatics. As a Principal Investigator at Baylor College of Medicine, Dr. Fu led multidisciplinary teams across Biology, Pathology, Biostatistics, and Oncology. As a Principal Scientist in Gilead Sciences, Inc., Dr. Fu has led efforts in supporting tumor intrinsic target programs and new target discovery using novel statistical algorithms including machine learning and real-world data.",
+    "bio": "Dr. Fu obtained MD followed by PhD in Biochemistry and Molecular Biology and received postdoctoral training in Cancer Biology and Bioinformatics. As a Principal Investigator at Baylor College of Medicine, Dr. Fu led multidisciplinary teams across Biology, Pathology, Biostatistics, and Oncology to achieve translational research goals in multiple federally funded grants (e.g., US Dept of Defense, 2014; Cancer Prevention & Research Institute of Texas, 2019; US Dept of Defense, 2021). He built NGS pipelines at Baylor Cancer Center HPC and led multidimensional-omics data analysis and integration to explore epigenetic vulnerabilities and new targets in cancer treatment focusing on breast cancer. Dr. Fu has sufficient expertise in Bioinformatics skills in translational and clinical trial studies. As a Principal Scientist in Gilead Sciences, Inc., Dr. Fu has led efforts in supporting tumor intrinsic target programs and new target discovery using novel statistical algorithms including machine learning and real-world data. Dr. Fu has a long track record of top-tier peer-reviewed publications, national conference presentations, and abreast knowledge and capabilities in Bioinformatics, Biostatistics, translational research, and team management.",
     "photo": "",
     "linkedin": "https://www.linkedin.com/in/xiaoyongfu/"
   },
@@ -490,7 +481,7 @@
     "name": "Hongjian Zhu",
     "title": "SVP, Global Head of Statistics and Data Science",
     "affiliation": "SystImmune Inc.",
-    "bio": "Dr. Hongjian Zhu received his Ph.D. in Statistics from the University of Virginia in 2010 and subsequently completed postdoctoral training at Yale University. He is currently Senior Vice President and Global Head of Statistics and Data Science at SystImmune Inc., where he provides enterprise-level leadership for statistical strategy, governance, and data science infrastructure supporting global oncology development.",
+    "bio": "Dr. Hongjian Zhu received his Ph.D. in Statistics from the University of Virginia in 2010 and subsequently completed postdoctoral training at Yale University. In 2012, he joined UTHealth and was promoted to tenured Associate Professor. He then served as Director and Research Fellow in the Statistical Innovation Group at AbbVie Inc. He is currently Senior Vice President and Global Head of Statistics and Data Science at SystImmune Inc., where he provides enterprise-level leadership for statistical strategy, governance, and data science infrastructure supporting global oncology development. His primary research focuses on adaptive clinical trial designs. He has published papers in leading journals such as JASA, The Annals of Statistics, Biometrics, and Statistica Sinica, and has received funding from the National Science Foundation as Principal Investigator. He is an Elected Member of the International Statistical Institute (ISI), Chair of the ICSA Nominating and Election Committee, past President of the Houston Area Chapter of the ASA (HACASA), and Guest Editor for special issues of SMMR and Statistica Sinica.",
     "photo": "",
     "linkedin": "https://www.linkedin.com/in/hongjian-zhu-75ab3522/"
   },
@@ -499,7 +490,7 @@
     "name": "Joseph N. Paulson",
     "title": "Executive Director, Biostatistics",
     "affiliation": "Exelixis",
-    "bio": "Joseph Paulson, PhD, is an Executive Director of Biostatistics and Head of Early Development Biostatistics and the Center of Data Excellence at Exelixis, where he leads statistical strategy and quantitative decision-making across development. Prior to Exelixis, Joseph was Head of Data Sciences at N-Power Medicine and was a Senior Principal Statistical Scientist at Genentech.",
+    "bio": "Joseph Paulson, PhD, is an Executive Director of Biostatistics and Head of Early Development Biostatistics and the Center of Data Excellence at Exelixis, where he leads statistical strategy and quantitative decision-making across development. His work focuses on integrating clinical, statistical, translational, and operational perspectives to accelerate development decisions and build scalable capabilities across the organization.\n\nPrior to Exelixis, Joseph was Head of Data Sciences at N-Power Medicine and was a Senior Principal Statistical Scientist at Genentech in the Early Development Oncology group. He also serves as adjunct faculty at Yale School of Medicine.\n\nJoseph is particularly focused on the evolving role of quantitative leaders as strategic partners, including the application of artificial intelligence, development of enterprise data capabilities, and creation of operating models that enable teams to make faster, higher-quality decisions. He holds a PhD in Applied Mathematics and Statistics from the University of Maryland, College Park and completed a Research Fellowship at Dana-Farber Cancer Institute and Harvard Medical School.",
     "photo": "",
     "linkedin": "https://www.linkedin.com/in/jnpaulson/"
   },
@@ -508,7 +499,7 @@
     "name": "Bingkai Wang",
     "title": "Assistant Professor",
     "affiliation": "Department of Biostatistics, School of Public Health, University of Michigan",
-    "bio": "I am a statistical researcher dedicated to developing robust and efficient statistical methods that enhance clinical research and improve patient health. My work focuses on leveraging modern analytical tools, including causal inference and AI, to address key challenges in the design and analysis of clinical trials and observational studies.",
+    "bio": "Professor Bingkai Wang is a statistical researcher dedicated to developing robust and efficient statistical methods that enhance clinical research and improve patient health. His work focuses on leveraging modern analytical tools, including causal inference and AI, to address key challenges in the design and analysis of clinical trials and observational studies.",
     "photo": "",
     "linkedin": "https://bingkaiwang.com/"
   },
@@ -517,7 +508,7 @@
     "name": "Jung Yeon Won",
     "title": "Staff Fellow",
     "affiliation": "FDA/CDER/OB",
-    "bio": "Jung Yeon Won is a statistical reviewer for rare disease products in the Office of Biostatistics at the U.S. Food and Drug Administration's Center for Drug Evaluation and Research (CDER). Her regulatory review experience focuses on rare disease products, with expertise in inborn errors of metabolism.",
+    "bio": "Jung Yeon Won is a statistical reviewer for rare disease products in the Office of Biostatistics at the U.S. Food and Drug Administration's Center for Drug Evaluation and Research (CDER). Her regulatory review experience focuses on rare disease products, with expertise in inborn errors of metabolism. She also brings research and regulatory experience in crossover designs and Bayesian designs for rare disease clinical trials. She holds a Ph.D. in Biostatistics from the University of Michigan.",
     "photo": "",
     "linkedin": ""
   },
@@ -526,7 +517,34 @@
     "name": "Swati Kaushik",
     "title": "Sr. Scientist II",
     "affiliation": "Tempus AI",
-    "bio": "Dr. Swati Kaushik is a Senior Scientist II at Tempus AI and a rising leader at the intersection of artificial intelligence, multi-omics, and drug discovery. With over a decade of experience spanning industry and academia including key roles at Gilead Sciences and UCSF, she specializes in using multimodal AI architectures, real-world data, and spatial transcriptomics to uncover novel therapeutic targets.",
+    "bio": "Dr. Swati Kaushik is a Senior Scientist II at Tempus AI and a rising leader at the intersection of artificial intelligence, multi-omics, and drug discovery. With over a decade of experience spanning industry and academia including key roles at Gilead Sciences and UCSF she specializes in using multimodal AI architectures, real-world data, and spatial transcriptomics to uncover novel therapeutic targets and accelerate the path to precision medicine in oncology.\n\nA strategic leader skilled at connecting computational innovation with wet-lab research, she works effectively across disciplines to support biopharma partnerships and help advance therapeutic programs into the clinic.\n\nShe holds a PhD in Bioinformatics from the National Centre for Biological Sciences, completed postdoctoral training at UCSF, and holds an AI/ML certification from Caltech",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "austin-hand",
+    "name": "Austin L. Hand",
+    "title": "Sr. Director, Biostatistics",
+    "affiliation": "Corcept Therapeutics",
+    "bio": "Austin L. Hand, Ph.D., is a biostatistics leader with 15 years of industry experience in the pharmaceutical sector. He currently serves as Sr. Director, Biostatistics at Corcept Therapeutics, where he leads the statistical strategy for the Endocrinology and Neurology therapeutic areas, overseeing the design, analysis, and interpretation of clinical trials that support drug development and regulatory submissions. Throughout his career, Dr. Hand has partnered closely with clinical, regulatory, and data science teams to translate complex statistical findings into actionable insights that drive drug development decisions. His work includes real-world evidence with a focus on advancing treatments for patients with rare and complex conditions. Dr. Hand holds a Ph.D. in Biostatistics from Baylor University.",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "yuyang-du",
+    "name": "Yuyang Du",
+    "title": "Director of Strategic AI Initiatives",
+    "affiliation": "BridgeBio Pharma",
+    "bio": "Yuyang Du leads Strategic AI Initiatives at BridgeBio Pharma, spearheading AI projects across biostatistics, commercial, and regulatory functions. Before BridgeBio, she was a Senior Generative AI Strategist at the AWS Generative AI Innovation Center, advising customers on GenAI strategy and co-developing solutions across the pharma value chain — from a sales concierge and an R&D co-scientist to enterprise agentic platforms. Her path to AI runs through consulting and research: GenAI roadmap development as a management consultant at McKinsey, an MBA from Columbia Business School, and an engineering PhD from the University of Minnesota.",
+    "photo": "",
+    "linkedin": ""
+  },
+  {
+    "id": "jingyuan-yang",
+    "name": "Jingyuan Yang",
+    "title": "",
+    "affiliation": "AbbVie",
+    "bio": "",
     "photo": "",
     "linkedin": ""
   }

@@ -1,0 +1,14 @@
+---
+// One titled block of workshop content: paragraphs, numbered highlights, bullets, and/or a callout note.
+type Block = { heading: string; paragraphs?: string[]; items?: { title: string; text: string }[]; bullets?: string[]; note?: string };
+const { b } = Astro.props as { b: Block };
+---
+<h2>{b.heading}</h2>
+{b.paragraphs?.map((p) => <p>{p}</p>)}
+{b.items && (
+  <ol class="ws-items">
+    {b.items.map((it) => <li><strong>{it.title}</strong><p>{it.text}</p></li>)}
+  </ol>
+)}
+{b.bullets && <ul>{b.bullets.map((x) => <li>{x}</li>)}</ul>}
+{b.note && <p class="ws-note">{b.note}</p>}

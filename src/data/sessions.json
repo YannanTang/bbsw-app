@@ -79,10 +79,10 @@
     "talks": [
       {
         "id": "ai-panel-talk",
-        "title": "Featured AI Panel / Fireside Chat",
+        "title": "From Pilots to Practice: Scaling AI in Drug Development and Regulatory Science",
         "startTime": "10:30 AM",
         "endTime": "11:50 AM",
-        "abstract": "",
+        "abstract": "AI is reshaping how clinical development, biostatistics, and regulatory science operate, but the path from promising pilot to enterprise-scale, regulator-ready practice remains uneven across the industry.\n\nThis panel brings together senior leaders spanning pharma, biotech, and FDA to share where AI adoption is genuinely delivering value today, where the biggest structural and cultural gaps remain, and where near- and mid-term expectations may be running ahead of reality.\n\nThe session opens with a brief update from the BBSW AI Committee, including highlights from its industry AI survey, the AI Summit, and upcoming BBSW community initiatives. The panel discussion follows a deliberate arc - moving from recent successes, to where AI is delivering the most value today, to the barriers still standing between pilots and scaled adoption, to a candid look at where caution is warranted - giving the audience a grounded picture of where things stand and a clear view of what's ahead.",
         "speakers": [
           "judy-li",
           "shaobo-liu",
@@ -150,14 +150,32 @@
     ],
     "talks": [
       {
-        "id": "t-1a",
-        "title": "",
+        "id": "t-1a-1",
+        "title": "Substantial Evidence of Effectiveness",
+        "abstract": "FDA's 2026 Revised Draft Guidance on Substantial Evidence of Effectiveness (SEE) represents a significant update to the agency's interpretation of the evidentiary standard governing drug approval under Section 505(d) of the Federal Food, Drug, and Cosmetic Act. This presentation provides an accessible overview of the guidance and its implications for drug development. The 2026 draft broadens the pathway of one adequate and well-controlled (AWC) trial plus confirmatory evidence (CE) beyond rare disease and unmet-need settings, focusing evaluation on the overall strength and persuasiveness of the evidence. The presentation covers the legislative history of the SEE standard, the three primary approaches to demonstrating SEE, factors affecting evidentiary strength, the role of regulatory flexibility for rare and severe diseases, and the importance of integrating safety planning with effectiveness planning. Key guidance for sponsors includes the value of early FDA engagement and the principle that a single typical successful AWC trial, without strong CE, is not sufficient for approval.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
-          "mark-rothmann",
-          "james-travis",
+          "mark-rothmann"
+        ]
+      },
+      {
+        "id": "t-1a-2",
+        "title": "",
+        "abstract": "",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "james-travis"
+        ]
+      },
+      {
+        "id": "t-1a-3",
+        "title": "The Design of Bayesian Confirmatory Trials",
+        "abstract": "The new draft Bayesian guidance and ICH E20 have highlighted the potential role of Bayesian analyses in confirmatory trials. In this talk I will provide examples of Bayesian confirmatory trials, highlighting what these trials and results look like and highlighting the process of getting to an agreement on the trial design. Examples will be provided where adaptive design approaches are utilized, Bayesian borrowing from previous trials is utilized, and where prospective borrowing across subgroups is utilized. The focus will be on actual examples and the differences of the Bayesian approaches highlighted.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
           "scott-berry"
         ]
       }
@@ -178,15 +196,43 @@
     ],
     "talks": [
       {
-        "id": "t-1b",
-        "title": "",
+        "id": "t-1b-1",
+        "title": "Perspectives for Responsible Artificial Intelligence: Balancing Innovation and Accountability",
+        "abstract": "Artificial intelligence (AI) is rapidly transforming how organizations operate, make decisions, and deliver outcomes — yet its responsible deployment remains one of the most pressing challenges of our time. This presentation explores perspectives on what it means to use AI responsibly.\n\nCentral themes include the importance of human oversight in AI-assisted decision-making, the need for transparency and explainability in how AI systems reach conclusions, and the critical role of bias mitigation in ensuring consistent performance across diverse populations. The presentation also addresses the evolving risk landscape introduced by more autonomous AI architectures as these systems grow in capability and complexity.\n\nOf particular relevance to medical device sponsors are practical questions emerging at the intersection of AI capability and regulatory expectation. These include whether AI tools may be appropriately used to generate regulatory submissions, study designs, or reports submitted to the FDA; how devices can be designed to continuously incorporate new real-world data to prevent algorithmic drift while remaining within established regulatory boundaries; and whether prior device validation data or samples may be sequestered and reused in future validations of modified algorithms. Each of these questions reflects a broader tension between the iterative, adaptive nature of AI technology and the evidentiary standards required to demonstrate safety and effectiveness throughout a device's lifecycle.\n\nUltimately, responsible AI requires ongoing collaboration between technologists, domain experts, regulators, and the public to ensure that AI serves as a tool that safely augments human decision-making. Sponsors are encouraged to engage early and often with the FDA to navigate these questions within the evolving regulatory framework.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
-          "gregory-alexander",
-          "brian-vogler",
+          "gregory-alexander"
+        ]
+      },
+      {
+        "id": "t-1b-2",
+        "title": "Building Communities to drive impact through grassroot AI adoption",
+        "abstract": "We at Boehringer Ingelheim's Global Biostatistics and Data Sciences organization are navigating a shift from grassroots AI experimentation toward more coordinated, strategic capability building. Individual practitioners have been testing large language models for tasks like specification generation and metadata resolution, while broader organizational efforts are taking shape around a centralized, trustworthy data and AI foundation, decision-support tools for trial design, and structured-authoring capabilities that reduce manual documentation effort. This talk explores how these threads — small-scale practitioner experiments and larger strategic investments — are converging, what we've learned about where AI genuinely accelerates work versus where rigorous programming logic still matters, and the cultural, technical, and governance considerations involved in scaling AI adoption responsibly across a large pharmaceutical R&D organization.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "brian-vogler"
+        ]
+      },
+      {
+        "id": "t-1b-3",
+        "title": "Ask, and Be Asked: Building an AI Community by Inviting Others to Shape the Work",
+        "abstract": "There are many ways to foster a community around practical AI - training sessions, top- down rollouts, and shared tool libraries. We explore a simpler path: invite people to shape the work itself and let their questions change both the problem and the solution. Speaking from two vantage points - an SME grounded in statistical thinking and an AI strategist—we follow an evidence-synthesis tool as it moves from a personal prototype toward cross-functional use. The experience reveals a skill most of us practice only halfway. Prompting is usually framed as asking AI better questions; the harder habit is learning to be questioned - by the tool, by colleagues, and by perspectives outside our own. We will share the questions that help determine whom to involve, what must remain under human judgment, and when an experiment is ready to grow. Our premise: practical AI communities form not around finished tools, but around shared ownership of the questions that shape them.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
           "yun-bai",
+          "yuyang-du"
+        ]
+      },
+      {
+        "id": "t-1b-4",
+        "title": "Beyond the AI Demo: A Community Effort to Build Pharma Skills and Benchmarks",
+        "abstract": "The R Consortium Pharma Skills effort brings the community together to build reusable AI skills for pharmaceutical R&D—and, just as importantly, the benchmark cases needed to know when those skills can be trusted.\n\nBy combining domain expertise, open collaboration, and shared evaluation, the initiative aims to move pharma AI beyond one-off demos toward a community-built foundation that can be tested, improved, and scaled together.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
           "ning-leng"
         ]
       }
@@ -219,16 +265,52 @@
     ],
     "talks": [
       {
-        "id": "t-2a",
-        "title": "",
+        "id": "t-2a-1",
+        "title": "From FAIR Data to AI: Why the Foundation Matters More Than Ever",
+        "abstract": "In 2015, I proposed the Enhanced Data and Insights Sharing (EDIS) initiative to the Roche Corporate Executive Committee as a major, multi-year investment based on a straightforward premise: data should be treated as a strategic enterprise asset rather than primarily as the output of individual studies, assets, or functions. Ultimately, the objective was not FAIR data itself, but the trustworthy, actionable insights that could be generated from it. Making data FAIR—Findable, Accessible, Interoperable, and Reusable—became a central principle of that effort. A decade later, the emergence of generative AI creates extraordinary opportunities, but also raises an important question: does AI reduce the need to invest in well-contextualized, governed, FAIR data? I believe the opposite is true. AI can dramatically improve our ability to extract and synthesize information, including from unstructured sources, but it cannot create missing context, provenance, or scientific validity. In many ways, AI has made FAIR data more important, not less. I will share several lessons from my experiences working with data and evidence across drug development, including the importance of metadata and context; the organizational, technical, and governance challenges involved in data integration; and the question of how much investment in FAIR data makes sense at different organizational scales. I will also touch on a cross-industry data-sharing effort during COVID that demonstrated both the value of having data ready to share and the practical difficulties of doing so. I do not believe there is one data architecture or level of infrastructure investment that is right for every organization. The case for investment at a large pharmaceutical company, with many disease areas and opportunities for data reuse, is different from that of a small biotech with one or two products. But the underlying principles of making important data understandable, appropriately accessible, interoperable, and reusable remain relevant at any scale. My hope is to use the keynote to frame some of these questions and provide perspective from my experiences over the past decade. The four presentations that follow will bring these ideas to life through different and complementary examples—disease-area data strategy and integration, reusable and governed data foundations, the use of multiple data sources to generate evidence, and the practical application of AI in regulatory data preparation. Together, they provide an opportunity to consider what enterprise data strategy means today, and how it may continue to evolve in an AI-enabled world.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
-          "jeff-helterbrand",
-          "sudhir-kedare",
-          "wenjuan-gu",
-          "thanh-ton",
+          "jeff-helterbrand"
+        ]
+      },
+      {
+        "id": "t-2a-2",
+        "title": "Data as a Product: Building the R&D-Wide Foundation the AI Transformation Actually Requires",
+        "abstract": "For most of clinical R&D's history we've built data for a study - assembled, analyzed, archived, then rebuilt from scratch for the next one. That model served us through the standards era. It won't carry us through the AI one, where value depends less on any single output and more on whether data can be trusted, governed, and reused across the enterprise. The cost of the old way has a name: the silo tax - redundant pipelines, inconsistent definitions, and analysis that can't travel across functions. This is my team's account of a transformation in progress. We began with a conventional medallion lakehouse - not a failure, but a ceiling: it worked at study scale, yet coupled our data too tightly to study structure and left no conformed, cross-functional layer for the enterprise to build on. Renaming layers wouldn't fix that; rethinking ownership would. So we re-architected around \"data as a product\" - a layered model (L1 → L4) where each layer carries an explicit owner, embedded lineage, and quality contracts in the flow, not bolted on afterward. Standards like SDTM and ADaM emerge as outputs of that governed system, not its purpose. The foundation runs today across Databricks, POSIT, MongoDB, PostgreSQL, Clinical Data Factory, and legacy SAS assets. Our next chapter introduces Snowflake as the governed sharing and interoperability layer across R&D - not a second lakehouse, but the connective tissue that lets statistical programming, biostatistics, data management, medical monitoring, safety and pharmacovigilance, ClinOps, ClinDev, RDLT, and RWE consume the same trusted products instead of rebuilding them. These functions have never operated from one shared foundation. That is exactly what we're changing. The strategy underneath is a single idea: establish a unified, governed, and interoperable data foundation that accelerates trial design, execution, and regulatory submission - turning clinical data into a reusable strategic asset rather than a study-by-study byproduct. I'll share our transformation journey so far (still in progress), and why treating data as a product, not a pipeline, is what finally makes the AI ambitions credible - and hopefully the strategies you'll hear elsewhere in this session on same roadmap.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "sudhir-kedare"
+        ]
+      },
+      {
+        "id": "t-2a-3",
+        "title": "Evaluating Intermediate Endpoint for CAR T-Cell Therapy in Multiple Myeloma: A multi-source, Multi-Method Analytical Framework",
+        "abstract": "Background and Objective: The FDA's 2024 ODAC meta-analysis of randomized multiple myeloma trials established MRD negativity rate as an intermediate endpoint reasonably likely to predict clinical benefit, formalized in the January 2026 draft guidance for accelerated approval. However, this evidence derived exclusively from conventional therapies and did not include CAR T-cell trials, prompting residual uncertainties regarding the applicability of MRD to cell therapies. To address this evidence gap in a data-constrained landscape, we adopt a multi-source data integration strategy, combining externally published CAR T-cell trial data, real-world evidence (RWE), and internal clinical trial data, to maximize the extractable evidence and generate a comprehensive regulatory-grade evidence package supporting MRD negativity rate as an accelerated approval endpoint for CAR T-cell therapy. Methods: Our approach comprises three complementary data-driven workstreams. (1) External published trial data: Bayesian meta-analytic regression with informative priors constructed from conventional therapy trial comparisons is applied to publicly available CAR T-cell trial results. (2) Real-world evidence: causal mediation analysis to quantify the proportion of the CAR T treatment effect on PFS/OS mediated through MRD negativity, supplemented by landmark analyses and causal survival forests assessing MRD variable importance for predicting heterogeneous treatment effects. (3) Internal clinical trial data: predictive modeling based on the conventional therapy meta-regression relationship, combined with subgroup and interaction analyses to validate the MRD outcome association. By triangulating across three independent data sources, each contributing distinct inferential strengths, this framework maximizes evidentiary robustness where no single source alone is sufficient, representing the first systematic effort to bridge the MRD surrogacy evidence gap for CAR T-cell therapy.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "wenjuan-gu"
+        ]
+      },
+      {
+        "id": "t-2a-4",
+        "title": "\"Cross-functional excellence is not optional\": The role of enterprise disease data strategy in strengthening collaborations",
+        "abstract": "In order for a single data-driven insight to be delivered to stakeholders at the point of decision-making to inform drug development, a host of processes behind-the-scenes must align seamlessly. How does the business need translate into a scientific research question? What is the study design? What are the required variables? What is the right data? Where is it hosted? How is it accessed? What are the privacy restrictions? What statistical method is most appropriate? How can AI help? How can AI hurt? How is the insight best delivered to non-data scientists? The invisible cadre of experts behind these questions are large and varied: clinical scientists, epidemiologists, statisticians, data management, data engineers, IT specialists, data governance & stewards, data privacy experts, developers, analytic data scientists, prompt engineers, including stakeholders across all functions who make important decisions on a daily basis with patients in mind.\n\nOrganizations such as Roche / Genentech that have grown large in their success are also victims of their own success. They often suffer from perpetual emergence of silos and complexities. No matter how frequently organizations attempt to break down silos and simplify processes, the number of functions remains large; the number of data systems increases; and the fragmentation continues to inhibit visibility and interoperability. Not FAIR at all. In addition, changing definitions in the external ecosystem related to data access for AI processing as part of secondary use has thrown a wrench into the old ways of working.\n\nOne potential solution may be to orient the entire enterprise towards a disease-area mindset where a disease specific DATA strategy can not only transcend the short-term needs of single assets but can pull together experts across functions representing each phase of the end-to-end drug development. In this session, we will explore cross‑functional business perspectives, understand how enterprise data strategy with a disease-area orientation can serve to connect clinical scientists, IT, data engineering, data stewards, epidemiologists, and statisticians. We will also explore why alignment across these groups is essential and how data innovation is required to meet the fast pace of technology.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "thanh-ton"
+        ]
+      },
+      {
+        "id": "t-2a-5",
+        "title": "Adopting AI in Data Preparation: Reflections from a Small Biotech",
+        "abstract": "Artificial intelligence offers an appealing way to ease the load on lean teams when assembling submission data package—yet what adoption really looks like in practice is still an open question. This talk shares one perspective on the challenges and feasibility of bringing AI into statistical deliverables such as SDTM/ADaM datasets, TLFs, and supporting documentation like define.xml and reviewer's guides. Rather than offering a finished roadmap, it aims to open a conversation around the questions a resource-constrained sponsor tends to encounter: how to think about validation and inspection-readiness under the current GxP framework, how the FDA's 2025 draft guidance and its risk-based, context-of-use framework might apply, and where (or whether) automation fits alongside the judgment and accountability that remain firmly with human statisticians and programmers.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
           "martha-cao"
         ]
       }
@@ -249,14 +331,33 @@
     ],
     "talks": [
       {
-        "id": "t-2b",
-        "title": "",
+        "id": "t-2b-1",
+        "title": "Digital Twins and Synthetic Controls: From Concept to Regulatory-Grade Evidence",
+        "abstract": "Clinical trials in rare diseases and neurological disorders face substantial challenges related to recruitment, sample size, trial duration, and the availability of suitable control groups. External data and prediction models offer opportunities to address some of these challenges, but their use also introduces potential sources of bias and uncertainty.\n\nThis talk will discuss a framework for the use of external data and digital twins in clinical trials, building on experience with external controls and individualized prediction models in amyotrophic lateral sclerosis (ALS). External patient-level data can be used directly to construct synthetic or external control groups. Alternatively, prediction models can be developed using external data to generate individualized predictions of expected clinical outcomes, effectively replacing patient-level external data with model-based predictions. Both approaches may improve trial efficiency while augmenting, rather than replacing, concurrent randomized control groups. Particular attention will be given to validation and calibration: how well do prediction models perform in the population and trial in which they are applied, and how can their accuracy be assessed?\n\nFinally, the opportunities and limitations of these approaches in regulatory settings will be considered. The emphasis will be on the distinction between improving prediction and reliably estimating treatment effects, and on the methodological requirements for using external data and digital twins to augment randomized clinical trials.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
-          "ruben-van-eijk",
-          "matt-secrest"
+          "ruben-van-eijk"
+        ]
+      },
+      {
+        "id": "t-2b-2",
+        "title": "",
+        "abstract": "",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "jingyuan-yang"
+        ]
+      },
+      {
+        "id": "t-2b-3",
+        "title": "Augmenting Randomized Clinical Trials with External Data: Opportunities and Limitations",
+        "abstract": "Traditional placebo controlled randomized clinical trials (RCTs) can cause ethical and logistical concerns in rare disease (eg, ALS) trials. Augmenting internal controls (IC) with external controls (EC) can add statistical power but also introduce bias if the EC population differs from the RCT population with strict inclusion and exclusion criteria. This study evaluated 3 methods for borrowing real-world data (RWD): a) restricted mean survival time (RMST); b) 2-step hybrid test with hazard rates (HR); c) 2-step hybrid test with RMST. If similarity criterion was fulfilled, EC+IC was used, otherwise, IC was used to test the difference in deaths between treatment and control arms. Two outcomes were evaluated: proportion of deaths at 1 year and overall survival. 10,000 independent datasets were simulated per scenario. Borrowing probability increased with larger equivalence margins, longer time limit in RMST estimate, and smaller gap between EC and IC sample size. More borrowing led to larger sample size, leading to increased power, but also Type I error inflation and heterogeneity. Strategic borrowing of RWD improved power while controlling Type I error. However, the information borrowed from EC should be evaluated to protect from heterogeneity. Borrowing decisions rely on the equivalence margin and the sample size difference between EC and IC, which should be rigorously evaluated.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "austin-hand"
         ]
       }
     ]
@@ -350,10 +451,10 @@
     "talks": [
       {
         "id": "t-3a-1",
-        "title": "",
+        "title": "Designing Crossover Trials for Rare Diseases: Statistical and Practical Considerations",
+        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs, and enable treatment comparisons by leveraging the stable, chronic nature of many rare diseases. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
         "speakers": [
           "jung-yeon-won"
         ]
@@ -361,9 +462,9 @@
       {
         "id": "t-3a-2",
         "title": "When Prediction Meets Randomization: Regression, Machine Learning, or LLMs? Lessons from 125 Randomized Trials",
+        "abstract": "Covariate adjustment is a standard tool for improving precision in randomized trials, but the value of increasingly flexible prediction methods remains unclear. This talk begins with an empirical comparison of regression and machine-learning-based adjustment across 50 completed trials. The results show that flexible machine learning methods are not automatically superior: simple regression adjustment with prognostic baseline covariates is often highly competitive. This finding motivates a new question: can large language models change the picture by extracting useful prognostic information from baseline covariates, trial descriptions, or other text-derived features? To address this question, I present a unified framework for LLM-assisted covariate adjustment and empirical evidence from 125 randomized trials. We evaluate LLM-derived features, including zero/few-shot predictions, fine-tuned models, and embedding-based representations, combined with both regression and machine-learning estimators. The results show that LLM features can provide additional precision gains beyond classical covariates, although the gains vary across trials, sample sizes, and outcome types. Overall, LLMs appear most useful as tools for constructing better prognostic features within transparent and honest adjustment procedures.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Covariate adjustment is a standard tool for improving precision in randomized trials, but the value of increasingly flexible prediction methods remains unclear. This talk begins with an empirical comparison of regression and machine-learning-based adjustment across 50 completed trials. The results show that flexible machine learning methods are not automatically superior: simple regression adjustment with prognostic baseline covariates is often highly competitive. This finding motivates a new question: can large language models change the picture by extracting useful prognostic information from baseline covariates, trial descriptions, or other text-derived features? We present a unified framework for LLM-assisted covariate adjustment and empirical evidence from 125 randomized trials.",
         "speakers": [
           "bingkai-wang"
         ]
@@ -371,9 +472,9 @@
       {
         "id": "t-3a-3",
         "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
+        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. However, these methods have been criticized for their potential conservativeness, which may lead to reduced statistical power. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. A central question faced by clinical trial practitioners is how conservative the closure principle-based approach truly is and whether the potential power gains of more advanced methods justify their adoption. In this study, we conduct a comparison of different analysis procedures. Through extensive simulation studies, we assess their performance in terms of statistical power, Type I error control, and practical implementation considerations. We provide concrete guidance for the design and analysis of adaptive seamless trials.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. In this study, we conduct a comparison of different analysis procedures through extensive simulation studies, assessing statistical power, Type I error control, and practical implementation considerations, and provide concrete guidance for the design and analysis of adaptive seamless trials.",
         "speakers": [
           "hongjian-zhu"
         ]
@@ -396,20 +497,20 @@
     "talks": [
       {
         "id": "t-3b-1",
-        "title": "",
+        "title": "Creating Capacity Without Losing Judgment: A Leadership Perspective on AI Adoption in Biometrics",
+        "abstract": "When I joined Kardigan, the volume of urgent work could easily have consumed my first year. In Covey’s rocks-pebbles-sand terms, the “sand” of daily demands threatened to crowd out the strategic “rocks” that move an organization forward. AI helped create the capacity to address both. I’ll share how AI is reducing friction across precision medicine, operations, regulatory strategy, and the work of building a Biometrics function—including approaches that change not only how quickly a small biotech can run trials, but which trials are feasible in the first place. Yet creating capacity is only the first leadership challenge: without judgment, that capacity simply fills with more sand. Real gains require leaders to create room for experimentation, make failures visible as learning opportunities, and keep expert judgment firmly in the loop. AI mistakes are inevitable, and only qualified people will recognize them. The goal is not adoption at any cost; it is to build the trust, expertise, and working habits that allow people to use AI confidently while preserving the skepticism needed to use it safely.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "marla-curran"
         ]
       },
       {
         "id": "t-3b-2",
-        "title": "",
+        "title": "Partnering with AI: Reducing Friction in Statistical Analyses and Software Development in R using Claude Code",
+        "abstract": "Integrating AI into statistical software development isn't just about generating more code at a faster pace but rather it’s about enhancing rigor and lowering technical barriers. For statisticians and programmers, modern tools like Claude Code fundamentally change how we navigate, develop, and maintain software during complex statistical analyses. In this talk, I offer a statistician's perspective on integrating Claude Code into everyday R study workflows and exploratory projects.\n\nThrough practical demonstrations, we will explore key ways AI tools reduce operational friction such as accelerating core development while reinforcing quality standards, empowering statisticians to build full-fledged packages and Shiny applications without dedicated programming or engineering teams, and serving as a cross-language translation collaborator. I will show how Claude Code simplifies jumping into existing codebases to read, verify, or translate logic across programming languages. The session will highlight practical strategies for using AI to elevate production output while keeping statistical integrity at the center.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "ali-valcarcel"
         ]
@@ -417,9 +518,9 @@
       {
         "id": "t-3b-3",
         "title": "The Game of Chutes and Ladders with AI: Navigating Opportunities and Risks in Regulated Evidence Delivery",
+        "abstract": "Artificial intelligence offers significant opportunities to accelerate evidence generation in regulated environments, but its adoption is neither simple nor straightforward. Like a game of chutes and ladders, progress depends on identifying the ladders that enable acceleration while carefully managing the chutes that can slow or redirect implementation. In this context, ladders include document and specification generation, real time review, code development, analysis support, output creation, idea generation, thought partnership, and pattern identification. Chutes include challenges related to GxP expectations, data standards/quality, data privacy/confidentiality, reproducibility, model oversight, validation and regulatory compliance and changes including real time review. This presentation will explore how teams can use AI intentionally and responsibly rather than simply “rolling the dice.” We will discuss opportunities, practical examples of applying AI to generate documents, specifications, code, analyses, and outputs, alongside simple approaches for evaluating validation opportunities. Emphasis will be placed on understanding how AI models work and scope, defining appropriate oversight, maintaining robust documentation, and embedding reproducibility and compliance considerations from the outset. By recognizing both the opportunities and the risks, organizations can play the game with greater control and confidence, using AI to move faster while protecting quality, integrity, and regulatory trust. While touching on importance of maintaining the balance between Automation and AI, pace of AI advancements, etc.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Artificial intelligence offers significant opportunities to accelerate evidence generation in regulated environments, but its adoption is neither simple nor straightforward. Like a game of chutes and ladders, progress depends on identifying the ladders that enable acceleration while carefully managing the chutes that can slow or redirect implementation. Ladders include document and specification generation, real time review, code development, analysis support, output creation, idea generation, thought partnership, and pattern identification. Chutes include challenges related to GxP expectations, data standards/quality, data privacy/confidentiality, reproducibility, model oversight, and validation and regulatory compliance. This presentation will explore how teams can use AI intentionally and responsibly rather than simply \u201crolling the dice.\u201d",
         "speakers": [
           "avinash-reddy-pati"
         ]
@@ -467,9 +568,9 @@
       {
         "id": "t-leadership",
         "title": "Statistics and Applied Improvisation: Strange but Necessary Bedfellows",
+        "abstract": "Applied improvisation? What does this have to do with statistics? A fair question, since the two topics could not be more different. But these diametrically opposed topics are exactly why statisticians and data scientists need exposure to applied improvisation! The term “improvise” means to create or perform a task spontaneously or without preparation, and it is often associated with the arts, including music, theater, and comedy. For scientists, perhaps even more so for statistical scientists, the thought of doing anything without preparation can be discomforting. Indeed, our core strengths lie in our ability to plan, anticipate problems, and develop contingencies in the workplace, and these aptitudes are a principal reason why statisticians are so crucial to multidisciplinary teams, above and beyond our statistical expertise. But these strengths, if taken to their extreme, can stifle innovation, hinder adaptability, inhibit collaboration, and limit awareness to the conversations and activities happening in the here and now. Now I am in no way suggesting that statistical scientists should begin shredding analysis plans or abandoning careful thought, but the statistics discipline would benefit from an expansion of its non-technical toolkit. In this talk, I describe the personal and professional benefits of applied improvisation for practitioners of statistics.",
         "startTime": "2:00 PM",
         "endTime": "2:40 PM",
-        "abstract": "Applied improvisation? What does this have to do with statistics? A fair question, since the two topics could not be more different. But these diametrically opposed topics are exactly why statisticians and data scientists need exposure to applied improvisation! For scientists, perhaps even more so for statistical scientists, the thought of doing anything without preparation can be discomforting. In this talk, I describe the personal and professional benefits of applied improvisation for practitioners of statistics.",
         "speakers": [
           "richard-c-zink"
         ]
@@ -508,19 +609,19 @@
       {
         "id": "t-4a-1",
         "title": "Real-world clinical multi-omics analyses reveal evolutionary trajectories for drug resistance in non-small cell lung cancer",
+        "abstract": "Up to 85% of lung cancer patients have non-small cell lung cancer (NSCLC). Standard of care for NSCLC includes immune checkpoint inhibitors (ICI) and/or platinum-based chemotherapy (CT). However, therapy success is limited and up to 70% of patients are not responding to ICI. Mechanisms of resistance across treatments are not fully understood. Using Tempus Labs’ de-identified clinical molecular and response data, we aimed to identify molecular features associated with drug resistance in advanced NSCLC treated with ICI, ICI+CT, or CT. We assembled a real-world clinical genomic dataset from a cohort of stage III/IV NSCLC patients receiving first-line (1L) ICI, ICI+CT, or CT. We then retrospectively analyzed the multi-omics profiling data derived from pre- and on/post-treatment tumor biopsies taken from these 1,135 patients. Our analysis of transcriptional programs and genetic alterations provided a comprehensive overview in gene expression, pathway enrichment, estimated immune cell components, and somatic mutations associated with response to 1L treatment in advanced NSCLC. Our study reveals distinct molecular characteristics including tumor immune components underlying evolutionary trajectories for drug resistance and provided a list of biomarkers of therapy response for the patient subgroups supported by real-world evidence.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Up to 85% of lung cancer patients have non-small cell lung cancer (NSCLC). Standard of care for NSCLC includes immune checkpoint inhibitors (ICI) and/or platinum-based chemotherapy (CT). However, therapy success is limited and up to 70% of patients are not responding to ICI. Using Tempus Labs' de-identified clinical molecular and response data, we aimed to identify molecular features associated with drug resistance in advanced NSCLC treated with ICI, ICI+CT, or CT, analyzing multi-omics profiling data from pre- and on/post-treatment tumor biopsies from 1,135 patients. Our study reveals distinct molecular characteristics including tumor immune components underlying evolutionary trajectories for drug resistance and provided a list of biomarkers of therapy response.",
         "speakers": [
           "xiaoyong-fu"
         ]
       },
       {
         "id": "t-4a-2",
-        "title": "",
+        "title": "Expansion of trial eligibility for a Phase 3 trial using Clinico-Genomic Real World Data",
+        "abstract": "",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "nayan-chaudhary"
         ]
@@ -528,19 +629,19 @@
       {
         "id": "t-4a-3",
         "title": "",
+        "abstract": "",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "petr-jordan"
         ]
       },
       {
         "id": "t-4a-4",
-        "title": "",
+        "title": "A Digital Twins Framework for Composite Prognostic Scoring and Counterfactual Control Arms, Validated in the Trial Setting",
+        "abstract": "There is increasing interest in leveraging predictive modeling frameworks in biopharma drug development to simulate outcomes for a specific group of patients using their clinical data. While both External Control Arms (ECA) and Digital Twins (DT) approaches serve this purpose, they differ in methodology and efficiency. ECAs are the current standard for single-arm trial results, and are built by selecting historical real-world patients using propensity score matching or weighting based on a few prognostic factors, and patients unmatched in the analysis are removed. Each trial requires a custom ECA. DTs are predictive models that generate individual simulated counterfactual outcomes for each patient in the trial under the standard of care. DTs are not limited to matched patients and can be trained on a broader cohort, and can be used across different trials.\n\nTo evaluate the DT approach, four models were tested across a spectrum of complexity: Penalized Logistic Regression (PLR), XGBoost (XBG), Multi-layer Perceptron (MLP), and Graph Attention Network (GAT). All models performed comparably with the simplest architecture (PLR) achieving the highest C-index in external validation in trial datasets (IMpower130-132). The DT model was then used to generate a composite prognostic score (CPS) calculated from cumulative hazard predictions. This CPS significantly stratified patients into high-risk versus low-risk groups in the external trial cohort with HRs ranging from 2.6-3.5 (95% confidence intervals of 1.5 to 5.4). This score outperformed traditional single-factor variables, including ECOG, the strongest prognostic factor, which yielded HRs from 1.5 to 1.7 (95% confidence intervals of 1.0 to 2.3).\n\nThese findings translate into applications for both trial design and synthesis. Integrating the DT-based CPS into trial analysis enables robust covariate adjustment, enhancing statistical power without increasing sample size. DT model predictions can be averaged to create a population-level control arm for trial benchmarking and contextualization. Ultimately, the DT framework can deliver a more precise, data-efficient, and scalable alternative to conventional external control arms.",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "lilia-bouzit"
         ]
@@ -548,9 +649,9 @@
       {
         "id": "t-4a-5",
         "title": "Multimodal AI identifies a high-risk, immune-cold NF1-mutant SqNSCLC patient subtype enriched by a 31-gene prognostic signature",
+        "abstract": "",
         "startTime": "",
         "endTime": "",
-        "abstract": "",
         "speakers": [
           "swati-kaushik"
         ]
@@ -574,9 +675,9 @@
       {
         "id": "t-4b-1",
         "title": "Beyond the AI Proof of Concept: Building a Center of Data Excellence for Drug Development",
+        "abstract": "Artificial intelligence is rapidly entering clinical development through applications ranging from protocol and EDC development to programming, analysis, medical review, and clinical study report generation. However, the greatest challenge may not be identifying promising AI tools. It is determining how organizations move from isolated proofs of concept to capabilities that are reliable, scalable, governed, and embedded within the way drug development teams make decisions.\n\nThis transition creates an opportunity for statisticians, data scientists, programmers, and data management leaders to become strategic partners in organizational transformation. Rather than serving only as consumers or validators of AI solutions, quantitative functions can help define what good looks like: establishing fit-for-purpose evaluation frameworks, developing gold standards, determining acceptable levels of risk, creating reusable data and analytic infrastructure, and connecting technology investments to meaningful improvements in development timelines and decision quality.\n\nThis presentation will discuss lessons from building and evaluating AI-enabled workflows within clinical development and explore the concept of an AI-enabled Center of Data Excellence. Such a center need not be a centralized organization. Instead, it can serve as a cross-functional operating model that brings together Statistics, Programming, Data Management, Clinical, Medical Writing, Technology, and other partners around common standards, reusable capabilities, governance, and measures of impact.\n\nThe session will focus on how quantitative leaders can influence this transformation without necessarily owning every technology or process. By identifying high-value problems, creating shared evaluation standards, connecting teams, and translating technical capabilities into business and scientific impact, data leaders can move from supporting individual analyses to shaping how an organization learns, decides, and develops medicines.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Artificial intelligence is rapidly entering clinical development through applications ranging from protocol and EDC development to programming, analysis, medical review, and clinical study report generation. However, the greatest challenge may not be identifying promising AI tools \u2014 it is determining how organizations move from isolated proofs of concept to capabilities that are reliable, scalable, governed, and embedded within the way drug development teams make decisions. This presentation will discuss lessons from building and evaluating AI-enabled workflows within clinical development and explore the concept of an AI-enabled Center of Data Excellence.",
         "speakers": [
           "joseph-n-paulson"
         ]
@@ -584,9 +685,9 @@
       {
         "id": "t-4b-2",
         "title": "Influencing Across Complexity in Projects",
+        "abstract": "Project leads often face situations where technical, operational, and regulatory teams have competing priorities. This presentation explores three pivotal moments – disagreement on approach in our first End-to-End R NDA submission, coordinating sequential readouts within a tight timeline on the same molecule, and adapting to mid-stream regulatory changes during a peak-paced pivotal molecule – and reveals the influencing techniques that transformed potential roadblocks into strategic wins.\n\nUnderlying each case are five core moves: understand stakeholder concerns, offer concrete mitigation, create protective mechanisms, maintain transparency, and establish clear accountability. Through these examples, you'll see how deliberate influence – built on evidence, not authority – enables alignment and delivery in complex matrix environments.",
         "startTime": "",
         "endTime": "",
-        "abstract": "Project leads often face situations where technical, operational, and regulatory teams have competing priorities. This presentation explores three pivotal moments \u2014 disagreement on approach in a first End-to-End R NDA submission, coordinating sequential readouts within a tight timeline on the same molecule, and adapting to mid-stream regulatory changes during a peak-paced pivotal molecule \u2014 and reveals the influencing techniques that transformed potential roadblocks into strategic wins. Underlying each case are five core moves: understand stakeholder concerns, offer concrete mitigation, create protective mechanisms, maintain transparency, and establish clear accountability.",
         "speakers": [
           "jingyuan-chen"
         ]
@@ -594,9 +695,9 @@
       {
         "id": "t-4b-3",
         "title": "Power Players: Statisticians as Strategic Drug Developers",
+        "abstract": "We believe that statisticians should play a broader role in drug development, beyond our traditional roles and deliverables, by bringing our rigorous and unbiased perspective to strategic decision-making under uncertainty. This requires a deep understanding of both the development strategy and the cross-functional implications. Molecule strategy draws on the overall company context and pipeline strategy, but is grounded in the biology, pharmacology, regulatory space, competitive landscape, and unmet medical need of the specific molecule and indication. Understanding cross-functional roles and needs requires deep knowledge about the end to end drug development process and curiosity and compassion about all functions involved and the challenges and constraints they face. Additionally, statisticians need to build leadership skills in relationships, active listening, and influencing, acknowledging that the best outcome for the molecule and the patient is not necessarily optimal for each individual functional group. Although this broader role can seem daunting and even unrealistic for statisticians currently in a more technical role, taking this step allows us to maximize our impact while engaging with a fascinating set of partners and issues. We will share our personal experiences and perspectives about how statisticians in biopharma can reach our ultimate potential.",
         "startTime": "",
         "endTime": "",
-        "abstract": "We believe that statisticians should play a broader role in drug development, beyond our traditional roles and deliverables, by bringing our rigorous and unbiased perspective to strategic decision-making under uncertainty. This requires a deep understanding of both the development strategy and the cross-functional implications, and statisticians need to build leadership skills in relationships, active listening, and influencing. We will share our personal experiences and perspectives about how statisticians in biopharma can reach our ultimate potential.",
         "speakers": [
           "cornelia-irl",
           "james-reimann"

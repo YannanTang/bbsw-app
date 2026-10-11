@@ -162,7 +162,7 @@
   },
   {
     "id": "keynote-1",
-    "title": "Keynote 1: Patrick Loerch",
+    "title": "Day 1 Keynote: Patrick Loerch",
     "track": "Plenary",
     "date": "2026-11-05",
     "startTime": "9:00 AM",
@@ -533,7 +533,7 @@
   },
   {
     "id": "keynote-2",
-    "title": "Keynote 2: Daniela Ferrara",
+    "title": "Day 2 Keynote: Daniela Ferrara",
     "track": "Plenary",
     "date": "2026-11-06",
     "startTime": "9:00 AM",
@@ -546,7 +546,7 @@
     "talks": [
       {
         "id": "keynote-2-talk",
-        "title": "Keynote 2",
+        "title": "Day 2 Keynote",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
         "abstract": "",

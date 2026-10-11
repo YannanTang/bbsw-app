@@ -162,7 +162,7 @@
   },
   {
     "id": "keynote-1",
-    "title": "Keynote 1: Patrick Loerch",
+    "title": "Day 1 Keynote: Patrick Loerch",
     "track": "Plenary",
     "date": "2026-11-05",
     "startTime": "9:00 AM",
@@ -175,10 +175,10 @@
     "talks": [
       {
         "id": "keynote-1-talk",
-        "title": "Keynote 1",
+        "title": "Data Science in Transition: The AI-Driven Evolution of Roles in Biopharma",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
-        "abstract": "",
+        "abstract": "Every role evolves, and the biostatistician may need to evolve faster than ever. The role grew around scarce skills and regulatory accountability, which put biostatistics at the center of trial design, inference and regulatory defense. Past innovations such as genomics, electronic health records and cloud computing each changed one capability at a time over about a decade. They had only a marginal effect on the biostatistician's role. Instead, they expanded other data science fields in biopharma, including bioinformatics, epidemiology and pharmacometrics. AI changes everything at once. It is reliable for programming but much less so for methodology and framing the business question, yet it sounds equally confident everywhere. At the same time, FDA, EMA and ICH guidance is opening the door to AI, real-world evidence, Bayesian methods and model-informed drug development, provided the evidence is credible for its intended use. That is a statistical question. Together, these shifts are blurring the boundaries between roles and bringing other disciplines, such as pharmacometrics and epidemiology, into generating evidence for regulatory approval. Unlike past innovations, this one will change the biostatistician's role far more. The question is how the role will adapt, and whether biostatisticians will be proactive or reactive. Being proactive means two things: bringing statistical rigor to AI and/or moving into the edges where roles overlap and evidence for approval is increasingly being produced.",
         "speakers": [
           "patrick-loerch"
         ]
@@ -533,7 +533,7 @@
   },
   {
     "id": "keynote-2",
-    "title": "Keynote 2: Daniela Ferrara",
+    "title": "Day 2 Keynote: Daniela Ferrara",
     "track": "Plenary",
     "date": "2026-11-06",
     "startTime": "9:00 AM",
@@ -546,7 +546,7 @@
     "talks": [
       {
         "id": "keynote-2-talk",
-        "title": "Keynote 2",
+        "title": "Day 2 Keynote",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
         "abstract": "",

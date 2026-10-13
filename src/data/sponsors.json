@@ -152,6 +152,14 @@
     "description": "Cytel is a global leader in cutting-edge analytical solutions, quantitative methods, and innovative statistical software for the life sciences industry. For nearly four decades, Cytel has pioneered adaptive trial design, using data-driven insights to inform strategy across all phases of drug development and commercialization. Cytel continues to drive innovation in clinical research by accelerating drug development, improving success rates, and delivering better patient outcomes. Headquartered in Cambridge, Massachusetts, Cytel has more than 2,000 employees worldwide."
   },
   {
+    "id": "d-wise",
+    "name": "d-wise",
+    "tier": "Gold",
+    "logo": "/sponsors/d-wise.png",
+    "website": "https://www.d-wise.com/",
+    "description": "For over two decades, d-wise has been a trusted partner to the pharmaceutical and biotech industries, delivering both small to enterprise class clinical analysis computing environments that organizations rely on to drive critical research and development initiatives. Since our founding in 2003, we’ve built a reputation as a household name in pharmaceutical known for reliability, compliance expertise, and deep industry knowledge.\n\nWe understand the unique demands of modern drug discovery, clinical trials, and regulatory submissions. With a proven track record of supporting mission-critical workflows, d-wise has earned the trust of the industry’s most demanding organizations through consistent performance, robust security, and unwavering commitment to our customers’ success.\n\nToday, d-wise continues to set the standard in life sciences, combining decades of experience with innovative solutions that enable our clients to accelerate research, optimize operations, and scale confidently as they advance the next generation of therapeutics."
+  },
+  {
     "id": "ephicacy",
     "name": "Ephicacy",
     "tier": "Gold",
@@ -285,7 +293,7 @@
     "tier": "Gold",
     "logo": "/sponsors/taimei-technology.png",
     "website": "https://en.taimei.com/en/",
-    "description": "Taimei Technology is a digital intelligence platform dedicated to transforming the life sciences industry. We provide end-to-end technology solutions across the entire product lifecycle—from drug R&D and pharmacovigilance to marketing and sales. By leveraging AI, big data, cloud computing, and mobile Internet technologies, we connect all stakeholders in the ecosystem, enabling seamless digitalization and intelligent operations."
+    "description": "About Taimei Technology\n\nTaimei Technology (02576.HK) is a leading AI-powered drug clinical development platform, serving the pharmaceutical R&D, pharmacovigilance, and marketing sectors.\n\nGuided by the core philosophy of AI for Success, Taimei combines full-stack AI capabilities with over a decade of deep domain expertise in drug clinical development. The company has developed a proprietary vertical-specific large language model integrated with dynamic learning algorithms, giving rise to the \"Wensi\" AI Platform. This platform delivers trusted, usable, and perceivable AI agents and end-to-end AI-powered solutions to customers worldwide, empowering high-quality industry development and enabling faster, more successful new drug development.\n\nHeadquartered in China with a global vision, Taimei Technology operates branch offices in the United States, Singapore and Korea. The company has provided digital and intelligent solutions to over 1,600 pharmaceutical companies and CROs, with users across more than 30 countries and regions, while maintaining a leading market share for its core products in China."
   },
   {
     "id": "the-lotus-group",
@@ -349,7 +357,7 @@
     "tier": "Silver",
     "logo": "/sponsors/denali-therapeutics.png",
     "website": "https://www.denalitherapeutics.com",
-    "description": "REACH FOR THE SUMMIT\n\nDenali Therapeutics is dedicated to defeating neurodegenerative diseases by breaking through historical barriers in scientific research and clinical development with the goal of delivering safe and effective medicines to patients and families. Our scientific approach is based on three core principles: rigorous assessment of genetic targets, engineering brain delivery, and using biomarkers to guide development.\n\nWe invite you to learn more at www.denalitherapeutics.com\n\nOur team thrives in a work environment that is scientifically driven, impact-focused, supportive, and collaborative. Our ability to have a positive impact on people’s lives is directly related to the trust we have in each other and our ability to unify our diverse backgrounds and experiences behind our purpose to defeat degeneration."
+    "description": "Denali Therapeutics Inc. is a biotechnology company pioneering a new class of biotherapeutics designed to cross the blood-brain barrier (BBB) using its proprietary TransportVehicle™ platform. With the first FDA-approved biologic specifically designed to cross the BBB, a clinically validated delivery platform and a growing portfolio of therapeutic candidates across all stages of development, Denali is advancing toward its goal of delivering effective medicines to transform life for people with neurodegenerative diseases, lysosomal storage disorders and other serious diseases. For more information, please visit www.denalitherapeutics.com."
   },
   {
     "id": "exelixis",

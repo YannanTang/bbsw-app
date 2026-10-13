@@ -542,6 +542,11 @@ main {
   max-height: calc(40px * 0.82);
 }
 
+/* Genentech artwork includes generous whitespace; enlarge only its banner image. */
+.sponsor-banner-logo[data-sponsor="genentech"] img {
+  max-height: 54px;
+}
+
 .sponsor-banner-logo img[hidden],
 .sponsor-banner-fallback[hidden] { display: none; }
 

@@ -540,7 +540,9 @@
     "endTime": "9:00 AM",
     "room": "",
     "description": "",
-    "chairs": [],
+    "chairs": [
+      "ning-leng"
+    ],
     "talks": []
   },
   {

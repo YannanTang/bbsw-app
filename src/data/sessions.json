@@ -532,6 +532,20 @@
     "talks": []
   },
   {
+    "id": "opening-day2",
+    "title": "Opening",
+    "track": "Plenary",
+    "date": "2026-11-06",
+    "startTime": "8:45 AM",
+    "endTime": "9:00 AM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "ning-leng"
+    ],
+    "talks": []
+  },
+  {
     "id": "keynote-2",
     "title": "Day 2 Keynote: Daniela Ferrara",
     "track": "Plenary",

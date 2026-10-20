@@ -1,0 +1,42 @@
+---
+// Speaker card that expands in place to show the bio (and, in the directory, their sessions) instead of opening a separate page.
+import sessions from "../data/sessions.json";
+
+type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
+type Session = { id: string; title: string; chairs: string[]; talks: { title: string; speakers: string[] }[] };
+const { sp, withSessions = false, showTitle = true } = Astro.props as { sp: Speaker; withSessions?: boolean; showTitle?: boolean };
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+const meta = showTitle ? [sp.title, sp.affiliation].filter(Boolean).join(" · ") : sp.affiliation;
+const theirSessions = withSessions
+  ? (sessions as Session[])
+      .map((s) => {
+        const roles: string[] = [];
+        if (s.chairs.includes(sp.id)) roles.push("Chair");
+        if (s.talks.some((t) => t.speakers.includes(sp.id))) roles.push("Speaker");
+        return { s, roles };
+      })
+      .filter((x) => x.roles.length > 0)
+  : [];
+---
+<details class="speaker-card">
+  <summary>
+    <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
+    <div>
+      <strong>{sp.name}</strong>
+      {meta && <div class="meta">{meta}</div>}
+    </div>
+  </summary>
+  <div class="speaker-more">
+    {sp.bio ? sp.bio.split("\n\n").map((para) => <p>{para}</p>) : <p class="meta">Bio coming soon.</p>}
+    {sp.linkedin && <p><a href={sp.linkedin} target="_blank" rel="noopener">{sp.linkedin.includes("linkedin.com") ? "LinkedIn" : "Website"}</a></p>}
+    {theirSessions.length > 0 && (
+      <ul class="speaker-sessions">
+        {theirSessions.map(({ s, roles }) => (
+          <li><a href={link(`sessions/${s.id}`)}>{s.title}</a> <span class="tag accent">{roles.join(" · ")}</span></li>
+        ))}
+      </ul>
+    )}
+  </div>
+</details>

@@ -547,5 +547,23 @@
     "bio": "",
     "photo": "",
     "linkedin": ""
+  },
+  {
+    "id": "jeff-dickinson",
+    "name": "Jeff Dickinson",
+    "title": "",
+    "affiliation": "Navitas Data Sciences",
+    "bio": "Expert in applied AI for biometrics and statistical programming.",
+    "photo": "/speakers/jeff-dickinson.jpg",
+    "linkedin": ""
+  },
+  {
+    "id": "philip-bowsher",
+    "name": "Philip Bowsher",
+    "title": "",
+    "affiliation": "Posit",
+    "bio": "Solutions architect and educator, focused on Posit tooling and AI for analytics at scale.",
+    "photo": "/speakers/philip-bowsher.jpg",
+    "linkedin": ""
   }
 ]

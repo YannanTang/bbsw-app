@@ -21,8 +21,9 @@ type Block = { heading: string; paragraphs?: string[]; items?: { title: string; 
 type Workshop = {
   facts: string[]; details: { label: string; value: string }[];
   registration?: { label: string; url: string };
+  instructors?: string[];
   sections: Block[]; agendaIntro?: string;
-  agenda: { time: string; title: string; text: string }[];
+  agenda: { time: string; title: string; text: string; lead?: string }[];
   after: Block[]; closing?: string;
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
@@ -38,6 +39,7 @@ const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boo
 
 const chairs = lookup(session.chairs);
 const ws = session.workshop;
+const instructors = lookup(ws?.instructors ?? []);
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 ---
@@ -57,13 +59,29 @@ const dayLabel = (iso: string) =>
       </dl>
       {ws.registration && <a class="install-btn" href={ws.registration.url} target="_blank" rel="noopener">{ws.registration.label}</a>}
       {ws.sections.map((b) => <WsBlock b={b} />)}
+      {instructors.length > 0 && (
+        <>
+          <h2>Your Instructors</h2>
+          <div class="grid">
+            {instructors.map((sp) => (
+              <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
+                <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
+                <div>
+                  <strong>{sp.name}</strong>
+                  <div class="meta">{sp.affiliation}</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
       <h2>What the session looks like</h2>
       {ws.agendaIntro && <p>{ws.agendaIntro}</p>}
       <ol class="ws-agenda">
         {ws.agenda.map((a) => (
           <li class={a.text ? "" : "is-break"}>
             <span class="time">{a.time}</span>
-            <div><strong>{a.title}</strong>{a.text && <p>{a.text}</p>}</div>
+            <div><strong>{a.title}</strong>{a.text && <p>{a.text}</p>}{a.lead && <p class="meta">Led by {a.lead}</p>}</div>
           </li>
         ))}
       </ol>

@@ -7,7 +7,7 @@
     "startTime": "",
     "endTime": "",
     "room": "Genentech Campus, South San Francisco",
-    "description": "Move beyond prompt-by-prompt coding. Learn how to build AI-assisted workflows that are structured, testable, traceable, and useful in real biometrics work.",
+    "description": "Move beyond one-off prompting and learn how to use agentic AI with Posit tooling to build practical, governed workflows for real biometrics challenges, from ADaM spec-to-code to research tooling and more.",
     "chairs": [
       "anqi-zhu"
     ],
@@ -17,6 +17,7 @@
         "3 hours",
         "In person",
         "Hands-on throughout",
+        "Preconfigured environment from Posit",
         "Designed for mixed technical skill levels"
       ],
       "details": [
@@ -26,7 +27,7 @@
         },
         {
           "label": "Registration",
-          "value": "Separate from the main conference. Register by Oct 20."
+          "value": "Separate from the main conference. Register by Oct 20, 11:59 PM PT."
         },
         {
           "label": "Fee",
@@ -77,14 +78,10 @@
       "agendaIntro": "A build-along workshop: see the pattern, use it, then apply it to a problem of your own.",
       "agenda": [
         {
-          "time": "1:30–1:45 PM",
-          "title": "Start with a live build",
-          "text": "Watch an idea move from plain-language intent to a working prototype. The focus is on the workflow, not typing speed."
-        },
-        {
-          "time": "1:45–2:15 PM",
-          "title": "Agentic coding fundamentals",
-          "text": "Build the mental model: intent over syntax, structured prompting, review loops, and trust-but-verify."
+          "time": "1:30–2:15 PM",
+          "title": "Live build and agentic coding fundamentals",
+          "text": "From idea to working prototype in minutes. Watch plain-language intent become a working prototype, then build the mental model: intent over syntax, structured prompting, review loops, and trust-but-verify.",
+          "lead": "Philip Bowsher (Posit)"
         },
         {
           "time": "2:15–2:25 PM",
@@ -93,8 +90,9 @@
         },
         {
           "time": "2:25–2:55 PM",
-          "title": "Harness engineering",
-          "text": "Translate a task into a specification, acceptance checks, tests, and guardrails that constrain the model."
+          "title": "Harness engineering (specs, checks, agent skills)",
+          "text": "Make AI output reliable and traceable. Translate a task into a specification, acceptance checks, tests, agent skills, and guardrails that constrain the model.",
+          "lead": "Jeff Dickinson (Navitas Data Sciences)"
         },
         {
           "time": "2:55–3:05 PM",
@@ -103,25 +101,22 @@
         },
         {
           "time": "3:05–3:35 PM",
-          "title": "Loop engineering",
-          "text": "Connect generation, checking, and refinement into a repeatable workflow. See how MCP and programmatic LLM interfaces can support the loop."
+          "title": "Loop engineering (MCP, ellmer)",
+          "text": "Automate the generate → check → refine cycle, using MCP and programmatic LLM interfaces to support the loop.",
+          "lead": "Philip Bowsher (Posit)"
         },
         {
-          "time": "3:35–4:15 PM",
-          "title": "Integration sprint",
-          "text": "Apply the full pattern to the anchor biometrics example or adapt it to your own research-tooling idea."
-        },
-        {
-          "time": "4:15–4:30 PM",
-          "title": "Showcase + takeaways",
-          "text": "Compare approaches, surface limitations, and leave with patterns you can reuse after the workshop."
+          "time": "3:35–4:30 PM",
+          "title": "Integration sprint and showcase",
+          "text": "Apply the full workflow to the anchor biometrics example or your own idea, then compare approaches and leave with patterns you can reuse.",
+          "lead": "Jeff Dickinson & Philip Bowsher"
         }
       ],
       "after": [
         {
           "heading": "Tooling you will see",
           "paragraphs": [
-            "The demonstrations will use Posit tooling and open-source components for practical LLM-assisted development, including Positron, Posit Assistant, Model Context Protocol (MCP), and ellmer. The emphasis is on transferable workflow patterns rather than dependence on one specific tool."
+            "The demonstrations will use Posit tooling and open-source components for practical LLM-assisted development: Positron (an AI-enabled, polyglot IDE), Posit Assistant (AI coding assistance), agent skills (custom tools for domain tasks), Model Context Protocol (MCP, secure tool integration), and ellmer. A preconfigured environment from Posit is provided so you can get started quickly. The emphasis is on transferable workflow patterns rather than dependence on one specific tool."
           ]
         },
         {
@@ -136,14 +131,19 @@
         {
           "heading": "Example applications",
           "bullets": [
-            "ADaM spec-to-code with validation",
-            "Clinical trial design optimization loops",
-            "Traceable tables, dashboards, and visualizations",
-            "Bioinformatics / pipeline QC and failure triage"
+            "ADaM spec-to-code",
+            "Interactive visualizations with traceability",
+            "Clinical trial design optimization",
+            "Portfolio-level analysis and prediction",
+            "Bioinformatics pipeline QC"
           ]
         }
       ],
-      "closing": "The goal is not autonomous production code. The goal is a better-engineered collaboration between people, models, specifications, and checks."
+      "closing": "The goal is not autonomous production code. The goal is a better-engineered collaboration between people, models, specifications, and checks.",
+      "instructors": [
+        "jeff-dickinson",
+        "philip-bowsher"
+      ]
     }
   },
   {

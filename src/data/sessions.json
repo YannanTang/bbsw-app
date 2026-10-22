@@ -269,59 +269,13 @@
     "talks": []
   },
   {
-    "id": "fda-guidances-bayesian",
-    "title": "Parallel Session #1a: Navigating the Shifting Regulatory Environment: The Future of Demonstrating Evidence of Effectiveness",
-    "track": "Statistical Methods",
-    "date": "2026-11-05",
-    "startTime": "2:00 PM",
-    "endTime": "3:30 PM",
-    "room": "",
-    "description": "",
-    "chairs": [
-      "christina-rabe",
-      "tony-jiang"
-    ],
-    "talks": [
-      {
-        "id": "t-1a-1",
-        "title": "Substantial Evidence of Effectiveness",
-        "abstract": "FDA's 2026 Revised Draft Guidance on Substantial Evidence of Effectiveness (SEE) represents a significant update to the agency's interpretation of the evidentiary standard governing drug approval under Section 505(d) of the Federal Food, Drug, and Cosmetic Act. This presentation provides an accessible overview of the guidance and its implications for drug development. The 2026 draft broadens the pathway of one adequate and well-controlled (AWC) trial plus confirmatory evidence (CE) beyond rare disease and unmet-need settings, focusing evaluation on the overall strength and persuasiveness of the evidence. The presentation covers the legislative history of the SEE standard, the three primary approaches to demonstrating SEE, factors affecting evidentiary strength, the role of regulatory flexibility for rare and severe diseases, and the importance of integrating safety planning with effectiveness planning. Key guidance for sponsors includes the value of early FDA engagement and the principle that a single typical successful AWC trial, without strong CE, is not sufficient for approval.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "mark-rothmann"
-        ]
-      },
-      {
-        "id": "t-1a-2",
-        "title": "Overview of the FDA Draft Guidance on Bayesian methods in Clinical Trials of Drug and Biological Products",
-        "abstract": "In January 2026, FDA published the draft guidance “Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products” to address a commitment under the seventh iteration of the Prescription Drug User Fee Act (PDUFA). The guidance discusses examples of where Bayesian methods have been used, considerations for success criteria, operating characteristics, prior distributions, missing data, computation and documentation.\nIn this presentation, I will review some of the key topics from the guidance and discuss the implications of the provided advice.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "james-travis"
-        ]
-      },
-      {
-        "id": "t-1a-3",
-        "title": "The Design of Bayesian Confirmatory Trials",
-        "abstract": "The new draft Bayesian guidance and ICH E20 have highlighted the potential role of Bayesian analyses in confirmatory trials. In this talk I will provide examples of Bayesian confirmatory trials, highlighting what these trials and results look like and highlighting the process of getting to an agreement on the trial design. Examples will be provided where adaptive design approaches are utilized, Bayesian borrowing from previous trials is utilized, and where prospective borrowing across subgroups is utilized. The focus will be on actual examples and the differences of the Bayesian approaches highlighted.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "jessica-overbey"
-        ]
-      }
-    ]
-  },
-  {
     "id": "adoption-collective",
-    "title": "Parallel Session #1b: The Adoption Collective: Fostering a Community for Practical AI",
+    "title": "Parallel Session #1a: The Adoption Collective: Fostering a Community for Practical AI",
     "track": "Data Science & AI",
     "date": "2026-11-05",
     "startTime": "2:00 PM",
     "endTime": "3:30 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "anqi-zhu",
@@ -329,7 +283,7 @@
     ],
     "talks": [
       {
-        "id": "t-1b-1",
+        "id": "t-1a-1",
         "title": "Perspectives for Responsible Artificial Intelligence: Balancing Innovation and Accountability",
         "abstract": "Artificial intelligence (AI) is rapidly transforming how organizations operate, make decisions, and deliver outcomes — yet its responsible deployment remains one of the most pressing challenges of our time. This presentation explores perspectives on what it means to use AI responsibly.\n\nCentral themes include the importance of human oversight in AI-assisted decision-making, the need for transparency and explainability in how AI systems reach conclusions, and the critical role of bias mitigation in ensuring consistent performance across diverse populations. The presentation also addresses the evolving risk landscape introduced by more autonomous AI architectures as these systems grow in capability and complexity.\n\nOf particular relevance to medical device sponsors are practical questions emerging at the intersection of AI capability and regulatory expectation. These include whether AI tools may be appropriately used to generate regulatory submissions, study designs, or reports submitted to the FDA; how devices can be designed to continuously incorporate new real-world data to prevent algorithmic drift while remaining within established regulatory boundaries; and whether prior device validation data or samples may be sequestered and reused in future validations of modified algorithms. Each of these questions reflects a broader tension between the iterative, adaptive nature of AI technology and the evidentiary standards required to demonstrate safety and effectiveness throughout a device's lifecycle.\n\nUltimately, responsible AI requires ongoing collaboration between technologists, domain experts, regulators, and the public to ensure that AI serves as a tool that safely augments human decision-making. Sponsors are encouraged to engage early and often with the FDA to navigate these questions within the evolving regulatory framework.",
         "startTime": "",
@@ -339,7 +293,7 @@
         ]
       },
       {
-        "id": "t-1b-2",
+        "id": "t-1a-2",
         "title": "Building Communities to drive impact through grassroot AI adoption",
         "abstract": "We at Boehringer Ingelheim's Global Biostatistics and Data Sciences organization are navigating a shift from grassroots AI experimentation toward more coordinated, strategic capability building. Individual practitioners have been testing large language models for tasks like specification generation and metadata resolution, while broader organizational efforts are taking shape around a centralized, trustworthy data and AI foundation, decision-support tools for trial design, and structured-authoring capabilities that reduce manual documentation effort. This talk explores how these threads — small-scale practitioner experiments and larger strategic investments — are converging, what we've learned about where AI genuinely accelerates work versus where rigorous programming logic still matters, and the cultural, technical, and governance considerations involved in scaling AI adoption responsibly across a large pharmaceutical R&D organization.",
         "startTime": "",
@@ -349,7 +303,7 @@
         ]
       },
       {
-        "id": "t-1b-3",
+        "id": "t-1a-3",
         "title": "Ask, and Be Asked: Building an AI Community by Inviting Others to Shape the Work",
         "abstract": "There are many ways to foster a community around practical AI - training sessions, top- down rollouts, and shared tool libraries. We explore a simpler path: invite people to shape the work itself and let their questions change both the problem and the solution. Speaking from two vantage points - an SME grounded in statistical thinking and an AI strategist—we follow an evidence-synthesis tool as it moves from a personal prototype toward cross-functional use. The experience reveals a skill most of us practice only halfway. Prompting is usually framed as asking AI better questions; the harder habit is learning to be questioned - by the tool, by colleagues, and by perspectives outside our own. We will share the questions that help determine whom to involve, what must remain under human judgment, and when an experiment is ready to grow. Our premise: practical AI communities form not around finished tools, but around shared ownership of the questions that shape them.",
         "startTime": "",
@@ -360,13 +314,59 @@
         ]
       },
       {
-        "id": "t-1b-4",
+        "id": "t-1a-4",
         "title": "Beyond the AI Demo: A Community Effort to Build Pharma Skills and Benchmarks",
         "abstract": "The R Consortium Pharma Skills effort brings the community together to build reusable AI skills for pharmaceutical R&D—and, just as importantly, the benchmark cases needed to know when those skills can be trusted.\n\nBy combining domain expertise, open collaboration, and shared evaluation, the initiative aims to move pharma AI beyond one-off demos toward a community-built foundation that can be tested, improved, and scaled together.",
         "startTime": "",
         "endTime": "",
         "speakers": [
           "ning-leng"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fda-guidances-bayesian",
+    "title": "Parallel Session #1b: Navigating the Shifting Regulatory Environment: The Future of Demonstrating Evidence of Effectiveness",
+    "track": "Statistical Methods",
+    "date": "2026-11-05",
+    "startTime": "2:00 PM",
+    "endTime": "3:30 PM",
+    "room": "Marco Polo Room",
+    "description": "",
+    "chairs": [
+      "christina-rabe",
+      "tony-jiang"
+    ],
+    "talks": [
+      {
+        "id": "t-1b-1",
+        "title": "Substantial Evidence of Effectiveness",
+        "abstract": "FDA's 2026 Revised Draft Guidance on Substantial Evidence of Effectiveness (SEE) represents a significant update to the agency's interpretation of the evidentiary standard governing drug approval under Section 505(d) of the Federal Food, Drug, and Cosmetic Act. This presentation provides an accessible overview of the guidance and its implications for drug development. The 2026 draft broadens the pathway of one adequate and well-controlled (AWC) trial plus confirmatory evidence (CE) beyond rare disease and unmet-need settings, focusing evaluation on the overall strength and persuasiveness of the evidence. The presentation covers the legislative history of the SEE standard, the three primary approaches to demonstrating SEE, factors affecting evidentiary strength, the role of regulatory flexibility for rare and severe diseases, and the importance of integrating safety planning with effectiveness planning. Key guidance for sponsors includes the value of early FDA engagement and the principle that a single typical successful AWC trial, without strong CE, is not sufficient for approval.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "mark-rothmann"
+        ]
+      },
+      {
+        "id": "t-1b-2",
+        "title": "Overview of the FDA Draft Guidance on Bayesian methods in Clinical Trials of Drug and Biological Products",
+        "abstract": "In January 2026, FDA published the draft guidance “Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products” to address a commitment under the seventh iteration of the Prescription Drug User Fee Act (PDUFA). The guidance discusses examples of where Bayesian methods have been used, considerations for success criteria, operating characteristics, prior distributions, missing data, computation and documentation.\nIn this presentation, I will review some of the key topics from the guidance and discuss the implications of the provided advice.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "james-travis"
+        ]
+      },
+      {
+        "id": "t-1b-3",
+        "title": "The Design of Bayesian Confirmatory Trials",
+        "abstract": "The new draft Bayesian guidance and ICH E20 have highlighted the potential role of Bayesian analyses in confirmatory trials. In this talk I will provide examples of Bayesian confirmatory trials, highlighting what these trials and results look like and highlighting the process of getting to an agreement on the trial design. Examples will be provided where adaptive design approaches are utilized, Bayesian borrowing from previous trials is utilized, and where prospective borrowing across subgroups is utilized. The focus will be on actual examples and the differences of the Bayesian approaches highlighted.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "jessica-overbey"
         ]
       }
     ]
@@ -390,7 +390,7 @@
     "date": "2026-11-05",
     "startTime": "4:00 PM",
     "endTime": "5:30 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "merrill-birkner",
@@ -456,7 +456,7 @@
     "date": "2026-11-05",
     "startTime": "4:00 PM",
     "endTime": "5:30 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "harry-yang",
@@ -589,7 +589,7 @@
     "date": "2026-11-06",
     "startTime": "10:30 AM",
     "endTime": "12:00 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "dong-xi",
@@ -635,7 +635,7 @@
     "date": "2026-11-06",
     "startTime": "10:30 AM",
     "endTime": "12:00 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "sunny-xie",
@@ -746,7 +746,7 @@
     "date": "2026-11-06",
     "startTime": "3:10 PM",
     "endTime": "4:40 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "radia-johnson",
@@ -812,7 +812,7 @@
     "date": "2026-11-06",
     "startTime": "3:10 PM",
     "endTime": "4:40 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "haoda-fu",

@@ -294,8 +294,8 @@
       },
       {
         "id": "t-1a-2",
-        "title": "",
-        "abstract": "",
+        "title": "Overview of the FDA Draft Guidance on Bayesian methods in Clinical Trials of Drug and Biological Products",
+        "abstract": "In January 2026, FDA published the draft guidance “Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products” to address a commitment under the seventh iteration of the Prescription Drug User Fee Act (PDUFA). The guidance discusses examples of where Bayesian methods have been used, considerations for success criteria, operating characteristics, prior distributions, missing data, computation and documentation.\nIn this presentation, I will review some of the key topics from the guidance and discuss the implications of the provided advice.",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -309,7 +309,7 @@
         "startTime": "",
         "endTime": "",
         "speakers": [
-          "scott-berry"
+          "jessica-overbey"
         ]
       }
     ]
@@ -475,8 +475,8 @@
       },
       {
         "id": "t-2b-2",
-        "title": "",
-        "abstract": "",
+        "title": "Digital Twins for Clinical Development: From Prognostic Adjustment to In-Silico Trials",
+        "abstract": "Digital twins have emerged as one of the most promising innovations in clinical development, fueled by advances in machine learning, causal inference, and the growing availability of historical clinical trial and real-world data. While much of the current discussion focuses on digital twins as synthetic controls, their broader value lies in enabling a progression from traditional prognostic adjustment to individualized outcome prediction, virtual evidence generation, and ultimately in-silico trial applications. This presentation will discuss the evolution of digital twins in clinical development and illustrate how digital twin frameworks can be used to address patient heterogeneity, improve treatment effect estimation, support trial design optimization, and inform development decisions across the drug development lifecycle.",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -560,10 +560,10 @@
     "talks": [
       {
         "id": "keynote-2-talk",
-        "title": "Day 2 Keynote",
+        "title": "From Data to Discovery: How Artificial Intelligence Is Transforming Clinical Trials",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
-        "abstract": "",
+        "abstract": "The development of new therapies remains constrained by lengthy timelines, low probabilities of technical and regulatory success, and escalating costs, reflecting persistent inefficiencies across the drug development lifecycle.\n\nArtificial intelligence (AI) is increasingly transforming clinical development, from early-stage research and trial design to clinical trial execution and post-approval evidence generation. By leveraging historical clinical trial data and real-world data, AI-powered approaches can inform critical elements of trial design, including eligibility criteria, patient enrichment strategies, endpoint selection, sample size estimation, and statistical power. AI-enabled endpoints can improve the efficiency, precision, and reproducibility of clinical assessments, while predictive modeling opens new opportunities for innovative trial methodologies, including AI-based covariate adjustment, digital twins, and synthetic control arms. Furthermore, the integration of AI with electronic medical records and clinical imaging enables more efficient patient identification and trial prescreening, while supporting real-world evidence generation throughout the therapeutic product lifecycle.\n\nClinical trials in ophthalmology serve a proving ground for developing and validating these AI-powered approaches. High-resolution, noninvasive retinal imaging generates rich longitudinal datasets that are well suited to quantitative AI analysis.\n\nDrawing on a decade of research in advanced age-related macular degeneration (AMD), this presentation will illustrate how AI-enabled imaging biomarkers, predictive disease modeling, and advanced analytics can inform clinical trial design, conduct, and interpretation.  This presentation will briefly explore oculomics as an emerging frontier in AI-driven biomedical discovery, extending retinal imaging beyond traditional ophthalmic endpoints to reveal novel insights into systemic health and disease. Throughout, the scientific opportunities will be considered alongside the methodological, regulatory, and implementation challenges that must be addressed to translate AI-based innovation into reliable evidence and meaningful improvements in drug development, ultimately improving the outcomes of patients in clinical research and practice.",
         "speakers": [
           "daniela-ferrara"
         ]
@@ -766,7 +766,7 @@
       {
         "id": "t-4a-2",
         "title": "Expansion of trial eligibility for a Phase 3 trial using Clinico-Genomic Real World Data",
-        "abstract": "",
+        "abstract": "Endocrine-resistance classification guides clinical-trial eligibility and first-line treatment selection in hormone receptor-positive (HR+), HER2-negative metastatic breast cancer (mBC). The prevailing definitions of primary and secondary endocrine resistance (ETR) are derived from the ESO–ESMO Advanced Breast Cancer (ABC) consensus guidelines, which assign a resistance category based on the timing of relapse or progression relative to endocrine therapy start/end dates. Both the resistance categories and their underlying relapse-timing cutoffs were established by expert consensus in the guidelines rather than from data. Because this classification is a key eligibility criterion, we conducted a data-driven analysis characterizing these subgroups by comparing comprehensive genomic profiles and real-world outcomes across the guideline categories and across finer relapse-timing subgroups.\n\nWe leveraged two datasets including the Flatiron Health (FH) electronic health record-derived de-identified database and its linked dataset, the FH-Foundation Medicine, Inc. (FMI) clinico-genomic database (CGDB), which combines EHR-derived clinical data with comprehensive genomic profiling. Genomic profiling and real-world outcomes analysis indicate that endocrine resistance behaves as a continuum. Notably, an expanded secondary ETR group that includes patients relapsing between 1-2 years (classified as primary ETR under the ABC guidelines) demonstrates similar genomic profiles and outcomes as the guideline-defined secondary ETR group.\n\nUsing this data-driven definition can result in a potential 26% increase in baseline eligible population over traditional consensus guideline criteria for a secondary ETR trial. This study highlights the role of real-world evidence in modern trial design, showing how data-driven approaches can build on clinical guidelines to better identify the patients most likely to derive benefit and thus expand trial eligibility",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -775,8 +775,8 @@
       },
       {
         "id": "t-4a-3",
-        "title": "",
-        "abstract": "",
+        "title": "Real-World Imaging Biomarkers in Oncology: Onclara IO and Applications in Drug Development",
+        "abstract": "Routine CT scans offer a rich source of information for developing imaging biomarkers in oncology. This presentation will describe Onc.AI’s experience bringing real-world imaging and clinical data together, with a primary focus on Onclara IO and its external validation using Flatiron Health data.\n\nThe Onclara IO case study will follow the path from biomarker development to evaluation in an independent real-world cohort. Presented at ASCO 2026 as the enhanced CT Response Score (eCTRS), the biomarker combines CT-derived imaging and lesion features with age and sex. The retrospective validation included 205 patients with PD-L1-high metastatic non-small cell lung cancer without actionable mutations who received first-line immune checkpoint inhibitor monotherapy. Patients in the favorable biomarker group had longer overall survival, and the association persisted after adjustment for baseline clinical factors. Analyses were conducted by an independent research organization under a locked statistical analysis plan.\n\nThe emphasis will be on practical lessons from this collaboration: assembling an imaging-linked cohort, working with scans acquired across different care settings, and evaluating a model outside its development data. The talk will also place this work within Onc.AI’s broader efforts to use longitudinal imaging biomarkers to support early assessment of treatment activity and inform trial go/no-go decisions. Attendees will see a concrete example of real-world imaging biomarker development and validation, along with emerging applications in oncology research. Onclara IO remains investigational.",
         "startTime": "",
         "endTime": "",
         "speakers": [

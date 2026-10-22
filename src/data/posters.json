@@ -1,16 +1,30 @@
 [
   {
-    "id": "poster-001",
-    "title": "Placeholder Poster Title A",
-    "presenters": ["Presenter Name (TBD)"],
-    "affiliation": "Example Institution",
-    "abstract": "Placeholder abstract for a poster. Real poster entries will be populated after the poster selection committee finalizes accepted submissions."
+    "id": "3",
+    "title": "TLG Agent - An LLM-Powered Framework for Automated Shell-to-Report Generation",
+    "presenters": "Lucie Zhang",
+    "affiliation": "Genentech",
+    "abstract": "The development of clinical Tables, Listings, and Graphs (TLGs) from Statistical Analysis Plan (SAP) shells remains a labor-intensive and error-prone step in statistical programming workflows. Although the pharmaverse ecosystem has improved clinical reporting infrastructure, programmers still manually translate narrative shell specifications into executable R code, introducing inefficiencies, variability across programmers, and increased quality-control burden. To address this challenge, we developed TLG-Agent for clinical research..."
   },
   {
-    "id": "poster-002",
-    "title": "Placeholder Poster Title B",
-    "presenters": ["Presenter Name (TBD)"],
-    "affiliation": "Example Institution",
-    "abstract": "Placeholder abstract."
+    "id": "5",
+    "title": "A Mallows-Centered Latent Ordering Model for the Partial Ordering Continual Reassessment Method in Drug-Combination Trials",
+    "presenters": "Qianyu Dong, Anna Hu, Jianming Wang",
+    "affiliation": "University of California, Santa Cruz",
+    "abstract": "The Partial Ordering Continual Reassessment Method (POCRM) is a model-based design for Phase I clinical trials when the toxicity ordering of treatment combinations is only partially known. POCRM extends the CRM skeleton power model framework by considering multiple plausible toxicity orderings of the treatment combinations. Accurately representing uncertainty across plausible toxicity orderings is important for guiding treatment allocation during the trial..."
+  },
+  {
+    "id": "11",
+    "title": "Combinations of Safety: Unifying Overall Survival Monitoring Strategies via '6 Choose 4'",
+    "presenters": "Paloma Hauser, Godwin Yung",
+    "affiliation": "Genentech",
+    "abstract": "Advances in anticancer therapies have contributed significantly to decreasing death rates in certain disease and clinical settings. However, they have also made it difficult to power a clinical trial in these settings with overall survival (OS) as the primary efficacy endpoint. Therefore, two approaches have recently been proposed for the pre-specified analysis of OS as a safety endpoint..."
+  },
+  {
+    "id": "17",
+    "title": "AI Assisted Code Review for Statistical Programming",
+    "presenters": "Gianna Huang",
+    "affiliation": "Gilead Sciences Inc",
+    "abstract": "Code review is one way of quality control in statistical programming, but it is often labor-intensive and requires significant reviewer effort to verify implementation against data mapping specifications. To improve review efficiency and consistency, we propose an AI-assisted code review framework that automatically evaluates SAS and R programs against approved mapping specifications..."
   }
 ]

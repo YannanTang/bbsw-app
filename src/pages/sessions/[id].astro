@@ -41,6 +41,8 @@ const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
 const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
 
 const chairs = lookup(session.chairs);
+// One talk reads as "Talk" (or "Panel" for the panel session); several read as "Talks".
+const talksHeading = session.talks.length > 1 ? "Talks" : session.track === "Panel" ? "Panel" : "Talk";
 const sponsor = (sponsors as { id: string; name: string; logo: string }[]).find((sp) => sp.id === session.sponsor);
 const ws = session.workshop;
 const instructors = lookup(ws?.instructors ?? []);
@@ -105,10 +107,9 @@ const dayLabel = (iso: string) =>
     </>
   )}
 
-  {!(ws && session.talks.length === 0) && <h2>Talks</h2>}
-  {ws && session.talks.length === 0 ? null : session.talks.length === 0 ? (
-    <p class="meta">Talks for this session will be announced as the program is confirmed.</p>
-  ) : (
+  {/* Breaks, meals and social events have no talks, so the section is left out. */}
+  {session.talks.length > 0 && <h2>{talksHeading}</h2>}
+  {session.talks.length > 0 && (
     session.talks.map((talk) => {
       const talkSpeakers = lookup(talk.speakers);
       return (
@@ -127,4 +128,5 @@ const dayLabel = (iso: string) =>
       );
     })
   )}
+  {session.track === "Posters" && <p><a href={link("posters")}>See all posters →</a></p>}
 </BaseLayout>

@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import sessions from "../../data/sessions.json";
 import speakers from "../../data/speakers.json";
+import sponsors from "../../data/sponsors.json";
 import WsBlock from "../../components/WorkshopBlock.astro";
 import SpeakerCard from "../../components/SpeakerCard.astro";
 
@@ -17,6 +18,7 @@ type Session = {
   startTime: string; endTime: string; room: string; description: string;
   chairs: string[]; talks: Talk[];
   workshop?: Workshop;
+  sponsor?: string;
 };
 type Block = { heading: string; paragraphs?: string[]; items?: { title: string; text: string }[]; bullets?: string[]; note?: string };
 type Workshop = {
@@ -39,6 +41,7 @@ const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
 const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
 
 const chairs = lookup(session.chairs);
+const sponsor = (sponsors as { id: string; name: string; logo: string }[]).find((sp) => sp.id === session.sponsor);
 const ws = session.workshop;
 const instructors = lookup(ws?.instructors ?? []);
 const dayLabel = (iso: string) =>
@@ -52,6 +55,12 @@ const dayLabel = (iso: string) =>
     ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}–${session.endTime}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
     : <p class="meta">Time and room to be announced.</p>}
   {session.description && <p>{session.description}</p>}
+  {sponsor && (
+    <a class="session-sponsor" href={link(`sponsors/${sponsor.id}`)}>
+      <span class="meta">Sponsored by</span>
+      <img src={link(sponsor.logo)} alt={sponsor.name} />
+    </a>
+  )}
   {ws && (
     <>
       <p class="ws-facts">{ws.facts.map((f) => <span class="tag">{f}</span>)}</p>

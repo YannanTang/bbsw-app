@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
 import speakers from "../data/speakers.json";
+import sponsors from "../data/sponsors.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -14,10 +15,12 @@ type Session = {
   id: string; title: string; track: string; date: string;
   startTime: string; endTime: string; room: string; description: string;
   chairs: string[]; talks: Talk[];
+  sponsor?: string;
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
 
 const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
+const sponsorName = new Map((sponsors as { id: string; name: string }[]).map((sp) => [sp.id, sp.name]));
 const names = (ids: string[]) => ids.map((id) => speakerMap.get(id)?.name).filter(Boolean).join(", ");
 
 const all = sessions as Session[];
@@ -96,6 +99,7 @@ const groupSlots = (list: Session[]): Slot[] => {
                   Chair{slot.sessions[0].chairs.length > 1 ? "s" : ""}: {names(slot.sessions[0].chairs)}
                 </div>
               )}
+              {slot.sessions[0].sponsor && <div class="meta">Sponsored by {sponsorName.get(slot.sessions[0].sponsor)}</div>}
             </a>
           )
         )}

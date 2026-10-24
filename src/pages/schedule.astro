@@ -20,7 +20,7 @@ type Session = {
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
 
 const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
-const sponsorName = new Map((sponsors as { id: string; name: string }[]).map((sp) => [sp.id, sp.name]));
+const sponsorMap = new Map((sponsors as { id: string; name: string; logo: string }[]).map((sp) => [sp.id, sp]));
 const names = (ids: string[]) => ids.map((id) => speakerMap.get(id)?.name).filter(Boolean).join(", ");
 
 const all = sessions as Session[];
@@ -92,14 +92,18 @@ const groupSlots = (list: Session[]): Slot[] => {
           ) : (
             <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
               <div class="time">{timeLabel(slot.sessions[0])}</div>
-              <div class="title">{slot.sessions[0].title}</div>
+              <div class="title-row">
+                <div class="title">{slot.sessions[0].title}</div>
+                {slot.sessions[0].sponsor && sponsorMap.get(slot.sessions[0].sponsor) && (
+                  <img class="sponsor-logo" src={link(sponsorMap.get(slot.sessions[0].sponsor)!.logo)} alt={`Sponsored by ${sponsorMap.get(slot.sessions[0].sponsor)!.name}`} />
+                )}
+              </div>
               {slot.sessions[0].track && <span class="tag">{slot.sessions[0].track}</span>}
               {slot.sessions[0].chairs.length > 0 && (
                 <div class="meta">
                   Chair{slot.sessions[0].chairs.length > 1 ? "s" : ""}: {names(slot.sessions[0].chairs)}
                 </div>
               )}
-              {slot.sessions[0].sponsor && <div class="meta">Sponsored by {sponsorName.get(slot.sessions[0].sponsor)}</div>}
             </a>
           )
         )}

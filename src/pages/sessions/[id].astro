@@ -5,6 +5,7 @@ import speakers from "../../data/speakers.json";
 import sponsors from "../../data/sponsors.json";
 import WsBlock from "../../components/WorkshopBlock.astro";
 import SpeakerCard from "../../components/SpeakerCard.astro";
+import RaffleEntry from "../../components/RaffleEntry.astro";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -63,6 +64,7 @@ const dayLabel = (iso: string) =>
       <img src={link(sponsor.logo)} alt={sponsor.name} />
     </a>
   )}
+  <RaffleEntry sessionId={session.id} />
   {ws && (
     <>
       <p class="ws-facts">{ws.facts.map((f) => <span class="tag">{f}</span>)}</p>

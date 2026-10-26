@@ -50,3 +50,21 @@ base: '/',
 ```
 
 …and add a `public/CNAME` file containing `app.bbsw.org`.
+
+## Raffle
+
+End-of-day raffle on Nov 5 and Nov 6. Attendees sign up on the raffle session pages (`/sessions/raffle-day1`, `/sessions/sponsor-talk-closing`); the stage laptop runs the draw at `/raffle-stage` (not linked anywhere).
+
+- **Sign-up is closed until the stage opens it.** When the raffle starts, press **Open sign-up** on the stage screen: it shows a QR code and the day's venue code. Sign-up stays open across draw rounds; press **Close sign-up** after the last one.
+- Sign-up needs the venue code and an email on the registration list. One entry per person per day; the two days are separate draws.
+- Winners must be in the room. **Not here — redraw** marks the winner as not present and draws again. Anyone drawn is out of that day's pool.
+- Rehearse anytime with `/raffle-stage?demo=1` (fake names, no backend).
+
+**Backend (Google Apps Script, bbswtech@bbsw.org):**
+
+1. Create a Google Sheet in the bbswtech@bbsw.org Drive → Extensions → Apps Script → paste `apps-script/raffle.gs` → run `setup()` once.
+2. Paste the registration list into the **Attendees** tab (Email, Name). The name there is what the stage shows.
+3. The **Settings** tab holds `stage_key` (typed once on the stage laptop), `day1_code`/`day2_code` and `day1_open`/`day2_open`. Edit codes there if you like; the stage buttons flip the `_open` values.
+4. Deploy → New deployment → Web app, execute as **Me**, access **Anyone**. Put the `/exec` URL in `src/data/raffle.json` → `endpoint`.
+
+The registration list, codes and stage key live only in the Sheet, never in this repo.

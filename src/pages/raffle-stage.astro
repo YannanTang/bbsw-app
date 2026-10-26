@@ -1,0 +1,433 @@
+---
+// Big-screen raffle draw for the stage. Not linked from the app.
+// Needs the stage key from the raffle Sheet (Settings tab); /raffle-stage?demo=1 rehearses with fake names.
+import raffle from "../data/raffle.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+const sessions = raffle.sessions as Record<string, { day: string; date: string }>;
+const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s }));
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>BBSW 2026 Raffle</title>
+    <link rel="icon" href={link("favicon.svg")} type="image/svg+xml" />
+  </head>
+  <body data-endpoint={raffle.endpoint} data-days={JSON.stringify(days)} data-app-origin="https://app.bbsw.org">
+    <canvas id="confetti" aria-hidden="true"></canvas>
+
+    <header class="bar">
+      <img src={link("bbsw-logo.webp")} alt="BBSW" class="logo" />
+      <div class="bar-controls">
+        <div class="day-tabs" role="tablist"></div>
+        <button id="sound" class="ghost" type="button">Sound: on</button>
+        <button id="fullscreen" class="ghost" type="button">Full screen</button>
+      </div>
+    </header>
+
+    <section id="setup" class="panel" hidden>
+      <h1>Raffle stage</h1>
+      <p>Enter the stage key from the raffle Sheet (Settings tab).</p>
+      <form id="key-form">
+        <input id="key" type="password" autocomplete="off" placeholder="Stage key" />
+        <button type="submit" class="big">Start</button>
+      </form>
+      <p id="setup-error" class="error" hidden></p>
+    </section>
+
+    <main id="stage" hidden>
+      <section id="lobby" class="view">
+        <h1 class="title">End-of-day Raffle</h1>
+        <div id="signup-open" class="lobby-grid" hidden>
+          <div class="qr-card">
+            <div id="qr"></div>
+            <p>Scan to enter</p>
+          </div>
+          <div class="lobby-info">
+            <p class="label">Or open the app → Schedule → Raffle, and use code</p>
+            <p id="code" class="code">····</p>
+            <p class="count"><span id="count">0</span> entered</p>
+          </div>
+        </div>
+        <div id="signup-closed" hidden>
+          <p class="label">Sign-up is closed · <span id="count-closed">0</span> entered</p>
+        </div>
+        <div class="actions">
+          <button id="draw" class="big" type="button">Draw a winner</button>
+          <button id="toggle-signup" class="ghost" type="button">Open sign-up</button>
+        </div>
+        <p class="hint">Press space to draw</p>
+      </section>
+
+      <section id="spin" class="view" hidden>
+        <p class="label">And the winner is…</p>
+        <div class="reel"><span id="reel-name"></span></div>
+      </section>
+
+      <section id="winner" class="view" hidden>
+        <p class="label">Congratulations!</p>
+        <p id="winner-name" class="winner-name"></p>
+        <p class="hint">Please come up to the stage</p>
+        <div class="actions">
+          <button id="next" class="big" type="button">Draw another</button>
+          <button id="absent" class="ghost" type="button">Not here — redraw</button>
+          <button id="back" class="ghost" type="button">Back to sign-up</button>
+        </div>
+      </section>
+
+      <aside id="winners" hidden>
+        <h2>Today's winners</h2>
+        <ol id="winner-list"></ol>
+      </aside>
+      <p id="error" class="error" hidden></p>
+    </main>
+
+    <script>
+      import QRCode from "qrcode";
+
+      type Day = { sessionId: string; day: string; date: string };
+      type Draw = { name: string; status: string; drawRow: number };
+      type Status = { ok: boolean; error?: string; open: boolean; code: string; count: number; names: string[]; draws: Draw[] };
+
+      const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+      const endpoint = document.body.dataset.endpoint!;
+      const days: Day[] = JSON.parse(document.body.dataset.days!);
+      const appOrigin = document.body.dataset.appOrigin!;
+      const params = new URLSearchParams(location.search);
+      const demo = params.has("demo");
+      const KEY_STORE = "bbsw_raffle_stage_key";
+
+      // Default to the day whose window is today (Pacific time), else the first one.
+      const todayPT = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+      let current: Day = days.find((d) => d.date === todayPT) ?? days[0];
+      let key = params.get("key") || (() => { try { return localStorage.getItem(KEY_STORE) || ""; } catch (_) { return ""; } })();
+      let status: Status | null = null;
+      let lastDrawRow = 0;
+      let busy = false;
+      let soundOn = true;
+
+      // ---- Backend (or a fake one for rehearsals) ----
+
+      const DEMO_NAMES = ["Ada Lovelace", "Florence Nightingale", "Ronald Fisher", "Gertrude Cox", "John Tukey", "Grace Wahba",
+        "David Cox", "Bradley Efron", "Janet Norwood", "Jerzy Neyman", "Florence David", "C. R. Rao", "Nan Laird", "Donald Rubin"];
+      const demoDraws: Record<string, Draw[]> = {};
+      const demoOpen: Record<string, boolean> = {};
+
+      async function call(action: string, extra: Record<string, unknown> = {}): Promise<any> {
+        if (demo) return fakeCall(action, extra);
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action, day: current.day, key, ...extra }),
+        });
+        return res.json();
+      }
+
+      function fakeCall(action: string, extra: Record<string, unknown>) {
+        const draws = (demoDraws[current.day] ||= []);
+        if (action === "open" || action === "close") demoOpen[current.day] = action === "open";
+        if (["status", "open", "close"].includes(action)) {
+          return { ok: true, open: !!demoOpen[current.day], code: "DEMO", count: DEMO_NAMES.length, names: DEMO_NAMES, draws };
+        }
+        if (action === "draw") {
+          const pool = DEMO_NAMES.filter((n) => !draws.some((d) => d.name === n));
+          if (!pool.length) return { ok: false, error: "empty" };
+          const name = pool[Math.floor(Math.random() * pool.length)];
+          draws.push({ name, status: "winner", drawRow: draws.length + 2 });
+          return { ok: true, name, drawRow: draws.length + 1 };
+        }
+        if (action === "absent") {
+          const d = draws.find((x) => x.drawRow === extra.drawRow);
+          if (d) d.status = "not present";
+          return { ok: true, draws };
+        }
+      }
+
+      // ---- Views ----
+
+      function show(view: "lobby" | "spin" | "winner") {
+        for (const v of ["lobby", "spin", "winner"]) $(v).hidden = v !== view;
+      }
+
+      function showError(msg: string) {
+        $("error").textContent = msg;
+        $("error").hidden = !msg;
+      }
+
+      function renderDayTabs() {
+        const wrap = document.querySelector(".day-tabs")!;
+        wrap.innerHTML = "";
+        days.forEach((d, i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "ghost" + (d === current ? " active" : "");
+          b.textContent = `Day ${i + 1} · ${new Date(d.date + "T12:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" })}`;
+          b.onclick = () => { if (busy) return; current = d; renderDayTabs(); show("lobby"); refresh(); };
+          wrap.appendChild(b);
+        });
+      }
+
+      function renderWinners() {
+        const list = $("winner-list");
+        list.innerHTML = "";
+        const draws = status?.draws ?? [];
+        draws.forEach((d) => {
+          const li = document.createElement("li");
+          li.textContent = d.name;
+          if (d.status !== "winner") li.className = "absent";
+          list.appendChild(li);
+        });
+        $("winners").hidden = !draws.length;
+      }
+
+      let lastCode = "";
+      async function refresh(action = "status") {
+        try {
+          const s: Status = await call(action);
+          if (!s.ok) {
+            if (s.error === "bad_key") return askKey("That stage key didn't work.");
+            return showError("Couldn't load the raffle.");
+          }
+          status = s;
+          showError("");
+          $("count").textContent = $("count-closed").textContent = String(s.count);
+          $("code").textContent = s.code;
+          $("signup-open").hidden = !s.open;
+          $("signup-closed").hidden = s.open;
+          $("toggle-signup").textContent = s.open ? "Close sign-up" : "Open sign-up";
+          // While sign-up is closed, opening it is the main action.
+          $("toggle-signup").className = s.open ? "ghost" : "big";
+          $("draw").className = s.open ? "big" : "ghost";
+          const qrKey = current.sessionId + s.code;
+          if (s.code !== lastCode || $("qr").dataset.for !== qrKey) {
+            lastCode = s.code;
+            $("qr").dataset.for = qrKey;
+            const url = `${appOrigin}/sessions/${current.sessionId}?code=${encodeURIComponent(s.code)}`;
+            $("qr").innerHTML = await QRCode.toString(url, { type: "svg", margin: 1, color: { dark: "#1a1a1a", light: "#ffffff" } });
+          }
+          renderWinners();
+        } catch (_) {
+          showError("Network error — retrying…");
+        }
+      }
+
+      // ---- The draw ----
+
+      const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+      async function draw() {
+        if (busy) return;
+        busy = true;
+        showError("");
+        try {
+          await refresh();
+          const pool = status?.names?.length ? status.names : ["?"];
+          show("spin");
+          const reel = $("reel-name");
+          // Ask for the winner while the reel spins, so the wait is part of the show.
+          const result = call("draw");
+          const SPIN_MS = 6000;
+          const start = performance.now();
+          let i = Math.floor(Math.random() * pool.length);
+          while (performance.now() - start < SPIN_MS) {
+            const t = (performance.now() - start) / SPIN_MS;
+            reel.textContent = pool[i++ % pool.length];
+            reel.classList.remove("tick");
+            void reel.offsetWidth;
+            reel.classList.add("tick");
+            beep(500 + 400 * t, 0.03);
+            await sleep(45 + 380 * t * t * t); // fast, then slowing down
+          }
+          const out = await result;
+          if (!out.ok) {
+            show("lobby");
+            showError(out.error === "empty" ? "Everyone who signed up has already been drawn." : "The draw didn't go through. Try again.");
+            return;
+          }
+          lastDrawRow = out.drawRow;
+          reel.textContent = out.name;
+          await sleep(500);
+          $("winner-name").textContent = out.name;
+          show("winner");
+          fanfare();
+          confetti();
+          await refresh();
+        } catch (_) {
+          show("lobby");
+          showError("Network error. Check the laptop's connection and try again.");
+        } finally {
+          busy = false;
+        }
+      }
+
+      async function absentAndRedraw() {
+        if (busy || !lastDrawRow) return;
+        busy = true;
+        try { await call("absent", { drawRow: lastDrawRow }); } finally { busy = false; }
+        lastDrawRow = 0;
+        draw();
+      }
+
+      // ---- Sound (Web Audio, no files) ----
+
+      let audio: AudioContext | null = null;
+      function beep(freq: number, dur: number, when = 0, type: OscillatorType = "square", vol = 0.04) {
+        if (!soundOn) return;
+        audio ||= new AudioContext();
+        const o = audio.createOscillator();
+        const g = audio.createGain();
+        o.type = type;
+        o.frequency.value = freq;
+        const t0 = audio.currentTime + when;
+        g.gain.setValueAtTime(vol, t0);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        o.connect(g).connect(audio.destination);
+        o.start(t0);
+        o.stop(t0 + dur);
+      }
+      function fanfare() {
+        [523, 659, 784, 1047].forEach((f, i) => beep(f, i === 3 ? 0.9 : 0.18, i * 0.15, "triangle", 0.12));
+      }
+
+      // ---- Confetti ----
+
+      const canvas = $("confetti") as unknown as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d")!;
+      function confetti() {
+        const W = (canvas.width = innerWidth);
+        const H = (canvas.height = innerHeight);
+        const colors = ["#9b1b30", "#0e7c89", "#f2c14e", "#ffffff", "#e8798b", "#5cc2cc"];
+        const bits = Array.from({ length: 260 }, (_, n) => {
+          const fromLeft = n % 2 === 0;
+          return {
+            x: fromLeft ? 0 : W, y: H * 0.75,
+            vx: (fromLeft ? 1 : -1) * (6 + Math.random() * 12), vy: -(12 + Math.random() * 14),
+            w: 6 + Math.random() * 8, h: 10 + Math.random() * 10,
+            r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.4,
+            c: colors[n % colors.length],
+          };
+        });
+        const end = performance.now() + 5000;
+        (function frame() {
+          ctx.clearRect(0, 0, W, H);
+          for (const b of bits) {
+            b.vy += 0.35; b.vx *= 0.99; b.x += b.vx; b.y += b.vy; b.r += b.vr;
+            ctx.save();
+            ctx.translate(b.x, b.y);
+            ctx.rotate(b.r);
+            ctx.fillStyle = b.c;
+            ctx.fillRect(-b.w / 2, -b.h / 2, b.w, b.h * Math.abs(Math.cos(b.r * 2)));
+            ctx.restore();
+          }
+          if (performance.now() < end) requestAnimationFrame(frame);
+          else ctx.clearRect(0, 0, W, H);
+        })();
+      }
+
+      // ---- Start-up ----
+
+      function askKey(msg = "") {
+        $("stage").hidden = true;
+        $("setup").hidden = false;
+        $("setup-error").textContent = msg;
+        $("setup-error").hidden = !msg;
+      }
+
+      let poller = 0;
+      function start() {
+        $("setup").hidden = true;
+        $("stage").hidden = false;
+        renderDayTabs();
+        show("lobby");
+        refresh();
+        clearInterval(poller);
+        poller = window.setInterval(() => { if (!busy && !$("lobby").hidden) refresh(); }, 5000);
+      }
+
+      $("key-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        key = ($("key") as HTMLInputElement).value.trim();
+        try { localStorage.setItem(KEY_STORE, key); } catch (_) {}
+        start();
+      });
+      $("draw").onclick = draw;
+      $("toggle-signup").onclick = () => { if (!busy) refresh(status?.open ? "close" : "open"); };
+      $("next").onclick = draw;
+      $("absent").onclick = absentAndRedraw;
+      $("back").onclick = () => { show("lobby"); refresh(); };
+      $("sound").onclick = () => { soundOn = !soundOn; $("sound").textContent = `Sound: ${soundOn ? "on" : "off"}`; };
+      $("fullscreen").onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+      document.addEventListener("keydown", (e) => {
+        if (e.code === "Space" && !(e.target instanceof HTMLInputElement) && $("spin").hidden && !$("stage").hidden) {
+          e.preventDefault();
+          draw();
+        }
+      });
+
+      if (!endpoint && !demo) askKey("The raffle isn't connected yet (no endpoint in raffle.json). Add ?demo=1 to rehearse.");
+      else if (key || demo) start();
+      else askKey();
+    </script>
+
+    <style is:global>
+      :root { --crimson: #9b1b30; --teal: #0e7c89; --gold: #f2c14e; }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: #fff;
+        background: radial-gradient(ellipse at 50% 30%, #3a0f1a 0%, #1a0a10 55%, #0c0508 100%);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      [hidden] { display: none !important; }
+      #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+      .bar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+      .logo { height: 72px; background: #fff; padding: 6px 10px; border-radius: 8px; }
+      .bar-controls { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+      .day-tabs { display: flex; gap: 0.5rem; }
+      button { font: inherit; cursor: pointer; }
+      .ghost { background: transparent; color: #f3dfe3; border: 1px solid rgba(255,255,255,0.3); border-radius: 999px; padding: 0.4rem 1rem; }
+      .ghost.active { background: #fff; color: var(--crimson); border-color: #fff; font-weight: 700; }
+      .big { background: var(--gold); color: #2a1208; border: none; border-radius: 999px; padding: 1rem 3rem; font-size: 1.6rem; font-weight: 800; box-shadow: 0 8px 30px rgba(242,193,78,0.35); }
+      .big:hover { filter: brightness(1.05); }
+      .panel { margin: auto; text-align: center; max-width: 30rem; padding: 2rem; }
+      .panel input { font-size: 1.2rem; padding: 0.7rem 1rem; border-radius: 8px; border: none; width: 100%; margin-bottom: 1rem; }
+      #stage { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
+      .view { text-align: center; width: 100%; padding: 0 2rem; }
+      .title { font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.5rem); margin: 0 0 2rem; }
+      .lobby-grid { display: flex; justify-content: center; align-items: center; gap: 4rem; margin-bottom: 2.5rem; }
+      .qr-card { background: #fff; color: #1a1a1a; border-radius: 16px; padding: 1.2rem 1.2rem 0.6rem; font-weight: 700; font-size: 1.3rem; }
+      .qr-card p { margin: 0.3rem 0 0; }
+      #qr svg { width: clamp(200px, 24vw, 340px); height: auto; display: block; }
+      .lobby-info { text-align: left; }
+      .label { font-size: 1.4rem; color: #f3dfe3; margin: 0.4rem 0; }
+      .code { font-size: clamp(4rem, 9vw, 8rem); font-weight: 900; letter-spacing: 0.2em; color: var(--gold); margin: 0; font-family: ui-monospace, Menlo, monospace; }
+      .count { font-size: 2rem; margin: 0.5rem 0; }
+      .count span { font-weight: 800; color: var(--gold); }
+      .hint { color: #c9a9b0; font-size: 1.2rem; }
+      .reel { height: 1.4em; font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 900; overflow: hidden; }
+      .reel span { display: inline-block; }
+      .reel .tick { animation: tick 0.12s ease-out; }
+      @keyframes tick { from { transform: translateY(-35%); opacity: 0.2; filter: blur(4px); } to { transform: none; opacity: 1; filter: none; } }
+      .winner-name {
+        font-size: clamp(4rem, 11vw, 10rem); font-weight: 900; margin: 0.5rem 0 1rem; line-height: 1.1;
+        color: var(--gold); text-shadow: 0 0 40px rgba(242,193,78,0.6);
+        animation: pop 0.8s cubic-bezier(0.2, 1.6, 0.4, 1);
+      }
+      @keyframes pop { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+      .actions { display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap; }
+      #winners { position: absolute; right: 2rem; bottom: 1.5rem; background: rgba(0,0,0,0.35); border-radius: 12px; padding: 0.8rem 1.4rem; max-width: 22rem; }
+      #winners h2 { font-size: 1rem; margin: 0 0 0.3rem; color: #f3dfe3; }
+      #winners ol { margin: 0; padding-left: 1.3rem; font-size: 1.1rem; }
+      #winners .absent { text-decoration: line-through; opacity: 0.5; }
+      .error { color: #ffb4c0; font-size: 1.2rem; text-align: center; }
+      #stage > .error { position: absolute; bottom: 1.5rem; left: 0; right: 0; }
+    </style>
+  </body>
+</html>

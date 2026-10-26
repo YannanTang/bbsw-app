@@ -1,30 +1,135 @@
 [
   {
+    "id": "1",
+    "title": "When Interim Overall Survival Signals Suggest Harm: A Framework for Decision-Making Under Uncertainty",
+    "presenters": "Andrew Mills",
+    "affiliation": "vendor",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "2",
+    "title": "Beyond Structured Data: A Large Language Model Pipeline for Extracting Osteoarthritis Severity and Pain from Clinical Notes",
+    "presenters": "Dazheng Zhang",
+    "affiliation": "industry",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
     "id": "3",
-    "title": "TLG Agent - An LLM-Powered Framework for Automated Shell-to-Report Generation",
-    "presenters": "Lucie Zhang",
-    "affiliation": "Genentech",
-    "abstract": "The development of clinical Tables, Listings, and Graphs (TLGs) from Statistical Analysis Plan (SAP) shells remains a labor-intensive and error-prone step in statistical programming workflows. Although the pharmaverse ecosystem has improved clinical reporting infrastructure, programmers still manually translate narrative shell specifications into executable R code, introducing inefficiencies, variability across programmers, and increased quality-control burden. To address this challenge, we developed TLG-Agent for clinical research..."
+    "title": "A Calibrated Weibull Divide-and-Conquer Power Prior with Event-Driven Stratification for Survival Data",
+    "presenters": "Dehua Bi",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "4",
+    "title": "Cross My TLF's and Dot My I's: An R Package for LLM-Assisted Cross-Checking of Clinical Trial Summary Tables",
+    "presenters": "Diana Lam",
+    "affiliation": "industry",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
   },
   {
     "id": "5",
-    "title": "A Mallows-Centered Latent Ordering Model for the Partial Ordering Continual Reassessment Method in Drug-Combination Trials",
-    "presenters": "Qianyu Dong, Anna Hu, Jianming Wang",
-    "affiliation": "University of California, Santa Cruz",
-    "abstract": "The Partial Ordering Continual Reassessment Method (POCRM) is a model-based design for Phase I clinical trials when the toxicity ordering of treatment combinations is only partially known. POCRM extends the CRM skeleton power model framework by considering multiple plausible toxicity orderings of the treatment combinations. Accurately representing uncertainty across plausible toxicity orderings is important for guiding treatment allocation during the trial..."
+    "title": "AI Assisted Code Review for Statistical Programming",
+    "presenters": "Gianna Huang",
+    "affiliation": "industry",
+    "abstract": "Code review is one way of quality control in statistical programming, but it is often labor-intensive and requires significant reviewer effort to verify implementation against data mapping specifications. To improve review efficiency and consistency, we propose an AI-assisted code review framework that automatically evaluates SAS and R programs against approved mapping specifications..."
+  },
+  {
+    "id": "6",
+    "title": "Modeling Longitudinal Cognition and Brain Volume Using a Mixed-Effects Model for Repeated Measures",
+    "presenters": "Jasper Verma",
+    "affiliation": "high school",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "7",
+    "title": "Towards Autonomous Real-World Evidence Generation: Agentic AI End-to-End Workflows",
+    "presenters": "Jiying Zou",
+    "affiliation": "industry",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "8",
+    "title": "Privacy-Preserving Local Unsupervised Signal Detection in Clinical Laboratory Data Using UMAP, HDBSCAN, and Isolation Forest",
+    "presenters": "Kapil Sardiwal",
+    "affiliation": "industry",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "9",
+    "title": "TLG Agent - An LLM-Powered Framework for Automated Shell-to-Report Generation",
+    "presenters": "Lucie Zhang",
+    "affiliation": "industry",
+    "abstract": "The development of clinical Tables, Listings, and Graphs (TLGs) from Statistical Analysis Plan (SAP) shells remains a labor-intensive and error-prone step in statistical programming workflows. Although the pharmaverse ecosystem has improved clinical reporting infrastructure, programmers still manually translate narrative shell specifications into executable R code, introducing inefficiencies, variability across programmers, and increased quality-control burden. To address this challenge, we developed TLG-Agent for clinical research..."
+  },
+  {
+    "id": "10",
+    "title": "Do Pretreatment Clinical Factors Add Predictive Value Beyond Tumor Mutational Burden for Immunotherapy Response in Metastatic Urothelial Carcinoma?",
+    "presenters": "Mason Chang",
+    "affiliation": "high school",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
   },
   {
     "id": "11",
+    "title": "Adaptive Trial Design - An AI-Enabled Workflow for Study Design Optimization and Stress-Testing",
+    "presenters": "Matan Seidel",
+    "affiliation": "vendor",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "12",
+    "title": "From Feasible to Frictionless: Updates and Collaborative Milestones from the R Consortium Submissions Working Group",
+    "presenters": "Ning Leng",
+    "affiliation": "industry",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "13",
     "title": "Combinations of Safety: Unifying Overall Survival Monitoring Strategies via '6 Choose 4'",
-    "presenters": "Paloma Hauser, Godwin Yung",
-    "affiliation": "Genentech",
+    "presenters": "Paloma Hauser",
+    "affiliation": "industry",
     "abstract": "Advances in anticancer therapies have contributed significantly to decreasing death rates in certain disease and clinical settings. However, they have also made it difficult to power a clinical trial in these settings with overall survival (OS) as the primary efficacy endpoint. Therefore, two approaches have recently been proposed for the pre-specified analysis of OS as a safety endpoint..."
   },
   {
+    "id": "14",
+    "title": "Adaptive Longitudinal K-Means Clustering of PSA Trajectories and Overall Survival in Metastatic Prostate Cancer",
+    "presenters": "Phi Le",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "15",
+    "title": "A Mallows-Centered Latent Ordering Model for the Partial Ordering Continual Reassessment Method in Drug-Combination Trials",
+    "presenters": "Qianyu Dong",
+    "affiliation": "academia",
+    "abstract": "The Partial Ordering Continual Reassessment Method (POCRM) is a model-based design for Phase I clinical trials when the toxicity ordering of treatment combinations is only partially known. POCRM extends the CRM skeleton power model framework by considering multiple plausible toxicity orderings of the treatment combinations. Accurately representing uncertainty across plausible toxicity orderings is important for guiding treatment allocation during the trial..."
+  },
+  {
+    "id": "16",
+    "title": "Prompt Design for Multi-Criteria Variable Extraction: A Case Study of Tumor Grade in Neuroendocrine Neoplasms Using Large Language Models",
+    "presenters": "Qiyun Li",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
     "id": "17",
-    "title": "AI Assisted Code Review for Statistical Programming",
-    "presenters": "Gianna Huang",
-    "affiliation": "Gilead Sciences Inc",
-    "abstract": "Code review is one way of quality control in statistical programming, but it is often labor-intensive and requires significant reviewer effort to verify implementation against data mapping specifications. To improve review efficiency and consistency, we propose an AI-assisted code review framework that automatically evaluates SAS and R programs against approved mapping specifications..."
+    "title": "Predicting Viral Infection From TCR Repertoires Using Sequence Similarity and Graph-Based Features",
+    "presenters": "Richard Adelstein",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "18",
+    "title": "Bayesian Borrowing from Historical Controls under Local Non-exchangeability",
+    "presenters": "Shike Xu",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
+  },
+  {
+    "id": "19",
+    "title": "Automated verification of reproducibility and robustness at scale for biomedical research",
+    "presenters": "Yiqing Xu",
+    "affiliation": "academia",
+    "abstract": "[Please paste the full abstract here from the original spreadsheet]"
   }
 ]

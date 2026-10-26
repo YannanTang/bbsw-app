@@ -8,18 +8,37 @@ const base = import.meta.env.BASE_URL;
   <h1>Poster Sessions</h1>
   <p>Lightning talks and poster viewing take place during the conference.</p>
 
-  <div class="poster-list mt-8">
-    <h2 class="mb-4">Accepted Posters</h2>
+  <div class="poster-list">
+    <h2>Accepted Posters</h2>
     {posters.map((p) => (
-      <div class="poster-card mb-6 p-4 border rounded-lg bg-white shadow-sm">
-        <div class="text-sm font-bold text-gray-500 mb-1">Poster {p.id}</div>
-        <h3 class="text-xl font-bold leading-snug">{p.title}</h3>
-        <div class="text-gray-700 mt-2 font-medium">{p.presenters} · {p.affiliation}</div>
-        <details class="mt-3 group">
-          <summary class="cursor-pointer text-blue-600 font-semibold list-none">Read Abstract ▼</summary>
-          <div class="mt-2 text-sm text-gray-600 leading-relaxed">{p.abstract}</div>
+      <div class="poster-card">
+        <div class="poster-id">Poster {p.id}</div>
+        <h3 class="poster-title">{p.title}</h3>
+        <div class="poster-authors">{p.presenters} · {p.affiliation}</div>
+        <details class="poster-details">
+          <summary class="abstract-toggle">Read Abstract ▼</summary>
+          <div class="abstract-content">{p.abstract}</div>
         </details>
       </div>
     ))}
   </div>
 </BaseLayout>
+
+<style>
+  .poster-list { margin-top: 2rem; }
+  .poster-list h2 { margin-bottom: 1rem; }
+  .poster-card { 
+    margin-bottom: 1.5rem; 
+    padding: 1rem; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 8px; 
+    background: #fff; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+  }
+  .poster-id { font-size: 0.875rem; font-weight: 700; color: #64748b; margin-bottom: 0.25rem; }
+  .poster-title { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; }
+  .poster-authors { color: #334155; margin-top: 0.5rem; font-weight: 500; }
+  .poster-details { margin-top: 0.75rem; }
+  .abstract-toggle { cursor: pointer; color: #2563eb; font-weight: 600; list-style: none; }
+  .abstract-content { margin-top: 0.5rem; font-size: 0.875rem; color: #475569; line-height: 1.6; white-space: pre-wrap; }
+</style>

@@ -13,6 +13,7 @@ const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 type Talk = {
   id: string; title: string; startTime: string; endTime: string;
   abstract: string; speakers: string[];
+  sponsor?: string; // partner demos: the sponsor giving it
 };
 type Session = {
   id: string; title: string; track: string; date: string;
@@ -20,6 +21,7 @@ type Session = {
   chairs: string[]; talks: Talk[];
   workshop?: Workshop;
   sponsor?: string;
+  talksHeading?: string;
 };
 type Block = { heading: string; paragraphs?: string[]; items?: { title: string; text: string }[]; bullets?: string[]; note?: string };
 type Workshop = {
@@ -43,8 +45,9 @@ const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boo
 
 const chairs = lookup(session.chairs);
 // One talk reads as "Talk" (or "Panel" for the panel session); several read as "Talks".
-const talksHeading = session.talks.length > 1 ? "Talks" : session.track === "Panel" ? "Panel" : "Talk";
-const sponsor = (sponsors as { id: string; name: string; logo: string }[]).find((sp) => sp.id === session.sponsor);
+const talksHeading = session.talksHeading ?? (session.talks.length > 1 ? "Talks" : session.track === "Panel" ? "Panel" : "Talk");
+const sponsorList = sponsors as { id: string; name: string; logo: string }[];
+const sponsor = sponsorList.find((sp) => sp.id === session.sponsor);
 const ws = session.workshop;
 const instructors = lookup(ws?.instructors ?? []);
 const dayLabel = (iso: string) =>
@@ -55,7 +58,7 @@ const dayLabel = (iso: string) =>
   <h1>{session.title}</h1>
   {session.track && <p class="tag accent">{session.track}</p>}
   {session.date
-    ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}–${session.endTime}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
+    ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}${session.endTime ? `–${session.endTime}` : ""}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
     : <p class="meta">Time and room to be announced.</p>}
   {session.description && <p>{session.description}</p>}
   {sponsor && (
@@ -112,11 +115,19 @@ const dayLabel = (iso: string) =>
   {/* Breaks, meals and social events have no talks, so the section is left out. */}
   {session.talks.length > 0 && <h2>{talksHeading}</h2>}
   {session.talks.length > 0 && (
-    session.talks.map((talk) => {
+    session.talks.map((talk, i) => {
       const talkSpeakers = lookup(talk.speakers);
+      const talkSponsor = sponsorList.find((sp) => sp.id === talk.sponsor);
       return (
         <div class="talk">
           {talk.startTime && <div class="time">{talk.startTime}{talk.endTime ? `–${talk.endTime}` : ""}</div>}
+          {!talk.startTime && talkSponsor && <div class="time">Demo {i + 1}</div>}
+          {talkSponsor && (
+            <a class="talk-sponsor" href={link(`sponsors/${talkSponsor.id}`)}>
+              {talkSponsor.logo && <img src={link(talkSponsor.logo)} alt="" />}
+              <span>{talkSponsor.name}</span>
+            </a>
+          )}
           <h3>{talk.title || "Talk title to be announced"}</h3>
           {talkSpeakers.length > 0 && (
             <div class="grid">

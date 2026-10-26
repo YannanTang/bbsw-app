@@ -780,6 +780,8 @@ a.install-btn:hover { text-decoration: none; }
 /* "Sponsored by" logo link on a session page */
 .session-sponsor { display: inline-flex; align-items: center; gap: 0.6rem; margin: 0.25rem 0 1rem; padding: 0.5rem 0.75rem; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; text-decoration: none; }
 .session-sponsor .meta { color: var(--color-muted); font-size: 0.9rem; }
+.talk-sponsor { display: inline-flex; align-items: center; gap: 0.6rem; margin: 0.25rem 0 0.1rem; font-weight: 600; color: var(--color-text); }
+.talk-sponsor img { height: 32px; width: auto; max-width: 120px; object-fit: contain; }
 .session-sponsor img { height: 36px; width: auto; max-width: 160px; object-fit: contain; }
 /* Sponsor logo to the right of a session title on the schedule */
 .session-row .title-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }

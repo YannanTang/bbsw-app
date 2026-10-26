@@ -45,7 +45,7 @@ const days = Object.keys(byDate).sort();
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 
-const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}–${s.endTime}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
+const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}${s.endTime ? `–${s.endTime}` : ""}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
 
 // Sessions sharing the same date + start time run in parallel (attendee picks one track).
 type Slot = { time: string; sessions: Session[] };

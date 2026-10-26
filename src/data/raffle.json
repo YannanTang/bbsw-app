@@ -1,0 +1,7 @@
+{
+  "endpoint": "",
+  "sessions": {
+    "raffle-day1": { "day": "day1", "date": "2026-11-05" },
+    "sponsor-talk-closing": { "day": "day2", "date": "2026-11-06" }
+  }
+}

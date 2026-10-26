@@ -103,7 +103,11 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
 
       // Default to the day whose window is today (Pacific time), else the first one.
       const todayPT = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
-      let current: Day = days.find((d) => d.date === todayPT) ?? days[0];
+      const today = days.find((d) => d.date === todayPT);
+      let current: Day = today ?? days[0];
+      // On a raffle day only that day's tab is shown, so nobody draws from the wrong pool.
+      // Demo mode and other days (rehearsals) keep both.
+      const visibleDays = today && !demo ? [today] : days;
       let key = params.get("key") || (() => { try { return localStorage.getItem(KEY_STORE) || ""; } catch (_) { return ""; } })();
       let status: Status | null = null;
       let lastDrawRow = 0;
@@ -161,7 +165,8 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       function renderDayTabs() {
         const wrap = document.querySelector(".day-tabs")!;
         wrap.innerHTML = "";
-        days.forEach((d, i) => {
+        visibleDays.forEach((d) => {
+          const i = days.indexOf(d);
           const b = document.createElement("button");
           b.type = "button";
           b.className = "ghost" + (d === current ? " active" : "");

@@ -1,5 +1,5 @@
 {
-  "endpoint": "",
+  "endpoint": "https://script.google.com/macros/s/AKfycbw3Jij4aIFtgMOfzY_hTAbAPAFU_OPpeUgwBynBKKmApu9kcX1pkEiKUb6L9UBX7ES6/exec",
   "sessions": {
     "raffle-day1": { "day": "day1", "date": "2026-11-05" },
     "sponsor-talk-closing": { "day": "day2", "date": "2026-11-06" }

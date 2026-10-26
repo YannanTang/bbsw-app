@@ -55,7 +55,7 @@ base: '/',
 
 End-of-day raffle on Nov 5 and Nov 6. Attendees sign up on the raffle session pages (`/sessions/raffle-day1`, `/sessions/sponsor-talk-closing`); the stage laptop runs the draw at `/raffle-stage` (not linked anywhere).
 
-- **Sign-up is closed until the stage opens it.** When the raffle starts, press **Open sign-up** on the stage screen: it shows a QR code and the day's venue code. Sign-up stays open across draw rounds; press **Close sign-up** after the last one.
+- **Sign-up is closed until the stage opens it.** When the raffle starts, press **Open sign-up** on the stage screen: it shows a QR code and the day's venue code. Sign-up stays open across draw rounds, with the QR and code in the bottom-left corner of the draw screens so people can join anytime; press **Close sign-up** after the last round.
 - Sign-up needs the venue code and an email on the registration list. One entry per person per day; the two days are separate draws.
 - Winners must be in the room. **Not here — redraw** marks the winner as not present and draws again. Anyone drawn is out of that day's pool.
 - Rehearse anytime with `/raffle-stage?demo=1` (fake names, no backend).

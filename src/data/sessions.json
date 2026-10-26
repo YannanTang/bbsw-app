@@ -527,9 +527,47 @@
     "startTime": "6:30 PM",
     "endTime": "",
     "room": "",
-    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "description": "Dinner with four 15-minute partner demos, in this order.",
     "chairs": [],
-    "talks": []
+    "talks": [
+      {
+        "id": "demo-d1-1",
+        "title": "DesignX: Agentic Workflows for Clinical Trial Designs",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "bayesoft"
+      },
+      {
+        "id": "demo-d1-2",
+        "title": "GxP-Qualified AI for Clinical Statistics: From Protocol to Submission-Ready Outputs in TriClick",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "hill-research"
+      },
+      {
+        "id": "demo-d1-3",
+        "title": "KerusCloud: From Analysis to Influence",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "mms-holdings"
+      },
+      {
+        "id": "demo-d1-4",
+        "title": "TBD",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "sycamore-informatics"
+      }
+    ],
+    "talksHeading": "Partner Demos"
   },
   {
     "id": "opening-day2",
@@ -694,9 +732,47 @@
     "startTime": "1:00 PM",
     "endTime": "2:00 PM",
     "room": "",
-    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "description": "Four 15-minute partner demos.",
     "chairs": [],
-    "talks": []
+    "talks": [
+      {
+        "id": "demo-d2-1",
+        "title": "Model the Disease. Optimize the Trial. How PhaseV would give asset teams the causal steer",
+        "startTime": "1:00 PM",
+        "endTime": "1:15 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "phasev"
+      },
+      {
+        "id": "demo-d2-2",
+        "title": "TBD",
+        "startTime": "1:15 PM",
+        "endTime": "1:30 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "hopeai"
+      },
+      {
+        "id": "demo-d2-3",
+        "title": "You Don’t Have to Be an AI Expert to Bring AI Into Your Daily Work",
+        "startTime": "1:30 PM",
+        "endTime": "1:45 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "q2bi"
+      },
+      {
+        "id": "demo-d2-4",
+        "title": "TrialMind for Biometric Teams",
+        "startTime": "1:45 PM",
+        "endTime": "2:00 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "keiji-ai"
+      }
+    ],
+    "talksHeading": "Partner Demos"
   },
   {
     "id": "leadership-career-development",

@@ -75,10 +75,18 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
         <div class="actions">
           <button id="next" class="big" type="button">Draw another</button>
           <button id="absent" class="ghost" type="button">Not here — redraw</button>
-          <button id="back" class="ghost" type="button">Back to sign-up</button>
+          <button id="finish" class="ghost" type="button">Close sign-up</button>
         </div>
       </section>
 
+      <aside id="corner" hidden>
+        <div id="corner-qr"></div>
+        <div>
+          <p class="corner-title">Join anytime</p>
+          <p id="corner-code" class="corner-code"></p>
+          <p class="corner-count"><span id="corner-count">0</span> entered</p>
+        </div>
+      </aside>
       <aside id="winners" hidden>
         <h2>Today's winners</h2>
         <ol id="winner-list"></ol>
@@ -155,6 +163,12 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
 
       function show(view: "lobby" | "spin" | "winner") {
         for (const v of ["lobby", "spin", "winner"]) $(v).hidden = v !== view;
+        updateCorner();
+      }
+
+      // While sign-up is open, the QR and code stay in a corner during the draw so people can join between rounds.
+      function updateCorner() {
+        $("corner").hidden = !status?.open || !$("lobby").hidden;
       }
 
       function showError(msg: string) {
@@ -199,8 +213,9 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
           }
           status = s;
           showError("");
-          $("count").textContent = $("count-closed").textContent = String(s.count);
-          $("code").textContent = s.code;
+          $("count").textContent = $("count-closed").textContent = $("corner-count").textContent = String(s.count);
+          $("code").textContent = $("corner-code").textContent = s.code;
+          $("finish").textContent = s.open ? "Close sign-up" : "Done";
           $("signup-open").hidden = !s.open;
           $("signup-closed").hidden = s.open;
           $("toggle-signup").textContent = s.open ? "Close sign-up" : "Open sign-up";
@@ -212,8 +227,10 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
             lastCode = s.code;
             $("qr").dataset.for = qrKey;
             const url = `${appOrigin}/sessions/${current.sessionId}?code=${encodeURIComponent(s.code)}`;
-            $("qr").innerHTML = await QRCode.toString(url, { type: "svg", margin: 1, color: { dark: "#1a1a1a", light: "#ffffff" } });
+            $("qr").innerHTML = $("corner-qr").innerHTML =
+              await QRCode.toString(url, { type: "svg", margin: 1, color: { dark: "#1a1a1a", light: "#ffffff" } });
           }
+          updateCorner();
           renderWinners();
         } catch (_) {
           showError("Network error — retrying…");
@@ -350,7 +367,7 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
         show("lobby");
         refresh();
         clearInterval(poller);
-        poller = window.setInterval(() => { if (!busy && !$("lobby").hidden) refresh(); }, 5000);
+        poller = window.setInterval(() => { if (!busy && $("spin").hidden) refresh(); }, 5000);
       }
 
       $("key-form").addEventListener("submit", (e) => {
@@ -363,7 +380,8 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       $("toggle-signup").onclick = () => { if (!busy) refresh(status?.open ? "close" : "open"); };
       $("next").onclick = draw;
       $("absent").onclick = absentAndRedraw;
-      $("back").onclick = () => { show("lobby"); refresh(); };
+      // After the last round: close sign-up (if open) and return to the main screen.
+      $("finish").onclick = () => { if (busy) return; show("lobby"); refresh(status?.open ? "close" : "status"); };
       $("sound").onclick = () => { soundOn = !soundOn; $("sound").textContent = `Sound: ${soundOn ? "on" : "off"}`; };
       $("fullscreen").onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
       document.addEventListener("keydown", (e) => {
@@ -427,6 +445,14 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       }
       @keyframes pop { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
       .actions { display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap; }
+      #corner { position: absolute; left: 2rem; bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; background: rgba(0,0,0,0.35); border-radius: 12px; padding: 0.8rem 1.2rem 0.8rem 0.8rem; }
+      #corner-qr { background: #fff; border-radius: 8px; padding: 6px; }
+      #corner-qr svg { width: 130px; height: auto; display: block; }
+      #corner p { margin: 0; }
+      .corner-title { color: #f3dfe3; font-size: 1.1rem; }
+      .corner-code { font-family: ui-monospace, Menlo, monospace; font-size: 2.6rem; font-weight: 900; letter-spacing: 0.15em; color: var(--gold); line-height: 1.2; }
+      .corner-count { font-size: 1rem; color: #f3dfe3; }
+      .corner-count span { font-weight: 800; color: var(--gold); }
       #winners { position: absolute; right: 2rem; bottom: 1.5rem; background: rgba(0,0,0,0.35); border-radius: 12px; padding: 0.8rem 1.4rem; max-width: 22rem; }
       #winners h2 { font-size: 1rem; margin: 0 0 0.3rem; color: #f3dfe3; }
       #winners ol { margin: 0; padding-left: 1.3rem; font-size: 1.1rem; }

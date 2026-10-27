@@ -635,13 +635,13 @@
     ],
     "talks": [
       {
-        "id": "t-3a-1",
-        "title": "Designing Crossover Trials for Rare Diseases: Statistical and Practical Considerations",
-        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs, and enable treatment comparisons by leveraging the stable, chronic nature of many rare diseases. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
+        "id": "t-3a-3",
+        "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
+        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. However, these methods have been criticized for their potential conservativeness, which may lead to reduced statistical power. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. A central question faced by clinical trial practitioners is how conservative the closure principle-based approach truly is and whether the potential power gains of more advanced methods justify their adoption. In this study, we conduct a comparison of different analysis procedures. Through extensive simulation studies, we assess their performance in terms of statistical power, Type I error control, and practical implementation considerations. We provide concrete guidance for the design and analysis of adaptive seamless trials.",
         "startTime": "",
         "endTime": "",
         "speakers": [
-          "jung-yeon-won"
+          "hongjian-zhu"
         ]
       },
       {
@@ -655,13 +655,13 @@
         ]
       },
       {
-        "id": "t-3a-3",
-        "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
-        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. However, these methods have been criticized for their potential conservativeness, which may lead to reduced statistical power. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. A central question faced by clinical trial practitioners is how conservative the closure principle-based approach truly is and whether the potential power gains of more advanced methods justify their adoption. In this study, we conduct a comparison of different analysis procedures. Through extensive simulation studies, we assess their performance in terms of statistical power, Type I error control, and practical implementation considerations. We provide concrete guidance for the design and analysis of adaptive seamless trials.",
+        "id": "t-3a-1",
+        "title": "Designing Crossover Trials for Rare Diseases: Statistical and Practical Considerations",
+        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs, and enable treatment comparisons by leveraging the stable, chronic nature of many rare diseases. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
         "startTime": "",
         "endTime": "",
         "speakers": [
-          "hongjian-zhu"
+          "jung-yeon-won"
         ]
       }
     ]

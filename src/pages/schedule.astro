@@ -44,6 +44,9 @@ const days = Object.keys(byDate).sort();
 
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+// Day 0 is the Nov 4 workshop; the main conference is Day 1 (Nov 5) and Day 2 (Nov 6).
+const dayNum = (iso: string) => Math.round((Date.parse(iso) - Date.parse("2026-11-05")) / 86_400_000) + 1;
+const dayBarLabel = (iso: string) => `Day ${dayNum(iso)} · ${dayLabel(iso)}`;
 
 const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}${s.endTime ? `–${s.endTime}` : ""}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
 
@@ -66,8 +69,12 @@ const groupSlots = (list: Session[]): Slot[] => {
   <h1>Schedule</h1>
   <p>The 2026 program is being finalized. Session times and talks will appear here as they are confirmed.</p>
 
+  {days.length > 0 && (
+    <div class="day-bar" aria-live="polite">{dayBarLabel(days[0])}</div>
+  )}
+
   {days.map((d) => (
-    <details class="day-group" open>
+    <details class="day-group" open data-day-label={dayBarLabel(d)}>
       <summary class="day-summary">
         <h2 class="day-heading">{dayLabel(d)}</h2>
         <span class="chevron" aria-hidden="true">▾</span>
@@ -154,11 +161,45 @@ const groupSlots = (list: Session[]): Slot[] => {
   };
   tick();
   setInterval(tick, 30_000);
+
+  // Day bar: always shows which day the sessions on screen belong to.
+  const bar = document.querySelector<HTMLElement>(".day-bar");
+  if (bar) {
+    const groups = [...document.querySelectorAll<HTMLElement>(".day-group[data-day-label]")];
+    const update = () => {
+      const line = bar.getBoundingClientRect().bottom + 8;
+      let current = groups[0];
+      groups.forEach((g) => { if (g.getBoundingClientRect().top <= line) current = g; });
+      const label = current?.dataset.dayLabel ?? "";
+      if (bar.textContent !== label) bar.textContent = label;
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
 </script>
 
 <style>
   .raffle-live { margin: 0.25rem 0; }
   .raffle-live[hidden] { display: none; }
+  .day-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin: 0 -1rem 0.5rem;
+    padding: 0.4rem 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(245, 230, 233, 0.95);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(155, 27, 48, 0.15);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .day-group {
     margin-bottom: 1.5rem;
   }

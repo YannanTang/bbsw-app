@@ -4,8 +4,8 @@
     "title": "Agentic AI for Biometrics: From Vibe Coding to Practical Workflows",
     "track": "Day 0 Workshop",
     "date": "2026-11-04",
-    "startTime": "",
-    "endTime": "",
+    "startTime": "1:30 PM",
+    "endTime": "4:30 PM",
     "room": "Genentech Campus, South San Francisco",
     "description": "Move beyond one-off prompting and learn how to use agentic AI with Posit tooling to build practical, governed workflows for real biometrics challenges, from ADaM spec-to-code to research tooling and more.",
     "chairs": [

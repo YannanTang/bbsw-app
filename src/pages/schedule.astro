@@ -44,6 +44,10 @@ const days = Object.keys(byDate).sort();
 
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+// Day 0 is the Nov 4 workshop; the main conference is Day 1 (Nov 5) and Day 2 (Nov 6).
+const dayNum = (iso: string) => Math.round((Date.parse(iso) - Date.parse("2026-11-05")) / 86_400_000) + 1;
+const dayWeekday = (iso: string) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "short" });
+const dayDate = (iso: string) => new Date(iso + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric" });
 
 const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}${s.endTime ? `–${s.endTime}` : ""}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
 
@@ -66,8 +70,18 @@ const groupSlots = (list: Session[]): Slot[] => {
   <h1>Schedule</h1>
   <p>The 2026 program is being finalized. Session times and talks will appear here as they are confirmed.</p>
 
+  {days.length > 1 && (
+    <nav class="day-bar" aria-label="Jump to day">
+      {days.map((d, i) => (
+        <a href={`#day-${d}`} class:list={["day-tab", { active: i === 0 }]} data-day={d}>
+          <span class="day-num">Day {dayNum(d)}</span> · <span class="day-weekday">{dayWeekday(d)}, </span>{dayDate(d)}
+        </a>
+      ))}
+    </nav>
+  )}
+
   {days.map((d) => (
-    <details class="day-group" open>
+    <details class="day-group" id={`day-${d}`} open>
       <summary class="day-summary">
         <h2 class="day-heading">{dayLabel(d)}</h2>
         <span class="chevron" aria-hidden="true">▾</span>
@@ -154,13 +168,64 @@ const groupSlots = (list: Session[]): Slot[] => {
   };
   tick();
   setInterval(tick, 30_000);
+
+  // Day bar: highlight the day being read; tapping a day opens it if collapsed.
+  const bar = document.querySelector<HTMLElement>(".day-bar");
+  if (bar) {
+    const tabs = [...bar.querySelectorAll<HTMLAnchorElement>(".day-tab")];
+    const groups = tabs.map((t) => document.getElementById(`day-${t.dataset.day}`) as HTMLDetailsElement);
+    const update = () => {
+      const line = bar.getBoundingClientRect().bottom + 8;
+      let current = 0;
+      groups.forEach((g, i) => { if (g.getBoundingClientRect().top <= line) current = i; });
+      tabs.forEach((t, i) => t.classList.toggle("active", i === current));
+    };
+    tabs.forEach((t, i) => t.addEventListener("click", () => { groups[i].open = true; }));
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
 </script>
 
 <style>
   .raffle-live { margin: 0.25rem 0; }
   .raffle-live[hidden] { display: none; }
+  .day-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    gap: 0.25rem;
+    margin: 0 -1rem 0.5rem;
+    padding: 0.35rem 1rem;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .day-tab {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+  .day-tab.active {
+    background: var(--color-primary);
+    color: #fff;
+  }
+  .day-num { font-weight: 700; }
+  @media (max-width: 480px) {
+    .day-tab { font-size: 0.8rem; padding: 0.3rem 0.25rem; }
+    .day-weekday { display: none; }
+  }
   .day-group {
     margin-bottom: 1.5rem;
+    scroll-margin-top: 3rem;
   }
   .day-summary {
     display: flex;

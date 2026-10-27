@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import posters from "../data/posters.json";
+import PosterIndex from "../components/PosterIndex.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -11,7 +12,7 @@ const base = import.meta.env.BASE_URL;
   <div class="poster-list">
     <h2>Accepted Posters</h2>
     {posters.map((p) => (
-      <div class="poster-card">
+      <div class="poster-card" id={`poster-${p.id}`}>
         <div class="poster-id">Poster {p.id}</div>
         <h3 class="poster-title">{p.title}</h3>
         <div class="poster-authors">{p.presenters}</div>
@@ -22,10 +23,14 @@ const base = import.meta.env.BASE_URL;
       </div>
     ))}
   </div>
+  <PosterIndex ids={posters.map((p) => p.id)} />
 </BaseLayout>
 
 <style>
   .poster-list { margin-top: 2rem; }
+  .poster-card { scroll-margin-top: 0.75rem; }
+  /* Leave room for the poster number rail on phones. */
+  @media (max-width: 1100px) { .poster-list { padding-right: 1.9rem; } }
   .poster-list h2 { margin-bottom: 1rem; }
   .poster-card { 
     margin-bottom: 1.5rem; 

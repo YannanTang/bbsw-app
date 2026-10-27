@@ -147,6 +147,7 @@ main {
   display: grid;
   gap: 0.75rem;
   grid-template-columns: 1fr;
+  align-items: start;
 }
 
 .speaker-card {
@@ -176,6 +177,35 @@ main {
 }
 
 .speaker-card .meta { font-size: 0.9rem; color: var(--color-muted); }
+
+/* Expandable speaker card: tap the summary row to show the bio in place. */
+details.speaker-card { display: block; padding: 0; }
+details.speaker-card summary {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.85rem;
+  cursor: pointer;
+  list-style: none;
+}
+details.speaker-card summary::-webkit-details-marker { display: none; }
+details.speaker-card summary > div { flex: 1; }
+details.speaker-card summary::after {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--color-muted);
+  border-bottom: 2px solid var(--color-muted);
+  transform: rotate(45deg);
+  margin-right: 0.35rem;
+  transition: transform 0.15s ease;
+}
+details.speaker-card[open] { border-color: var(--color-primary); }
+details.speaker-card[open] summary::after { transform: rotate(-135deg); }
+.speaker-more { padding: 0 0.85rem 0.85rem; border-top: 1px solid var(--color-border); }
+.speaker-more p { margin: 0.75rem 0 0; }
+.speaker-sessions { margin: 0.75rem 0 0; padding-left: 1.1rem; }
+.speaker-sessions li { margin-bottom: 0.35rem; }
 
 .tag {
   display: inline-block;
@@ -746,3 +776,13 @@ a.install-btn:hover { text-decoration: none; }
 @media (max-width: 480px) {
   .ws-agenda li { grid-template-columns: 1fr; gap: 0.1rem; }
 }
+
+/* "Sponsored by" logo link on a session page */
+.session-sponsor { display: inline-flex; align-items: center; gap: 0.6rem; margin: 0.25rem 0 1rem; padding: 0.5rem 0.75rem; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; text-decoration: none; }
+.session-sponsor .meta { color: var(--color-muted); font-size: 0.9rem; }
+.talk-sponsor { display: inline-flex; align-items: center; gap: 0.6rem; margin: 0.25rem 0 0.1rem; font-weight: 600; color: var(--color-text); }
+.talk-sponsor img { height: 32px; width: auto; max-width: 120px; object-fit: contain; }
+.session-sponsor img { height: 36px; width: auto; max-width: 160px; object-fit: contain; }
+/* Sponsor logo to the right of a session title on the schedule */
+.session-row .title-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.session-row .sponsor-logo { height: 28px; width: auto; max-width: 110px; object-fit: contain; flex-shrink: 0; }

@@ -2,7 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import sessions from "../../data/sessions.json";
 import speakers from "../../data/speakers.json";
+import sponsors from "../../data/sponsors.json";
 import WsBlock from "../../components/WorkshopBlock.astro";
+import SpeakerCard from "../../components/SpeakerCard.astro";
+import RaffleEntry from "../../components/RaffleEntry.astro";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -10,19 +13,23 @@ const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 type Talk = {
   id: string; title: string; startTime: string; endTime: string;
   abstract: string; speakers: string[];
+  sponsor?: string; // partner demos: the sponsor giving it
 };
 type Session = {
   id: string; title: string; track: string; date: string;
   startTime: string; endTime: string; room: string; description: string;
   chairs: string[]; talks: Talk[];
   workshop?: Workshop;
+  sponsor?: string;
+  talksHeading?: string;
 };
 type Block = { heading: string; paragraphs?: string[]; items?: { title: string; text: string }[]; bullets?: string[]; note?: string };
 type Workshop = {
   facts: string[]; details: { label: string; value: string }[];
   registration?: { label: string; url: string };
+  instructors?: string[];
   sections: Block[]; agendaIntro?: string;
-  agenda: { time: string; title: string; text: string }[];
+  agenda: { time: string; title: string; text: string; lead?: string }[];
   after: Block[]; closing?: string;
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
@@ -37,7 +44,12 @@ const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
 const lookup = (ids: string[]) => ids.map((id) => speakerMap.get(id)).filter(Boolean) as Speaker[];
 
 const chairs = lookup(session.chairs);
+// One talk reads as "Talk" (or "Panel" for the panel session); several read as "Talks".
+const talksHeading = session.talksHeading ?? (session.talks.length > 1 ? "Talks" : session.track === "Panel" ? "Panel" : "Talk");
+const sponsorList = sponsors as { id: string; name: string; logo: string }[];
+const sponsor = sponsorList.find((sp) => sp.id === session.sponsor);
 const ws = session.workshop;
+const instructors = lookup(ws?.instructors ?? []);
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
 ---
@@ -46,9 +58,16 @@ const dayLabel = (iso: string) =>
   <h1>{session.title}</h1>
   {session.track && <p class="tag accent">{session.track}</p>}
   {session.date
-    ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}–${session.endTime}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
+    ? <p><strong>{dayLabel(session.date)}</strong>{session.startTime ? ` · ${session.startTime}${session.endTime ? `–${session.endTime}` : ""}` : ""}{session.room ? ` · ${session.room}` : ""}</p>
     : <p class="meta">Time and room to be announced.</p>}
   {session.description && <p>{session.description}</p>}
+  {sponsor && (
+    <a class="session-sponsor" href={link(`sponsors/${sponsor.id}`)}>
+      <span class="meta">Sponsored by</span>
+      <img src={link(sponsor.logo)} alt={sponsor.name} />
+    </a>
+  )}
+  <RaffleEntry sessionId={session.id} />
   {ws && (
     <>
       <p class="ws-facts">{ws.facts.map((f) => <span class="tag">{f}</span>)}</p>
@@ -57,13 +76,23 @@ const dayLabel = (iso: string) =>
       </dl>
       {ws.registration && <a class="install-btn" href={ws.registration.url} target="_blank" rel="noopener">{ws.registration.label}</a>}
       {ws.sections.map((b) => <WsBlock b={b} />)}
+      {instructors.length > 0 && (
+        <>
+          <h2>Your Instructors</h2>
+          <div class="grid">
+            {instructors.map((sp) => (
+              <SpeakerCard sp={sp} showTitle={false} />
+            ))}
+          </div>
+        </>
+      )}
       <h2>What the session looks like</h2>
       {ws.agendaIntro && <p>{ws.agendaIntro}</p>}
       <ol class="ws-agenda">
         {ws.agenda.map((a) => (
           <li class={a.text ? "" : "is-break"}>
             <span class="time">{a.time}</span>
-            <div><strong>{a.title}</strong>{a.text && <p>{a.text}</p>}</div>
+            <div><strong>{a.title}</strong>{a.text && <p>{a.text}</p>}{a.lead && <p class="meta">Led by {a.lead}</p>}</div>
           </li>
         ))}
       </ol>
@@ -77,38 +106,33 @@ const dayLabel = (iso: string) =>
       <h2>Session Chair{chairs.length > 1 ? "s" : ""}</h2>
       <div class="grid">
         {chairs.map((sp) => (
-          <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
-            <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
-            <div>
-              <strong>{sp.name}</strong>
-              <div class="meta">{sp.title}{sp.title && sp.affiliation ? " · " : ""}{sp.affiliation}</div>
-            </div>
-          </a>
+          <SpeakerCard sp={sp} />
         ))}
       </div>
     </>
   )}
 
-  {!(ws && session.talks.length === 0) && <h2>Talks</h2>}
-  {ws && session.talks.length === 0 ? null : session.talks.length === 0 ? (
-    <p class="meta">Talks for this session will be announced as the program is confirmed.</p>
-  ) : (
-    session.talks.map((talk) => {
+  {/* Breaks, meals and social events have no talks, so the section is left out. */}
+  {session.talks.length > 0 && <h2>{talksHeading}</h2>}
+  {session.talks.length > 0 && (
+    session.talks.map((talk, i) => {
       const talkSpeakers = lookup(talk.speakers);
+      const talkSponsor = sponsorList.find((sp) => sp.id === talk.sponsor);
       return (
         <div class="talk">
           {talk.startTime && <div class="time">{talk.startTime}{talk.endTime ? `–${talk.endTime}` : ""}</div>}
+          {!talk.startTime && talkSponsor && <div class="time">Demo {i + 1}</div>}
+          {talkSponsor && (
+            <a class="talk-sponsor" href={link(`sponsors/${talkSponsor.id}`)}>
+              {talkSponsor.logo && <img src={link(talkSponsor.logo)} alt="" />}
+              <span>{talkSponsor.name}</span>
+            </a>
+          )}
           <h3>{talk.title || "Talk title to be announced"}</h3>
           {talkSpeakers.length > 0 && (
             <div class="grid">
               {talkSpeakers.map((sp) => (
-                <a class="speaker-card" href={link(`speakers/${sp.id}`)}>
-                  <img src={sp.photo || link("speaker-placeholder.svg")} alt={sp.name} />
-                  <div>
-                    <strong>{sp.name}</strong>
-                    <div class="meta">{sp.title}{sp.title && sp.affiliation ? " · " : ""}{sp.affiliation}</div>
-                  </div>
-                </a>
+                <SpeakerCard sp={sp} />
               ))}
             </div>
           )}
@@ -117,4 +141,5 @@ const dayLabel = (iso: string) =>
       );
     })
   )}
+  {session.track === "Posters" && <p><a href={link("posters")}>See all posters →</a></p>}
 </BaseLayout>

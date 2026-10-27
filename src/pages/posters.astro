@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import posters from "../data/posters.json";
+import PosterIndex from "../components/PosterIndex.astro";
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -42,20 +43,21 @@ const base = import.meta.env.BASE_URL;
     </form>
   </section>
 
-  <div class="poster-list mt-8">
-    <h2 class="mb-4">Accepted Posters</h2>
+  <div class="poster-list">
+    <h2>Accepted Posters</h2>
     {posters.map((p) => (
-      <div class="poster-card mb-6 p-4 border rounded-lg bg-white shadow-sm">
-        <div class="text-sm font-bold text-gray-500 mb-1">Poster {p.id}</div>
-        <h3 class="text-xl font-bold leading-snug">{p.title}</h3>
-        <div class="text-gray-700 mt-2 font-medium">{p.presenters} · {p.affiliation}</div>
-        <details class="mt-3 group">
-          <summary class="cursor-pointer text-blue-600 font-semibold list-none">Read Abstract ▼</summary>
-          <div class="mt-2 text-sm text-gray-600 leading-relaxed">{p.abstract}</div>
+      <div class="poster-card" id={`poster-${p.id}`}>
+        <div class="poster-id">Poster {p.id}</div>
+        <h3 class="poster-title">{p.title}</h3>
+        <div class="poster-authors">{p.presenters}</div>
+        <details class="poster-details">
+          <summary class="abstract-toggle">Read Abstract ▼</summary>
+          <div class="abstract-content">{p.abstract}</div>
         </details>
       </div>
     ))}
   </div>
+  <PosterIndex ids={posters.map((p) => p.id)} />
 </BaseLayout>
 
 <script>
@@ -116,6 +118,7 @@ const base = import.meta.env.BASE_URL;
 </script>
 
 <style>
+  /* Voting Form Styles */
   .voting-box { background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin-bottom: 2.5rem; border: 1px solid #e2e8f0; }
   .privacy-note { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; font-style: italic; }
   .field { margin-bottom: 1.25rem; }
@@ -132,4 +135,25 @@ const base = import.meta.env.BASE_URL;
   .message.success { background: #dcfce3; color: #166534; border: 1px solid #86efac; }
   .cta { width: 100%; padding: 0.75rem; background: var(--color-primary, #9b1b30); color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
   .cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Poster List Styles */
+  .poster-list { margin-top: 2rem; }
+  .poster-card { scroll-margin-top: 0.75rem; }
+  /* Leave room for the poster number rail on phones. */
+  @media (max-width: 1100px) { .poster-list { padding-right: 1.9rem; } }
+  .poster-list h2 { margin-bottom: 1rem; }
+  .poster-card { 
+    margin-bottom: 1.5rem; 
+    padding: 1.25rem; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 8px; 
+    background: #fff; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+  }
+  .poster-id { font-size: 0.875rem; font-weight: 700; color: #64748b; margin-bottom: 0.35rem; }
+  .poster-title { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; }
+  .poster-authors { color: #334155; margin-top: 0.5rem; font-weight: 500; }
+  .poster-details { margin-top: 1rem; }
+  .abstract-toggle { cursor: pointer; color: #2563eb; font-weight: 600; list-style: none; }
+  .abstract-content { margin-top: 0.75rem; font-size: 0.9rem; color: #475569; line-height: 1.6; white-space: pre-wrap; }
 </style>

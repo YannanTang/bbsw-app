@@ -1,0 +1,121 @@
+---
+// Quick-jump rail for the Posters page: tap or slide along the numbers to jump to a poster.
+type Props = { ids: string[] };
+const { ids } = Astro.props;
+---
+<nav class="poster-index" aria-label="Jump to poster">
+  {ids.map((id) => (
+    <a href={`#poster-${id}`} data-id={id}>{id}</a>
+  ))}
+</nav>
+
+<script>
+  const rail = document.querySelector<HTMLElement>(".poster-index");
+  if (rail) {
+    const links = [...rail.querySelectorAll<HTMLAnchorElement>("a")];
+    const cards = links.map((a) => document.getElementById(`poster-${a.dataset.id}`));
+
+    const go = (a: HTMLAnchorElement) => {
+      document.getElementById(`poster-${a.dataset.id}`)?.scrollIntoView({ block: "start" });
+      history.replaceState(null, "", `#poster-${a.dataset.id}`);
+    };
+
+    // Slide a finger along the rail to scrub through posters, like a phone's contacts index.
+    let scrubbing = false;
+    const at = (e: PointerEvent) => {
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      return el instanceof HTMLAnchorElement && rail.contains(el) ? el : null;
+    };
+    rail.addEventListener("pointerdown", (e) => {
+      const a = at(e);
+      if (!a) return;
+      e.preventDefault();
+      scrubbing = true;
+      rail.setPointerCapture(e.pointerId);
+      rail.classList.add("scrubbing");
+      go(a);
+    });
+    rail.addEventListener("pointermove", (e) => {
+      if (!scrubbing) return;
+      const a = at(e);
+      if (a) go(a);
+    });
+    const stop = () => { scrubbing = false; rail.classList.remove("scrubbing"); };
+    rail.addEventListener("pointerup", stop);
+    rail.addEventListener("pointercancel", stop);
+    rail.addEventListener("click", (e) => e.preventDefault());
+
+    // Highlight the poster currently at the top of the screen.
+    const update = () => {
+      let current = 0;
+      const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+      cards.forEach((c, i) => {
+        // At the bottom of the page the last posters can't reach the top, so use the middle of the screen.
+        if (c && c.getBoundingClientRect().top <= (atBottom ? innerHeight / 2 : 80)) current = i;
+      });
+      links.forEach((a, i) => a.classList.toggle("active", i === current));
+      // Only show the rail once the poster list is on screen.
+      const first = cards[0]?.getBoundingClientRect().top ?? 0;
+      rail.classList.toggle("visible", first < innerHeight);
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+</script>
+
+<style>
+  .poster-index {
+    --rail-bottom: calc(var(--bottom-dock-height) + 0.5rem);
+    position: fixed;
+    right: max(0.25rem, calc((100vw - var(--max-width)) / 2 - 2.5rem));
+    top: 0.75rem;
+    bottom: var(--rail-bottom);
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 1.9rem;
+    padding: 0.35rem 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+  .poster-index.visible { opacity: 1; pointer-events: auto; }
+  .poster-index a {
+    flex: 1 1 0;
+    max-height: 2rem;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-muted);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .poster-index a.active {
+    color: #fff;
+    background: var(--color-primary);
+    border-radius: 999px;
+    margin: 0 0.2rem;
+  }
+  .poster-index.scrubbing { background: rgba(255, 255, 255, 0.92); }
+
+  @media (min-width: 720px) {
+    .poster-index { --rail-bottom: calc(var(--sponsor-banner-height) + env(safe-area-inset-bottom, 0px) + 0.75rem); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .poster-index { transition: none; }
+  }
+</style>

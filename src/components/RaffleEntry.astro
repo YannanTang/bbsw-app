@@ -1,0 +1,152 @@
+---
+// Raffle sign-up on the raffle session pages. The stage screen opens sign-up when the
+// raffle starts and closes it after the last round; on the raffle day this form asks
+// the Apps Script whether it's open (see apps-script/raffle.gs).
+import raffle from "../data/raffle.json";
+
+interface Props { sessionId: string }
+const { sessionId } = Astro.props;
+const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[sessionId];
+---
+{cfg && (
+  <section class="raffle" data-day={cfg.day} data-date={cfg.date} data-endpoint={raffle.endpoint}>
+    <h2>Raffle sign-up</h2>
+
+    <p class="raffle-state" data-state="waiting" hidden>Sign-up opens when the raffle starts. The venue code will be on the screen. You must be in the room to win.</p>
+    <p class="raffle-state raffle-closed" data-state="ended" hidden>Raffle sign-up has closed. Thanks for joining!</p>
+    <div class="raffle-done" data-state="done" hidden>
+      <strong>You're in the raffle ✓</strong>
+      <p class="raffle-done-name"></p>
+    </div>
+
+    <form class="raffle-form" data-state="open" hidden>
+      <p class="raffle-live-note">Sign-up is open now!</p>
+      <label>Full name
+        <input name="name" autocomplete="name" required maxlength="100" />
+      </label>
+      <label>Registration email
+        <input name="email" type="email" autocomplete="email" required />
+      </label>
+      <label>Venue code
+        <input name="code" autocomplete="off" autocapitalize="characters" required maxlength="8" />
+        <span class="meta">Shown on the screen in the room.</span>
+      </label>
+      <button class="install-btn" type="submit">Enter the raffle</button>
+      <p class="raffle-error" role="alert" hidden></p>
+      <p class="meta">We only use your email to check your registration. Only your name is shown if you win.</p>
+    </form>
+  </section>
+)}
+
+<script>
+  const ERRORS: Record<string, string> = {
+    bad_code: "That venue code doesn't match. Check the screen in the room.",
+    not_registered: "We couldn't find that email on the registration list. Try the email you registered with.",
+    closed: "Raffle sign-up is closed right now.",
+    bad_request: "Please fill in your name, email and the venue code.",
+    network: "Network error. If you're on a work laptop or VPN, try your personal phone or turn off the VPN.",
+  };
+
+  document.querySelectorAll<HTMLElement>(".raffle").forEach((box) => {
+    const { day, date, endpoint } = box.dataset as Record<string, string>;
+    const doneKey = `bbsw_raffle_${day}`;
+    const form = box.querySelector<HTMLFormElement>(".raffle-form")!;
+    const errorEl = box.querySelector<HTMLElement>(".raffle-error")!;
+    const button = form.querySelector<HTMLButtonElement>("button")!;
+
+    // The QR code on the screen carries the code (?code=XXXX), so scanners don't have to type it.
+    const urlCode = new URLSearchParams(location.search).get("code");
+    if (urlCode) (form.elements.namedItem("code") as HTMLInputElement).value = urlCode.toUpperCase();
+
+    const show = (state: string) =>
+      box.querySelectorAll<HTMLElement>("[data-state]").forEach((el) => (el.hidden = el.dataset.state !== state));
+
+    const savedName = () => { try { return localStorage.getItem(doneKey); } catch (_) { return null; } };
+    const markDone = (name: string) => {
+      box.querySelector(".raffle-done-name")!.textContent = `Entered as ${name}. Stay for the draw!`;
+      show("done");
+    };
+
+    const call = (body: Record<string, string>) =>
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ day, ...body }),
+      }).then((r) => r.json());
+
+    const todayPT = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+
+    const refresh = async () => {
+      const name = savedName();
+      if (name) return markDone(name);
+      // Only the raffle day asks the server; any other day just shows "opens when the raffle starts".
+      if (!endpoint || todayPT() !== date) return show("waiting");
+      try {
+        const st = await call({ action: "state" });
+        if (st.open) { if (form.hidden) show("open"); }
+        else show(st.ended ? "ended" : "waiting");
+      } catch (_) {
+        // Keep whatever is on screen; the next poll retries.
+      }
+    };
+    show("waiting");
+    refresh();
+    setInterval(refresh, 15_000);
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorEl.hidden = true;
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+      button.disabled = true;
+      button.textContent = "Checking…";
+      try {
+        const out = await call({ action: "enter", ...data });
+        if (out.ok) {
+          try { localStorage.setItem(doneKey, out.name); } catch (_) {}
+          markDone(out.name);
+        } else {
+          errorEl.textContent = ERRORS[out.error] || ERRORS.bad_request;
+          errorEl.hidden = false;
+        }
+      } catch (_) {
+        errorEl.textContent = ERRORS.network;
+        errorEl.hidden = false;
+      } finally {
+        button.disabled = false;
+        button.textContent = "Enter the raffle";
+      }
+    });
+  });
+</script>
+
+<style>
+  .raffle {
+    margin: 1.5rem 0;
+    padding: 1rem 1.1rem;
+    border: 2px solid var(--color-secondary);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .raffle h2 { margin-top: 0; }
+  .raffle-live-note { margin: 0; font-weight: 700; color: var(--color-secondary-dark); }
+  .raffle-form label { display: block; margin: 0.75rem 0; font-weight: 600; }
+  .raffle-form input {
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+    padding: 0.65rem 0.75rem;
+    font: inherit;
+    font-size: 16px; /* 16px stops iOS zooming in on focus */
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #fff;
+  }
+  .raffle-form input[name="code"] { text-transform: uppercase; letter-spacing: 0.15em; max-width: 10rem; }
+  .raffle-form label .meta { font-weight: 400; font-size: 0.85rem; color: var(--color-muted); }
+  .raffle-form button:disabled { opacity: 0.6; cursor: wait; }
+  .raffle-error { color: var(--color-primary); font-weight: 600; }
+  .raffle-done { padding: 1rem; border-radius: var(--radius); background: #e3f3f4; color: var(--color-secondary-dark); }
+  .raffle-done p { margin: 0.3rem 0 0; }
+  .raffle-state { font-weight: 600; }
+  .raffle-closed { color: var(--color-muted); }
+</style>

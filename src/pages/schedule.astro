@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
 import speakers from "../data/speakers.json";
+import sponsors from "../data/sponsors.json";
+import raffle from "../data/raffle.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -14,10 +16,13 @@ type Session = {
   id: string; title: string; track: string; date: string;
   startTime: string; endTime: string; room: string; description: string;
   chairs: string[]; talks: Talk[];
+  sponsor?: string;
 };
 type Speaker = { id: string; name: string; title: string; affiliation: string; bio: string; photo: string; linkedin: string; };
 
 const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
+const sponsorMap = new Map((sponsors as { id: string; name: string; logo: string }[]).map((sp) => [sp.id, sp]));
+const raffleDays = raffle.sessions as Record<string, { day: string; date: string }>;
 const names = (ids: string[]) => ids.map((id) => speakerMap.get(id)?.name).filter(Boolean).join(", ");
 
 const all = sessions as Session[];
@@ -39,8 +44,11 @@ const days = Object.keys(byDate).sort();
 
 const dayLabel = (iso: string) =>
   new Date(iso + "T00:00:00").toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+// Day 0 is the Nov 4 workshop; the main conference is Day 1 (Nov 5) and Day 2 (Nov 6).
+const dayNum = (iso: string) => Math.round((Date.parse(iso) - Date.parse("2026-11-05")) / 86_400_000) + 1;
+const dayBarLabel = (iso: string) => `Day ${dayNum(iso)} · ${dayLabel(iso)}`;
 
-const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}–${s.endTime}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
+const timeLabel = (s: Session) => (s.startTime ? `${s.startTime}${s.endTime ? `–${s.endTime}` : ""}${s.room ? ` · ${s.room}` : ""}` : "Time to be announced");
 
 // Sessions sharing the same date + start time run in parallel (attendee picks one track).
 type Slot = { time: string; sessions: Session[] };
@@ -61,8 +69,12 @@ const groupSlots = (list: Session[]): Slot[] => {
   <h1>Schedule</h1>
   <p>The 2026 program is being finalized. Session times and talks will appear here as they are confirmed.</p>
 
+  {days.length > 0 && (
+    <div class="day-bar" aria-live="polite">{dayBarLabel(days[0])}</div>
+  )}
+
   {days.map((d) => (
-    <details class="day-group" open>
+    <details class="day-group" open data-day-label={dayBarLabel(d)}>
       <summary class="day-summary">
         <h2 class="day-heading">{dayLabel(d)}</h2>
         <span class="chevron" aria-hidden="true">▾</span>
@@ -89,7 +101,15 @@ const groupSlots = (list: Session[]): Slot[] => {
           ) : (
             <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
               <div class="time">{timeLabel(slot.sessions[0])}</div>
-              <div class="title">{slot.sessions[0].title}</div>
+              {raffleDays[slot.sessions[0].id] && (
+                <span class="tag primary raffle-live" data-day={raffleDays[slot.sessions[0].id].day} data-date={raffleDays[slot.sessions[0].id].date} data-endpoint={raffle.endpoint} hidden>Raffle sign-up open — tap to enter</span>
+              )}
+              <div class="title-row">
+                <div class="title">{slot.sessions[0].title}</div>
+                {slot.sessions[0].sponsor && sponsorMap.get(slot.sessions[0].sponsor) && (
+                  <img class="sponsor-logo" src={link(sponsorMap.get(slot.sessions[0].sponsor)!.logo)} alt={`Sponsored by ${sponsorMap.get(slot.sessions[0].sponsor)!.name}`} />
+                )}
+              </div>
               {slot.sessions[0].track && <span class="tag">{slot.sessions[0].track}</span>}
               {slot.sessions[0].chairs.length > 0 && (
                 <div class="meta">
@@ -122,7 +142,64 @@ const groupSlots = (list: Session[]): Slot[] => {
   )}
 </BaseLayout>
 
+<script>
+  // Flag the raffle session while the stage has sign-up open (asked only on the raffle day).
+  const tick = () => {
+    const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+    document.querySelectorAll<HTMLElement>(".raffle-live").forEach((el) => {
+      const { day, date, endpoint } = el.dataset;
+      if (!endpoint || date !== today) return;
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ action: "state", day }),
+      })
+        .then((r) => r.json())
+        .then((st) => { el.hidden = !st.open; })
+        .catch(() => {});
+    });
+  };
+  tick();
+  setInterval(tick, 30_000);
+
+  // Day bar: always shows which day the sessions on screen belong to.
+  const bar = document.querySelector<HTMLElement>(".day-bar");
+  if (bar) {
+    const groups = [...document.querySelectorAll<HTMLElement>(".day-group[data-day-label]")];
+    const update = () => {
+      const line = bar.getBoundingClientRect().bottom + 8;
+      let current = groups[0];
+      groups.forEach((g) => { if (g.getBoundingClientRect().top <= line) current = g; });
+      const label = current?.dataset.dayLabel ?? "";
+      if (bar.textContent !== label) bar.textContent = label;
+    };
+    addEventListener("scroll", update, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+</script>
+
 <style>
+  .raffle-live { margin: 0.25rem 0; }
+  .raffle-live[hidden] { display: none; }
+  .day-bar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin: 0 -1rem 0.5rem;
+    padding: 0.4rem 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: rgba(245, 230, 233, 0.95);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(155, 27, 48, 0.15);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .day-group {
     margin-bottom: 1.5rem;
   }

@@ -146,9 +146,9 @@
   {
     "id": "judy-li",
     "name": "Judy Li",
-    "title": "Exec. Dir. Head of Late-Stage Hematology Biostatistics",
+    "title": "Head of Hematology Strategy Late Oncology Statistics",
     "affiliation": "AstraZeneca",
-    "bio": "",
+    "bio": "Dr. Judy Li, PhD, is the Head of Hematology Strategy Late Oncology Statistics at AstraZeneca, where she provides leadership and expertise in oncology statistics, with a keen focus on strategic planning, technical oversight, functional development, and operational guidance. Throughout her career, Dr. Li has held senior leadership positions in both the biopharmaceutical and biotech sectors, making significant contributions at organizations including Bristol Myers Squibb, Celgene, and Regeneron Pharmaceuticals. Prior to her industry tenure, she garnered extensive experience at the US Food and Drug Administration as a master statistical reviewer and supervisory mathematical statistician. Her clinical development experience across multiple therapeutic areas including oncology, hematology, immunology, neurology, cell therapy, as well as special clinical settings for multiregional clinical trials and rare disease.\n\nAs an active member of the American Statistical Association (ASA) Biopharmaceutical Section Executive Board for more than a decade, Dr. Li has taken on multiple responsibilities and roles within the board. She is currently Biopharmaceutical Section chair-elect for 2026, was the co-founder of the Safety Monitor Scientific Working Group, the chair of 2019 Regulatory Industry Statistics Workshop, the chair of poster competition section and membership committee.\n\nDr. Li received her PhD in Statistics from the University of California, Riverside and her MBA degree majored in Strategic Management from the Wharton Business School University of Pennsylvania. She is the editor of book Quantitative Methodologies and Process for Safety Monitoring and Ongoing Benefit Risk Evaluation. Her research work has been highly acknowledged with the FDA Office of Chief Scientist and received the Intramural Grant award for two consecutive years.",
     "photo": "/speakers/judy-li.jpg",
     "linkedin": "https://www.linkedin.com/in/judy-li-phd-mba-fasa-a6a6824/"
   },
@@ -191,10 +191,10 @@
   {
     "id": "patrick-loerch",
     "name": "Patrick Loerch",
-    "title": "SVP, Clinical Data Science",
+    "title": "Senior Vice President of Development, Clinical Data Science",
     "affiliation": "Gilead",
-    "bio": "",
-    "photo": "",
+    "bio": "Patrick Loerch joined Gilead in 2020 as the Senior Vice President of Clinical Data Science where he is responsible for bringing together the data science and technology functions across Development to build an industry-leading, integrated evidence and insights generation function spanning Biostatistics, Statistical Programming, Real World Evidence, Artificial Intelligence, Clinical Pharmacology and Development Systems. At an enterprise level, Patrick also oversees AI and data governance policies for Gilead, as well as the AI strategy and portfolio for the Development organization. He has over 20 years of experience in data sciences, real-world evidence and genomics research spanning all phases of R&D within the pharmaceutical industry. Prior to Gilead, he held leadership positions at Johnson & Johnson, Celgene, and Merck. Patrick earned his PhD in Biostatistics from Harvard University and his BS in Biochemistry from Washington State University.",
+    "photo": "/speakers/patrick-loerch.jpg",
     "linkedin": ""
   },
   {
@@ -202,7 +202,7 @@
     "name": "Shaobo Liu",
     "title": "Exec. Dir. Head of Digital Solutions and Engineering",
     "affiliation": "BeOne Medicines Inc.",
-    "bio": "",
+    "bio": "Shaobo Liu is Executive Director of Digital Solutions and Engineering at BeOne Medicines, where he leads digital platforms, data products, and AI-enabled solutions that support R&D and clinical development. He works across software, data, AI, and platform engineering, with a focus on building scalable capabilities that improve decision-making, streamline operations, and accelerate impact. With over 20 years of experience building products and solutions, Shaobo brings both enterprise leadership and an entrepreneurial mindset. He is also the co-founder of Magicbean and GrowingIO, and he is passionate about turning bold ideas into practical products that create real business value. His work is shaped by a builder’s perspective: identifying opportunities, shaping vision, and scaling solutions that connect data, workflows, and people. Shaobo is especially interested in enterprise AI, modern data platforms, and the future of digital transformation in biopharma. He enjoys building teams, solving meaningful problems, and collaborating with others who are using technology to create lasting impact.",
     "photo": "/speakers/shaobo-liu.jpg",
     "linkedin": "https://www.linkedin.com/in/shaoliu/"
   },
@@ -211,7 +211,7 @@
     "name": "Hao Zhu",
     "title": "Division Director, Division of Pharmacometrics, Office of Clinical Pharmacology",
     "affiliation": "FDA",
-    "bio": "",
+    "bio": "Dr. Hao Zhu is the director of the Division of Pharmacometrics, Office of Clinical Pharmacology, at the U.S. FDA. He is a co-chair for the AI Policy and Review subcommittee at the AI Council at CDER FDA. Dr. Zhu also serves as a selection committee member for Model Informed Drug Development, Complex Innovative Trial Design, and Rare Disease Endpoint Advancement meeting programs. He is a member of Digital Health Technology steering committee at the FDA. Hao is a board member at the newly formed quantitative medicine center of excellence.\n\nDr. Zhu received his Ph.D. in pharmaceutical sciences and Master in statistics from the University of Florida. Overall, he has more than 20 years of working experience in academia, industry, and regulatory agency. His division reviews modeling and simulation related submissions and supports pharmacometrics-related policy development.",
     "photo": "/speakers/hao-zhu.jpg",
     "linkedin": "https://www.linkedin.com/in/hao-zhu-09183744/"
   },
@@ -220,8 +220,8 @@
     "name": "Scooter Plowman",
     "title": "Head of Clinical Development AI Partnership",
     "affiliation": "AbbVie",
-    "bio": "",
-    "photo": "",
+    "bio": "Scooter Plowman leads AbbVie's Clinical Development AI Partnership function, where he supports the evaluation and deployment of AI-enabled tools and partnerships across clinical trial design, study start-up, recruitment, study close-out and evidence generation. Scooter is an affiliate scholar at the Stanford Clinical Excellence Research Center, he previously held leadership roles within Optum Life Science, Verily Life Sciences, Amgen, and Proteus Digital Health. His clinical training in radiology was at Mayo Clinic and Intermountain Healthcare. He lives with his wife and six children in Thousand Oaks, CA.",
+    "photo": "/speakers/scooter-plowman.jpg",
     "linkedin": "https://www.linkedin.com/in/scooter/"
   },
   {
@@ -230,7 +230,7 @@
     "title": "",
     "affiliation": "Genentech",
     "bio": "",
-    "photo": "",
+    "photo": "/speakers/andy-shen.jpg",
     "linkedin": ""
   },
   {
@@ -254,20 +254,20 @@
   {
     "id": "james-travis",
     "name": "James Travis",
-    "title": "",
+    "title": "Master Mathematical Statistician",
     "affiliation": "FDA",
-    "bio": "",
-    "photo": "",
+    "bio": "James Travis is a master mathematical statistician in the Division of Biometrics II in the US FDA Center for Drug Evaluation and Research. He is the technical lead for the pediatric and maternal health statistical scientists and has been supporting pediatric drug development since joining the Pediatric Review Committee in 2017. He has worked extensively on application in the complex and innovative trial design program has led the development of the FDA draft guidance \"Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products.\" He received his PhD in Statistics from the University of Maryland, Baltimore County.",
+    "photo": "/speakers/james-travis.jpg",
     "linkedin": ""
   },
   {
-    "id": "scott-berry",
-    "name": "Scott Berry",
+    "id": "jessica-overbey",
+    "name": "Jessica Overbey",
     "title": "Senior Statistical Scientist",
     "affiliation": "Berry Consultants",
-    "bio": "Scott Berry is President and a Senior Statistical Scientist at Berry Consultants, LLC. He earned his PhD in statistics from Carnegie Mellon University and was an Assistant Professor at Texas A&M University before co-founding Berry Consultants in 2000. He is adjunct faculty in the Department of Biostatistics at the University of Kansas Medical Center. Elected as a Fellow of the American Statistical Association.\n\nSince 2000, he has been involved in the design of hundreds of Bayesian adaptive clinical trials of pharmaceuticals and medical devices and has become an opinion leader in the field of Bayesian adaptive clinical trials.",
-    "photo": "",
-    "linkedin": "https://www.linkedin.com/in/scott-berry-52b8025b/"
+    "bio": "Jessica Overbey is a Senior Statistical Scientist at Berry Consultants. She earned her MS and DrPH in Biostatistics from Columbia University and was an Assistant Professor of Biostatistics at the Icahn School of Medicine at Mount Sinai before joining Berry Consultants. She remains an adjunct faculty member at Mount Sinai and was elected a Fellow of the Society for Clinical Trials in 2026. Her work focuses on the design, implementation, and analysis of Bayesian and adaptive clinical trials for pharmaceuticals and medical devices across a range of therapeutic areas. She works closely with sponsors to develop innovative trial designs and simulation-based evaluations of their operating characteristics, supporting regulatory discussions and clinical development decisions.",
+    "photo": "/speakers/jessica-overbey.jpg",
+    "linkedin": "https://www.linkedin.com/in/jessica-overbey-5a872647"
   },
   {
     "id": "anqi-zhu",
@@ -329,7 +329,7 @@
     "title": "Associate Director, AI Product Owner",
     "affiliation": "Jazz Pharmaceuticals",
     "bio": "Sudhir Kedare is an Associate Director and AI Product Owner at Jazz Pharmaceuticals, working at the intersection of clinical data science, AI-driven analytics products, and clinical development. With 16+ years of experience in statistical programming and analytics across the pharmaceutical industry, he focuses on building scalable analytics platforms and AI-enabled capabilities that support regulatory submissions and accelerate insights across clinical trials. Sudhir holds MS in Computer Science. As AI Product Owner, he helps shape the product roadmap and drives the delivery of AI and analytics products across the clinical data lifecycle. Working closely with DataOps, AI scientists, software engineers, and business stakeholders, he translates complex clinical and regulatory needs into prioritized requirements - then guides them from concept through validation and adoption, embedding generative AI and machine learning into clinical workflows in ways that are scalable, governed, and fit for regulated environments. A founding member of a subgroup dedicated to open-source and innovative approaches to data review, exploration, and visualization, Sudhir is a committed contributor to the analytics community and has presented at major conferences including PHUSE, PharmaSUG, WUSS, and BBSW. He is passionate about mentoring team members and translating advanced analytics into practical, credible AI products for regulated environments.",
-    "photo": "",
+    "photo": "/speakers/sudhir-kedare.jpg",
     "linkedin": "https://www.linkedin.com/in/sudhirkedare/"
   },
   {
@@ -373,8 +373,8 @@
     "name": "Daniela Ferrara",
     "title": "Chief Medical Officer",
     "affiliation": "Topcon Healthcare",
-    "bio": "",
-    "photo": "",
+    "bio": "Daniela Ferrara, MD, PhD, FASRS, FARVO, is an ophthalmologist and retina specialist with 25 years of experience in clinical science, advanced retinal imaging, and drug development.\n\nDr. Ferrara is an Assistant Professor of Ophthalmology at Tufts University School of Medicine, where her research focuses on advanced retinal imaging and innovative approaches to understanding and managing leading causes of blindness worldwide. She currently serves as Chief Medical Officer of Topcon Healthcare, a global leader in digital health, leveraging artificial intelligence (AI), retinal imaging, and ocular data to enable earlier detection and improved management of retinal and systemic diseases in clinical research and practice. In this role, she leads global initiatives bringing together experts from industry and academia to advance AI-driven innovation in ophthalmology, clinical research, and oculomics. Prior to joining Topcon Healthcare, Dr. Ferrara held clinical leadership roles in drug development at Genentech and Roche, where she pioneered the application of AI-based approaches across multiple therapeutic areas.\n\nDr. Ferrara is actively engaged in numerous ophthalmology and scientific organizations, holding several leadership positions. She has been recognized as a Fellow of both the American Society of Retina Specialists and the Association for Research in Vision and Ophthalmology, reflecting her contributions to patient care, clinical research, and medical education. She has authored more than 200 scientific publications, including peer-reviewed articles in leading medical journals, book chapters, and conference submissions. Her research bridges clinical science and digital innovation to advance therapeutic development and medical technologies that improve outcomes for patients worldwide.",
+    "photo": "/speakers/daniela-ferrara.jpg",
     "linkedin": ""
   },
   {
@@ -401,17 +401,17 @@
     "title": "Principal Data Scientist, RWD",
     "affiliation": "Genentech",
     "bio": "Nayan Chaudhary is a Principal Data Scientist in the Real-World Data (RWD) team at Genentech, with a decade of experience applying RWD/E to inform decisions across the drug development lifecycle. A hands-on expert at the intersection of RWD/E methodology and AI/ML, he specializes in applying such methods with multimodal real world datasets to create scientific and clinical impact.\n\nIn addition to analytical methods, he operates at the frontier to rapidly prototype and evaluate emerging technologies the impact data science for clinical research. Most recently, he has deployed agentic coding workflows in RWD studies, using domain-guided AI agents to automate end-to-end data science codebases from research plans.\n\nNayan holds Master’s degrees in both Computer Science and Materials Science from Texas A&M University, where his research focused on leveraging AI/ML for computational materials design and property prediction.",
-    "photo": "",
+    "photo": "/speakers/nayan-chaudhary.jpg",
     "linkedin": ""
   },
   {
     "id": "petr-jordan",
     "name": "Petr Jordan",
-    "title": "",
+    "title": "Chief Technology Officer",
     "affiliation": "Onc.AI",
-    "bio": "",
-    "photo": "",
-    "linkedin": ""
+    "bio": "Petr Jordan, PhD, is Chief Technology Officer at Onc.AI and a member of its founding team. His responsibilities include technology strategy and development, research partnerships, and intellectual property. His background spans medical imaging, computer vision, machine learning, and medical physics, with a focus on applications in oncology. Previously, he worked at Varian Medical Systems on machine-learning approaches to radiation treatment planning, image guidance, and CT reconstruction. At Accuray, he managed imaging research for the CyberKnife and TomoTherapy platforms. He earned his doctorate through the Harvard-MIT Health Sciences and Technology program in Medical Engineering and Medical Physics. He also holds a master’s degree in Engineering Sciences from Harvard University and a bachelor’s degree in Computer Engineering from Lipscomb University.",
+    "photo": "/speakers/petr-jordan.jpg",
+    "linkedin": "https://www.linkedin.com/in/petrjordan"
   },
   {
     "id": "lilia-bouzit",
@@ -419,14 +419,14 @@
     "title": "Sr Research Scientist, Applied Research",
     "affiliation": "Flatiron Health",
     "bio": "Lilia Bouzit is a Senior Research Scientist on the Scientific Engagement and Applied Research team at Flatiron Health, specializing in real-world evidence and predictive modeling within oncology. Her work focuses on using large-scale electronic health record and genomics datasets to build multimodal machine learning models for applications in trial design and contextualization as well as clinical insights aimed at improving patient care. Lilia earned her Master of Science in Genetic Epidemiology and Statistical Genetics from the Harvard T.H. Chan School of Public Health.",
-    "photo": "",
+    "photo": "/speakers/lilia-bouzit.jpg",
     "linkedin": ""
   },
   {
     "id": "jingjing-gao",
     "name": "Jingjing Gao",
     "title": "",
-    "affiliation": "",
+    "affiliation": "Neurocrine Biosciences",
     "bio": "",
     "photo": "/speakers/jingjing-gao.jpg",
     "linkedin": ""
@@ -446,7 +446,7 @@
     "title": "VP Data Science & Analytics (retired)",
     "affiliation": "Independent",
     "bio": "Conny holds a Ph.D. in Statistics from Ludwig-Maximilians-Universität in Munich, Germany. She joined Roche's Biostatistics department in Nutley, NJ in 1999, working across Early- and Late-Development in Cardiovascular, Neuroscience and Metabolism. In 2004, she transferred to Basel to work in Late-Development Oncology, took on her first managerial role the following year, and moved to Genentech in 2011. Over the course of her career, Conny held positions of increasing responsibility, including several cross-functional leadership roles. Her most recent position was VP, Data Science and Analytics, and Global Head of Data and Statistical Sciences for Hematology and Oncology. Conny retired from Roche and Genentech at the end of 2025 and now occasionally consults in the biopharma space.",
-    "photo": "",
+    "photo": "/speakers/cornelia-irl.jpg",
     "linkedin": ""
   },
   {
@@ -464,7 +464,7 @@
     "title": "Principle Analytical Data Science Programmer",
     "affiliation": "Genentech",
     "bio": "Jingyuan Chen is a Principal Analytical Data Science Programmer at Genentech, bringing 13 years of experience within Roche/Genentech. Currently, she serves as a Project Lead in statistical programming and as the Data Science Filing Lead for oncology therapeutic areas. Her expertise lies in leading data science teams for late- phase studies and regulatory filing activities. Jingyuan is also passionate about advancing innovative workflows, including the integration of open-source technologies to enhance interactive analysis and data visualization in routine projects.",
-    "photo": "",
+    "photo": "/speakers/jingyuan-chen.jpg",
     "linkedin": "https://linkedin.com/in/jingyuan-chen78a10025"
   },
   {
@@ -482,7 +482,7 @@
     "title": "SVP, Global Head of Statistics and Data Science",
     "affiliation": "SystImmune Inc.",
     "bio": "Dr. Hongjian Zhu received his Ph.D. in Statistics from the University of Virginia in 2010 and subsequently completed postdoctoral training at Yale University. In 2012, he joined UTHealth and was promoted to tenured Associate Professor. He then served as Director and Research Fellow in the Statistical Innovation Group at AbbVie Inc. He is currently Senior Vice President and Global Head of Statistics and Data Science at SystImmune Inc., where he provides enterprise-level leadership for statistical strategy, governance, and data science infrastructure supporting global oncology development. His primary research focuses on adaptive clinical trial designs. He has published papers in leading journals such as JASA, The Annals of Statistics, Biometrics, and Statistica Sinica, and has received funding from the National Science Foundation as Principal Investigator. He is an Elected Member of the International Statistical Institute (ISI), Chair of the ICSA Nominating and Election Committee, past President of the Houston Area Chapter of the ASA (HACASA), and Guest Editor for special issues of SMMR and Statistica Sinica.",
-    "photo": "",
+    "photo": "/speakers/hongjian-zhu.jpg",
     "linkedin": "https://www.linkedin.com/in/hongjian-zhu-75ab3522/"
   },
   {
@@ -491,7 +491,7 @@
     "title": "Executive Director, Biostatistics",
     "affiliation": "Exelixis",
     "bio": "Joseph Paulson, PhD, is an Executive Director of Biostatistics and Head of Early Development Biostatistics and the Center of Data Excellence at Exelixis, where he leads statistical strategy and quantitative decision-making across development. His work focuses on integrating clinical, statistical, translational, and operational perspectives to accelerate development decisions and build scalable capabilities across the organization.\n\nPrior to Exelixis, Joseph was Head of Data Sciences at N-Power Medicine and was a Senior Principal Statistical Scientist at Genentech in the Early Development Oncology group. He also serves as adjunct faculty at Yale School of Medicine.\n\nJoseph is particularly focused on the evolving role of quantitative leaders as strategic partners, including the application of artificial intelligence, development of enterprise data capabilities, and creation of operating models that enable teams to make faster, higher-quality decisions. He holds a PhD in Applied Mathematics and Statistics from the University of Maryland, College Park and completed a Research Fellowship at Dana-Farber Cancer Institute and Harvard Medical School.",
-    "photo": "",
+    "photo": "/speakers/joseph-n-paulson.jpg",
     "linkedin": "https://www.linkedin.com/in/jnpaulson/"
   },
   {
@@ -542,10 +542,28 @@
   {
     "id": "jingyuan-yang",
     "name": "Jingyuan Yang",
-    "title": "",
+    "title": "Executive Director, Biostatistics",
     "affiliation": "AbbVie",
-    "bio": "",
-    "photo": "",
+    "bio": "Jingyuan Yang, Ph.D., is Executive Director of Biostatistics at AbbVie, leading clinical biostatistics team supporting Aesthetics, Eyecare, and Pediatrics within Data and Statistical Sciences. She also serves as Acting Head of Statistical Innovation and has held leadership roles in AI-related initiatives focused on advancing quantitative innovation in clinical development. With experience spanning asset development, cross-functional strategy, and applications of machine learning and artificial intelligence, Jingyuan is committed to integrating scientific rigor, emerging technologies, and talent development to strengthen organizational impact. She earned her Ph.D. in Biostatistics from The Ohio State University.",
+    "photo": "/speakers/jingyuan-yang.jpg",
+    "linkedin": ""
+  },
+  {
+    "id": "jeff-dickinson",
+    "name": "Jeff Dickinson",
+    "title": "",
+    "affiliation": "Navitas Data Sciences",
+    "bio": "Expert in applied AI for biometrics and statistical programming.",
+    "photo": "/speakers/jeff-dickinson.jpg",
+    "linkedin": ""
+  },
+  {
+    "id": "philip-bowsher",
+    "name": "Philip Bowsher",
+    "title": "",
+    "affiliation": "Posit",
+    "bio": "Solutions architect and educator, focused on Posit tooling and AI for analytics at scale.",
+    "photo": "/speakers/philip-bowsher.jpg",
     "linkedin": ""
   }
 ]

@@ -4,10 +4,10 @@
     "title": "Agentic AI for Biometrics: From Vibe Coding to Practical Workflows",
     "track": "Day 0 Workshop",
     "date": "2026-11-04",
-    "startTime": "",
-    "endTime": "",
+    "startTime": "1:30 PM",
+    "endTime": "4:30 PM",
     "room": "Genentech Campus, South San Francisco",
-    "description": "Move beyond prompt-by-prompt coding. Learn how to build AI-assisted workflows that are structured, testable, traceable, and useful in real biometrics work.",
+    "description": "Move beyond one-off prompting and learn how to use agentic AI with Posit tooling to build practical, governed workflows for real biometrics challenges, from ADaM spec-to-code to research tooling and more.",
     "chairs": [
       "anqi-zhu"
     ],
@@ -17,6 +17,7 @@
         "3 hours",
         "In person",
         "Hands-on throughout",
+        "Preconfigured environment from Posit",
         "Designed for mixed technical skill levels"
       ],
       "details": [
@@ -26,7 +27,7 @@
         },
         {
           "label": "Registration",
-          "value": "Separate from the main conference. Register by Oct 20."
+          "value": "Separate from the main conference. Register by Oct 20, 11:59 PM PT."
         },
         {
           "label": "Fee",
@@ -77,14 +78,10 @@
       "agendaIntro": "A build-along workshop: see the pattern, use it, then apply it to a problem of your own.",
       "agenda": [
         {
-          "time": "1:30–1:45 PM",
-          "title": "Start with a live build",
-          "text": "Watch an idea move from plain-language intent to a working prototype. The focus is on the workflow, not typing speed."
-        },
-        {
-          "time": "1:45–2:15 PM",
-          "title": "Agentic coding fundamentals",
-          "text": "Build the mental model: intent over syntax, structured prompting, review loops, and trust-but-verify."
+          "time": "1:30–2:15 PM",
+          "title": "Live build and agentic coding fundamentals",
+          "text": "From idea to working prototype in minutes. Watch plain-language intent become a working prototype, then build the mental model: intent over syntax, structured prompting, review loops, and trust-but-verify.",
+          "lead": "Philip Bowsher (Posit)"
         },
         {
           "time": "2:15–2:25 PM",
@@ -93,8 +90,9 @@
         },
         {
           "time": "2:25–2:55 PM",
-          "title": "Harness engineering",
-          "text": "Translate a task into a specification, acceptance checks, tests, and guardrails that constrain the model."
+          "title": "Harness engineering (specs, checks, agent skills)",
+          "text": "Make AI output reliable and traceable. Translate a task into a specification, acceptance checks, tests, agent skills, and guardrails that constrain the model.",
+          "lead": "Jeff Dickinson (Navitas Data Sciences)"
         },
         {
           "time": "2:55–3:05 PM",
@@ -103,25 +101,22 @@
         },
         {
           "time": "3:05–3:35 PM",
-          "title": "Loop engineering",
-          "text": "Connect generation, checking, and refinement into a repeatable workflow. See how MCP and programmatic LLM interfaces can support the loop."
+          "title": "Loop engineering (MCP, ellmer)",
+          "text": "Automate the generate → check → refine cycle, using MCP and programmatic LLM interfaces to support the loop.",
+          "lead": "Philip Bowsher (Posit)"
         },
         {
-          "time": "3:35–4:15 PM",
-          "title": "Integration sprint",
-          "text": "Apply the full pattern to the anchor biometrics example or adapt it to your own research-tooling idea."
-        },
-        {
-          "time": "4:15–4:30 PM",
-          "title": "Showcase + takeaways",
-          "text": "Compare approaches, surface limitations, and leave with patterns you can reuse after the workshop."
+          "time": "3:35–4:30 PM",
+          "title": "Integration sprint and showcase",
+          "text": "Apply the full workflow to the anchor biometrics example or your own idea, then compare approaches and leave with patterns you can reuse.",
+          "lead": "Jeff Dickinson & Philip Bowsher"
         }
       ],
       "after": [
         {
           "heading": "Tooling you will see",
           "paragraphs": [
-            "The demonstrations will use Posit tooling and open-source components for practical LLM-assisted development, including Positron, Posit Assistant, Model Context Protocol (MCP), and ellmer. The emphasis is on transferable workflow patterns rather than dependence on one specific tool."
+            "The demonstrations will use Posit tooling and open-source components for practical LLM-assisted development: Positron (an AI-enabled, polyglot IDE), Posit Assistant (AI coding assistance), agent skills (custom tools for domain tasks), Model Context Protocol (MCP, secure tool integration), and ellmer. A preconfigured environment from Posit is provided so you can get started quickly. The emphasis is on transferable workflow patterns rather than dependence on one specific tool."
           ]
         },
         {
@@ -136,14 +131,19 @@
         {
           "heading": "Example applications",
           "bullets": [
-            "ADaM spec-to-code with validation",
-            "Clinical trial design optimization loops",
-            "Traceable tables, dashboards, and visualizations",
-            "Bioinformatics / pipeline QC and failure triage"
+            "ADaM spec-to-code",
+            "Interactive visualizations with traceability",
+            "Clinical trial design optimization",
+            "Portfolio-level analysis and prediction",
+            "Bioinformatics pipeline QC"
           ]
         }
       ],
-      "closing": "The goal is not autonomous production code. The goal is a better-engineered collaboration between people, models, specifications, and checks."
+      "closing": "The goal is not autonomous production code. The goal is a better-engineered collaboration between people, models, specifications, and checks.",
+      "instructors": [
+        "jeff-dickinson",
+        "philip-bowsher"
+      ]
     }
   },
   {
@@ -162,7 +162,7 @@
   },
   {
     "id": "keynote-1",
-    "title": "Keynote 1: Patrick Loerch",
+    "title": "Day 1 Keynote: Patrick Loerch",
     "track": "Plenary",
     "date": "2026-11-05",
     "startTime": "9:00 AM",
@@ -175,10 +175,10 @@
     "talks": [
       {
         "id": "keynote-1-talk",
-        "title": "Keynote 1",
+        "title": "Data Science in Transition: The AI-Driven Evolution of Roles in Biopharma",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
-        "abstract": "",
+        "abstract": "Every role evolves, and the biostatistician may need to evolve faster than ever. The role grew around scarce skills and regulatory accountability, which put biostatistics at the center of trial design, inference and regulatory defense. Past innovations such as genomics, electronic health records and cloud computing each changed one capability at a time over about a decade. They had only a marginal effect on the biostatistician's role. Instead, they expanded other data science fields in biopharma, including bioinformatics, epidemiology and pharmacometrics. AI changes everything at once. It is reliable for programming but much less so for methodology and framing the business question, yet it sounds equally confident everywhere. At the same time, FDA, EMA and ICH guidance is opening the door to AI, real-world evidence, Bayesian methods and model-informed drug development, provided the evidence is credible for its intended use. That is a statistical question. Together, these shifts are blurring the boundaries between roles and bringing other disciplines, such as pharmacometrics and epidemiology, into generating evidence for regulatory approval. Unlike past innovations, this one will change the biostatistician's role far more. The question is how the role will adapt, and whether biostatisticians will be proactive or reactive. Being proactive means two things: bringing statistical rigor to AI and/or moving into the edges where roles overlap and evidence for approval is increasingly being produced.",
         "speakers": [
           "patrick-loerch"
         ]
@@ -269,59 +269,13 @@
     "talks": []
   },
   {
-    "id": "fda-guidances-bayesian",
-    "title": "Parallel Session #1a: Navigating the Shifting Regulatory Environment: The Future of Demonstrating Evidence of Effectiveness",
-    "track": "Statistical Methods",
-    "date": "2026-11-05",
-    "startTime": "2:00 PM",
-    "endTime": "3:30 PM",
-    "room": "",
-    "description": "",
-    "chairs": [
-      "christina-rabe",
-      "tony-jiang"
-    ],
-    "talks": [
-      {
-        "id": "t-1a-1",
-        "title": "Substantial Evidence of Effectiveness",
-        "abstract": "FDA's 2026 Revised Draft Guidance on Substantial Evidence of Effectiveness (SEE) represents a significant update to the agency's interpretation of the evidentiary standard governing drug approval under Section 505(d) of the Federal Food, Drug, and Cosmetic Act. This presentation provides an accessible overview of the guidance and its implications for drug development. The 2026 draft broadens the pathway of one adequate and well-controlled (AWC) trial plus confirmatory evidence (CE) beyond rare disease and unmet-need settings, focusing evaluation on the overall strength and persuasiveness of the evidence. The presentation covers the legislative history of the SEE standard, the three primary approaches to demonstrating SEE, factors affecting evidentiary strength, the role of regulatory flexibility for rare and severe diseases, and the importance of integrating safety planning with effectiveness planning. Key guidance for sponsors includes the value of early FDA engagement and the principle that a single typical successful AWC trial, without strong CE, is not sufficient for approval.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "mark-rothmann"
-        ]
-      },
-      {
-        "id": "t-1a-2",
-        "title": "",
-        "abstract": "",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "james-travis"
-        ]
-      },
-      {
-        "id": "t-1a-3",
-        "title": "The Design of Bayesian Confirmatory Trials",
-        "abstract": "The new draft Bayesian guidance and ICH E20 have highlighted the potential role of Bayesian analyses in confirmatory trials. In this talk I will provide examples of Bayesian confirmatory trials, highlighting what these trials and results look like and highlighting the process of getting to an agreement on the trial design. Examples will be provided where adaptive design approaches are utilized, Bayesian borrowing from previous trials is utilized, and where prospective borrowing across subgroups is utilized. The focus will be on actual examples and the differences of the Bayesian approaches highlighted.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "scott-berry"
-        ]
-      }
-    ]
-  },
-  {
     "id": "adoption-collective",
-    "title": "Parallel Session #1b: The Adoption Collective: Fostering a Community for Practical AI",
+    "title": "Parallel Session #1a: The Adoption Collective: Fostering a Community for Practical AI",
     "track": "Data Science & AI",
     "date": "2026-11-05",
     "startTime": "2:00 PM",
     "endTime": "3:30 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "anqi-zhu",
@@ -329,7 +283,7 @@
     ],
     "talks": [
       {
-        "id": "t-1b-1",
+        "id": "t-1a-1",
         "title": "Perspectives for Responsible Artificial Intelligence: Balancing Innovation and Accountability",
         "abstract": "Artificial intelligence (AI) is rapidly transforming how organizations operate, make decisions, and deliver outcomes — yet its responsible deployment remains one of the most pressing challenges of our time. This presentation explores perspectives on what it means to use AI responsibly.\n\nCentral themes include the importance of human oversight in AI-assisted decision-making, the need for transparency and explainability in how AI systems reach conclusions, and the critical role of bias mitigation in ensuring consistent performance across diverse populations. The presentation also addresses the evolving risk landscape introduced by more autonomous AI architectures as these systems grow in capability and complexity.\n\nOf particular relevance to medical device sponsors are practical questions emerging at the intersection of AI capability and regulatory expectation. These include whether AI tools may be appropriately used to generate regulatory submissions, study designs, or reports submitted to the FDA; how devices can be designed to continuously incorporate new real-world data to prevent algorithmic drift while remaining within established regulatory boundaries; and whether prior device validation data or samples may be sequestered and reused in future validations of modified algorithms. Each of these questions reflects a broader tension between the iterative, adaptive nature of AI technology and the evidentiary standards required to demonstrate safety and effectiveness throughout a device's lifecycle.\n\nUltimately, responsible AI requires ongoing collaboration between technologists, domain experts, regulators, and the public to ensure that AI serves as a tool that safely augments human decision-making. Sponsors are encouraged to engage early and often with the FDA to navigate these questions within the evolving regulatory framework.",
         "startTime": "",
@@ -339,7 +293,7 @@
         ]
       },
       {
-        "id": "t-1b-2",
+        "id": "t-1a-2",
         "title": "Building Communities to drive impact through grassroot AI adoption",
         "abstract": "We at Boehringer Ingelheim's Global Biostatistics and Data Sciences organization are navigating a shift from grassroots AI experimentation toward more coordinated, strategic capability building. Individual practitioners have been testing large language models for tasks like specification generation and metadata resolution, while broader organizational efforts are taking shape around a centralized, trustworthy data and AI foundation, decision-support tools for trial design, and structured-authoring capabilities that reduce manual documentation effort. This talk explores how these threads — small-scale practitioner experiments and larger strategic investments — are converging, what we've learned about where AI genuinely accelerates work versus where rigorous programming logic still matters, and the cultural, technical, and governance considerations involved in scaling AI adoption responsibly across a large pharmaceutical R&D organization.",
         "startTime": "",
@@ -349,7 +303,7 @@
         ]
       },
       {
-        "id": "t-1b-3",
+        "id": "t-1a-3",
         "title": "Ask, and Be Asked: Building an AI Community by Inviting Others to Shape the Work",
         "abstract": "There are many ways to foster a community around practical AI - training sessions, top- down rollouts, and shared tool libraries. We explore a simpler path: invite people to shape the work itself and let their questions change both the problem and the solution. Speaking from two vantage points - an SME grounded in statistical thinking and an AI strategist—we follow an evidence-synthesis tool as it moves from a personal prototype toward cross-functional use. The experience reveals a skill most of us practice only halfway. Prompting is usually framed as asking AI better questions; the harder habit is learning to be questioned - by the tool, by colleagues, and by perspectives outside our own. We will share the questions that help determine whom to involve, what must remain under human judgment, and when an experiment is ready to grow. Our premise: practical AI communities form not around finished tools, but around shared ownership of the questions that shape them.",
         "startTime": "",
@@ -360,13 +314,59 @@
         ]
       },
       {
-        "id": "t-1b-4",
+        "id": "t-1a-4",
         "title": "Beyond the AI Demo: A Community Effort to Build Pharma Skills and Benchmarks",
         "abstract": "The R Consortium Pharma Skills effort brings the community together to build reusable AI skills for pharmaceutical R&D—and, just as importantly, the benchmark cases needed to know when those skills can be trusted.\n\nBy combining domain expertise, open collaboration, and shared evaluation, the initiative aims to move pharma AI beyond one-off demos toward a community-built foundation that can be tested, improved, and scaled together.",
         "startTime": "",
         "endTime": "",
         "speakers": [
           "ning-leng"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fda-guidances-bayesian",
+    "title": "Parallel Session #1b: Navigating the Shifting Regulatory Environment: The Future of Demonstrating Evidence of Effectiveness",
+    "track": "Statistical Methods",
+    "date": "2026-11-05",
+    "startTime": "2:00 PM",
+    "endTime": "3:30 PM",
+    "room": "Marco Polo Room",
+    "description": "",
+    "chairs": [
+      "christina-rabe",
+      "tony-jiang"
+    ],
+    "talks": [
+      {
+        "id": "t-1b-1",
+        "title": "Substantial Evidence of Effectiveness",
+        "abstract": "FDA's 2026 Revised Draft Guidance on Substantial Evidence of Effectiveness (SEE) represents a significant update to the agency's interpretation of the evidentiary standard governing drug approval under Section 505(d) of the Federal Food, Drug, and Cosmetic Act. This presentation provides an accessible overview of the guidance and its implications for drug development. The 2026 draft broadens the pathway of one adequate and well-controlled (AWC) trial plus confirmatory evidence (CE) beyond rare disease and unmet-need settings, focusing evaluation on the overall strength and persuasiveness of the evidence. The presentation covers the legislative history of the SEE standard, the three primary approaches to demonstrating SEE, factors affecting evidentiary strength, the role of regulatory flexibility for rare and severe diseases, and the importance of integrating safety planning with effectiveness planning. Key guidance for sponsors includes the value of early FDA engagement and the principle that a single typical successful AWC trial, without strong CE, is not sufficient for approval.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "mark-rothmann"
+        ]
+      },
+      {
+        "id": "t-1b-2",
+        "title": "Overview of the FDA Draft Guidance on Bayesian methods in Clinical Trials of Drug and Biological Products",
+        "abstract": "In January 2026, FDA published the draft guidance “Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products” to address a commitment under the seventh iteration of the Prescription Drug User Fee Act (PDUFA). The guidance discusses examples of where Bayesian methods have been used, considerations for success criteria, operating characteristics, prior distributions, missing data, computation and documentation.\nIn this presentation, I will review some of the key topics from the guidance and discuss the implications of the provided advice.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "james-travis"
+        ]
+      },
+      {
+        "id": "t-1b-3",
+        "title": "The Design of Bayesian Confirmatory Trials",
+        "abstract": "The new draft Bayesian guidance and ICH E20 have highlighted the potential role of Bayesian analyses in confirmatory trials. In this talk I will provide examples of Bayesian confirmatory trials, highlighting what these trials and results look like and highlighting the process of getting to an agreement on the trial design. Examples will be provided where adaptive design approaches are utilized, Bayesian borrowing from previous trials is utilized, and where prospective borrowing across subgroups is utilized. The focus will be on actual examples and the differences of the Bayesian approaches highlighted.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "jessica-overbey"
         ]
       }
     ]
@@ -390,7 +390,7 @@
     "date": "2026-11-05",
     "startTime": "4:00 PM",
     "endTime": "5:30 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "merrill-birkner",
@@ -456,7 +456,7 @@
     "date": "2026-11-05",
     "startTime": "4:00 PM",
     "endTime": "5:30 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "harry-yang",
@@ -475,8 +475,8 @@
       },
       {
         "id": "t-2b-2",
-        "title": "",
-        "abstract": "",
+        "title": "Digital Twins for Clinical Development: From Prognostic Adjustment to In-Silico Trials",
+        "abstract": "Digital twins have emerged as one of the most promising innovations in clinical development, fueled by advances in machine learning, causal inference, and the growing availability of historical clinical trial and real-world data. While much of the current discussion focuses on digital twins as synthetic controls, their broader value lies in enabling a progression from traditional prognostic adjustment to individualized outcome prediction, virtual evidence generation, and ultimately in-silico trial applications. This presentation will discuss the evolution of digital twins in clinical development and illustrate how digital twin frameworks can be used to address patient heterogeneity, improve treatment effect estimation, support trial design optimization, and inform development decisions across the drug development lifecycle.",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -527,13 +527,65 @@
     "startTime": "6:30 PM",
     "endTime": "",
     "room": "",
-    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "description": "Dinner with four 15-minute partner demos, in this order.",
     "chairs": [],
+    "talks": [
+      {
+        "id": "demo-d1-1",
+        "title": "DesignX: Agentic Workflows for Clinical Trial Designs",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "bayesoft"
+      },
+      {
+        "id": "demo-d1-2",
+        "title": "GxP-Qualified AI for Clinical Statistics: From Protocol to Submission-Ready Outputs in TriClick",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "hill-research"
+      },
+      {
+        "id": "demo-d1-3",
+        "title": "KerusCloud: From Analysis to Influence",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "mms-holdings"
+      },
+      {
+        "id": "demo-d1-4",
+        "title": "TBD",
+        "startTime": "",
+        "endTime": "",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "sycamore-informatics"
+      }
+    ],
+    "talksHeading": "Partner Demos"
+  },
+  {
+    "id": "opening-day2",
+    "title": "Opening",
+    "track": "Plenary",
+    "date": "2026-11-06",
+    "startTime": "8:45 AM",
+    "endTime": "9:00 AM",
+    "room": "",
+    "description": "",
+    "chairs": [
+      "ning-leng"
+    ],
     "talks": []
   },
   {
     "id": "keynote-2",
-    "title": "Keynote 2: Daniela Ferrara",
+    "title": "Day 2 Keynote: Daniela Ferrara",
     "track": "Plenary",
     "date": "2026-11-06",
     "startTime": "9:00 AM",
@@ -546,10 +598,10 @@
     "talks": [
       {
         "id": "keynote-2-talk",
-        "title": "Keynote 2",
+        "title": "From Data to Discovery: How Artificial Intelligence Is Transforming Clinical Trials",
         "startTime": "9:00 AM",
         "endTime": "10:00 AM",
-        "abstract": "",
+        "abstract": "The development of new therapies remains constrained by lengthy timelines, low probabilities of technical and regulatory success, and escalating costs, reflecting persistent inefficiencies across the drug development lifecycle.\n\nArtificial intelligence (AI) is increasingly transforming clinical development, from early-stage research and trial design to clinical trial execution and post-approval evidence generation. By leveraging historical clinical trial data and real-world data, AI-powered approaches can inform critical elements of trial design, including eligibility criteria, patient enrichment strategies, endpoint selection, sample size estimation, and statistical power. AI-enabled endpoints can improve the efficiency, precision, and reproducibility of clinical assessments, while predictive modeling opens new opportunities for innovative trial methodologies, including AI-based covariate adjustment, digital twins, and synthetic control arms. Furthermore, the integration of AI with electronic medical records and clinical imaging enables more efficient patient identification and trial prescreening, while supporting real-world evidence generation throughout the therapeutic product lifecycle.\n\nClinical trials in ophthalmology serve as a proving ground for developing and validating these AI-powered approaches. High-resolution, noninvasive retinal imaging generates rich longitudinal datasets that are well suited to quantitative AI analysis.\n\nDrawing on a decade of research in advanced age-related macular degeneration (AMD), this presentation will illustrate how AI-enabled imaging biomarkers, predictive disease modeling, and advanced analytics can inform clinical trial design, conduct, and interpretation.  This presentation will briefly explore oculomics as an emerging frontier in AI-driven biomedical discovery, extending retinal imaging beyond traditional ophthalmic endpoints to reveal novel insights into systemic health and disease. Throughout, the scientific opportunities will be considered alongside the methodological, regulatory, and implementation challenges that must be addressed to translate AI-based innovation into reliable evidence and meaningful improvements in drug development, ultimately improving the outcomes of patients in clinical research and practice.",
         "speakers": [
           "daniela-ferrara"
         ]
@@ -575,7 +627,7 @@
     "date": "2026-11-06",
     "startTime": "10:30 AM",
     "endTime": "12:00 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "dong-xi",
@@ -583,13 +635,13 @@
     ],
     "talks": [
       {
-        "id": "t-3a-1",
-        "title": "Designing Crossover Trials for Rare Diseases: Statistical and Practical Considerations",
-        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs, and enable treatment comparisons by leveraging the stable, chronic nature of many rare diseases. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
+        "id": "t-3a-3",
+        "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
+        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. However, these methods have been criticized for their potential conservativeness, which may lead to reduced statistical power. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. A central question faced by clinical trial practitioners is how conservative the closure principle-based approach truly is and whether the potential power gains of more advanced methods justify their adoption. In this study, we conduct a comparison of different analysis procedures. Through extensive simulation studies, we assess their performance in terms of statistical power, Type I error control, and practical implementation considerations. We provide concrete guidance for the design and analysis of adaptive seamless trials.",
         "startTime": "",
         "endTime": "",
         "speakers": [
-          "jung-yeon-won"
+          "hongjian-zhu"
         ]
       },
       {
@@ -603,13 +655,13 @@
         ]
       },
       {
-        "id": "t-3a-3",
-        "title": "Investigation and Recommendation of Analysis Approaches for Adaptive Seamless Phase II/III Clinical Trials",
-        "abstract": "Seamless Phase II/III clinical trials have emerged as a powerful strategy to accelerate drug development by integrating early-phase treatment selection and late-phase confirmatory evaluation within a unified protocol. Among the statistical methods for inference in such designs, closure principle-based approaches are widely adopted due to their strong control of the family-wise Type I error rate and broad regulatory acceptance. However, these methods have been criticized for their potential conservativeness, which may lead to reduced statistical power. As a theoretically optimal alternative, the Uniformly Most Powerful Conditionally Unbiased (UMPCU) test explicitly accounts for data-dependent treatment selection and serves as a benchmark for evaluating the efficiency of other approaches. A central question faced by clinical trial practitioners is how conservative the closure principle-based approach truly is and whether the potential power gains of more advanced methods justify their adoption. In this study, we conduct a comparison of different analysis procedures. Through extensive simulation studies, we assess their performance in terms of statistical power, Type I error control, and practical implementation considerations. We provide concrete guidance for the design and analysis of adaptive seamless trials.",
+        "id": "t-3a-1",
+        "title": "Designing Crossover Trials for Rare Diseases: Statistical and Practical Considerations",
+        "abstract": "Rare disease drug development commonly faces challenges such as small patient populations, heterogeneous clinical manifestations, and slowly progressing disease courses, making crossover trial designs a potential alternative to traditional parallel group studies by offering improved statistical efficiency and reduced between-patient variability. This presentation investigates the use of 2-treatment, 2-period crossover designs in rare disease superiority trials using numerical analyses and case studies, with focus on statistical power and analysis methods. Our findings indicate that crossover designs can achieve comparable statistical power with substantially reduced sample sizes compared to parallel group designs, and enable treatment comparisons by leveraging the stable, chronic nature of many rare diseases. The presentation will also discuss practical considerations for implementation of crossover designs in rare disease trials, including handling of carryover effects and patient discontinuations.",
         "startTime": "",
         "endTime": "",
         "speakers": [
-          "hongjian-zhu"
+          "jung-yeon-won"
         ]
       }
     ]
@@ -621,7 +673,7 @@
     "date": "2026-11-06",
     "startTime": "10:30 AM",
     "endTime": "12:00 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "sunny-xie",
@@ -680,9 +732,47 @@
     "startTime": "1:00 PM",
     "endTime": "2:00 PM",
     "room": "",
-    "description": "Demos from: Phase V, Hill Research, Q2BI, MMS Holdings, Keiji AI, HopeAI, Bayesoft, Sycamore (final lineup TBD).",
+    "description": "Four 15-minute partner demos.",
     "chairs": [],
-    "talks": []
+    "talks": [
+      {
+        "id": "demo-d2-1",
+        "title": "Model the Disease. Optimize the Trial. How PhaseV would give asset teams the causal steer",
+        "startTime": "1:00 PM",
+        "endTime": "1:15 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "phasev"
+      },
+      {
+        "id": "demo-d2-2",
+        "title": "TBD",
+        "startTime": "1:15 PM",
+        "endTime": "1:30 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "hopeai"
+      },
+      {
+        "id": "demo-d2-3",
+        "title": "You Don’t Have to Be an AI Expert to Bring AI Into Your Daily Work",
+        "startTime": "1:30 PM",
+        "endTime": "1:45 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "q2bi"
+      },
+      {
+        "id": "demo-d2-4",
+        "title": "TrialMind for Biometric Teams",
+        "startTime": "1:45 PM",
+        "endTime": "2:00 PM",
+        "abstract": "",
+        "speakers": [],
+        "sponsor": "keiji-ai"
+      }
+    ],
+    "talksHeading": "Partner Demos"
   },
   {
     "id": "leadership-career-development",
@@ -732,7 +822,7 @@
     "date": "2026-11-06",
     "startTime": "3:10 PM",
     "endTime": "4:40 PM",
-    "room": "",
+    "room": "Main Room",
     "description": "",
     "chairs": [
       "radia-johnson",
@@ -752,7 +842,7 @@
       {
         "id": "t-4a-2",
         "title": "Expansion of trial eligibility for a Phase 3 trial using Clinico-Genomic Real World Data",
-        "abstract": "",
+        "abstract": "Endocrine-resistance classification guides clinical-trial eligibility and first-line treatment selection in hormone receptor-positive (HR+), HER2-negative metastatic breast cancer (mBC). The prevailing definitions of primary and secondary endocrine resistance (ETR) are derived from the ESO–ESMO Advanced Breast Cancer (ABC) consensus guidelines, which assign a resistance category based on the timing of relapse or progression relative to endocrine therapy start/end dates. Both the resistance categories and their underlying relapse-timing cutoffs were established by expert consensus in the guidelines rather than from data. Because this classification is a key eligibility criterion, we conducted a data-driven analysis characterizing these subgroups by comparing comprehensive genomic profiles and real-world outcomes across the guideline categories and across finer relapse-timing subgroups.\n\nWe leveraged two datasets including the Flatiron Health (FH) electronic health record-derived de-identified database and its linked dataset, the FH-Foundation Medicine, Inc. (FMI) clinico-genomic database (CGDB), which combines EHR-derived clinical data with comprehensive genomic profiling. Genomic profiling and real-world outcomes analysis indicate that endocrine resistance behaves as a continuum. Notably, an expanded secondary ETR group that includes patients relapsing between 1-2 years (classified as primary ETR under the ABC guidelines) demonstrates similar genomic profiles and outcomes as the guideline-defined secondary ETR group.\n\nUsing this data-driven definition can result in a potential 26% increase in baseline eligible population over traditional consensus guideline criteria for a secondary ETR trial. This study highlights the role of real-world evidence in modern trial design, showing how data-driven approaches can build on clinical guidelines to better identify the patients most likely to derive benefit and thus expand trial eligibility",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -761,8 +851,8 @@
       },
       {
         "id": "t-4a-3",
-        "title": "",
-        "abstract": "",
+        "title": "Real-World Imaging Biomarkers in Oncology: Onclara IO and Applications in Drug Development",
+        "abstract": "Routine CT scans offer a rich source of information for developing imaging biomarkers in oncology. This presentation will describe Onc.AI’s experience bringing real-world imaging and clinical data together, with a primary focus on Onclara IO and its external validation using Flatiron Health data.\n\nThe Onclara IO case study will follow the path from biomarker development to evaluation in an independent real-world cohort. Presented at ASCO 2026 as the enhanced CT Response Score (eCTRS), the biomarker combines CT-derived imaging and lesion features with age and sex. The retrospective validation included 205 patients with PD-L1-high metastatic non-small cell lung cancer without actionable mutations who received first-line immune checkpoint inhibitor monotherapy. Patients in the favorable biomarker group had longer overall survival, and the association persisted after adjustment for baseline clinical factors. Analyses were conducted by an independent research organization under a locked statistical analysis plan.\n\nThe emphasis will be on practical lessons from this collaboration: assembling an imaging-linked cohort, working with scans acquired across different care settings, and evaluating a model outside its development data. The talk will also place this work within Onc.AI’s broader efforts to use longitudinal imaging biomarkers to support early assessment of treatment activity and inform trial go/no-go decisions. Attendees will see a concrete example of real-world imaging biomarker development and validation, along with emerging applications in oncology research. Onclara IO remains investigational.",
         "startTime": "",
         "endTime": "",
         "speakers": [
@@ -798,7 +888,7 @@
     "date": "2026-11-06",
     "startTime": "3:10 PM",
     "endTime": "4:40 PM",
-    "room": "",
+    "room": "Marco Polo Room",
     "description": "",
     "chairs": [
       "haoda-fu",
@@ -861,6 +951,7 @@
     "endTime": "6:30 PM",
     "room": "",
     "description": "",
+    "sponsor": "njs",
     "chairs": [],
     "talks": []
   }

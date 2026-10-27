@@ -257,7 +257,7 @@
     "title": "Master Mathematical Statistician",
     "affiliation": "FDA",
     "bio": "James Travis is a master mathematical statistician in the Division of Biometrics II in the US FDA Center for Drug Evaluation and Research. He is the technical lead for the pediatric and maternal health statistical scientists and has been supporting pediatric drug development since joining the Pediatric Review Committee in 2017. He has worked extensively on application in the complex and innovative trial design program has led the development of the FDA draft guidance \"Use of Bayesian Methodology in Clinical Trials of Drug and Biological Products.\" He received his PhD in Statistics from the University of Maryland, Baltimore County.",
-    "photo": "",
+    "photo": "/speakers/james-travis.jpg",
     "linkedin": ""
   },
   {
@@ -266,7 +266,7 @@
     "title": "Senior Statistical Scientist",
     "affiliation": "Berry Consultants",
     "bio": "Jessica Overbey is a Senior Statistical Scientist at Berry Consultants. She earned her MS and DrPH in Biostatistics from Columbia University and was an Assistant Professor of Biostatistics at the Icahn School of Medicine at Mount Sinai before joining Berry Consultants. She remains an adjunct faculty member at Mount Sinai and was elected a Fellow of the Society for Clinical Trials in 2026. Her work focuses on the design, implementation, and analysis of Bayesian and adaptive clinical trials for pharmaceuticals and medical devices across a range of therapeutic areas. She works closely with sponsors to develop innovative trial designs and simulation-based evaluations of their operating characteristics, supporting regulatory discussions and clinical development decisions.",
-    "photo": "",
+    "photo": "/speakers/jessica-overbey.jpg",
     "linkedin": "https://www.linkedin.com/in/jessica-overbey-5a872647"
   },
   {
@@ -410,7 +410,7 @@
     "title": "Chief Technology Officer",
     "affiliation": "Onc.AI",
     "bio": "Petr Jordan, PhD, is Chief Technology Officer at Onc.AI and a member of its founding team. His responsibilities include technology strategy and development, research partnerships, and intellectual property. His background spans medical imaging, computer vision, machine learning, and medical physics, with a focus on applications in oncology. Previously, he worked at Varian Medical Systems on machine-learning approaches to radiation treatment planning, image guidance, and CT reconstruction. At Accuray, he managed imaging research for the CyberKnife and TomoTherapy platforms. He earned his doctorate through the Harvard-MIT Health Sciences and Technology program in Medical Engineering and Medical Physics. He also holds a master’s degree in Engineering Sciences from Harvard University and a bachelor’s degree in Computer Engineering from Lipscomb University.",
-    "photo": "",
+    "photo": "/speakers/petr-jordan.jpg",
     "linkedin": "https://www.linkedin.com/in/petrjordan"
   },
   {
@@ -446,7 +446,7 @@
     "title": "VP Data Science & Analytics (retired)",
     "affiliation": "Independent",
     "bio": "Conny holds a Ph.D. in Statistics from Ludwig-Maximilians-Universität in Munich, Germany. She joined Roche's Biostatistics department in Nutley, NJ in 1999, working across Early- and Late-Development in Cardiovascular, Neuroscience and Metabolism. In 2004, she transferred to Basel to work in Late-Development Oncology, took on her first managerial role the following year, and moved to Genentech in 2011. Over the course of her career, Conny held positions of increasing responsibility, including several cross-functional leadership roles. Her most recent position was VP, Data Science and Analytics, and Global Head of Data and Statistical Sciences for Hematology and Oncology. Conny retired from Roche and Genentech at the end of 2025 and now occasionally consults in the biopharma space.",
-    "photo": "",
+    "photo": "/speakers/cornelia-irl.jpg",
     "linkedin": ""
   },
   {
@@ -464,7 +464,7 @@
     "title": "Principle Analytical Data Science Programmer",
     "affiliation": "Genentech",
     "bio": "Jingyuan Chen is a Principal Analytical Data Science Programmer at Genentech, bringing 13 years of experience within Roche/Genentech. Currently, she serves as a Project Lead in statistical programming and as the Data Science Filing Lead for oncology therapeutic areas. Her expertise lies in leading data science teams for late- phase studies and regulatory filing activities. Jingyuan is also passionate about advancing innovative workflows, including the integration of open-source technologies to enhance interactive analysis and data visualization in routine projects.",
-    "photo": "",
+    "photo": "/speakers/jingyuan-chen.jpg",
     "linkedin": "https://linkedin.com/in/jingyuan-chen78a10025"
   },
   {
@@ -491,7 +491,7 @@
     "title": "Executive Director, Biostatistics",
     "affiliation": "Exelixis",
     "bio": "Joseph Paulson, PhD, is an Executive Director of Biostatistics and Head of Early Development Biostatistics and the Center of Data Excellence at Exelixis, where he leads statistical strategy and quantitative decision-making across development. His work focuses on integrating clinical, statistical, translational, and operational perspectives to accelerate development decisions and build scalable capabilities across the organization.\n\nPrior to Exelixis, Joseph was Head of Data Sciences at N-Power Medicine and was a Senior Principal Statistical Scientist at Genentech in the Early Development Oncology group. He also serves as adjunct faculty at Yale School of Medicine.\n\nJoseph is particularly focused on the evolving role of quantitative leaders as strategic partners, including the application of artificial intelligence, development of enterprise data capabilities, and creation of operating models that enable teams to make faster, higher-quality decisions. He holds a PhD in Applied Mathematics and Statistics from the University of Maryland, College Park and completed a Research Fellowship at Dana-Farber Cancer Institute and Harvard Medical School.",
-    "photo": "",
+    "photo": "/speakers/joseph-n-paulson.jpg",
     "linkedin": "https://www.linkedin.com/in/jnpaulson/"
   },
   {

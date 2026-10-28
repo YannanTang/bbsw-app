@@ -4,52 +4,75 @@ import posters from "../data/posters.json";
 import PosterIndex from "../components/PosterIndex.astro";
 
 const base = import.meta.env.BASE_URL;
-// Board label, e.g. "P01".
-const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
+
+// CHANGE THIS VARIABLE to control the voting window: 'preview', 'test', 'open', or 'closed'
+const votingStatus = 'test'; 
 ---
 <BaseLayout title="Posters — BBSW 2026">
   <h1>Poster Sessions</h1>
   <p>Lightning talks and voting take place during the conference.</p>
 
-  <section class="voting-box">
+  <section class="voting-box" id="voting-section">
     <h2>Vote for the Best Poster</h2>
-    <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed. If you submit again, your new ballot replaces the earlier one.</p>
     
-    <form id="voting-form" class="space-y-4">
-      <div class="field">
-        <label for="voter-name">Full Name</label>
-        <input type="text" id="voter-name" name="name" required />
-      </div>
-      <div class="field">
-        <label for="voter-email">Registration Email</label>
-        <input type="email" id="voter-email" name="email" required />
-      </div>
-      
-      <div class="field">
-        <label>Select up to 3 posters:</label>
-        <div class="checkbox-grid">
-          {posters.map((p) => (
-            <label class="checkbox-label">
-              <input type="checkbox" name="posters" value={p.id} />
-              <span class="poster-summary">
-                <strong>{label(p.id)}: {p.presenters}</strong><br/>
-                <span class="poster-title-small">{p.title}</span>
-              </span>
-            </label>
-          ))}
-        </div>
-      </div>
+    {votingStatus === 'preview' && (
+      <div class="status-banner info">Voting has not started yet. Please check back during the poster session!</div>
+    )}
+    
+    {votingStatus === 'closed' && (
+      <div class="status-banner warning">Voting has officially closed. Thank you for participating!</div>
+    )}
+    
+    {(votingStatus === 'test' || votingStatus === 'open') && (
+      <>
+        {votingStatus === 'test' && (
+          <div class="status-banner test-mode">
+            <strong>🧪 TEST RUN:</strong> Voting is currently in testing mode. Votes cast now will not count toward the final tally.
+          </div>
+        )}
+        <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed.</p>
+        
+        <form id="voting-form" class="space-y-4">
+          <div class="field">
+            <label for="voter-name">Full Name</label>
+            <input type="text" id="voter-name" name="name" required />
+          </div>
+          <div class="field">
+            <label for="voter-email">Registration Email</label>
+            <input type="email" id="voter-email" name="email" required />
+          </div>
+          
+          <div class="field">
+            <label>Select up to 3 posters:</label>
+            <div class="checkbox-grid">
+              {posters.map((p) => (
+                <label class="checkbox-label">
+                  <input type="checkbox" name="posters" value={p.id} />
+                  <span class="poster-summary">
+                    <strong>Poster {p.id}: {p.presenters}</strong><br/>
+                    <span class="poster-title-small">{p.title}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </div>
 
-      <div id="vote-message" class="message hidden"></div>
-      <button type="submit" id="submit-btn" class="cta">Submit Ballot</button>
-    </form>
+          <div id="vote-message" class="message hidden"></div>
+          <button type="submit" id="submit-btn" class="cta">Submit Ballot</button>
+        </form>
+      </>
+    )}
   </section>
 
-  <div class="poster-list">
-    <h2>Accepted Posters</h2>
+  <div class="poster-list" id="poster-list">
+    <div class="poster-list-header">
+      <h2>Accepted Posters</h2>
+      <a href="#voting-section" class="jump-link">↑ Back to Voting Form</a>
+    </div>
+    
     {posters.map((p) => (
       <div class="poster-card" id={`poster-${p.id}`}>
-        <div class="poster-id">{label(p.id)}</div>
+        <div class="poster-id">Poster {p.id}</div>
         <h3 class="poster-title">{p.title}</h3>
         <div class="poster-authors">{p.presenters}</div>
         <details class="poster-details">
@@ -63,19 +86,12 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
 </BaseLayout>
 
 <script>
+  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtXHkaiTcEa1ikGyRAWPz80G0iLr5wtUbtdsPoABbS60HUHMnQM9RUl2xiEDU7NXlB6A/exec";
   
   const form = document.getElementById("voting-form") as HTMLFormElement;
   const msgBox = document.getElementById("vote-message") as HTMLDivElement;
   const btn = document.getElementById("submit-btn") as HTMLButtonElement;
-  const boxes = Array.from(form?.querySelectorAll<HTMLInputElement>('input[name="posters"]') ?? []);
-
-  // Once 3 posters are picked, grey out the rest.
-  function limitChoices() {
-    const full = boxes.filter((b) => b.checked).length >= 3;
-    boxes.forEach((b) => { b.disabled = full && !b.checked; });
-  }
-  boxes.forEach((b) => b.addEventListener("change", limitChoices));
   
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -109,7 +125,6 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
       if (result.success) {
         showMessage(result.message, "success");
         form.reset();
-        limitChoices();
       } else {
         showMessage(result.message, "error");
       }
@@ -131,28 +146,41 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
   /* Voting Form Styles */
   .voting-box { background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin-bottom: 2.5rem; border: 1px solid #e2e8f0; }
   .privacy-note { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; font-style: italic; }
+  .status-banner { padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.95rem; }
+  .status-banner.test-mode { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
+  .status-banner.info { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+  .status-banner.warning { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+  
   .field { margin-bottom: 1.25rem; }
-  .field label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
-  .field input[type="text"], .field input[type="email"] { width: 100%; padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px; }
+  .field label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; color: #334155; }
+  .field input[type="text"], .field input[type="email"] { 
+    width: 100%; 
+    padding: 0.6rem; 
+    border: 1px solid #cbd5e1; 
+    border-radius: 6px; 
+    font-size: 16px; /* Forces iOS to not zoom */
+    font-family: inherit;
+  }
   .checkbox-grid { display: flex; flex-direction: column; gap: 0.75rem; }
   .checkbox-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; padding: 0.75rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; transition: border-color 0.2s; }
   .checkbox-label:hover { border-color: #94a3b8; }
-  .checkbox-label:has(input:disabled) { opacity: 0.5; cursor: not-allowed; }
-  .poster-summary { font-size: 0.9rem; line-height: 1.4; }
-  .poster-title-small { color: #475569; font-size: 0.85rem; }
+  .poster-summary { font-size: 0.9rem; line-height: 1.4; color: #334155; }
+  .poster-title-small { color: #64748b; font-size: 0.85rem; }
   .message { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 600; font-size: 0.9rem; }
   .message.hidden { display: none; }
   .message.error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
   .message.success { background: #dcfce3; color: #166534; border: 1px solid #86efac; }
-  .cta { width: 100%; padding: 0.75rem; background: var(--color-primary, #9b1b30); color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+  .cta { width: 100%; padding: 0.75rem; background: var(--color-primary, #0f172a); color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: opacity 0.2s; }
   .cta:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* Poster List Styles */
   .poster-list { margin-top: 2rem; }
+  .poster-list-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .jump-link { color: var(--color-primary, #2563eb); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .jump-link:hover { text-decoration: underline; }
   .poster-card { scroll-margin-top: 0.75rem; }
-  /* Leave room for the poster number rail on phones. */
   @media (max-width: 1100px) { .poster-list { padding-right: 1.9rem; } }
-  .poster-list h2 { margin-bottom: 1rem; }
+  .poster-list h2 { margin: 0; }
   .poster-card { 
     margin-bottom: 1.5rem; 
     padding: 1.25rem; 
@@ -162,9 +190,9 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
   }
   .poster-id { font-size: 0.875rem; font-weight: 700; color: #64748b; margin-bottom: 0.35rem; }
-  .poster-title { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; }
+  .poster-title { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; color: #0f172a; }
   .poster-authors { color: #334155; margin-top: 0.5rem; font-weight: 500; }
   .poster-details { margin-top: 1rem; }
-  .abstract-toggle { cursor: pointer; color: #2563eb; font-weight: 600; list-style: none; }
+  .abstract-toggle { cursor: pointer; color: var(--color-primary, #2563eb); font-weight: 600; list-style: none; }
   .abstract-content { margin-top: 0.75rem; font-size: 0.9rem; color: #475569; line-height: 1.6; white-space: pre-wrap; }
 </style>

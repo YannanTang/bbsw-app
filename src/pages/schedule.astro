@@ -23,6 +23,7 @@ type Speaker = { id: string; name: string; title: string; affiliation: string; b
 const speakerMap = new Map((speakers as Speaker[]).map((sp) => [sp.id, sp]));
 const sponsorMap = new Map((sponsors as { id: string; name: string; logo: string }[]).map((sp) => [sp.id, sp]));
 const raffleDays = raffle.sessions as Record<string, { day: string; date: string }>;
+const raffleFirstDate = Object.values(raffleDays).map((r) => r.date).sort()[0];
 const names = (ids: string[]) => ids.map((id) => speakerMap.get(id)?.name).filter(Boolean).join(", ");
 
 const all = sessions as Session[];
@@ -102,7 +103,7 @@ const groupSlots = (list: Session[]): Slot[] => {
             <a class="session-row" href={link(`sessions/${slot.sessions[0].id}`)}>
               <div class="time">{timeLabel(slot.sessions[0])}</div>
               {raffleDays[slot.sessions[0].id] && (
-                <span class="tag primary raffle-live" data-day={raffleDays[slot.sessions[0].id].day} data-date={raffleDays[slot.sessions[0].id].date} data-endpoint={raffle.endpoint} hidden>Raffle sign-up open — tap to enter</span>
+                <span class="tag primary raffle-live" data-day={raffleDays[slot.sessions[0].id].day} data-date={raffleDays[slot.sessions[0].id].date} data-first={raffleFirstDate} data-endpoint={raffle.endpoint} hidden>Raffle sign-up open — tap to enter</span>
               )}
               <div class="title-row">
                 <div class="title">{slot.sessions[0].title}</div>
@@ -143,19 +144,22 @@ const groupSlots = (list: Session[]): Slot[] => {
 </BaseLayout>
 
 <script>
-  // Flag the raffle session while the stage has sign-up open (asked only on the raffle day).
+  // Flag the raffle session while the stage has sign-up open (asked only on the raffle day, or before the conference for rehearsals).
   const tick = () => {
     const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
     document.querySelectorAll<HTMLElement>(".raffle-live").forEach((el) => {
-      const { day, date, endpoint } = el.dataset;
-      if (!endpoint || date !== today) return;
+      const { day, date, first, endpoint } = el.dataset;
+      if (!endpoint || (date !== today && today >= first!)) return;
       fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ action: "state", day }),
       })
         .then((r) => r.json())
-        .then((st) => { el.hidden = !st.open; })
+        .then((st) => {
+          if (today < first!) el.textContent = "Raffle test run open — tap to try";
+          el.hidden = !st.open;
+        })
         .catch(() => {});
     });
   };

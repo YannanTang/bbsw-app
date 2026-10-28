@@ -6,11 +6,15 @@ import raffle from "../data/raffle.json";
 
 interface Props { sessionId: string }
 const { sessionId } = Astro.props;
-const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[sessionId];
+const raffleSessions = raffle.sessions as Record<string, { day: string; date: string }>;
+const cfg = raffleSessions[sessionId];
+// Before the first raffle day, both forms ask the server, so the team can rehearse with the stage screen.
+const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
 ---
 {cfg && (
-  <section class="raffle" data-day={cfg.day} data-date={cfg.date} data-endpoint={raffle.endpoint}>
+  <section class="raffle" data-day={cfg.day} data-date={cfg.date} data-first={firstDate} data-endpoint={raffle.endpoint}>
     <h2>Raffle sign-up</h2>
+    <p class="raffle-test" hidden><strong>Test run.</strong> This is a practice raffle before the conference. Test entries will be cleared, so please sign up again at the conference.</p>
 
     <p class="raffle-state" data-state="waiting" hidden>Sign-up opens when the raffle starts. The venue code will be on the screen. You must be in the room to win.</p>
     <p class="raffle-state raffle-closed" data-state="ended" hidden>Raffle sign-up has closed. Thanks for joining!</p>
@@ -48,8 +52,13 @@ const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[s
   };
 
   document.querySelectorAll<HTMLElement>(".raffle").forEach((box) => {
-    const { day, date, endpoint } = box.dataset as Record<string, string>;
-    const doneKey = `bbsw_raffle_${day}`;
+    const { day, date, first, endpoint } = box.dataset as Record<string, string>;
+    const todayPT = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+    // Before the conference the raffle is a rehearsal: say so, and keep its "entered" flag apart
+    // from the real one so a test entry never shows as "You're in" at the conference.
+    const rehearsal = todayPT() < first;
+    box.querySelector<HTMLElement>(".raffle-test")!.hidden = !rehearsal;
+    const doneKey = `bbsw_raffle_${rehearsal ? "test_" : ""}${day}`;
     const form = box.querySelector<HTMLFormElement>(".raffle-form")!;
     const errorEl = box.querySelector<HTMLElement>(".raffle-error")!;
     const button = form.querySelector<HTMLButtonElement>("button")!;
@@ -74,13 +83,12 @@ const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[s
         body: JSON.stringify({ day, ...body }),
       }).then((r) => r.json());
 
-    const todayPT = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
-
     const refresh = async () => {
       const name = savedName();
       if (name) return markDone(name);
-      // Only the raffle day asks the server; any other day just shows "opens when the raffle starts".
-      if (!endpoint || todayPT() !== date) return show("waiting");
+      // The raffle day (or a rehearsal before the conference) asks the server; any other day just shows "opens when the raffle starts".
+      const today = todayPT();
+      if (!endpoint || (today !== date && today >= first)) return show("waiting");
       try {
         const st = await call({ action: "state" });
         if (st.open) { if (form.hidden) show("open"); }
@@ -148,5 +156,6 @@ const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[s
   .raffle-done { padding: 1rem; border-radius: var(--radius); background: #e3f3f4; color: var(--color-secondary-dark); }
   .raffle-done p { margin: 0.3rem 0 0; }
   .raffle-state { font-weight: 600; }
+  .raffle-test { padding: 0.6rem 0.75rem; border-radius: var(--radius); background: #fff4d6; color: #6b4e00; }
   .raffle-closed { color: var(--color-muted); }
 </style>

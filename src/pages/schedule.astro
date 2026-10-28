@@ -156,7 +156,10 @@ const groupSlots = (list: Session[]): Slot[] => {
         body: JSON.stringify({ action: "state", day }),
       })
         .then((r) => r.json())
-        .then((st) => { el.hidden = !st.open; })
+        .then((st) => {
+          if (today < first!) el.textContent = "Raffle test run open — tap to try";
+          el.hidden = !st.open;
+        })
         .catch(() => {});
     });
   };

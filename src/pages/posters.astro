@@ -4,6 +4,8 @@ import posters from "../data/posters.json";
 import PosterIndex from "../components/PosterIndex.astro";
 
 const base = import.meta.env.BASE_URL;
+// Board label, e.g. "P01".
+const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
 ---
 <BaseLayout title="Posters — BBSW 2026">
   <h1>Poster Sessions</h1>
@@ -11,7 +13,7 @@ const base = import.meta.env.BASE_URL;
 
   <section class="voting-box">
     <h2>Vote for the Best Poster</h2>
-    <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed.</p>
+    <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed. If you submit again, your new ballot replaces the earlier one.</p>
     
     <form id="voting-form" class="space-y-4">
       <div class="field">
@@ -30,7 +32,7 @@ const base = import.meta.env.BASE_URL;
             <label class="checkbox-label">
               <input type="checkbox" name="posters" value={p.id} />
               <span class="poster-summary">
-                <strong>Poster {p.id}: {p.presenters}</strong><br/>
+                <strong>{label(p.id)}: {p.presenters}</strong><br/>
                 <span class="poster-title-small">{p.title}</span>
               </span>
             </label>
@@ -47,7 +49,7 @@ const base = import.meta.env.BASE_URL;
     <h2>Accepted Posters</h2>
     {posters.map((p) => (
       <div class="poster-card" id={`poster-${p.id}`}>
-        <div class="poster-id">Poster {p.id}</div>
+        <div class="poster-id">{label(p.id)}</div>
         <h3 class="poster-title">{p.title}</h3>
         <div class="poster-authors">{p.presenters}</div>
         <details class="poster-details">
@@ -61,12 +63,19 @@ const base = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <script>
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtXHkaiTcEa1ikGyRAWPz80G0iLr5wtUbtdsPoABbS60HUHMnQM9RUl2xiEDU7NXlB6A/exec";
   
   const form = document.getElementById("voting-form") as HTMLFormElement;
   const msgBox = document.getElementById("vote-message") as HTMLDivElement;
   const btn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const boxes = Array.from(form?.querySelectorAll<HTMLInputElement>('input[name="posters"]') ?? []);
+
+  // Once 3 posters are picked, grey out the rest.
+  function limitChoices() {
+    const full = boxes.filter((b) => b.checked).length >= 3;
+    boxes.forEach((b) => { b.disabled = full && !b.checked; });
+  }
+  boxes.forEach((b) => b.addEventListener("change", limitChoices));
   
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -100,6 +109,7 @@ const base = import.meta.env.BASE_URL;
       if (result.success) {
         showMessage(result.message, "success");
         form.reset();
+        limitChoices();
       } else {
         showMessage(result.message, "error");
       }
@@ -127,6 +137,7 @@ const base = import.meta.env.BASE_URL;
   .checkbox-grid { display: flex; flex-direction: column; gap: 0.75rem; }
   .checkbox-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; padding: 0.75rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; transition: border-color 0.2s; }
   .checkbox-label:hover { border-color: #94a3b8; }
+  .checkbox-label:has(input:disabled) { opacity: 0.5; cursor: not-allowed; }
   .poster-summary { font-size: 0.9rem; line-height: 1.4; }
   .poster-title-small { color: #475569; font-size: 0.85rem; }
   .message { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 600; font-size: 0.9rem; }

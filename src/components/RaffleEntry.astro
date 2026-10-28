@@ -6,10 +6,13 @@ import raffle from "../data/raffle.json";
 
 interface Props { sessionId: string }
 const { sessionId } = Astro.props;
-const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[sessionId];
+const raffleSessions = raffle.sessions as Record<string, { day: string; date: string }>;
+const cfg = raffleSessions[sessionId];
+// Before the first raffle day, both forms ask the server, so the team can rehearse with the stage screen.
+const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
 ---
 {cfg && (
-  <section class="raffle" data-day={cfg.day} data-date={cfg.date} data-endpoint={raffle.endpoint}>
+  <section class="raffle" data-day={cfg.day} data-date={cfg.date} data-first={firstDate} data-endpoint={raffle.endpoint}>
     <h2>Raffle sign-up</h2>
 
     <p class="raffle-state" data-state="waiting" hidden>Sign-up opens when the raffle starts. The venue code will be on the screen. You must be in the room to win.</p>
@@ -48,7 +51,7 @@ const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[s
   };
 
   document.querySelectorAll<HTMLElement>(".raffle").forEach((box) => {
-    const { day, date, endpoint } = box.dataset as Record<string, string>;
+    const { day, date, first, endpoint } = box.dataset as Record<string, string>;
     const doneKey = `bbsw_raffle_${day}`;
     const form = box.querySelector<HTMLFormElement>(".raffle-form")!;
     const errorEl = box.querySelector<HTMLElement>(".raffle-error")!;
@@ -79,8 +82,9 @@ const cfg = (raffle.sessions as Record<string, { day: string; date: string }>)[s
     const refresh = async () => {
       const name = savedName();
       if (name) return markDone(name);
-      // Only the raffle day asks the server; any other day just shows "opens when the raffle starts".
-      if (!endpoint || todayPT() !== date) return show("waiting");
+      // The raffle day (or a rehearsal before the conference) asks the server; any other day just shows "opens when the raffle starts".
+      const today = todayPT();
+      if (!endpoint || (today !== date && today >= first)) return show("waiting");
       try {
         const st = await call({ action: "state" });
         if (st.open) { if (form.hidden) show("open"); }

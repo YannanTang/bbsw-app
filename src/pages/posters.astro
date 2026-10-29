@@ -5,27 +5,23 @@ import PosterIndex from "../components/PosterIndex.astro";
 
 const base = import.meta.env.BASE_URL;
 
-// CHANGE THIS VARIABLE to control the voting window: 'preview', 'test', 'open', or 'closed'
-const votingStatus = 'test'; 
+// CHANGE THIS TO `false` BEFORE THE CONFERENCE to enforce the strict Nov 5-6 voting window
+const TEST_MODE = true; 
 ---
 <BaseLayout title="Posters — BBSW 2026">
   <h1>Poster Sessions</h1>
-  <p>Lightning talks and voting take place during the conference.</p>
+  <p>Lightning talks and poster viewing take place during the conference.</p>
 
-  <section class="voting-box" id="voting-section">
-    <h2>Vote for the Best Poster</h2>
+  <section id="voting-app" data-testmode={TEST_MODE ? "true" : "false"} class="mb-8">
+    <!-- Time-based Banners -->
+    <div id="state-early" class="hidden status-banner info">Voting opens Nov 5 at 11:50 AM.</div>
+    <div id="state-closed" class="hidden status-banner warning">Voting has closed. Thank you for participating!</div>
     
-    {votingStatus === 'preview' && (
-      <div class="status-banner info">Voting has not started yet. Please check back during the poster session!</div>
-    )}
-    
-    {votingStatus === 'closed' && (
-      <div class="status-banner warning">Voting has officially closed. Thank you for participating!</div>
-    )}
-    
-    {(votingStatus === 'test' || votingStatus === 'open') && (
-      <>
-        {votingStatus === 'test' && (
+    <!-- Expandable Voting Form -->
+    <details id="state-open" class="hidden voting-accordion">
+      <summary class="vote-summary-btn">Vote for the Best Poster</summary>
+      <div class="voting-content">
+        {TEST_MODE && (
           <div class="status-banner test-mode">
             <strong>🧪 TEST RUN:</strong> Voting is currently in testing mode. Votes cast now will not count toward the final tally.
           </div>
@@ -60,16 +56,12 @@ const votingStatus = 'test';
           <div id="vote-message" class="message hidden"></div>
           <button type="submit" id="submit-btn" class="cta">Submit Ballot</button>
         </form>
-      </>
-    )}
+      </div>
+    </details>
   </section>
 
   <div class="poster-list" id="poster-list">
-    <div class="poster-list-header">
-      <h2>Accepted Posters</h2>
-      <a href="#voting-section" class="jump-link">↑ Back to Voting Form</a>
-    </div>
-    
+    <h2>Accepted Posters</h2>
     {posters.map((p) => (
       <div class="poster-card" id={`poster-${p.id}`}>
         <div class="poster-id">Poster {p.id}</div>
@@ -86,9 +78,27 @@ const votingStatus = 'test';
 </BaseLayout>
 
 <script>
-  // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE:
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtXHkaiTcEa1ikGyRAWPz80G0iLr5wtUbtdsPoABbS60HUHMnQM9RUl2xiEDU7NXlB6A/exec";
+  // --- TIME WINDOW LOGIC ---
+  const appContainer = document.getElementById('voting-app');
+  const isTestMode = appContainer?.dataset.testmode === 'true';
   
+  const now = new Date();
+  // BBSW timezone is PST (UTC-8) in November
+  const openTime = new Date("2026-11-05T11:50:00-08:00");
+  const closeTime = new Date("2026-11-06T14:00:00-08:00");
+  
+  if (isTestMode) {
+    document.getElementById('state-open')?.classList.remove('hidden');
+  } else if (now < openTime) {
+    document.getElementById('state-early')?.classList.remove('hidden');
+  } else if (now > closeTime) {
+    document.getElementById('state-closed')?.classList.remove('hidden');
+  } else {
+    document.getElementById('state-open')?.classList.remove('hidden');
+  }
+
+  // --- FORM SUBMISSION LOGIC ---
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtXHkaiTcEa1ikGyRAWPz80G0iLr5wtUbtdsPoABbS60HUHMnQM9RUl2xiEDU7NXlB6A/exec";
   const form = document.getElementById("voting-form") as HTMLFormElement;
   const msgBox = document.getElementById("vote-message") as HTMLDivElement;
   const btn = document.getElementById("submit-btn") as HTMLButtonElement;
@@ -106,7 +116,7 @@ const votingStatus = 'test';
     
     btn.disabled = true;
     btn.textContent = "Submitting...";
-    msgBox.className = "message hidden";
+    msgBox.classList.add("hidden");
     
     const payload = {
       name: formData.get("name"),
@@ -143,14 +153,36 @@ const votingStatus = 'test';
 </script>
 
 <style>
-  /* Voting Form Styles */
-  .voting-box { background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin-bottom: 2.5rem; border: 1px solid #e2e8f0; }
-  .privacy-note { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; font-style: italic; }
-  .status-banner { padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.95rem; }
-  .status-banner.test-mode { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
+  .hidden { display: none !important; }
+  
+  /* Banners */
+  .status-banner { padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.95rem; text-align: center; font-weight: 600; }
+  .status-banner.test-mode { background: #fef08a; color: #854d0e; border: 1px solid #fde047; text-align: left;}
   .status-banner.info { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
   .status-banner.warning { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
-  
+
+  /* Expandable Form */
+  .voting-accordion { background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; }
+  .vote-summary-btn { 
+    display: block; 
+    padding: 1rem; 
+    background: var(--color-primary, #0f172a); 
+    color: #fff; 
+    font-weight: 700; 
+    text-align: center; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 1.1rem;
+    list-style: none;
+    transition: opacity 0.2s;
+  }
+  .vote-summary-btn:hover { opacity: 0.9; }
+  .vote-summary-btn::-webkit-details-marker { display: none; }
+  .voting-accordion[open] .vote-summary-btn { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .voting-content { padding: 1.5rem; }
+
+  /* Voting Form Inputs */
+  .privacy-note { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; font-style: italic; }
   .field { margin-bottom: 1.25rem; }
   .field label { display: block; font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; color: #334155; }
   .field input[type="text"], .field input[type="email"] { 
@@ -166,21 +198,18 @@ const votingStatus = 'test';
   .checkbox-label:hover { border-color: #94a3b8; }
   .poster-summary { font-size: 0.9rem; line-height: 1.4; color: #334155; }
   .poster-title-small { color: #64748b; font-size: 0.85rem; }
+  
   .message { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 600; font-size: 0.9rem; }
-  .message.hidden { display: none; }
   .message.error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
   .message.success { background: #dcfce3; color: #166534; border: 1px solid #86efac; }
   .cta { width: 100%; padding: 0.75rem; background: var(--color-primary, #0f172a); color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: opacity 0.2s; }
   .cta:disabled { opacity: 0.6; cursor: not-allowed; }
 
   /* Poster List Styles */
-  .poster-list { margin-top: 2rem; }
-  .poster-list-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-  .jump-link { color: var(--color-primary, #2563eb); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-  .jump-link:hover { text-decoration: underline; }
+  .poster-list { margin-top: 2.5rem; }
   .poster-card { scroll-margin-top: 0.75rem; }
   @media (max-width: 1100px) { .poster-list { padding-right: 1.9rem; } }
-  .poster-list h2 { margin: 0; }
+  .poster-list h2 { margin-bottom: 1rem; }
   .poster-card { 
     margin-bottom: 1.5rem; 
     padding: 1.25rem; 

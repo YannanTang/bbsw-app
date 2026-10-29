@@ -52,10 +52,16 @@ function doPost(e) {
   const day = String(req.day || "");
   if (DAYS.indexOf(day) < 0) return json_({ ok: false, error: "bad_request" });
 
-  // Public: phones ask whether sign-up is open (never the code).
+  // Public: phones ask whether sign-up is open (never the code). Every waiting phone asks every
+  // 15 seconds, so the answer comes from the cache, leaving the Sheet free for sign-ups.
   if (req.action === "state") {
+    const cache = CacheService.getScriptCache();
+    const hit = cache.get("state_" + day);
+    if (hit) return json_(JSON.parse(hit));
     const open = isOpen_(day);
-    return json_({ ok: true, open: open, ended: !open && draws_(day).length > 0 });
+    const state = { ok: true, open: open, ended: !open && draws_(day).length > 0 };
+    cache.put("state_" + day, JSON.stringify(state), 5);
+    return json_(state);
   }
   if (req.action === "enter") return json_(enter_(day, req));
 
@@ -88,22 +94,17 @@ function enter_(day, req) {
   const registered = attendees_()[email];
   if (!registered) return { ok: false, error: "not_registered" };
 
-  const lock = LockService.getScriptLock();
-  lock.waitLock(10000);
-  try {
-    const already = rows_("Entries").some((r) => r[0] === day && normEmail_(r[2]) === email);
-    if (already) return { ok: true, already: true, name: registered.name || typed };
-    sheet_("Entries").appendRow([day, new Date(), email, registered.name || typed, typed]);
-  } finally {
-    lock.releaseLock();
-  }
-  return { ok: true, already: false, name: registered.name || typed };
+  // No lock here: under a lock, sign-ups queue and time out when many people enter at once.
+  // Two near-simultaneous entries for one email can both land; entries_() keeps only the first.
+  const already = rows_("Entries").some((r) => r[0] === day && normEmail_(r[2]) === email);
+  if (!already) sheet_("Entries").appendRow([day, new Date(), email, registered.name || typed, typed]);
+  return { ok: true, already: already, name: registered.name || typed };
 }
 
 // ---- Stage screen ----
 
 function status_(day) {
-  const entries = rows_("Entries").filter((r) => r[0] === day);
+  const entries = entries_(day);
   return {
     ok: true,
     code: String(setting_(day + "_code")),
@@ -122,7 +123,7 @@ function draw_(day) {
     // Anyone already drawn today (winner or not present) is out of the pool.
     const drawn = {};
     rows_("Draws").forEach((r) => { if (r[0] === day) drawn[normEmail_(r[2])] = true; });
-    const pool = rows_("Entries").filter((r) => r[0] === day && !drawn[normEmail_(r[2])]);
+    const pool = entries_(day).filter((r) => !drawn[normEmail_(r[2])]);
     if (pool.length === 0) return { ok: false, error: "empty" };
 
     const pick = pool[Math.floor(Math.random() * pool.length)];
@@ -143,6 +144,17 @@ function absent_(day, drawRow) {
 
 // ---- Helpers ----
 
+// The day's entries, one per email (the first one).
+function entries_(day) {
+  const seen = {};
+  return rows_("Entries").filter((r) => {
+    const email = normEmail_(r[2]);
+    if (r[0] !== day || seen[email]) return false;
+    seen[email] = true;
+    return true;
+  });
+}
+
 function draws_(day) {
   const out = [];
   rows_("Draws").forEach((r, i) => {
@@ -151,18 +163,32 @@ function draws_(day) {
   return out;
 }
 
+// Cached for 5 minutes so a rush of sign-ups doesn't re-read the whole list each time.
+// Edits to the Attendees tab show up within 5 minutes.
 function attendees_() {
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get("attendees");
+  if (hit) return JSON.parse(hit);
   const map = {};
   rows_("Attendees").forEach((r) => {
     const email = normEmail_(r[0]);
     if (email) map[email] = { name: String(r[1] || "").trim() };
   });
+  try { cache.put("attendees", JSON.stringify(map), 300); } catch (_) {} // over 100 KB: just don't cache
   return map;
 }
 
+// Settings are cached for 10 seconds; the stage's open/close clears the cache right away.
 function setting_(key) {
-  const row = rows_("Settings").find((r) => String(r[0]).trim() === key);
-  return row ? row[1] : "";
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get("settings");
+  let map = hit ? JSON.parse(hit) : null;
+  if (!map) {
+    map = {};
+    rows_("Settings").forEach((r) => { map[String(r[0]).trim()] = r[1]; });
+    cache.put("settings", JSON.stringify(map), 10);
+  }
+  return key in map ? map[key] : "";
 }
 
 function isOpen_(day) {
@@ -175,6 +201,7 @@ function setSetting_(key, value) {
   const i = rows_("Settings").findIndex((r) => String(r[0]).trim() === key);
   if (i >= 0) sh.getRange(i + 2, 2).setValue(value);
   else sh.appendRow([key, value]);
+  CacheService.getScriptCache().removeAll(["settings", "state_day1", "state_day2"]);
 }
 
 function rows_(name) {

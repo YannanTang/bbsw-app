@@ -48,7 +48,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
     not_registered: "We couldn't find that email on the registration list. Try the email you registered with.",
     closed: "Raffle sign-up is closed right now.",
     bad_request: "Please fill in your name, email and the venue code.",
-    network: "Network error. If you're on a work laptop or VPN, try your personal phone or turn off the VPN.",
+    network: "The raffle is busy right now. Please wait a moment and tap Enter again. (On a work laptop or VPN? Try your personal phone.)",
   };
 
   document.querySelectorAll<HTMLElement>(".raffle").forEach((box) => {
@@ -82,6 +82,16 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify({ day, ...body }),
       }).then((r) => r.json());
+    // When many people sign up at once the script can return an error page; entering again is
+    // safe (a repeat entry just says "already in"), so try twice more before showing an error.
+    const callWithRetry = async (body: Record<string, string>) => {
+      for (let attempt = 0; ; attempt++) {
+        try { return await call(body); } catch (err) {
+          if (attempt >= 2) throw err;
+          await new Promise((r) => setTimeout(r, 1500 + Math.random() * 2500));
+        }
+      }
+    };
 
     const refresh = async () => {
       const name = savedName();
@@ -108,7 +118,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
       button.disabled = true;
       button.textContent = "Checking…";
       try {
-        const out = await call({ action: "enter", ...data });
+        const out = await callWithRetry({ action: "enter", ...data });
         if (out.ok) {
           try { localStorage.setItem(doneKey, out.name); } catch (_) {}
           markDone(out.name);

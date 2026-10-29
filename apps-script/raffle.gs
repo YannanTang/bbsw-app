@@ -52,10 +52,16 @@ function doPost(e) {
   const day = String(req.day || "");
   if (DAYS.indexOf(day) < 0) return json_({ ok: false, error: "bad_request" });
 
-  // Public: phones ask whether sign-up is open (never the code).
+  // Public: phones ask whether sign-up is open (never the code). Every waiting phone asks every
+  // 15 seconds, so the answer comes from the cache, leaving the Sheet free for sign-ups.
   if (req.action === "state") {
+    const cache = CacheService.getScriptCache();
+    const hit = cache.get("state_" + day);
+    if (hit) return json_(JSON.parse(hit));
     const open = isOpen_(day);
-    return json_({ ok: true, open: open, ended: !open && draws_(day).length > 0 });
+    const state = { ok: true, open: open, ended: !open && draws_(day).length > 0 };
+    cache.put("state_" + day, JSON.stringify(state), 5);
+    return json_(state);
   }
   if (req.action === "enter") return json_(enter_(day, req));
 
@@ -172,9 +178,17 @@ function attendees_() {
   return map;
 }
 
+// Settings are cached for 10 seconds; the stage's open/close clears the cache right away.
 function setting_(key) {
-  const row = rows_("Settings").find((r) => String(r[0]).trim() === key);
-  return row ? row[1] : "";
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get("settings");
+  let map = hit ? JSON.parse(hit) : null;
+  if (!map) {
+    map = {};
+    rows_("Settings").forEach((r) => { map[String(r[0]).trim()] = r[1]; });
+    cache.put("settings", JSON.stringify(map), 10);
+  }
+  return key in map ? map[key] : "";
 }
 
 function isOpen_(day) {
@@ -187,6 +201,7 @@ function setSetting_(key, value) {
   const i = rows_("Settings").findIndex((r) => String(r[0]).trim() === key);
   if (i >= 0) sh.getRange(i + 2, 2).setValue(value);
   else sh.appendRow([key, value]);
+  CacheService.getScriptCache().removeAll(["settings", "state_day1", "state_day2"]);
 }
 
 function rows_(name) {

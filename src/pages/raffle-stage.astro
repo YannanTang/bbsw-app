@@ -17,7 +17,7 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
     <title>BBSW 2026 Raffle</title>
     <link rel="icon" href={link("favicon.svg")} type="image/svg+xml" />
   </head>
-  <body data-endpoint={raffle.endpoint} data-days={JSON.stringify(days)} data-app-origin="https://app.bbsw.org">
+  <body data-endpoint={raffle.endpoint} data-days={JSON.stringify(days)}>
     <canvas id="confetti" aria-hidden="true"></canvas>
 
     <header class="bar">
@@ -42,16 +42,12 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
     <main id="stage" hidden>
       <section id="lobby" class="view">
         <h1 class="title">End-of-day Raffle</h1>
-        <div id="signup-open" class="lobby-grid" hidden>
-          <div class="qr-card">
-            <div id="qr"></div>
-            <p>Scan to enter</p>
-          </div>
-          <div class="lobby-info">
-            <p class="label">Or open the app → Schedule → Raffle, and use code</p>
-            <p id="code" class="code">····</p>
-            <p class="count"><span id="count">0</span> entered</p>
-          </div>
+        <div id="signup-open" class="lobby-info" hidden>
+          <p class="label">On your phone, open</p>
+          <p class="url">app.bbsw.org/raffle</p>
+          <p class="label">and enter the code</p>
+          <p id="code" class="code">····</p>
+          <p class="count"><span id="count">0</span> entered</p>
         </div>
         <div id="signup-closed" hidden>
           <p class="label">Sign-up is closed · <span id="count-closed">0</span> entered</p>
@@ -80,12 +76,9 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       </section>
 
       <aside id="corner" hidden>
-        <div id="corner-qr"></div>
-        <div>
-          <p class="corner-title">Join anytime</p>
-          <p id="corner-code" class="corner-code"></p>
-          <p class="corner-count"><span id="corner-count">0</span> entered</p>
-        </div>
+        <p class="corner-title">Join anytime: <strong>app.bbsw.org/raffle</strong></p>
+        <p id="corner-code" class="corner-code"></p>
+        <p class="corner-count"><span id="corner-count">0</span> entered</p>
       </aside>
       <aside id="winners" hidden>
         <h2>Today's winners</h2>
@@ -95,8 +88,6 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
     </main>
 
     <script>
-      import QRCode from "qrcode";
-
       type Day = { sessionId: string; day: string; date: string };
       type Draw = { name: string; status: string; drawRow: number };
       type Status = { ok: boolean; error?: string; open: boolean; code: string; count: number; names: string[]; draws: Draw[] };
@@ -104,7 +95,6 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
       const endpoint = document.body.dataset.endpoint!;
       const days: Day[] = JSON.parse(document.body.dataset.days!);
-      const appOrigin = document.body.dataset.appOrigin!;
       const params = new URLSearchParams(location.search);
       const demo = params.has("demo");
       const KEY_STORE = "bbsw_raffle_stage_key";
@@ -166,7 +156,7 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
         updateCorner();
       }
 
-      // While sign-up is open, the QR and code stay in a corner during the draw so people can join between rounds.
+      // While sign-up is open, the link and code stay in a corner during the draw so people can join between rounds.
       function updateCorner() {
         $("corner").hidden = !status?.open || !$("lobby").hidden;
       }
@@ -203,7 +193,6 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
         $("winners").hidden = !draws.length;
       }
 
-      let lastCode = "";
       async function refresh(action = "status") {
         try {
           const s: Status = await call(action);
@@ -222,14 +211,6 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
           // While sign-up is closed, opening it is the main action.
           $("toggle-signup").className = s.open ? "ghost" : "big";
           $("draw").className = s.open ? "big" : "ghost";
-          const qrKey = current.sessionId + s.code;
-          if (s.code !== lastCode || $("qr").dataset.for !== qrKey) {
-            lastCode = s.code;
-            $("qr").dataset.for = qrKey;
-            const url = `${appOrigin}/sessions/${current.sessionId}?code=${encodeURIComponent(s.code)}`;
-            $("qr").innerHTML = $("corner-qr").innerHTML =
-              await QRCode.toString(url, { type: "svg", margin: 1, color: { dark: "#1a1a1a", light: "#ffffff" } });
-          }
           updateCorner();
           renderWinners();
         } catch (_) {
@@ -424,11 +405,8 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       #stage { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; }
       .view { text-align: center; width: 100%; padding: 0 2rem; }
       .title { font-family: Georgia, serif; font-size: clamp(2.5rem, 5vw, 4.5rem); margin: 0 0 2rem; }
-      .lobby-grid { display: flex; justify-content: center; align-items: center; gap: 4rem; margin-bottom: 2.5rem; }
-      .qr-card { background: #fff; color: #1a1a1a; border-radius: 16px; padding: 1.2rem 1.2rem 0.6rem; font-weight: 700; font-size: 1.3rem; }
-      .qr-card p { margin: 0.3rem 0 0; }
-      #qr svg { width: clamp(200px, 24vw, 340px); height: auto; display: block; }
-      .lobby-info { text-align: left; }
+      .lobby-info { margin-bottom: 2.5rem; }
+      .url { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; margin: 0 0 1.2rem; font-family: ui-monospace, Menlo, monospace; }
       .label { font-size: 1.4rem; color: #f3dfe3; margin: 0.4rem 0; }
       .code { font-size: clamp(4rem, 9vw, 8rem); font-weight: 900; letter-spacing: 0.2em; color: var(--gold); margin: 0; font-family: ui-monospace, Menlo, monospace; }
       .count { font-size: 2rem; margin: 0.5rem 0; }
@@ -445,9 +423,7 @@ const days = Object.entries(sessions).map(([sessionId, s]) => ({ sessionId, ...s
       }
       @keyframes pop { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
       .actions { display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 2rem; flex-wrap: wrap; }
-      #corner { position: absolute; left: 2rem; bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; background: rgba(0,0,0,0.35); border-radius: 12px; padding: 0.8rem 1.2rem 0.8rem 0.8rem; }
-      #corner-qr { background: #fff; border-radius: 8px; padding: 6px; }
-      #corner-qr svg { width: 130px; height: auto; display: block; }
+      #corner { position: absolute; left: 2rem; bottom: 1.5rem; background: rgba(0,0,0,0.35); border-radius: 12px; padding: 0.8rem 1.2rem; }
       #corner p { margin: 0; }
       .corner-title { color: #f3dfe3; font-size: 1.1rem; }
       .corner-code { font-family: ui-monospace, Menlo, monospace; font-size: 2.6rem; font-weight: 900; letter-spacing: 0.15em; color: var(--gold); line-height: 1.2; }

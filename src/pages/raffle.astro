@@ -1,0 +1,29 @@
+---
+// Short link shown on the stage screen (app.bbsw.org/raffle): sends people to the raffle
+// sign-up for the day, by Pacific time. Day 1's page until Day 2 starts, then Day 2's.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import raffle from "../data/raffle.json";
+
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
+const days = Object.entries(raffle.sessions as Record<string, { day: string; date: string }>)
+  .map(([sessionId, s]) => ({ href: link(`sessions/${sessionId}`), date: s.date }))
+  .sort((a, b) => a.date.localeCompare(b.date));
+---
+<BaseLayout title="Raffle — BBSW 2026">
+  <h1>Raffle sign-up</h1>
+  <p id="raffle-go" data-days={JSON.stringify(days)}>Taking you to today's raffle…</p>
+  <ul>
+    <li><a href={days[0].href}>Day 1 raffle (Thu, Nov 5)</a></li>
+    <li><a href={days[1].href}>Day 2 raffle (Fri, Nov 6)</a></li>
+  </ul>
+</BaseLayout>
+
+<script>
+  const el = document.getElementById("raffle-go")!;
+  const days: { href: string; date: string }[] = JSON.parse(el.dataset.days!);
+  const todayPT = new Date().toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
+  // The latest raffle day that has started; before the conference, Day 1.
+  const target = [...days].reverse().find((d) => d.date <= todayPT) ?? days[0];
+  location.replace(target.href);
+</script>

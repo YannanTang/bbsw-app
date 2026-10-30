@@ -70,3 +70,12 @@ End-of-day raffle on Nov 5 and Nov 6. Attendees sign up on the raffle session pa
 **Load:** tested on 2026-10-28 with simulated attendees. 200 sign-ups over a minute while 300 phones waited worked with no errors, and so did 100 at the same instant thanks to the phone's automatic retry. Apps Script allows only about 30 requests on the Sheet at once, so sign-ups don't take a lock (duplicates for one email are ignored when counting and drawing), and the phones' "is it open?" checks are answered from the cache.
 
 The registration list, codes and stage key live only in the Sheet, never in this repo.
+
+## Poster voting
+
+People's choice vote on `/posters`: up to 3 posters per registered attendee, Nov 5 11:50 AM to Nov 6 2:00 PM (Pacific). Ballots go to the same Apps Script and Sheet as the raffle, so they're checked against the same **Attendees** list.
+
+- The script enforces the window (`vote_open`, `vote_close` in **Settings**; `vote_posters` = number of posters). The page reads the same times from `src/data/raffle.json` → `voting` to decide what to show, and re-checks every 30 seconds.
+- Before Nov 5 the form is a test run: ballots are stored with Kind `test` and never counted. Nothing to switch off before the conference.
+- Ballots are append-only in the **Votes** tab; a new ballot from the same email replaces the earlier one when counting (latest wins).
+- Results: run `tallyVotes()` in the Apps Script editor to write the **Results** tab, or POST `{"action": "vote_results", "key": <stage_key>}`.

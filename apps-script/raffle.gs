@@ -10,6 +10,8 @@
  *   Settings   Key | Value                       ← stage_key, day1_code, day2_code, day1_open, day2_open
  *   Entries    Day | Time | Email | Name | Typed name
  *   Draws      Day | Time | Email | Name | Status   (winner / not present)
+ *   Votes      Time | Email | Name | Typed name | Posters | Kind   (poster voting: ballot / test)
+ *   Results    written by tallyVotes()
  *
  * Every request is a POST with a JSON body (sent as text/plain to avoid a CORS preflight).
  */
@@ -25,6 +27,7 @@ function setup() {
     Settings: ["Key", "Value"],
     Entries: ["Day", "Time", "Email", "Name", "Typed name"],
     Draws: ["Day", "Time", "Email", "Name", "Status"],
+    Votes: ["Time", "Email", "Name", "Typed name", "Posters", "Kind"],
   };
   Object.keys(tabs).forEach((name) => {
     const sh = ss.getSheetByName(name) || ss.insertSheet(name);
@@ -49,6 +52,13 @@ function doPost(e) {
   } catch (_) {
     return json_({ ok: false, error: "bad_request" });
   }
+  // Poster voting shares the Attendees list with the raffle.
+  if (req.action === "vote") return json_(vote_(req));
+  if (req.action === "vote_results") {
+    if (String(req.key || "") !== setting_("stage_key")) return json_({ ok: false, error: "bad_key" });
+    return json_({ ok: true, results: voteResults_() });
+  }
+
   const day = String(req.day || "");
   if (DAYS.indexOf(day) < 0) return json_({ ok: false, error: "bad_request" });
 
@@ -140,6 +150,59 @@ function absent_(day, drawRow) {
   if (sh.getRange(drawRow, 1).getValue() !== day) return { ok: false, error: "bad_request" };
   sh.getRange(drawRow, 5).setValue("not present");
   return { ok: true, draws: draws_(day) };
+}
+
+// ---- Poster voting (people's choice) ----
+// Settings: vote_open and vote_close (ISO times) and vote_posters (number of posters).
+// Before the first voting day, ballots are accepted as a test run and marked "test"; they never count.
+
+function vote_(req) {
+  const now = new Date();
+  const open = new Date(setting_("vote_open"));
+  const close = new Date(setting_("vote_close"));
+  const pt = (d) => Utilities.formatDate(d, "America/Los_Angeles", "yyyy-MM-dd");
+  const rehearsal = pt(now) < pt(open);
+  if (!rehearsal && now < open) return { ok: false, error: "vote_not_open" };
+  if (now > close) return { ok: false, error: "vote_closed" };
+
+  const email = normEmail_(req.email);
+  const typed = String(req.name || "").trim().slice(0, 100);
+  if (!email || !typed) return { ok: false, error: "bad_request" };
+
+  const max = Number(setting_("vote_posters")) || 0;
+  const sent = Array.isArray(req.votes) ? req.votes.map((v) => String(v).trim()) : [];
+  const picks = sent.filter((v, i) => /^\d+$/.test(v) && Number(v) >= 1 && Number(v) <= max && sent.indexOf(v) === i);
+  if (picks.length < 1 || picks.length > 3 || picks.length !== sent.length) return { ok: false, error: "bad_votes" };
+
+  const registered = attendees_()[email];
+  if (!registered) return { ok: false, error: "not_registered" };
+
+  // Append only, no lock: the latest ballot per email is the one that counts (see voteResults_).
+  sheet_("Votes").appendRow([now, email, registered.name || typed, typed, picks.join(","), rehearsal ? "test" : "ballot"]);
+  return { ok: true, test: rehearsal, name: registered.name || typed };
+}
+
+// Real ballots only, latest per email. Returns [{ poster, votes }] sorted by votes.
+function voteResults_() {
+  const latest = {};
+  rows_("Votes").forEach((r) => {
+    if (r[5] !== "ballot") return;
+    const email = normEmail_(r[1]);
+    if (!latest[email] || r[0] > latest[email][0]) latest[email] = r;
+  });
+  const counts = {};
+  Object.keys(latest).forEach((e) => String(latest[e][4]).split(",").forEach((p) => { counts[p] = (counts[p] || 0) + 1; }));
+  return Object.keys(counts).map((p) => ({ poster: Number(p), votes: counts[p] })).sort((a, b) => b.votes - a.votes || a.poster - b.poster);
+}
+
+// Run from the Apps Script editor after voting closes: writes the Results tab.
+function tallyVotes() {
+  const ss = SpreadsheetApp.getActive();
+  const sh = ss.getSheetByName("Results") || ss.insertSheet("Results");
+  sh.clear();
+  const results = voteResults_();
+  sh.getRange(1, 1, 1, 2).setValues([["Poster", "Votes"]]);
+  if (results.length) sh.getRange(2, 1, results.length, 2).setValues(results.map((r) => ["P" + String(r.poster).padStart(2, "0"), r.votes]));
 }
 
 // ---- Helpers ----

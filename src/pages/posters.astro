@@ -2,17 +2,19 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import posters from "../data/posters.json";
 import PosterIndex from "../components/PosterIndex.astro";
+import raffle from "../data/raffle.json";
 
 const base = import.meta.env.BASE_URL;
-
-// CHANGE THIS TO `false` BEFORE THE CONFERENCE to enforce the strict Nov 5-6 voting window
-const TEST_MODE = true; 
+// Board label, e.g. "P01".
+const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
+// Ballots go to the raffle's Apps Script (same registration list). Before Nov 5 it's a test run
+// whose ballots never count; the voting window itself is enforced by the script.
 ---
 <BaseLayout title="Posters — BBSW 2026">
   <h1>Poster Sessions</h1>
   <p>Lightning talks and poster viewing take place during the conference.</p>
 
-  <section id="voting-app" data-testmode={TEST_MODE ? "true" : "false"} class="mb-8">
+  <section id="voting-app" data-endpoint={raffle.endpoint} data-open={raffle.voting.open} data-close={raffle.voting.close} class="mb-8">
     <!-- Time-based Banners -->
     <div id="state-early" class="hidden status-banner info">Voting opens Nov 5 at 11:50 AM.</div>
     <div id="state-closed" class="hidden status-banner warning">Voting has closed. Thank you for participating!</div>
@@ -21,12 +23,10 @@ const TEST_MODE = true;
     <details id="state-open" class="hidden voting-accordion">
       <summary class="vote-summary-btn">Vote for the Best Poster</summary>
       <div class="voting-content">
-        {TEST_MODE && (
-          <div class="status-banner test-mode">
-            <strong>🧪 TEST RUN:</strong> Voting is currently in testing mode. Votes cast now will not count toward the final tally.
-          </div>
-        )}
-        <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed.</p>
+        <div id="test-banner" class="hidden status-banner test-mode">
+          <strong>🧪 TEST RUN:</strong> Voting opens at the conference. Votes cast now will not count toward the final tally.
+        </div>
+        <p class="privacy-note">Your information is only collected to verify registration and ensure one ballot per attendee. It will not be shared or disclosed. If you submit again, your new ballot replaces the earlier one.</p>
         
         <form id="voting-form" class="space-y-4">
           <div class="field">
@@ -45,7 +45,7 @@ const TEST_MODE = true;
                 <label class="checkbox-label">
                   <input type="checkbox" name="posters" value={p.id} />
                   <span class="poster-summary">
-                    <strong>Poster {p.id}: {p.presenters}</strong><br/>
+                    <strong>{label(p.id)}: {p.presenters}</strong><br/>
                     <span class="poster-title-small">{p.title}</span>
                   </span>
                 </label>
@@ -64,7 +64,7 @@ const TEST_MODE = true;
     <h2>Accepted Posters</h2>
     {posters.map((p) => (
       <div class="poster-card" id={`poster-${p.id}`}>
-        <div class="poster-id">Poster {p.id}</div>
+        <div class="poster-id">{label(p.id)}</div>
         <h3 class="poster-title">{p.title}</h3>
         <div class="poster-authors">{p.presenters}</div>
         <details class="poster-details">
@@ -78,68 +78,84 @@ const TEST_MODE = true;
 </BaseLayout>
 
 <script>
-  // --- TIME WINDOW LOGIC ---
-  const appContainer = document.getElementById('voting-app');
-  const isTestMode = appContainer?.dataset.testmode === 'true';
-  
-  const now = new Date();
-  // BBSW timezone is PST (UTC-8) in November
-  const openTime = new Date("2026-11-05T11:50:00-08:00");
-  const closeTime = new Date("2026-11-06T14:00:00-08:00");
-  
-  if (isTestMode) {
-    document.getElementById('state-open')?.classList.remove('hidden');
-  } else if (now < openTime) {
-    document.getElementById('state-early')?.classList.remove('hidden');
-  } else if (now > closeTime) {
-    document.getElementById('state-closed')?.classList.remove('hidden');
-  } else {
-    document.getElementById('state-open')?.classList.remove('hidden');
-  }
+  const app = document.getElementById("voting-app") as HTMLElement;
+  const { endpoint, open, close } = app.dataset as Record<string, string>;
+  const openTime = new Date(open);
+  const closeTime = new Date(close);
+  const ptDate = (d: Date) => d.toLocaleDateString("en-CA", { timeZone: "America/Los_Angeles" });
 
-  // --- FORM SUBMISSION LOGIC ---
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxtXHkaiTcEa1ikGyRAWPz80G0iLr5wtUbtdsPoABbS60HUHMnQM9RUl2xiEDU7NXlB6A/exec";
+  // Which banner or form to show. Re-checked every 30 seconds so an open page follows the window.
+  function updateState() {
+    const now = new Date();
+    const test = ptDate(now) < ptDate(openTime);
+    const state = test ? "open" : now < openTime ? "early" : now > closeTime ? "closed" : "open";
+    document.getElementById("state-early")!.classList.toggle("hidden", state !== "early");
+    document.getElementById("state-closed")!.classList.toggle("hidden", state !== "closed");
+    document.getElementById("state-open")!.classList.toggle("hidden", state !== "open");
+    document.getElementById("test-banner")!.classList.toggle("hidden", !test);
+  }
+  updateState();
+  setInterval(updateState, 30_000);
+
+  const ERRORS: Record<string, string> = {
+    vote_not_open: "Voting hasn't opened yet. It opens Nov 5 at 11:50 AM.",
+    vote_closed: "Voting has closed. Thank you for participating!",
+    not_registered: "We couldn't find that email on the registration list. Try the email you registered with.",
+    bad_votes: "Please select between 1 and 3 posters.",
+    bad_request: "Please fill in your name and registration email.",
+    network: "Voting is busy right now. Please wait a moment and tap Submit again. (On a work laptop or VPN? Try your personal phone.)",
+  };
+
   const form = document.getElementById("voting-form") as HTMLFormElement;
   const msgBox = document.getElementById("vote-message") as HTMLDivElement;
   const btn = document.getElementById("submit-btn") as HTMLButtonElement;
-  
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const selected = formData.getAll("posters");
-    
-    if (selected.length < 1 || selected.length > 3) {
-      showMessage("Please select between 1 and 3 posters.", "error");
-      return;
+  const boxes = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="posters"]'));
+
+  // Once 3 posters are picked, grey out the rest.
+  function limitChoices() {
+    const full = boxes.filter((b) => b.checked).length >= 3;
+    boxes.forEach((b) => { b.disabled = full && !b.checked; });
+  }
+  boxes.forEach((b) => b.addEventListener("change", limitChoices));
+
+  const call = (body: unknown) =>
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(body),
+    }).then((r) => r.json());
+  // When many people vote at once the script can return an error page; voting again is safe
+  // (the latest ballot counts), so try twice more before showing an error.
+  async function callWithRetry(body: unknown) {
+    for (let attempt = 0; ; attempt++) {
+      try { return await call(body); } catch (err) {
+        if (attempt >= 2) throw err;
+        await new Promise((r) => setTimeout(r, 1500 + Math.random() * 2500));
+      }
     }
-    
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const votes = formData.getAll("posters").map(String);
+    if (votes.length < 1 || votes.length > 3) return showMessage(ERRORS.bad_votes, "error");
+
     btn.disabled = true;
     btn.textContent = "Submitting...";
     msgBox.classList.add("hidden");
-    
-    const payload = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      votes: selected
-    };
-    
     try {
-      const response = await fetch(SCRIPT_URL, {
-        method: "POST",
-        body: JSON.stringify(payload)
-      });
-      
-      const result = await response.json();
-      
-      if (result.success) {
-        showMessage(result.message, "success");
+      const out = await callWithRetry({ action: "vote", name: formData.get("name"), email: formData.get("email"), votes });
+      if (out.ok) {
+        const picked = votes.map((v) => `P${v.padStart(2, "0")}`).join(", ");
+        showMessage(`Thanks, ${out.name}! Your ballot (${picked}) is in.${out.test ? " (Test run: this won't count.)" : ""}`, "success");
         form.reset();
+        limitChoices();
       } else {
-        showMessage(result.message, "error");
+        showMessage(ERRORS[out.error] || ERRORS.bad_request, "error");
       }
-    } catch (err) {
-      showMessage("Network error. Please try again.", "error");
+    } catch (_) {
+      showMessage(ERRORS.network, "error");
     } finally {
       btn.disabled = false;
       btn.textContent = "Submit Ballot";
@@ -196,6 +212,7 @@ const TEST_MODE = true;
   .checkbox-grid { display: flex; flex-direction: column; gap: 0.75rem; }
   .checkbox-label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; padding: 0.75rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; transition: border-color 0.2s; }
   .checkbox-label:hover { border-color: #94a3b8; }
+  .checkbox-label:has(input:disabled) { opacity: 0.5; cursor: not-allowed; }
   .poster-summary { font-size: 0.9rem; line-height: 1.4; color: #334155; }
   .poster-title-small { color: #64748b; font-size: 0.85rem; }
   

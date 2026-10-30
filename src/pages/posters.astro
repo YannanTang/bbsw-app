@@ -54,6 +54,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
           </div>
 
           <div id="vote-message" class="message hidden"></div>
+          <p id="vote-slow" class="slow-note hidden">Lots of people are voting right now. Please keep this page open; it can take up to a minute.</p>
           <button type="submit" id="submit-btn" class="cta">Submit Ballot</button>
         </form>
       </div>
@@ -144,6 +145,9 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     btn.disabled = true;
     btn.textContent = "Submitting...";
     msgBox.classList.add("hidden");
+    // In a rush, ballots queue for a few seconds; say so, so nobody thinks the page is stuck.
+    const slowEl = document.getElementById("vote-slow")!;
+    const slowTimer = setTimeout(() => slowEl.classList.remove("hidden"), 5000);
     try {
       const out = await callWithRetry({ action: "vote", name: formData.get("name"), email: formData.get("email"), votes });
       if (out.ok) {
@@ -157,6 +161,8 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     } catch (_) {
       showMessage(ERRORS.network, "error");
     } finally {
+      clearTimeout(slowTimer);
+      slowEl.classList.add("hidden");
       btn.disabled = false;
       btn.textContent = "Submit Ballot";
     }
@@ -219,6 +225,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
   .message { padding: 0.75rem; border-radius: 6px; margin-bottom: 1rem; font-weight: 600; font-size: 0.9rem; }
   .message.error { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
   .message.success { background: #dcfce3; color: #166534; border: 1px solid #86efac; }
+  .slow-note { font-size: 0.85rem; color: #64748b; margin: 0 0 0.75rem; }
   .cta { width: 100%; padding: 0.75rem; background: var(--color-primary, #0f172a); color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: opacity 0.2s; }
   .cta:disabled { opacity: 0.6; cursor: not-allowed; }
 

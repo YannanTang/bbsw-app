@@ -11,7 +11,9 @@
  *   Entries    Day | Time | Email | Name | Typed name
  *   Draws      Day | Time | Email | Name | Status   (winner / not present)
  *   Votes      Time | Email | Name | Typed name | Posters | Kind   (poster voting: ballot / test)
- *   Results    written by tallyVotes()
+ *
+ * Poster voting results go to a separate Sheet (Settings: vote_results_sheet) that can be shared
+ * with the poster chairs: it holds only posters and vote counts, never names or emails.
  *
  * Every request is a POST with a JSON body (sent as text/plain to avoid a CORS preflight).
  */
@@ -153,7 +155,8 @@ function absent_(day, drawRow) {
 }
 
 // ---- Poster voting (people's choice) ----
-// Settings: vote_open and vote_close (ISO times) and vote_posters (number of posters).
+// Settings: vote_open and vote_close (ISO times), vote_posters (number of posters) and
+// vote_results_sheet (id of the separate results Sheet).
 // Before the first voting day, ballots are accepted as a test run and marked "test"; they never count.
 
 function vote_(req) {
@@ -182,27 +185,44 @@ function vote_(req) {
   return { ok: true, test: rehearsal, name: registered.name || typed };
 }
 
-// Real ballots only, latest per email. Returns [{ poster, votes }] sorted by votes.
-function voteResults_() {
+// Real ballots only, the latest one per email.
+function latestBallots_() {
   const latest = {};
   rows_("Votes").forEach((r) => {
     if (r[5] !== "ballot") return;
     const email = normEmail_(r[1]);
     if (!latest[email] || r[0] > latest[email][0]) latest[email] = r;
   });
+  return Object.keys(latest).map((e) => latest[e]);
+}
+
+// Returns [{ poster, votes }] sorted by votes.
+function voteResults_() {
   const counts = {};
-  Object.keys(latest).forEach((e) => String(latest[e][4]).split(",").forEach((p) => { counts[p] = (counts[p] || 0) + 1; }));
+  latestBallots_().forEach((r) => String(r[4]).split(",").forEach((p) => { counts[p] = (counts[p] || 0) + 1; }));
   return Object.keys(counts).map((p) => ({ poster: Number(p), votes: counts[p] })).sort((a, b) => b.votes - a.votes || a.poster - b.poster);
 }
 
-// Run from the Apps Script editor after voting closes: writes the Results tab.
+// Run from the Apps Script editor after voting closes (Extensions > Apps Script > tallyVotes).
+// Writes the totals, with titles from its Posters tab, to the Results tab of the results Sheet.
 function tallyVotes() {
-  const ss = SpreadsheetApp.getActive();
-  const sh = ss.getSheetByName("Results") || ss.insertSheet("Results");
-  sh.clear();
-  const results = voteResults_();
-  sh.getRange(1, 1, 1, 2).setValues([["Poster", "Votes"]]);
-  if (results.length) sh.getRange(2, 1, results.length, 2).setValues(results.map((r) => ["P" + String(r.poster).padStart(2, "0"), r.votes]));
+  const out = SpreadsheetApp.openById(String(setting_("vote_results_sheet")));
+  const info = {};
+  const posters = out.getSheetByName("Posters");
+  if (posters && posters.getLastRow() > 1) {
+    posters.getRange(2, 1, posters.getLastRow() - 1, 3).getValues().forEach((r) => { info[r[0]] = r; });
+  }
+  const rows = voteResults_().map((r) => {
+    const id = "P" + String(r.poster).padStart(2, "0");
+    const p = info[id] || [];
+    return [id, p[1] || "", p[2] || "", r.votes];
+  });
+  const sh = out.getSheetByName("Results") || out.insertSheet("Results");
+  sh.clearContents();
+  sh.getRange(1, 1, 1, 4).setValues([["Poster", "Title", "Presenter", "Votes"]]);
+  if (rows.length) sh.getRange(2, 1, rows.length, 4).setValues(rows);
+  const when = Utilities.formatDate(new Date(), "America/Los_Angeles", "MMM d, h:mm a");
+  sh.getRange(rows.length + 3, 1).setValue(`Updated ${when} PT from ${latestBallots_().length} ballots.`);
 }
 
 // ---- Helpers ----

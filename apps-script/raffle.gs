@@ -104,10 +104,10 @@ function enter_(day, req) {
   const registered = attendees_()[email];
   if (!registered) return { ok: false, error: "not_registered" };
 
-  // No lock here: under a lock, sign-ups queue and time out when many people enter at once.
+  // The duplicate check stays outside the lock so sign-ups don't queue behind it.
   // Two near-simultaneous entries for one email can both land; entries_() keeps only the first.
   const already = rows_("Entries").some((r) => r[0] === day && normEmail_(r[2]) === email);
-  if (!already) sheet_("Entries").appendRow([day, new Date(), email, registered.name || typed, typed]);
+  if (!already) appendLocked_("Entries", [day, new Date(), email, registered.name || typed, typed]);
   return { ok: true, already: already, name: registered.name || typed };
 }
 
@@ -177,8 +177,8 @@ function vote_(req) {
   const registered = attendees_()[email];
   if (!registered) return { ok: false, error: "not_registered" };
 
-  // Append only, no lock: the latest ballot per email is the one that counts (see voteResults_).
-  sheet_("Votes").appendRow([now, email, registered.name || typed, typed, picks.join(","), rehearsal ? "test" : "ballot"]);
+  // Append only: the latest ballot per email is the one that counts (see voteResults_).
+  appendLocked_("Votes", [now, email, registered.name || typed, typed, picks.join(","), rehearsal ? "test" : "ballot"]);
   return { ok: true, test: rehearsal, name: registered.name || typed };
 }
 
@@ -206,6 +206,19 @@ function tallyVotes() {
 }
 
 // ---- Helpers ----
+
+// appendRow isn't safe when requests arrive together: two can land on the same row and one is
+// lost (the load test lost ~40%). So each append takes the script lock, held only for the write.
+function appendLocked_(name, row) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000);
+  try {
+    sheet_(name).appendRow(row);
+    SpreadsheetApp.flush();
+  } finally {
+    lock.releaseLock();
+  }
+}
 
 // The day's entries, one per email (the first one).
 function entries_(day) {

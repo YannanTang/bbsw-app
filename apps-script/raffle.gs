@@ -225,6 +225,19 @@ function tallyVotes() {
   sh.getRange(rows.length + 3, 1).setValue(`Updated ${when} PT from ${latestBallots_().length} ballots.`);
 }
 
+// Run once from the editor (as bbswtech@bbsw.org) to tally automatically after voting closes:
+// 5 and 30 minutes after vote_close. Also tallies right away, so you can check the Results tab.
+function scheduleTally() {
+  ScriptApp.getProjectTriggers()
+    .filter((t) => t.getHandlerFunction() === "tallyVotes")
+    .forEach((t) => ScriptApp.deleteTrigger(t));
+  const close = new Date(setting_("vote_close"));
+  [5, 30].forEach((min) => {
+    ScriptApp.newTrigger("tallyVotes").timeBased().at(new Date(close.getTime() + min * 60000)).create();
+  });
+  tallyVotes();
+}
+
 // ---- Helpers ----
 
 // appendRow isn't safe when requests arrive together: two can land on the same row and one is

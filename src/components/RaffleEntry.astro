@@ -36,6 +36,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
         <span class="meta">Shown on the screen in the room.</span>
       </label>
       <button class="install-btn" type="submit">Enter the raffle</button>
+      <p class="raffle-slow meta" hidden>Lots of people are signing up right now. Please keep this page open; it can take up to a minute.</p>
       <p class="raffle-error" role="alert" hidden></p>
       <p class="meta">We only use your email to check your registration. Only your name is shown if you win.</p>
     </form>
@@ -117,6 +118,9 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
       const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
       button.disabled = true;
       button.textContent = "Checking…";
+      // In a rush, sign-ups queue for a few seconds; say so, so nobody thinks the page is stuck.
+      const slowEl = box.querySelector<HTMLElement>(".raffle-slow")!;
+      const slowTimer = setTimeout(() => { slowEl.hidden = false; }, 5000);
       try {
         const out = await callWithRetry({ action: "enter", ...data });
         if (out.ok) {
@@ -130,6 +134,8 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
         errorEl.textContent = ERRORS.network;
         errorEl.hidden = false;
       } finally {
+        clearTimeout(slowTimer);
+        slowEl.hidden = true;
         button.disabled = false;
         button.textContent = "Enter the raffle";
       }

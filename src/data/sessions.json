@@ -153,7 +153,7 @@
     "date": "2026-11-05",
     "startTime": "8:45 AM",
     "endTime": "9:00 AM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "ning-leng"
@@ -167,7 +167,7 @@
     "date": "2026-11-05",
     "startTime": "9:00 AM",
     "endTime": "10:00 AM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "ning-leng"
@@ -204,7 +204,7 @@
     "date": "2026-11-05",
     "startTime": "10:30 AM",
     "endTime": "11:50 AM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "ruixiao-lu"
@@ -232,7 +232,7 @@
     "date": "2026-11-05",
     "startTime": "11:50 AM",
     "endTime": "12:10 PM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "haijun-ma",
@@ -502,7 +502,7 @@
     "date": "2026-11-05",
     "startTime": "5:30 PM",
     "endTime": "6:00 PM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [],
     "talks": []
@@ -576,7 +576,7 @@
     "date": "2026-11-06",
     "startTime": "8:45 AM",
     "endTime": "9:00 AM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "ning-leng"
@@ -590,7 +590,7 @@
     "date": "2026-11-06",
     "startTime": "9:00 AM",
     "endTime": "10:00 AM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "christina-rabe"
@@ -781,7 +781,7 @@
     "date": "2026-11-06",
     "startTime": "2:00 PM",
     "endTime": "2:40 PM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "judy-li",
@@ -807,7 +807,7 @@
     "date": "2026-11-06",
     "startTime": "2:40 PM",
     "endTime": "3:00 PM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "haijun-ma",
@@ -935,7 +935,7 @@
     "date": "2026-11-06",
     "startTime": "4:40 PM",
     "endTime": "5:30 PM",
-    "room": "",
+    "room": "Magellan (Main Room)",
     "description": "",
     "chairs": [
       "jingjing-gao"

@@ -1,6 +1,6 @@
 // BBSW 2026 service worker — minimal offline support.
 const BASE = "/";
-const VERSION = "v17";
+const VERSION = "v18";
 const CACHE = `bbsw-${VERSION}`;
 
 const PRECACHE = [
@@ -19,6 +19,7 @@ const PRECACHE = [
   BASE + "icon-512.png",
   BASE + "apple-touch-icon.png",
   BASE + "speaker-placeholder.svg",
+  BASE + "venue-floor-plan.jpg",
 ];
 
 self.addEventListener("install", (event) => {

@@ -4,7 +4,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
-type Sponsor = { id: string; name: string; tier: string; logo?: string; website?: string; description?: string; };
+type Sponsor = { id: string; name: string; tier: string; events?: string[]; logo?: string; website?: string; description?: string; };
 
 export async function getStaticPaths() {
   const data = (await import("../../data/sponsors.json")).default as Sponsor[];
@@ -44,7 +44,8 @@ for (const chunk of (sponsor.description ?? "").split(/\n\s*\n/)) {
     )}
     {/* The logo carries the name visually; keep the heading for screen readers, or visible when there is no logo. */}
     <h1 class={sponsor.logo ? "visually-hidden" : undefined}>{sponsor.name}</h1>
-    {sponsor.tier && <span class="tag primary">{sponsor.tier} Sponsor</span>}
+    {sponsor.tier && sponsor.tier !== "Event" && <span class="tag primary">{sponsor.tier} Sponsor</span>}
+    {(sponsor.events ?? []).map((event) => <span class="tag primary">{event} Sponsor</span>)}
   </div>
 
   {blocks.length > 0 && (

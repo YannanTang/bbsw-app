@@ -363,6 +363,14 @@ details.speaker-card[open] summary::after { transform: rotate(-135deg); }
 
 .sponsor-tile:hover .sponsor-tile-name { color: var(--color-primary); }
 
+.sponsor-tile-event { flex-direction: column; gap: 0.4rem; }
+
+.sponsor-tile-event-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
 .sponsor-detail-header {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);

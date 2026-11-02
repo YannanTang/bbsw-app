@@ -418,16 +418,6 @@
         ]
       },
       {
-        "id": "t-2a-3",
-        "title": "Evaluating Intermediate Endpoint for CAR T-Cell Therapy in Multiple Myeloma: A multi-source, Multi-Method Analytical Framework",
-        "abstract": "Background and Objective: The FDA's 2024 ODAC meta-analysis of randomized multiple myeloma trials established MRD negativity rate as an intermediate endpoint reasonably likely to predict clinical benefit, formalized in the January 2026 draft guidance for accelerated approval. However, this evidence derived exclusively from conventional therapies and did not include CAR T-cell trials, prompting residual uncertainties regarding the applicability of MRD to cell therapies. To address this evidence gap in a data-constrained landscape, we adopt a multi-source data integration strategy, combining externally published CAR T-cell trial data, real-world evidence (RWE), and internal clinical trial data, to maximize the extractable evidence and generate a comprehensive regulatory-grade evidence package supporting MRD negativity rate as an accelerated approval endpoint for CAR T-cell therapy. Methods: Our approach comprises three complementary data-driven workstreams. (1) External published trial data: Bayesian meta-analytic regression with informative priors constructed from conventional therapy trial comparisons is applied to publicly available CAR T-cell trial results. (2) Real-world evidence: causal mediation analysis to quantify the proportion of the CAR T treatment effect on PFS/OS mediated through MRD negativity, supplemented by landmark analyses and causal survival forests assessing MRD variable importance for predicting heterogeneous treatment effects. (3) Internal clinical trial data: predictive modeling based on the conventional therapy meta-regression relationship, combined with subgroup and interaction analyses to validate the MRD outcome association. By triangulating across three independent data sources, each contributing distinct inferential strengths, this framework maximizes evidentiary robustness where no single source alone is sufficient, representing the first systematic effort to bridge the MRD surrogacy evidence gap for CAR T-cell therapy.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "wenjuan-gu"
-        ]
-      },
-      {
         "id": "t-2a-4",
         "title": "\"Cross-functional excellence is not optional\": The role of enterprise disease data strategy in strengthening collaborations",
         "abstract": "In order for a single data-driven insight to be delivered to stakeholders at the point of decision-making to inform drug development, a host of processes behind-the-scenes must align seamlessly. How does the business need translate into a scientific research question? What is the study design? What are the required variables? What is the right data? Where is it hosted? How is it accessed? What are the privacy restrictions? What statistical method is most appropriate? How can AI help? How can AI hurt? How is the insight best delivered to non-data scientists? The invisible cadre of experts behind these questions are large and varied: clinical scientists, epidemiologists, statisticians, data management, data engineers, IT specialists, data governance & stewards, data privacy experts, developers, analytic data scientists, prompt engineers, including stakeholders across all functions who make important decisions on a daily basis with patients in mind.\n\nOrganizations such as Roche / Genentech that have grown large in their success are also victims of their own success. They often suffer from perpetual emergence of silos and complexities. No matter how frequently organizations attempt to break down silos and simplify processes, the number of functions remains large; the number of data systems increases; and the fragmentation continues to inhibit visibility and interoperability. Not FAIR at all. In addition, changing definitions in the external ecosystem related to data access for AI processing as part of secondary use has thrown a wrench into the old ways of working.\n\nOne potential solution may be to orient the entire enterprise towards a disease-area mindset where a disease specific DATA strategy can not only transcend the short-term needs of single assets but can pull together experts across functions representing each phase of the end-to-end drug development. In this session, we will explore cross‑functional business perspectives, understand how enterprise data strategy with a disease-area orientation can serve to connect clinical scientists, IT, data engineering, data stewards, epidemiologists, and statisticians. We will also explore why alignment across these groups is essential and how data innovation is required to meet the fast pace of technology.",
@@ -435,6 +425,16 @@
         "endTime": "",
         "speakers": [
           "thanh-ton"
+        ]
+      },
+      {
+        "id": "t-2a-3",
+        "title": "Evaluating Intermediate Endpoint for CAR T-Cell Therapy in Multiple Myeloma: A multi-source, Multi-Method Analytical Framework",
+        "abstract": "Background and Objective: The FDA's 2024 ODAC meta-analysis of randomized multiple myeloma trials established MRD negativity rate as an intermediate endpoint reasonably likely to predict clinical benefit, formalized in the January 2026 draft guidance for accelerated approval. However, this evidence derived exclusively from conventional therapies and did not include CAR T-cell trials, prompting residual uncertainties regarding the applicability of MRD to cell therapies. To address this evidence gap in a data-constrained landscape, we adopt a multi-source data integration strategy, combining externally published CAR T-cell trial data, real-world evidence (RWE), and internal clinical trial data, to maximize the extractable evidence and generate a comprehensive regulatory-grade evidence package supporting MRD negativity rate as an accelerated approval endpoint for CAR T-cell therapy. Methods: Our approach comprises three complementary data-driven workstreams. (1) External published trial data: Bayesian meta-analytic regression with informative priors constructed from conventional therapy trial comparisons is applied to publicly available CAR T-cell trial results. (2) Real-world evidence: causal mediation analysis to quantify the proportion of the CAR T treatment effect on PFS/OS mediated through MRD negativity, supplemented by landmark analyses and causal survival forests assessing MRD variable importance for predicting heterogeneous treatment effects. (3) Internal clinical trial data: predictive modeling based on the conventional therapy meta-regression relationship, combined with subgroup and interaction analyses to validate the MRD outcome association. By triangulating across three independent data sources, each contributing distinct inferential strengths, this framework maximizes evidentiary robustness where no single source alone is sufficient, representing the first systematic effort to bridge the MRD surrogacy evidence gap for CAR T-cell therapy.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "wenjuan-gu"
         ]
       },
       {
@@ -872,7 +872,7 @@
       {
         "id": "t-4a-5",
         "title": "Multimodal AI identifies a high-risk, immune-cold NF1-mutant SqNSCLC patient subtype enriched by a 31-gene prognostic signature",
-        "abstract": "",
+        "abstract": "Using multimodal AI on clinico-genomic data of LUSC patients, we identified seven molecular subtypes with distinct survival outcomes, highlighting an aggressive subtype. Spatial transcriptomics reveals that this high-risk subtype is characterized by dense cancer-associated fibroblast infiltration, establishing it as an actionable, stroma-rich phenotype that could benefit from targeting distinct pathways.",
         "startTime": "",
         "endTime": "",
         "speakers": [

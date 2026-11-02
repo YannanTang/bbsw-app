@@ -136,7 +136,15 @@ const dayLabel = (iso: string) =>
               ))}
             </div>
           )}
-          {talk.abstract && talk.abstract.split("\n\n").map((para) => <p>{para}</p>)}
+          {/* Collapsed by default so a session's speakers can be scanned without scrolling past every abstract. */}
+          {talk.abstract && (
+            <details class="talk-abstract">
+              <summary>Abstract</summary>
+              <div class="talk-abstract-body">
+                {talk.abstract.split("\n\n").map((para) => <p>{para}</p>)}
+              </div>
+            </details>
+          )}
         </div>
       );
     })

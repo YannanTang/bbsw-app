@@ -54,6 +54,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
           </div>
 
           <div id="vote-message" class="message hidden"></div>
+          <a id="vote-report" class="report-link hidden">Report an issue: I believe I'm registered</a>
           <p id="vote-slow" class="slow-note hidden">Lots of people are voting right now. Please keep this page open; it can take up to a minute.</p>
           <button type="submit" id="submit-btn" class="cta">Submit Ballot</button>
         </form>
@@ -79,6 +80,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
 </BaseLayout>
 
 <script>
+  import { reportHref } from "../lib/report";
   const app = document.getElementById("voting-app") as HTMLElement;
   const { endpoint, open, close } = app.dataset as Record<string, string>;
   const openTime = new Date(open);
@@ -101,7 +103,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
   const ERRORS: Record<string, string> = {
     vote_not_open: "Voting hasn't opened yet. It opens Nov 5 at 11:50 AM.",
     vote_closed: "Voting has closed. Thank you for participating!",
-    not_registered: "We couldn't find that email on the registration list. Try the email you registered with.",
+    not_registered: "We couldn't find that email on the registration list. Try the email you registered with on TicketLeap.",
     bad_votes: "Please select between 1 and 3 posters.",
     bad_request: "Please fill in your name and registration email.",
     network: "Voting is busy right now. Please wait a moment and tap Submit again. (On a work laptop or VPN? Try your personal phone.)",
@@ -110,6 +112,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
   const form = document.getElementById("voting-form") as HTMLFormElement;
   const msgBox = document.getElementById("vote-message") as HTMLDivElement;
   const btn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const reportEl = document.getElementById("vote-report") as HTMLAnchorElement;
   const boxes = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="posters"]'));
 
   // Once 3 posters are picked, grey out the rest.
@@ -145,6 +148,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     btn.disabled = true;
     btn.textContent = "Submitting...";
     msgBox.classList.add("hidden");
+    reportEl.classList.add("hidden");
     // In a rush, ballots queue for a few seconds; say so, so nobody thinks the page is stuck.
     const slowEl = document.getElementById("vote-slow")!;
     const slowTimer = setTimeout(() => slowEl.classList.remove("hidden"), 5000);
@@ -157,6 +161,10 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
         limitChoices();
       } else {
         showMessage(ERRORS[out.error] || ERRORS.bad_request, "error");
+        if (out.error === "not_registered") {
+          reportEl.href = reportHref("poster voting", String(formData.get("name") || ""), String(formData.get("email") || ""));
+          reportEl.classList.remove("hidden");
+        }
       }
     } catch (_) {
       showMessage(ERRORS.network, "error");

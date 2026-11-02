@@ -38,15 +38,17 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
       <button class="install-btn" type="submit">Enter the raffle</button>
       <p class="raffle-slow meta" hidden>Lots of people are signing up right now. Please keep this page open; it can take up to a minute.</p>
       <p class="raffle-error" role="alert" hidden></p>
+      <a class="report-link" hidden>Report an issue: I believe I'm registered</a>
       <p class="meta">We only use your email to check your registration. Only your name is shown if you win.</p>
     </form>
   </section>
 )}
 
 <script>
+  import { reportHref } from "../lib/report";
   const ERRORS: Record<string, string> = {
     bad_code: "That venue code doesn't match. Check the screen in the room.",
-    not_registered: "We couldn't find that email on the registration list. Try the email you registered with.",
+    not_registered: "We couldn't find that email on the registration list. Try the email you registered with on TicketLeap.",
     closed: "Raffle sign-up is closed right now.",
     bad_request: "Please fill in your name, email and the venue code.",
     network: "The raffle is busy right now. Please wait a moment and tap Enter again. (On a work laptop or VPN? Try your personal phone.)",
@@ -63,6 +65,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
     const form = box.querySelector<HTMLFormElement>(".raffle-form")!;
     const errorEl = box.querySelector<HTMLElement>(".raffle-error")!;
     const button = form.querySelector<HTMLButtonElement>("button")!;
+    const reportEl = box.querySelector<HTMLAnchorElement>(".report-link")!;
 
     // The QR code on the screen carries the code (?code=XXXX), so scanners don't have to type it.
     const urlCode = new URLSearchParams(location.search).get("code");
@@ -115,6 +118,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       errorEl.hidden = true;
+      reportEl.hidden = true;
       const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
       button.disabled = true;
       button.textContent = "Checking…";
@@ -129,6 +133,10 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
         } else {
           errorEl.textContent = ERRORS[out.error] || ERRORS.bad_request;
           errorEl.hidden = false;
+          if (out.error === "not_registered") {
+            reportEl.href = reportHref(`raffle (${day === "day1" ? "Day 1" : "Day 2"})`, data.name || "", data.email || "");
+            reportEl.hidden = false;
+          }
         }
       } catch (_) {
         errorEl.textContent = ERRORS.network;

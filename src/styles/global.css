@@ -820,3 +820,19 @@ a.install-btn:hover { text-decoration: none; }
 /* Sponsor logo to the right of a session title on the schedule */
 .session-row .title-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .session-row .sponsor-logo { height: 28px; width: auto; max-width: 110px; object-fit: contain; flex-shrink: 0; }
+
+/* "Report an issue: I believe I'm registered" — shown under a not-on-the-list error (raffle and poster voting). */
+.report-link {
+  display: inline-block;
+  margin: 0.25rem 0 0.75rem;
+  padding: 0.6rem 1rem;
+  min-height: 44px;
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.report-link:hover { background: var(--color-primary); color: #fff; text-decoration: none; }
+.report-link[hidden] { display: none; }

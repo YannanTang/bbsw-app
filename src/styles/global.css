@@ -203,6 +203,32 @@ details.speaker-card summary::after {
 details.speaker-card[open] { border-color: var(--color-primary); }
 details.speaker-card[open] summary::after { transform: rotate(-135deg); }
 .speaker-more { padding: 0 0.85rem 0.85rem; border-top: 1px solid var(--color-border); }
+
+/* Collapsible talk abstract: closed by default, tap "Abstract" to open or close. */
+details.talk-abstract { margin: 0.6rem 0 0; }
+details.talk-abstract summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+  list-style: none;
+}
+details.talk-abstract summary::-webkit-details-marker { display: none; }
+details.talk-abstract summary::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 0.15s ease;
+}
+details.talk-abstract[open] summary::after { transform: translateY(2px) rotate(-135deg); }
+.talk-abstract-body p:first-child { margin-top: 0.25rem; }
 .speaker-more p { margin: 0.75rem 0 0; }
 .speaker-sessions { margin: 0.75rem 0 0; padding-left: 1.1rem; }
 .speaker-sessions li { margin-bottom: 0.35rem; }

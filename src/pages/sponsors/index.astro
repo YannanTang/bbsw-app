@@ -5,15 +5,21 @@ import sponsors from "../../data/sponsors.json";
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
 
-type Sponsor = { id: string; name: string; tier: string; logo?: string; website?: string; description?: string; };
+type Sponsor = { id: string; name: string; tier: string; events?: string[]; logo?: string; website?: string; description?: string; };
 const tierOrder = ["Diamond", "Platinum", "Gold", "Silver"];
 
 // Known tiers first, in order; any unexpected tier is appended rather than silently dropped.
-const tiers = [...tierOrder, ...new Set((sponsors as Sponsor[]).map((s) => s.tier).filter((t) => !tierOrder.includes(t)))];
+// "Event" sponsors (e.g. a lunch sponsor) have no tier section; they appear under Event Sponsors below.
+const tiers = [...tierOrder, ...new Set((sponsors as Sponsor[]).map((s) => s.tier).filter((t) => !tierOrder.includes(t) && t !== "Event"))];
 const byName = (a: Sponsor, b: Sponsor) => a.name.localeCompare(b.name, "en", { sensitivity: "base" });
 const groups = tiers
   .map((tier) => ({ tier, list: (sponsors as Sponsor[]).filter((s) => s.tier === tier).sort(byName) }))
   .filter((g) => g.list.length > 0);
+
+// One tile per sponsored event (a tiered sponsor can also sponsor an event), in event order ("Day 1 …" before "Day 2 …").
+const eventTiles = (sponsors as Sponsor[])
+  .flatMap((sp) => (sp.events ?? []).map((event) => ({ event, sp })))
+  .sort((a, b) => a.event.localeCompare(b.event, "en", { numeric: true }));
 ---
 <BaseLayout title="Sponsors — BBSW 2026">
   <h1>Sponsors</h1>
@@ -33,4 +39,19 @@ const groups = tiers
       </div>
     </section>
   ))}
+  {eventTiles.length > 0 && (
+    <section class="sponsor-tier">
+      <h2>Event Sponsors</h2>
+      <div class="sponsor-grid">
+        {eventTiles.map(({ event, sp }) => (
+          <a class="sponsor-tile sponsor-tile-event" href={link(`sponsors/${sp.id}`)}>
+            {sp.logo
+              ? <span class="sponsor-tile-logo"><img src={link(sp.logo)} alt={sp.name} loading="lazy" /></span>
+              : <span class="sponsor-tile-name">{sp.name}</span>}
+            <span class="sponsor-tile-event-label">{event}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 </BaseLayout>

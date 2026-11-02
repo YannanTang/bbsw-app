@@ -37,7 +37,10 @@
     "tier": "Platinum",
     "logo": "/sponsors/njs.png",
     "website": "https://www.njstat.com/",
-    "description": "NJS is a leading biometrics CRO, multifunctional FSP provider, and specialized staffing partner. Through flexible project-based and FSP models, we provide access to more than 100 SAS programmers and PhD-level statisticians, supported by offices in New Jersey, Massachusetts, California, and Florida.\n\nNJS has contributed to more than 16 successful regulatory submissions in both biostatistics and SAS programming. NJS is currently supporting seven submissions across oncology, ophthalmology, rare disease, epilepsy, and mRNA-based immuno-oncology vaccine. Our oncology and hematology biostatistics submission expertise includes renal cell, colorectal, breast, non-small cell lung cancer, prostate cancers, beta thalassemia, MDS, and AML. NJS also provided biostatistics design support in rare disease, CNS, cardiology, CNS, metabolic diseases, ophthalmology, osteoporosis, vaccines, rare diseases, and medical devices with demonstrated success in submission.\n\nNJS provides expert biostatistics support in methodology in trial design in therapeutic areas in oncology, rare disease, CNS, cardiology and etc.\n\nNJS also applies secure, closed-system AI tools to enhance biometrics delivery by:\n\n• Performing deep data quality checks\n• Assisting advanced statistical analyses\n• Conducting strategic and scientific literature research to support regulatory discussion\n• Supporting CDISC dataset development and TLF\n\nCombined with our experienced clinical and biometrics recruiting team, NJS delivers scalable expertise, regulatory insight, and responsive support from study design through submission.\n\nMeet the NJS team at BBSW in Foster City to discuss your next clinical development program."
+    "description": "NJS is a leading biometrics CRO, multifunctional FSP provider, and specialized staffing partner. Through flexible project-based and FSP models, we provide access to more than 100 SAS programmers and PhD-level statisticians, supported by offices in New Jersey, Massachusetts, California, and Florida.\n\nNJS has contributed to more than 16 successful regulatory submissions in both biostatistics and SAS programming. NJS is currently supporting seven submissions across oncology, ophthalmology, rare disease, epilepsy, and mRNA-based immuno-oncology vaccine. Our oncology and hematology biostatistics submission expertise includes renal cell, colorectal, breast, non-small cell lung cancer, prostate cancers, beta thalassemia, MDS, and AML. NJS also provided biostatistics design support in rare disease, CNS, cardiology, CNS, metabolic diseases, ophthalmology, osteoporosis, vaccines, rare diseases, and medical devices with demonstrated success in submission.\n\nNJS provides expert biostatistics support in methodology in trial design in therapeutic areas in oncology, rare disease, CNS, cardiology and etc.\n\nNJS also applies secure, closed-system AI tools to enhance biometrics delivery by:\n\n• Performing deep data quality checks\n• Assisting advanced statistical analyses\n• Conducting strategic and scientific literature research to support regulatory discussion\n• Supporting CDISC dataset development and TLF\n\nCombined with our experienced clinical and biometrics recruiting team, NJS delivers scalable expertise, regulatory insight, and responsive support from study design through submission.\n\nMeet the NJS team at BBSW in Foster City to discuss your next clinical development program.",
+    "events": [
+      "Day 2 Happy Hour"
+    ]
   },
   {
     "id": "phasev",
@@ -406,5 +409,16 @@
     "logo": "/sponsors/yesod-ai.png",
     "website": "https://www.yesodai.com/",
     "description": "Yesod AI builds AI teammates for clinical trial data analysis. We are developing an end-to-end automation platform that supports the complete clinical data lifecycle—from raw data processing through SDTM and ADaM dataset creation to final tables, listings, and figures (TLFs). By combining domain expertise with autonomous AI agents, Yesod AI helps biopharma companies and CROs reduce manual effort, shorten project timelines, improve consistency, and accelerate the delivery of regulatory-ready clinical trial outputs."
+  },
+  {
+    "id": "princeps-technology",
+    "name": "Princeps Technology",
+    "tier": "Event",
+    "events": [
+      "Day 1 Lunch"
+    ],
+    "logo": "/sponsors/princeps-technology.png",
+    "website": "https://www.princepstech.com",
+    "description": ""
   }
 ]

@@ -250,7 +250,8 @@
     "room": "",
     "description": "",
     "chairs": [],
-    "talks": []
+    "talks": [],
+    "sponsor": "princeps-technology"
   },
   {
     "id": "early-career-networking",

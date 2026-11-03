@@ -8,9 +8,9 @@
  * Sheet tabs (created by setup()):
  *   Attendees  Email | Name                      ← paste the registration list
  *   Settings   Key | Value                       ← stage_key, day1_code, day2_code, day1_open, day2_open
- *   Entries    Day | Time | Email | Name | Registered name   (Name = as typed; shown on stage)
+ *   Entries    Day | Time | Email | Typed name | Registered name   (typed name is shown on stage)
  *   Draws      Day | Time | Email | Name | Status   (winner / not present)
- *   Votes      Time | Email | Name | Typed name | Posters | Kind   (poster voting: ballot / test)
+ *   Votes      Time | Email | Typed name | Registered name | Posters | Kind   (poster voting: ballot / test)
  *
  * Poster voting results go to a separate Sheet (Settings: vote_results_sheet) that can be shared
  * with the poster chairs: it holds only posters and vote counts, never names or emails.
@@ -27,9 +27,9 @@ function setup() {
   const tabs = {
     Attendees: ["Email", "Name"],
     Settings: ["Key", "Value"],
-    Entries: ["Day", "Time", "Email", "Name", "Registered name"],
+    Entries: ["Day", "Time", "Email", "Typed name", "Registered name"],
     Draws: ["Day", "Time", "Email", "Name", "Status"],
-    Votes: ["Time", "Email", "Name", "Typed name", "Posters", "Kind"],
+    Votes: ["Time", "Email", "Typed name", "Registered name", "Posters", "Kind"],
   };
   Object.keys(tabs).forEach((name) => {
     const sh = ss.getSheetByName(name) || ss.insertSheet(name);
@@ -186,7 +186,7 @@ function vote_(req) {
   if (registered.name && !namesMatch_(typed, registered.name)) return { ok: false, error: "name_mismatch" };
 
   // Append only: the latest ballot per email is the one that counts (see voteResults_).
-  appendLocked_("Votes", [now, email, registered.name || typed, typed, picks.join(","), rehearsal ? "test" : "ballot"]);
+  appendLocked_("Votes", [now, email, typed, registered.name, picks.join(","), rehearsal ? "test" : "ballot"]);
   return { ok: true, test: rehearsal, name: registered.name || typed };
 }
 

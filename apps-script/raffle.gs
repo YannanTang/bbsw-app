@@ -8,7 +8,7 @@
  * Sheet tabs (created by setup()):
  *   Attendees  Email | Name                      ← paste the registration list
  *   Settings   Key | Value                       ← stage_key, day1_code, day2_code, day1_open, day2_open
- *   Entries    Day | Time | Email | Name | Typed name
+ *   Entries    Day | Time | Email | Name | Registered name   (Name = as typed; shown on stage)
  *   Draws      Day | Time | Email | Name | Status   (winner / not present)
  *   Votes      Time | Email | Name | Typed name | Posters | Kind   (poster voting: ballot / test)
  *
@@ -27,7 +27,7 @@ function setup() {
   const tabs = {
     Attendees: ["Email", "Name"],
     Settings: ["Key", "Value"],
-    Entries: ["Day", "Time", "Email", "Name", "Typed name"],
+    Entries: ["Day", "Time", "Email", "Name", "Registered name"],
     Draws: ["Day", "Time", "Email", "Name", "Status"],
     Votes: ["Time", "Email", "Name", "Typed name", "Posters", "Kind"],
   };
@@ -112,7 +112,7 @@ function enter_(day, req) {
   // The duplicate check stays outside the lock so sign-ups don't queue behind it.
   // Two near-simultaneous entries for one email can both land; entries_() keeps only the first.
   const already = rows_("Entries").some((r) => r[0] === day && normEmail_(r[2]) === email);
-  if (!already) appendLocked_("Entries", [day, new Date(), email, shown, typed]);
+  if (!already) appendLocked_("Entries", [day, new Date(), email, shown, registered.name]);
   return { ok: true, already: already, name: shown };
 }
 
@@ -326,17 +326,28 @@ function sheet_(name) {
   return SpreadsheetApp.getActive().getSheetByName(name);
 }
 
-// Lenient on purpose: case, spaces, accents, punctuation and name order don't matter, and one shared
-// name part is enough ("Lucie Zhang" matches "Lu Zhang", "Tang Yannan" and "yannantang" match "Yannan Tang").
-// It only stops a clearly different person ("Chenqi Fu" with Yannan Tang's email).
+// Strict on purpose: the typed name must be the registered first + last name. Only case, spaces,
+// punctuation, accents and name order are ignored ("tang  YANNAN", "yannantang" and "Tang Yannan" match
+// "Yannan Tang"; "Ching Wei Chang" matches "Ching-Wei Chang"). A first name alone or a different spelling is refused.
+// Registration formats we accept on top of that: a middle name or initial may be left out ("Avinash Pati"
+// for "Avinash R Pati"), a title is dropped ("Dr."), and a name in parentheses may replace the name before
+// it ("Kevin Yuan" or "Kun Yuan" for "Kun(Kevin) Yuan").
 function namesMatch_(typed, registered) {
+  const titles = { dr: 1, mr: 1, mrs: 1, ms: 1, prof: 1 };
   const parts = (v) => String(v).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase()
-    .split(/[^a-z\u4e00-\u9fff]+/).filter((t) => t.length >= 2);
-  const a = parts(typed), b = parts(registered);
-  if (!a.length || !b.length) return true; // a name with no comparable letters: don't block
-  const joinedA = a.join(""), joinedB = b.join("");
-  const inside = (ts, joined) => ts.some((t) => t.length >= 3 && joined.includes(t));
-  return a.some((t) => b.includes(t)) || inside(b, joinedA) || inside(a, joinedB);
+    .replace(/[-'’]/g, "").split(/[^a-z\u4e00-\u9fff]+/).filter((t) => t && !titles[t]);
+  const reg = String(registered);
+  const variants = [reg.replace(/\([^)]*\)/g, " ")];
+  if (/\(/.test(reg)) variants.push(reg.replace(/[^\s(]*\s*\(([^)]*)\)/, " $1 ").replace(/\([^)]*\)/g, " "));
+  const t = parts(String(typed).replace(/\([^)]*\)/g, " "));
+  const tKey = t.join(""), tSorted = t.slice().sort().join(" ");
+  return variants.map(parts).some((r) => {
+    if (!r.length) return true; // a registered name with no comparable letters: don't block
+    const first = r[0], last = r[r.length - 1], mid = r.slice(1, -1).join("");
+    const keys = [r.join(""), last + first + mid, first + last, last + first];
+    const sets = [r.slice().sort().join(" "), [first, last].sort().join(" ")];
+    return r.length === 1 ? tKey === first : keys.includes(tKey) || sets.includes(tSorted);
+  });
 }
 
 function normEmail_(v) {

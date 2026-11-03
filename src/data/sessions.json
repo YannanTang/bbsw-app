@@ -682,6 +682,16 @@
     ],
     "talks": [
       {
+        "id": "t-3b-3",
+        "title": "The Game of Chutes and Ladders with AI: Navigating Opportunities and Risks in Regulated Evidence Delivery",
+        "abstract": "Artificial intelligence offers significant opportunities to accelerate evidence generation in regulated environments, but its adoption is neither simple nor straightforward. Like a game of chutes and ladders, progress depends on identifying the ladders that enable acceleration while carefully managing the chutes that can slow or redirect implementation. In this context, ladders include document and specification generation, real time review, code development, analysis support, output creation, idea generation, thought partnership, and pattern identification. Chutes include challenges related to GxP expectations, data standards/quality, data privacy/confidentiality, reproducibility, model oversight, validation and regulatory compliance and changes including real time review. This presentation will explore how teams can use AI intentionally and responsibly rather than simply “rolling the dice.” We will discuss opportunities, practical examples of applying AI to generate documents, specifications, code, analyses, and outputs, alongside simple approaches for evaluating validation opportunities. Emphasis will be placed on understanding how AI models work and scope, defining appropriate oversight, maintaining robust documentation, and embedding reproducibility and compliance considerations from the outset. By recognizing both the opportunities and the risks, organizations can play the game with greater control and confidence, using AI to move faster while protecting quality, integrity, and regulatory trust. While touching on importance of maintaining the balance between Automation and AI, pace of AI advancements, etc.",
+        "startTime": "",
+        "endTime": "",
+        "speakers": [
+          "avinash-reddy-pati"
+        ]
+      },
+      {
         "id": "t-3b-1",
         "title": "Creating Capacity Without Losing Judgment: A Leadership Perspective on AI Adoption in Biometrics",
         "abstract": "When I joined Kardigan, the volume of urgent work could easily have consumed my first year. In Covey’s rocks-pebbles-sand terms, the “sand” of daily demands threatened to crowd out the strategic “rocks” that move an organization forward. AI helped create the capacity to address both. I’ll share how AI is reducing friction across precision medicine, operations, regulatory strategy, and the work of building a Biometrics function—including approaches that change not only how quickly a small biotech can run trials, but which trials are feasible in the first place. Yet creating capacity is only the first leadership challenge: without judgment, that capacity simply fills with more sand. Real gains require leaders to create room for experimentation, make failures visible as learning opportunities, and keep expert judgment firmly in the loop. AI mistakes are inevitable, and only qualified people will recognize them. The goal is not adoption at any cost; it is to build the trust, expertise, and working habits that allow people to use AI confidently while preserving the skepticism needed to use it safely.",
@@ -699,16 +709,6 @@
         "endTime": "",
         "speakers": [
           "ali-valcarcel"
-        ]
-      },
-      {
-        "id": "t-3b-3",
-        "title": "The Game of Chutes and Ladders with AI: Navigating Opportunities and Risks in Regulated Evidence Delivery",
-        "abstract": "Artificial intelligence offers significant opportunities to accelerate evidence generation in regulated environments, but its adoption is neither simple nor straightforward. Like a game of chutes and ladders, progress depends on identifying the ladders that enable acceleration while carefully managing the chutes that can slow or redirect implementation. In this context, ladders include document and specification generation, real time review, code development, analysis support, output creation, idea generation, thought partnership, and pattern identification. Chutes include challenges related to GxP expectations, data standards/quality, data privacy/confidentiality, reproducibility, model oversight, validation and regulatory compliance and changes including real time review. This presentation will explore how teams can use AI intentionally and responsibly rather than simply “rolling the dice.” We will discuss opportunities, practical examples of applying AI to generate documents, specifications, code, analyses, and outputs, alongside simple approaches for evaluating validation opportunities. Emphasis will be placed on understanding how AI models work and scope, defining appropriate oversight, maintaining robust documentation, and embedding reproducibility and compliance considerations from the outset. By recognizing both the opportunities and the risks, organizations can play the game with greater control and confidence, using AI to move faster while protecting quality, integrity, and regulatory trust. While touching on importance of maintaining the balance between Automation and AI, pace of AI advancements, etc.",
-        "startTime": "",
-        "endTime": "",
-        "speakers": [
-          "avinash-reddy-pati"
         ]
       }
     ]

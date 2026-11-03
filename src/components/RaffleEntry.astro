@@ -47,6 +47,7 @@ const firstDate = Object.values(raffleSessions).map((s) => s.date).sort()[0];
   const ERRORS: Record<string, string> = {
     bad_code: "That venue code doesn't match. Check the screen in the room.",
     not_registered: "We couldn't find that email on the registration list. Try the email you registered with on TicketLeap.",
+    name_mismatch: "That name doesn't match the registration for this email. Please enter your name as you registered it on TicketLeap.",
     closed: "Raffle sign-up is closed right now.",
     bad_request: "Please fill in your name, email and the venue code.",
     network: "The raffle is busy right now. Please wait a moment and tap Enter again. (On a work laptop or VPN? Try your personal phone.)",

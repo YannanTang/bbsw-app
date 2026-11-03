@@ -11,6 +11,9 @@
     "id": "genentech",
     "name": "Genentech",
     "tier": "Diamond",
+    "events": [
+      "Day 1 Breakfast"
+    ],
     "logo": "/sponsors/genentech.png",
     "website": "https://www.gene.com/",
     "description": "Headquartered in South San Francisco, Genentech is a biotechnology pioneer dedicated to discovering and developing breakthrough medicines for people facing serious and life-threatening diseases. Advanced biostatistics, data science, and quantitative methodologies are fundamental to our work, driving rigorous, evidence-based decision-making across our entire research and clinical pipeline. As a longtime leader in the Bay Area life sciences ecosystem, Genentech is committed to supporting local talent, scientific rigor, and cross-industry collaboration. As one of the first sponsors since the Bay Area Biotech-Pharma Statistics Workshop's (BBSW) inception in 2018, we are proud to continue our partnership and empower the quantitative scientists shaping the future of healthcare."

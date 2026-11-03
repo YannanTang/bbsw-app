@@ -182,6 +182,8 @@ function vote_(req) {
 
   const registered = attendees_()[email];
   if (!registered) return { ok: false, error: "not_registered" };
+  // Same strict rule as the raffle: a ballot can't be cast under another attendee's email.
+  if (registered.name && !namesMatch_(typed, registered.name)) return { ok: false, error: "name_mismatch" };
 
   // Append only: the latest ballot per email is the one that counts (see voteResults_).
   appendLocked_("Votes", [now, email, registered.name || typed, typed, picks.join(","), rehearsal ? "test" : "ballot"]);
@@ -326,7 +328,7 @@ function sheet_(name) {
   return SpreadsheetApp.getActive().getSheetByName(name);
 }
 
-// Strict on purpose: the typed name must be the registered first + last name. Only case, spaces,
+// Used by the raffle and poster voting. Strict on purpose: the typed name must be the registered first + last name. Only case, spaces,
 // punctuation, accents and name order are ignored ("tang  YANNAN", "yannantang" and "Tang Yannan" match
 // "Yannan Tang"; "Ching Wei Chang" matches "Ching-Wei Chang"). A first name alone or a different spelling is refused.
 // Registration formats we accept on top of that: a middle name or initial may be left out ("Avinash Pati"

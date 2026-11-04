@@ -103,6 +103,7 @@ const moments = [
       <a href={link("install")}>Add the app to your phone</a>
       <a href="https://bbsw.org" target="_blank" rel="noopener">About BBSW ↗</a>
     </div>
+    <p class="closer-help">Questions about the app? <a href="mailto:bbswtech@bbsw.org?subject=Question%20about%20the%20BBSW%202026%20app">Email the BBSW Tech team</a></p>
   </section>
 </BaseLayout>
 
@@ -331,5 +332,6 @@ const moments = [
 
   .closer { text-align: center; margin-bottom: 1rem; }
   .closer-line { margin: 0 0 0.75rem; font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; }
-  .closer-links { display: flex; justify-content: center; gap: 1.5rem; font-weight: 600; font-size: 0.95rem; }
+  .closer-help { margin: 1rem 0 0; font-size: 0.9rem; }
+  .closer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; font-weight: 600; font-size: 0.95rem; }
 </style>

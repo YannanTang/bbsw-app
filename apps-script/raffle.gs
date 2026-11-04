@@ -231,13 +231,13 @@ function tallyVotes() {
 }
 
 // Run once from the editor (as bbswtech@bbsw.org) to tally automatically after voting closes:
-// 5 and 30 minutes after vote_close. Also tallies right away, so you can check the Results tab.
+// 5 and 15 minutes after vote_close (1:45 and 1:55 PM; the poster chairs check results at 2:00). Also tallies right away, so you can check the Results tab.
 function scheduleTally() {
   ScriptApp.getProjectTriggers()
     .filter((t) => t.getHandlerFunction() === "tallyVotes")
     .forEach((t) => ScriptApp.deleteTrigger(t));
   const close = new Date(setting_("vote_close"));
-  [5, 30].forEach((min) => {
+  [5, 15].forEach((min) => {
     ScriptApp.newTrigger("tallyVotes").timeBased().at(new Date(close.getTime() + min * 60000)).create();
   });
   tallyVotes();

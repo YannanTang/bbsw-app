@@ -230,15 +230,24 @@ function tallyVotes() {
   sh.getRange(rows.length + 3, 1).setValue(`Updated ${when} PT from ${latestBallots_().length} ballots.`);
 }
 
-// Run once from the editor (as bbswtech@bbsw.org) to tally automatically after voting closes:
+// Running totals while voting is open (Pacific): Day 1 evening, then hourly on Day 2 until 1 PM.
+const TALLY_PREVIEW = [
+  "2026-11-05T18:00:00-08:00",
+  "2026-11-06T09:00:00-08:00", "2026-11-06T10:00:00-08:00", "2026-11-06T11:00:00-08:00",
+  "2026-11-06T12:00:00-08:00", "2026-11-06T13:00:00-08:00",
+];
+
+// Run once from the editor (as bbswtech@bbsw.org) to tally automatically: at the TALLY_PREVIEW times and
 // 5 and 15 minutes after vote_close (1:45 and 1:55 PM; the poster chairs check results at 2:00). Also tallies right away, so you can check the Results tab.
 function scheduleTally() {
   ScriptApp.getProjectTriggers()
     .filter((t) => t.getHandlerFunction() === "tallyVotes")
     .forEach((t) => ScriptApp.deleteTrigger(t));
   const close = new Date(setting_("vote_close"));
-  [5, 15].forEach((min) => {
-    ScriptApp.newTrigger("tallyVotes").timeBased().at(new Date(close.getTime() + min * 60000)).create();
+  const times = TALLY_PREVIEW.map((t) => new Date(t))
+    .concat([5, 15].map((min) => new Date(close.getTime() + min * 60000)));
+  times.filter((t) => t > new Date()).forEach((t) => {
+    ScriptApp.newTrigger("tallyVotes").timeBased().at(t).create();
   });
   tallyVotes();
 }

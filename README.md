@@ -73,7 +73,7 @@ The registration list, codes and stage key live only in the Sheet, never in this
 
 ## Poster voting
 
-People's choice vote on `/posters`: up to 3 posters per registered attendee, Nov 5 11:50 AM to Nov 6 2:00 PM (Pacific). Ballots go to the same Apps Script and Sheet as the raffle, so they're checked against the same **Attendees** list.
+People's choice vote on `/posters`: up to 3 posters per registered attendee, Nov 5 11:50 AM to Nov 6 1:40 PM (Pacific). Ballots go to the same Apps Script and Sheet as the raffle, so they're checked against the same **Attendees** list.
 
 - The script enforces the window (`vote_open`, `vote_close` in **Settings**; `vote_posters` = number of posters). The page reads the same times from `src/data/raffle.json` → `voting` to decide what to show, and re-checks every 30 seconds.
 - Before Nov 5 the form is a test run: ballots are stored with Kind `test` and never counted. Nothing to switch off before the conference.

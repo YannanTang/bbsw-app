@@ -25,7 +25,7 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2
 
 const quickLinks = [
   { href: "schedule", icon: "📅", label: "Schedule", line: "Both days" },
-  { href: "posters", icon: "🗳️", label: "Vote for posters", line: "Browse and vote" },
+  { href: "posters", icon: "🗳️", label: "Vote for posters", line: "Opens Thu 11:50 AM\nCloses Fri 1:30 PM" },
   { href: "venue", icon: "📍", label: "Venue", line: "Rooms, map, parking" },
 ];
 
@@ -167,7 +167,7 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
   .quick-link:hover { text-decoration: none; border-color: var(--color-primary); }
   .quick-icon { font-size: 1.6rem; line-height: 1; }
   .quick-label { margin-top: 0.5rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
-  .quick-line { margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }
+  .quick-line { white-space: pre-line; margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }
 
   .section-kicker {
     margin: 0 0 1rem;

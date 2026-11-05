@@ -147,6 +147,19 @@
     }
   },
   {
+    "id": "breakfast-day1",
+    "title": "Breakfast",
+    "track": "Break",
+    "date": "2026-11-05",
+    "startTime": "8:00 AM",
+    "endTime": "8:45 AM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": [],
+    "sponsor": "genentech"
+  },
+  {
     "id": "opening",
     "title": "Opening",
     "track": "Plenary",
@@ -560,7 +573,7 @@
       },
       {
         "id": "demo-d1-4",
-        "title": "TBD",
+        "title": "Role of Clinical Data Standards in AI Driven Automation: Super Charge Your Agents",
         "startTime": "",
         "endTime": "",
         "abstract": "",
@@ -569,6 +582,18 @@
       }
     ],
     "talksHeading": "Partner Demos"
+  },
+  {
+    "id": "breakfast-day2",
+    "title": "Breakfast",
+    "track": "Break",
+    "date": "2026-11-06",
+    "startTime": "8:00 AM",
+    "endTime": "8:45 AM",
+    "room": "",
+    "description": "",
+    "chairs": [],
+    "talks": []
   },
   {
     "id": "opening-day2",
@@ -747,7 +772,7 @@
       },
       {
         "id": "demo-d2-2",
-        "title": "TBD",
+        "title": "Your AI Partner for Drug Development",
         "startTime": "1:15 PM",
         "endTime": "1:30 PM",
         "abstract": "",

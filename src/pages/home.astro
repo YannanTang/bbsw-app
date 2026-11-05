@@ -23,15 +23,15 @@ const keynotes = all
 const showPhotos = keynotes.every((k) => k.speaker.photo);
 const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
 
+const quickLinks = [
+  { href: "schedule", icon: "📅", label: "Schedule", line: "Both days" },
+  { href: "posters", icon: "🗳️", label: "Vote for posters", line: "Browse and vote" },
+  { href: "venue", icon: "📍", label: "Venue", line: "Rooms, map, parking" },
+];
+
 const parallelCount = all.filter((s) => /^Parallel Session #/.test(s.title)).length;
 const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speakers))).size;
 
-// Three signature moments — the hooks from the flyers, one line each.
-const moments = [
-  { href: "sessions/ai-panel", title: "AI, straight talk", line: "FDA and industry leaders in a fireside chat on AI in biostatistics." },
-  { href: "sessions/day0-vibe-coding", title: "Vibe coding", line: "A hands-on pre-conference workshop: build something with AI." },
-  { href: "posters", title: "Vote for the best poster", line: "Lightning talks, your votes, and awards on Day 2." },
-];
 ---
 <BaseLayout title="BBSW 2026 — Home">
   <section class="stage">
@@ -47,18 +47,20 @@ const moments = [
         <span>Data Scientist</span>
       </h1>
       <p class="tagline">From data to impact.</p>
-      <div class="countdown" data-countdown hidden>
-        <p class="count-caption" data-caption>Doors open in</p>
-        <div class="count-units" data-units>
-          <span class="unit"><span class="unit-num" data-d>--</span><span class="unit-label">days</span></span>
-          <span class="unit"><span class="unit-num" data-h>--</span><span class="unit-label">hours</span></span>
-          <span class="unit"><span class="unit-num" data-m>--</span><span class="unit-label">min</span></span>
-          <span class="unit"><span class="unit-num" data-s>--</span><span class="unit-label">sec</span></span>
-        </div>
-      </div>
+      <p class="welcome">Welcome to the Crowne Plaza Foster City!</p>
       <a class="cta" href={link("schedule")}>Explore the program</a>
     </div>
   </section>
+
+  <nav class="quick" aria-label="Quick links">
+    {quickLinks.map((q) => (
+      <a class="quick-link" href={link(q.href)}>
+        <span class="quick-icon" aria-hidden="true">{q.icon}</span>
+        <span class="quick-label">{q.label}</span>
+        <span class="quick-line">{q.line}</span>
+      </a>
+    ))}
+  </nav>
 
   <section class="spotlight" aria-labelledby="keynote-heading">
     <h2 id="keynote-heading" class="section-kicker">Keynotes</h2>
@@ -82,20 +84,6 @@ const moments = [
     <p><strong>{speakerCount}+</strong> speakers</p>
   </section>
 
-  <section class="moments" aria-labelledby="moments-heading">
-    <h2 id="moments-heading" class="section-kicker">Don't miss</h2>
-    {moments.map((m, i) => (
-      <a class="moment" href={link(m.href)}>
-        <span class="moment-index">0{i + 1}</span>
-        <span class="moment-text">
-          <span class="moment-title">{m.title}</span>
-          <span class="moment-line">{m.line}</span>
-        </span>
-        <span class="moment-arrow" aria-hidden="true">→</span>
-      </a>
-    ))}
-  </section>
-
   <section class="closer">
     <p class="closer-line">Made possible by our sponsors.</p>
     <div class="closer-links">
@@ -106,37 +94,6 @@ const moments = [
     <p class="closer-help">Questions about the app? <a href="mailto:bbswtech@bbsw.org?subject=Question%20about%20the%20BBSW%202026%20app">Email the BBSW Tech team</a></p>
   </section>
 </BaseLayout>
-
-<script>
-  const box = document.querySelector<HTMLElement>("[data-countdown]");
-  if (box) {
-    const start = new Date("2026-11-05T08:45:00-08:00").getTime();
-    const end = new Date("2026-11-06T18:30:00-08:00").getTime();
-    const pad = (n: number) => String(n).padStart(2, "0");
-    const set = (sel: string, v: string) => (box.querySelector<HTMLElement>(sel)!.textContent = v);
-    const tick = () => {
-      const now = Date.now();
-      if (now >= start) {
-        clearInterval(timer);
-        if (now <= end) {
-          set("[data-caption]", "BBSW 2026 is live");
-          box.querySelector<HTMLElement>("[data-units]")!.hidden = true;
-        } else {
-          box.hidden = true;
-        }
-        return;
-      }
-      const t = Math.floor((start - now) / 1000);
-      set("[data-d]", String(Math.floor(t / 86400)));
-      set("[data-h]", pad(Math.floor((t % 86400) / 3600)));
-      set("[data-m]", pad(Math.floor((t % 3600) / 60)));
-      set("[data-s]", pad(t % 60));
-    };
-    const timer = setInterval(tick, 1000);
-    box.hidden = false;
-    tick();
-  }
-</script>
 
 <style>
   /* Full-bleed hero: break out of main's padding. */
@@ -184,46 +141,7 @@ const moments = [
     font-size: clamp(1.2rem, 5vw, 1.6rem);
     color: #f5c6cb;
   }
-  .countdown { margin-top: 2rem; }
-  .countdown[hidden], .count-units[hidden] { display: none; }
-  .count-caption {
-    margin: 0 0 0.6rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #f7d39b;
-  }
-  .count-units { display: flex; gap: 0.5rem; }
-  .unit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 4.1rem;
-    padding: 0.6rem 0.5rem 0.5rem;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(6px);
-  }
-  .unit-num {
-    font-family: var(--font-serif);
-    font-size: 1.9rem;
-    font-weight: 700;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .unit-label {
-    margin-top: 0.3rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
-  @media (max-width: 360px) {
-    .unit { min-width: 3.4rem; }
-    .unit-num { font-size: 1.5rem; }
-  }
+  .welcome { margin: 1.5rem 0 0; font-size: 1rem; color: #fde8ea; }
   .cta {
     display: inline-block;
     margin-top: 1.75rem;
@@ -234,6 +152,24 @@ const moments = [
     font-weight: 700;
   }
   .cta:hover { text-decoration: none; background: #fdf1f2; }
+
+  .quick { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0 0 2.5rem; }
+  .quick-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--color-text);
+    box-shadow: 0 4px 12px rgba(155, 27, 48, 0.06);
+  }
+  .quick-link:hover { text-decoration: none; border-color: var(--color-primary); }
+  .quick-icon { font-size: 1.6rem; line-height: 1; }
+  .quick-label { margin-top: 0.5rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
+  .quick-line { margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }
 
   .section-kicker {
     margin: 0 0 1rem;
@@ -312,23 +248,6 @@ const moments = [
     color: var(--color-text);
     font-variant-numeric: tabular-nums;
   }
-
-  .moments { margin-bottom: 2.5rem; }
-  .moment {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--color-border);
-    color: var(--color-text);
-  }
-  .moment:hover { text-decoration: none; }
-  .moment:hover .moment-arrow { transform: translateX(4px); }
-  .moment-index { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--color-primary); opacity: 0.5; }
-  .moment-text { flex: 1; display: flex; flex-direction: column; }
-  .moment-title { font-weight: 700; font-size: 1.05rem; }
-  .moment-line { font-size: 0.9rem; color: var(--color-muted); }
-  .moment-arrow { color: var(--color-primary); font-size: 1.2rem; transition: transform 0.2s ease; }
 
   .closer { text-align: center; margin-bottom: 1rem; }
   .closer-line { margin: 0 0 0.75rem; font-family: var(--font-serif); font-style: italic; font-size: 1.1rem; }

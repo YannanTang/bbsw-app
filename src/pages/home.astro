@@ -27,6 +27,7 @@ const quickLinks = [
   { href: "schedule", icon: "📅", label: "Schedule", line: "Both days" },
   { href: "posters", icon: "🗳️", label: "Vote for posters", line: "Opens Thu 11:50 AM\nCloses Fri 1:30 PM" },
   { href: "venue", icon: "📍", label: "Venue", line: "Wi-Fi, rooms, map" },
+  { href: "https://www.bbsw.org/volunteering", icon: "🤝", label: "Volunteer with BBSW", line: "Explore our teams and apply", external: true },
 ];
 
 const parallelCount = all.filter((s) => /^Parallel Session #/.test(s.title)).length;
@@ -53,7 +54,7 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
 
   <nav class="quick" aria-label="Quick links">
     {quickLinks.map((q) => (
-      <a class="quick-link" href={link(q.href)}>
+      <a class={q.external ? "quick-link is-wide" : "quick-link"} href={q.external ? q.href : link(q.href)} target={q.external ? "_blank" : undefined} rel={q.external ? "noopener" : undefined}>
         <span class="quick-icon" aria-hidden="true">{q.icon}</span>
         <span class="quick-label">{q.label}</span>
         <span class="quick-line">{q.line}</span>
@@ -165,6 +166,8 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
     box-shadow: 0 4px 12px rgba(155, 27, 48, 0.06);
   }
   .quick-link:hover { text-decoration: none; border-color: var(--color-primary); }
+  /* External link (volunteer page) spans the full row under the three app links */
+  .quick-link.is-wide { grid-column: 1 / -1; }
   .quick-icon { font-size: 1.6rem; line-height: 1; }
   .quick-label { margin-top: 0.5rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
   .quick-line { white-space: pre-line; margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }

@@ -83,6 +83,14 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
     <p><strong>{speakerCount}+</strong> speakers</p>
   </section>
 
+  <section class="volunteer" aria-label="Volunteer with BBSW">
+    <a class="quick-link" href="https://www.bbsw.org/volunteering" target="_blank" rel="noopener">
+      <span class="quick-icon" aria-hidden="true">🤝</span>
+      <span class="quick-label">Volunteer with BBSW</span>
+      <span class="quick-line">Explore our teams and apply</span>
+    </a>
+  </section>
+
   <section class="closer">
     <p class="closer-line">Made possible by our sponsors.</p>
     <div class="closer-links">
@@ -165,6 +173,8 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
     box-shadow: 0 4px 12px rgba(155, 27, 48, 0.06);
   }
   .quick-link:hover { text-decoration: none; border-color: var(--color-primary); }
+  .volunteer { margin: 0 0 2.5rem; }
+  .volunteer .quick-link { padding: 1.1rem 1rem; }
   .quick-icon { font-size: 1.6rem; line-height: 1; }
   .quick-label { margin-top: 0.5rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
   .quick-line { white-space: pre-line; margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }

@@ -2,17 +2,26 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import posters from "../data/posters.json";
 import PosterIndex from "../components/PosterIndex.astro";
+import PosterAwards from "../components/PosterAwards.astro";
+import awards from "../data/poster-awards.json";
 import raffle from "../data/raffle.json";
 
 const base = import.meta.env.BASE_URL;
 // Board label, e.g. "P01".
 const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
+// Award badges for poster cards, e.g. "Reviewers' Choice · 1st".
+const ord: Record<number, string> = { 1: "1st", 2: "2nd", 3: "3rd" };
+const badges = new Map<string, string[]>();
+for (const cat of awards) for (const w of cat.winners)
+  badges.set(w.poster, [...(badges.get(w.poster) ?? []), `${cat.name} · ${ord[w.place]}`]);
 // Ballots go to the raffle's Apps Script (same registration list). Before Nov 5 it's a test run
 // whose ballots never count; the voting window itself is enforced by the script.
 ---
 <BaseLayout title="Posters — BBSW 2026">
   <h1>Poster Sessions</h1>
   <p>Lightning talks and poster viewing take place during the conference. Posters are displayed in the <strong style="display:inline;">Stanford</strong> room (see the <a href="/venue">Venue</a> floor map).</p>
+
+  <PosterAwards />
 
   <section id="voting-app" data-endpoint={raffle.endpoint} data-open={raffle.voting.open} data-close={raffle.voting.close} class="mb-8">
     <!-- Time-based Banners -->
@@ -66,6 +75,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     {posters.map((p) => (
       <div class="poster-card" id={`poster-${p.id}`}>
         <div class="poster-id">{label(p.id)}</div>
+        {badges.get(p.id)?.map((b) => <span class="award-badge">🏆 {b}</span>)}
         <h3 class="poster-title">{p.title}</h3>
         <div class="poster-authors">{p.presenters}</div>
         <details class="poster-details">
@@ -244,6 +254,7 @@ const label = (id: string | number) => `P${String(id).padStart(2, "0")}`;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
   }
   .poster-id { font-size: 0.875rem; font-weight: 700; color: #64748b; margin-bottom: 0.35rem; }
+  .award-badge { display: inline-block; margin: 0 0.4rem 0.5rem 0; padding: 0.2rem 0.6rem; border-radius: 999px; background: #fff3cd; border: 1px solid #ecd9b0; color: #7a5a00; font-size: 0.78rem; font-weight: 700; }
   .poster-title { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0; color: #0f172a; }
   .poster-authors { color: #334155; margin-top: 0.5rem; font-weight: 500; }
   .poster-details { margin-top: 1rem; }

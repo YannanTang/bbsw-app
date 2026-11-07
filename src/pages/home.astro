@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import sessions from "../data/sessions.json";
 import speakers from "../data/speakers.json";
+import awards from "../data/poster-awards.json";
+import posters from "../data/posters.json";
 
 const base = import.meta.env.BASE_URL;
 const link = (p: string) => `${base}${p}`.replace(/\/\//g, "/");
@@ -25,9 +27,12 @@ const initials = (name: string) => name.split(/\s+/).map((w) => w[0]).slice(0, 2
 
 const quickLinks = [
   { href: "schedule", icon: "📅", label: "Schedule", line: "Both days" },
-  { href: "posters", icon: "🗳️", label: "Vote for posters", line: "Opens Thu 11:50 AM\nCloses Fri 1:30 PM" },
+  { href: "posters#awards", icon: "🏆", label: "Poster awards", line: "Meet the winners" },
   { href: "venue", icon: "📍", label: "Venue", line: "Wi-Fi, rooms, map" },
 ];
+
+const presenter = new Map(posters.map((p) => [p.id, p.presenters]));
+const medal: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
 
 const parallelCount = all.filter((s) => /^Parallel Session #/.test(s.title)).length;
 const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speakers))).size;
@@ -60,6 +65,24 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
       </a>
     ))}
   </nav>
+
+  <a class="winners-strip" href={link("posters#awards")} aria-labelledby="winners-heading">
+    <p class="winners-eyebrow">🏆 Poster Awards</p>
+    <h2 id="winners-heading" class="winners-heading">Congratulations to our winners!</h2>
+    <div class="winners-cols">
+      {awards.map((cat) => (
+        <div>
+          <p class="winners-cat">{cat.name}</p>
+          <ul>
+            {cat.winners.map((w) => (
+              <li><span aria-hidden="true">{medal[w.place]}</span> {presenter.get(w.poster)}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <span class="winners-more">See the winning posters →</span>
+  </a>
 
   <section class="spotlight" aria-labelledby="keynote-heading">
     <h2 id="keynote-heading" class="section-kicker">Keynotes</h2>
@@ -178,6 +201,26 @@ const speakerCount = new Set(all.flatMap((s) => s.talks.flatMap((t) => t.speaker
   .quick-icon { font-size: 1.6rem; line-height: 1; }
   .quick-label { margin-top: 0.5rem; font-weight: 700; font-size: 0.95rem; line-height: 1.2; }
   .quick-line { white-space: pre-line; margin-top: 0.2rem; font-size: 0.78rem; color: var(--color-muted); line-height: 1.25; }
+
+  .winners-strip {
+    display: block;
+    margin: 0 0 2.5rem;
+    padding: 1.4rem 1.25rem 1.2rem;
+    border-radius: 16px;
+    color: #fff;
+    background:
+      radial-gradient(120% 90% at 100% 0%, #c42a44 0%, transparent 60%),
+      linear-gradient(160deg, #9b1b30 0%, #5a0f1c 100%);
+    box-shadow: 0 10px 24px rgba(155, 27, 48, 0.18);
+  }
+  .winners-strip:hover { text-decoration: none; }
+  .winners-eyebrow { margin: 0; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #f7d39b; }
+  .winners-heading { margin: 0.35rem 0 1rem; color: #fff; font-family: var(--font-serif); font-size: 1.45rem; line-height: 1.2; }
+  .winners-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .winners-cat { margin: 0 0 0.35rem; font-size: 0.78rem; font-weight: 700; color: #f7d39b; }
+  .winners-cols ul { list-style: none; margin: 0; padding: 0; }
+  .winners-cols li { font-size: 0.95rem; font-weight: 600; line-height: 1.6; }
+  .winners-more { display: inline-block; margin-top: 1rem; font-size: 0.88rem; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.5); }
 
   .section-kicker {
     margin: 0 0 1rem;

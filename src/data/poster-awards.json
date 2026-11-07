@@ -1,0 +1,23 @@
+[
+  {
+    "id": "reviewers",
+    "name": "Reviewers' Choice",
+    "blurb": "Selected by the poster review committee.",
+    "winners": [
+      { "place": 1, "poster": "7", "affiliation": "Genentech" },
+      { "place": 2, "poster": "3", "affiliation": "Stanford University" },
+      { "place": 3, "poster": "10", "affiliation": "The Harker School" }
+    ]
+  },
+  {
+    "id": "peoples",
+    "name": "People's Choice",
+    "blurb": "Voted by BBSW 2026 attendees.",
+    "winners": [
+      { "place": 1, "poster": "9", "affiliation": "Genentech" },
+      { "place": 1, "poster": "4", "affiliation": "Exelixis" },
+      { "place": 2, "poster": "13", "affiliation": "Genentech" },
+      { "place": 3, "poster": "5", "affiliation": "Gilead Sciences" }
+    ]
+  }
+]

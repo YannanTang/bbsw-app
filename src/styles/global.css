@@ -820,3 +820,38 @@ a.install-btn:hover { text-decoration: none; }
 /* Sponsor logo to the right of a session title on the schedule */
 .session-row .title-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .session-row .sponsor-logo { height: 28px; width: auto; max-width: 110px; object-fit: contain; flex-shrink: 0; }
+
+/* "Download slides" under a talk (SlideLink.astro). Attendee-only slides carry a small tag and
+   unlock with the attendee password. */
+.slides { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin: 0.6rem 0 0; }
+.slides-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.slides-btn::before { content: "↓"; font-weight: 700; }
+form .slides-btn::before { content: none; }
+a.slides-btn:hover, .slides-btn:hover { background: var(--color-primary-soft); text-decoration: none; }
+.slides-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+}
+.slides-unlock { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.5rem 0.75rem; }
+.slides-unlock[hidden] { display: none; }
+.slides-unlock label { display: flex; flex-direction: column; gap: 0.25rem; font-weight: 600; flex: 1 1 14rem; }
+.slides-unlock input { font: inherit; font-size: 16px; padding: 0.55rem 0.7rem; border: 1px solid var(--color-border); border-radius: 8px; }
+.slides-unlock p { flex-basis: 100%; margin: 0; }
+.slides-error { color: var(--color-primary); font-weight: 600; }

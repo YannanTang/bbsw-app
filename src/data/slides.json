@@ -1,0 +1,33 @@
+{
+  "_note": "Post-conference slide PDFs, in Drive 'BBSW Tech Team Resources / BBSW 2026 Slides (shared in app)'. public = talk id -> Drive file id. attendee = encrypted, regenerate with: node scripts/encrypt-slides.mjs",
+  "public": {
+    "t-1b-1": "1HkZ7Lz_FqeLey75s1iIBLtieYbnJJWd7",
+    "t-1b-2": "1Amxznecdzb6aUTgVAq7kZxUhsZ17stv5",
+    "t-2a-1": "1pB9chB4vFsyiI8SlyA7dPrRg9HjeCmCh",
+    "t-2a-2": "1PSMuIgqgFKVR5pl22lDexeaDElxBFiXB",
+    "t-2a-3": "1lEwi-3cLcvdZP70Smzz_YnegrL9fXvHs",
+    "t-2a-4": "1oauTEiKPZxOos4kufWcsNZtMhnDkX-1n",
+    "t-2b-2": "1WsrHmupp3p2Mu1VT1dH1_lglH_sUTUyC",
+    "t-3a-2": "1fLnvUXwFj9HjRl-u9vq10mq5bQ2IGdFz",
+    "t-3a-3": "1qvZoS0w0rg0Inlo2EVpXeUDsRseFUuVx",
+    "t-3b-1": "1cQpjFvjjJp3LmkBDqYPuZ9l_flFLrFOZ",
+    "t-3b-3": "1jkbJJqEHoI8seKZq-RKULng_OgkMcUx6",
+    "t-4b-2": "1TfLkhtX9bJub_NfnCIK5XPLtiSdOo_N3",
+    "t-leadership": "1nOD2dvR74xHeIFTXQR5n5E1oYZ6Dxmgk"
+  },
+  "attendee": {
+    "talks": [
+      "t-1b-3",
+      "t-2a-5",
+      "t-2b-1",
+      "t-2b-3",
+      "t-3a-1",
+      "t-4a-1",
+      "t-4a-4"
+    ],
+    "iterations": 200000,
+    "salt": "8NOiG38MODyvCr1uUL5PQA==",
+    "iv": "NcUh9IVnKdun73t2",
+    "ciphertext": "40M+CsE0ey74FsV4pNj3WcxIPM87M1w6VD1a44oXaujGlxbfbHDrosEGvNCTE/BUaNSxtNTQeZzWjAYvjGm1mGNyAynSh/4HiKrYs7ZRN7Cuin1E7c9VdWRYQoRh1v6U4offttFYiFZZiC86c73CxjBhxblBDs5l3CWAzEbqY1+oUG6f2vMWgxFAJCS+8n6Bu9k3F+zM9yNjjE90erwPgLGQEDX76DVHno/ou3ONwhSYfkRnk3geqFprnTO4tmpFHrfgSipPwN3xwnqXfO4yobdI8K1jub7fVzIidd6c4TI8QIQOBRhnWtyUi2HXWNqZafNMj1t6Q4oMYPHOdYYW42bnNLbzPgec2N86lTvkaHAt37qkrTWDqE9PdDSt1Vzqa36i1wTaj1MY2GNMjEHKsjlXuY9xnCD/B4YoPM5lj9QtrFAPVm31Nw6mmkc="
+  }
+}

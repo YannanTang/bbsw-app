@@ -1,0 +1,105 @@
+---
+// "Download slides" button under a talk, for speakers who agreed to share their slides.
+// Public slides link straight to the PDF. Attendee-only slides show a small "Attendees only"
+// tag; their links are stored encrypted (src/data/slides.json, see scripts/encrypt-slides.mjs)
+// and are decrypted in the browser once the attendee enters the password. The password is
+// remembered on the device, so every attendee-only button on the site unlocks after that.
+import slides from "../data/slides.json";
+
+interface Props { talkId: string }
+const { talkId } = Astro.props;
+const publicId = (slides.public as Record<string, string>)[talkId];
+const attendeeOnly = ((slides.attendee as { talks?: string[] }).talks ?? []).includes(talkId);
+const download = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
+---
+{publicId && (
+  <p class="slides">
+    <a class="slides-btn" href={download(publicId)} target="_blank" rel="noopener">Download slides (PDF)</a>
+  </p>
+)}
+{!publicId && attendeeOnly && (
+  <div class="slides" data-slide-talk={talkId}>
+    <button type="button" class="slides-btn slides-locked">Download slides (PDF)</button>
+    <span class="slides-tag">Attendees only</span>
+    <form class="slides-unlock" hidden>
+      <label>Attendee password
+        <input name="pw" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required />
+      </label>
+      <button class="slides-btn" type="submit">Unlock</button>
+      <p class="slides-error" role="alert" hidden>That password doesn't match. Please check the email sent to attendees.</p>
+      <p class="meta">The password is in the email we sent to registered attendees.</p>
+    </form>
+  </div>
+)}
+
+<script>
+  import slides from "../data/slides.json";
+
+  type Blob = { talks: string[]; iterations: number; salt: string; iv: string; ciphertext: string };
+  const blob = slides.attendee as Partial<Blob>;
+  const STORE = "bbsw-slides-pw";
+  const fromB64 = (s: string) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+  const download = (id: string) => `https://drive.google.com/uc?export=download&id=${id}`;
+
+  // Returns the talk id -> Drive file id map, or null if the password is wrong.
+  async function decrypt(pw: string): Promise<Record<string, string> | null> {
+    if (!blob.ciphertext || !blob.salt || !blob.iv || !blob.iterations) return null;
+    try {
+      const pwKey = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw.trim().toLowerCase()), "PBKDF2", false, ["deriveKey"]);
+      const key = await crypto.subtle.deriveKey(
+        { name: "PBKDF2", salt: fromB64(blob.salt), iterations: blob.iterations, hash: "SHA-256" },
+        pwKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"],
+      );
+      const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: fromB64(blob.iv) }, key, fromB64(blob.ciphertext));
+      return JSON.parse(new TextDecoder().decode(plain));
+    } catch {
+      return null;
+    }
+  }
+
+  // Turn every locked button on the page into a real download link.
+  function unlockAll(map: Record<string, string>) {
+    document.querySelectorAll<HTMLElement>("[data-slide-talk]").forEach((box) => {
+      const id = map[box.dataset.slideTalk ?? ""];
+      const btn = box.querySelector<HTMLButtonElement>(".slides-locked");
+      if (!id || !btn) return;
+      const a = document.createElement("a");
+      a.className = "slides-btn";
+      a.href = download(id);
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = btn.textContent;
+      btn.replaceWith(a);
+      const form = box.querySelector<HTMLFormElement>(".slides-unlock");
+      if (form) form.hidden = true;
+    });
+  }
+
+  const boxes = document.querySelectorAll<HTMLElement>("[data-slide-talk]");
+  if (boxes.length) {
+    let saved: string | null = null;
+    try { saved = localStorage.getItem(STORE); } catch {}
+    if (saved) decrypt(saved).then((map) => map && unlockAll(map));
+
+    boxes.forEach((box) => {
+      const btn = box.querySelector<HTMLButtonElement>(".slides-locked");
+      const form = box.querySelector<HTMLFormElement>(".slides-unlock");
+      if (!btn || !form) return;
+      const input = form.querySelector<HTMLInputElement>("input")!;
+      const error = form.querySelector<HTMLElement>(".slides-error")!;
+      btn.addEventListener("click", () => {
+        form.hidden = !form.hidden;
+        if (!form.hidden) input.focus();
+      });
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        error.hidden = true;
+        const map = await decrypt(input.value);
+        if (!map) { error.hidden = false; return; }
+        try { localStorage.setItem(STORE, input.value); } catch {}
+        unlockAll(map);
+        box.querySelector<HTMLAnchorElement>("a.slides-btn")?.focus();
+      });
+    });
+  }
+</script>

@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Attendee-only slide links + password (encrypted into src/data/slides.json by scripts/encrypt-slides.mjs)
+.slides-attendee.local.json

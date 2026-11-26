@@ -2,6 +2,7 @@
   "_note": "Post-conference slide PDFs, in Drive 'BBSW Tech Team Resources / BBSW 2026 Slides (shared in app)'. public = talk id -> Drive file id. attendee = encrypted, regenerate with: node scripts/encrypt-slides.mjs",
   "public": {
     "keynote-1-talk": "1kdS_ZeE6QMoaERPWDJ8pHUc5Y4Q0x2na",
+    "t-1a-4": "1rHR6pG2jOCc8LqFfad4E2A8qeYVFbnWF",
     "t-1b-1": "1HkZ7Lz_FqeLey75s1iIBLtieYbnJJWd7",
     "t-1b-2": "1Amxznecdzb6aUTgVAq7kZxUhsZ17stv5",
     "t-2a-1": "1pB9chB4vFsyiI8SlyA7dPrRg9HjeCmCh",
